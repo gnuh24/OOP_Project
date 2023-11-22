@@ -1,0 +1,5 @@
+PH1#true#CS1
+PH2#false#CS2
+PH3#true#CS3
+PH4#false#CS2
+PH5#true#CS1
