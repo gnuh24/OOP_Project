@@ -48,6 +48,8 @@ public class QLCoSo {
     public static void loadDuLieu(){
         ArrayList<String> duLieu=DocGhiFile.docDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlCoSo.txt");
         xuLyDuLieu(duLieu);
+        System.out.println("Đã tải xong CƠ SỞ");
+
     }
 
     public static void xuLyDuLieu(ArrayList<String> duLieu) {
@@ -68,6 +70,7 @@ public class QLCoSo {
     public static void luuDuLieu() {
         ArrayList<String> duLieu = xuLyDuLieuDeLuu();
         DocGhiFile.ghiDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlCoSo.txt",duLieu);
+        System.out.println("Đã lưu xong CƠ SỞ");
 
     }
     public static ArrayList<String> xuLyDuLieuDeLuu() {

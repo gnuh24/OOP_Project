@@ -21,6 +21,8 @@ public class QLTroGiang {
 	public static void loadDuLieu() {
 		ArrayList<String> duLieu = DocGhiFile.docDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlTroGiang.txt");
 		xuLyDuLieu(duLieu);
+		System.out.println("Đã tải xong TRỢ GIẢNG");
+
 	}
 	public static void xuLyDuLieu(ArrayList<String> duLieu) {
 		// duyệt qua duLieu và bắt đầu xử lý!
@@ -33,9 +35,9 @@ public class QLTroGiang {
 			String email = cacThuocTinh[1];
 			Boolean gioiTinh = (cacThuocTinh[2].equals("1"));
 			String sdt = cacThuocTinh[3];
-			int ngay = Integer.valueOf(cacThuocTinh[4]); // unboxed
-			int thang = Integer.valueOf(cacThuocTinh[5]); // unboxed
-			int nam = Integer.valueOf(cacThuocTinh[6]); // unboxed: Integer ngầm chuyển thành int một cách an toàn
+			int ngay = Integer.parseInt(cacThuocTinh[4]); // unboxed
+			int thang = Integer.parseInt(cacThuocTinh[5]); // unboxed
+			int nam = Integer.parseInt(cacThuocTinh[6]); // unboxed: Integer ngầm chuyển thành int một cách an toàn
 			NgayThang ngaySinh = new NgayThang(ngay, thang, nam);
 			String diaChi = cacThuocTinh[7];
 			String ma = cacThuocTinh[8];
@@ -49,7 +51,7 @@ public class QLTroGiang {
 	public static void luuDuLieu() {
 		ArrayList<String> duLieu = xuLyDuLieuDeLuu();
 		if(DocGhiFile.ghiDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlTroGiang.txt",duLieu)){
-			System.out.println("Da luu du lieu");
+			System.out.println("Đã lưu xong TRỢ GIẢNG");
 		}
 	}
 
@@ -62,10 +64,16 @@ public class QLTroGiang {
 			sb.append(troGiang.getEmail());sb.append("#");
 			sb.append(troGiang.getGioiTinh());sb.append("#");
 			sb.append(troGiang.getSoDienThoai());sb.append("#");
-			sb.append(troGiang.getNgaySinh());sb.append("#");
+
+			sb.append(troGiang.getNgaySinh().getNgay());sb.append("#");
+			sb.append(troGiang.getNgaySinh().getThang());sb.append("#");
+			sb.append(troGiang.getNgaySinh().getNam());sb.append("#");
+
+
 			sb.append(troGiang.getDiaChi());sb.append("#");
 			sb.append(troGiang.getMa());sb.append("#");
-			sb.append(troGiang.getTrangThai());sb.append(System.lineSeparator());
+			sb.append(troGiang.getTrangThai());
+			sb.append(System.lineSeparator());
 			duLieu.add(sb.toString());
 		}
 		return duLieu;

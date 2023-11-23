@@ -72,6 +72,8 @@ public class QLKhachHang extends CaNhan {
 		String filePath = "C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlKhachHang.txt";
 		ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
 		xuLyDuLieu(duLieu);
+		System.out.println("Đã tải xong KHÁCH HÀNG");
+
 	}
 	
 	// Hàm save dữ liệu vào file
@@ -79,6 +81,8 @@ public class QLKhachHang extends CaNhan {
 		String filePath = "C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlKhachHang.txt";
 		ArrayList<String> duLieu = trichXuatDuLieu();
 		DocGhiFile.ghiDuLieuFile(filePath, duLieu);
+		System.out.println("Đã lưu xong KHÁCH HÀNG");
+
 	}
 
 	// Hàm in danh sách khách hàng

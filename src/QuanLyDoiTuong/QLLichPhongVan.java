@@ -26,6 +26,8 @@ public class QLLichPhongVan {
     public static void loadDuLieu(){
         ArrayList<String> duLieu= DocGhiFile.docDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlLichPhongVan.txt");
         xuLyDuLieu(duLieu);
+        System.out.println("Đã tải xong LỊCH PHỔNG VẤN");
+
     }
 
     public static void xuLyDuLieu(ArrayList<String> duLieu) {
@@ -85,6 +87,7 @@ public class QLLichPhongVan {
     public static void saveDuLieu() {
         ArrayList<String> duLieu = xuLyDuLieuDeLuu();
         DocGhiFile.ghiDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlLichPhongVan.txt",duLieu);
+        System.out.println("Đã lưu xong LỊCH PHỔNG VẤN");
 
     }
     public static ArrayList<String> xuLyDuLieuDeLuu() {

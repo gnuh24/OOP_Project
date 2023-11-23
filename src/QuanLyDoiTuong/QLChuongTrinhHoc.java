@@ -71,6 +71,8 @@ public class QLChuongTrinhHoc {
     public static void loadDuLieu(){
         ArrayList<String> duLieu=DocGhiFile.docDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlChuongTrinhHoc.txt");
         xuLyDuLieu(duLieu);
+        System.out.println("Đã tải xong CHƯƠNG TRÌNH HỌC");
+
     }
 
     public static void xuLyDuLieu(ArrayList<String> duLieu) {
@@ -95,6 +97,7 @@ public class QLChuongTrinhHoc {
     public static void luuDuLieu() {
         ArrayList<String> duLieu = xuLyDuLieuDeLuu();
         DocGhiFile.ghiDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlChuongTrinhHoc.txt",duLieu);
+        System.out.println("Đã lưu xong CHƯƠNG TRÌNH HỌC");
     }
     public static ArrayList<String> xuLyDuLieuDeLuu() {
         // duyệt qua duLieu và bắt đầu xử lý!

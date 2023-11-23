@@ -68,6 +68,8 @@ public class QLPhongHoc {
     public static void loadDuLieu(){
         ArrayList<String> duLieu=DocGhiFile.docDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlPhongHoc.txt");
         xuLyDuLieu(duLieu);
+        System.out.println("Đã tải xong PHÒNG HỌC");
+
     }
 
     public static void xuLyDuLieu(ArrayList<String> duLieu) {
@@ -91,7 +93,8 @@ public class QLPhongHoc {
     public static void luuDuLieu() {
         ArrayList<String> duLieu = xuLyDuLieuDeLuu();
         if(DocGhiFile.ghiDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlPhongHoc.txt",duLieu)){
-            System.out.println("Da luu du lieu");
+            System.out.println("Đã lưu xong PHÒNG HỌC");
+
         }
     }
     public static ArrayList<String> xuLyDuLieuDeLuu() {

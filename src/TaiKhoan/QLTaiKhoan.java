@@ -43,22 +43,25 @@ public class QLTaiKhoan {
             boolean tt = taiKhoan.isTrangThai();
             String trangThai = (tt) ? "1" : "0";
 
-            String tam = id + "#"
-                    + tenTaiKhoan + "#"
-                    + matKhau + "#"
-                    + trangThai;
-
-            duLieu.add(tam);
+            StringBuilder sb = new StringBuilder();
+            sb.append(id).append("#");
+            sb.append(tenTaiKhoan).append("#");
+            sb.append(matKhau).append("#");
+            sb.append(trangThai);
+            sb.append(System.lineSeparator());
+            duLieu.add(sb.toString());
         }
 
         return duLieu;
     }
+
 
     // Hàm load dữ liệu từ file
     public static void loadDuLieu() {
         String filePath = "C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlTaiKhoan";
         ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
         xuLyDuLieu(duLieu);
+        System.out.println("Đã tải xong TÀI KHOẢN");
     }
 
     // Hàm save dữ liệu vào file
@@ -66,6 +69,8 @@ public class QLTaiKhoan {
         String filePath = "C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlTaiKhoan";
         ArrayList<String> duLieu = trichXuatDuLieu();
         DocGhiFile.ghiDuLieuFile(filePath, duLieu);
+        System.out.println("Đã lưu xong TÀI KHOẢN");
+
     }
 
     public static void inDSTaiKhoan(ArrayList<TaiKhoan> dsTaiKhoan){

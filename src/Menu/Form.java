@@ -60,6 +60,17 @@ public class Form {
                 Menu.giaoDienGiangVien();
             } else if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.TroGiang)) {
                 Menu.giaoDienTroGiang();
+            }else if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.HocVien)) {
+                Menu.giaoDienHocVien();
+            }else if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.CongTacVien)) {
+                Menu.giaoDienCongTacVien();
+            }else if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.QuanLy)) {
+                Menu.giaoDienQuanLy();
+            }else if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.GiamDoc)) {
+                Menu.giaoDienGiamDoc();
+            }else {
+                System.out.println("Lỗi đăng nhập !!!");
+                Menu.giaoDienKhachHang();
             }
 
         }

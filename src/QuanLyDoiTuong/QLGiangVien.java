@@ -32,9 +32,9 @@ public class QLGiangVien {
 			String email = cacThuocTinh[1];
 			Boolean gioiTinh = (cacThuocTinh[2].equals("1"));
 			String sdt = cacThuocTinh[3];
-			int ngay = Integer.valueOf(cacThuocTinh[4]); // unboxed
-			int thang = Integer.valueOf(cacThuocTinh[5]); // unboxed
-			int nam = Integer.valueOf(cacThuocTinh[6]); // unboxed: Integer ngầm chuyển thành int một cách an toàn
+			int ngay = Integer.parseInt(cacThuocTinh[4]); // unboxed
+			int thang = Integer.parseInt(cacThuocTinh[5]); // unboxed
+			int nam = Integer.parseInt(cacThuocTinh[6]); // unboxed: Integer ngầm chuyển thành int một cách an toàn
 			NgayThang ngaySinh = new NgayThang(ngay, thang, nam);
 			String diaChi = cacThuocTinh[7];
 			String ma = cacThuocTinh[8];
@@ -55,29 +55,32 @@ public class QLGiangVien {
 			boolean tt = giangVien.getTrangThai();
 			String trangThai = (tt) ? "1" : "0";
 
-			String ngaySinh = giangVien.getNgaySinh()
-					.toString().replaceAll("/", "#");
+			String ngaySinh = giangVien.getNgaySinh().toString().replaceAll("/", "#");
 
-			String tam = giangVien.getHoTen() + "#"
-					+ giangVien.getEmail() + "#"
-					+ gioiTinh + "#"
-					+ giangVien.getSoDienThoai() + "#"
-					+ ngaySinh + "#"
-					+ giangVien.getDiaChi() + "#"
-					+ giangVien.getMa() + "#"
-					+ trangThai;
+			StringBuilder sb = new StringBuilder();
+			sb.append(giangVien.getHoTen()).append("#");
+			sb.append(giangVien.getEmail()).append("#");
+			sb.append(gioiTinh).append("#");
+			sb.append(giangVien.getSoDienThoai()).append("#");
+			sb.append(ngaySinh).append("#");
+			sb.append(giangVien.getDiaChi()).append("#");
+			sb.append(giangVien.getMa()).append("#");
+			sb.append(trangThai);sb.append(System.lineSeparator());
 
-			duLieu.add(tam);
+			duLieu.add(sb.toString());
 		}
 
 		return duLieu;
 	}
+
 
 	// Hàm load dữ liệu từ file
 	public static void loadDuLieu() {
 		String filePath = "C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlGiangVien.txt";
 		ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
 		xuLyDuLieu(duLieu);
+		System.out.println("Đã tải xong GIẢNG VIÊN");
+
 	}
 
 	// Hàm save dữ liệu vào file
@@ -85,6 +88,8 @@ public class QLGiangVien {
 		String filePath = "C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlGiangVien.txt";
 		ArrayList<String> duLieu = trichXuatDuLieu();
 		DocGhiFile.ghiDuLieuFile(filePath, duLieu);
+		System.out.println("Đã lưu xong GIẢNG VIÊN");
+
 	}
 
 

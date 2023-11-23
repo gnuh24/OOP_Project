@@ -12,6 +12,12 @@ public class LoadDuLieu {
 
         QLCoSo.loadDuLieu();
         QLPhongHoc.loadDuLieu();
+        QLCaHoc.loadDuLieu();
+
+        QLCongTacVien.loadDuLieu();
+        QLQuanLy.loadDuLieu();
+        QLGiamDoc.loadDuLieu();
+        QLHocVien.loadDuLieu();
 
         QLKhachHang.loadDuLieu();
         QLTaiKhoan.loadDuLieu();
@@ -22,8 +28,7 @@ public class LoadDuLieu {
 
     public static void main(String[] args) {
         LoadDuLieu.loading();
-        QLCoSo.inDSCoSo(QLCoSo.getDsCoSo());
-        QLPhongHoc.inDSPhongHoc(QLPhongHoc.getDsPhongHoc());
+        QLHocVien.inDSHocVien(QLHocVien.dsHocVien);
     }
 
     public static void saving(){
@@ -31,13 +36,16 @@ public class LoadDuLieu {
         QLTroGiang.luuDuLieu();
         QLGiangVien.saveDuLieu();
 
+        QLGiamDoc.saveDuLieu();
+        QLCongTacVien.saveDuLieu();
+        QLQuanLy.saveDuLieu();
+        QLHocVien.luuDuLieu();
+
         QLCoSo.luuDuLieu();
         QLPhongHoc.luuDuLieu();
         QLTaiKhoan.saveDuLieu();
 
         QLKhachHang.saveDuLieu();
-
-
         QLLichPhongVan.saveDuLieu();
     }
 }
