@@ -1,12 +1,9 @@
 package QuanLyDoiTuong;
 
-import HeThongGiaoDuc.CoSoVatChat.PhongHoc;
-import HeThongGiaoDuc.PhongVan.LichPhongVan;
-import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
 import NguoiDung.CaNhan;
 import NguoiDung.GiangVien;
 import NguoiDung.KhachHang;
-import ThoiGian.Gio;
+
 import ThoiGian.NgayThang;
 import Utils.DocGhiFile;
 
@@ -23,74 +20,105 @@ public class QLKhachHang extends CaNhan {
         QLKhachHang.dsKhachHang = dsKhachHang;
     }
 
-//    public static void loadDuLieu(){
-//        ArrayList<String> duLieu= DocGhiFile.docDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlLichPhongVan.txt");
-//        xuLyDuLieu(duLieu);
-//    }
-//
-//    public static void xuLyDuLieu(ArrayList<String> duLieu) {
-//        // duyệt qua duLieu và bắt đầu xử lý!
-//        for (String dong : duLieu) {
-//            // tách chuỗi tam
-//            String[] cacThuocTinh = dong.split("#");
-//
-//
-//
-//            String maCa = cacThuocTinh[0];
-//
-//            String maGiangVien = cacThuocTinh[1];
-//            GiangVien giangVien = ;
-//
-//            int ngay = Integer.parseInt(cacThuocTinh[2]);
-//            int thang = Integer.parseInt(cacThuocTinh[3]);
-//            int nam = Integer.parseInt(cacThuocTinh[4]);
-//            NgayThang ngayThang = new NgayThang(ngay, thang, nam);
-//
-//            int gio =  Integer.parseInt(cacThuocTinh[5]);
-//            int phut =  Integer.parseInt(cacThuocTinh[6]);
-//            Gio thoiGian = new Gio(gio, phut);
-//
-//            String maKhach = cacThuocTinh[7];
-//            KhachHang khachHang = ;
-//
-//            TrangThaiPhongVan trangThai = null;
-//            switch (cacThuocTinh[8]){
-//                case "1":
-//                    trangThai = TrangThaiPhongVan.CHO_DUYET;
-//                    break;
-//                case "2":
-//                    trangThai = TrangThaiPhongVan.CHO_PHONGVAN;
-//                    break;
-//                case "3":
-//                    trangThai = TrangThaiPhongVan.DA_PHONGVAN;
-//                    break;
-//                case "4":
-//                    trangThai = TrangThaiPhongVan.HUY;
-//                    break;
-//            }
-//
-//            LichPhongVan lichPhongVan = new LichPhongVan(maCa, giangVien, ngayThang, thoiGian, khachHang, trangThai);
-//            QLLichPhongVan.getDsLichPhongVan().add(lichPhongVan);
-//
-//        }
-//    }
 
-//    public static void luuDuLieu() {
-//        ArrayList<String> duLieu = xuLyDuLieuDeLuu();
-//        if(DocGhiFile.ghiDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlPhongHoc.txt",duLieu)){
-//            System.out.println("Da luu du lieu");
-//        }
-//    }
-//    public static ArrayList<String> xuLyDuLieuDeLuu() {
-//        // duyệt qua duLieu và bắt đầu xử lý!
-//        ArrayList<String> duLieu=new ArrayList<String>();
-//        for (PhongHoc phongHoc:dsPhongHoc) {
-//            StringBuilder sb = new StringBuilder();
-//            sb.append(phongHoc.getMaPhongHoc());sb.append("#");
-//            sb.append(phongHoc.getTrangThai());sb.append("#");
-//            sb.append(phongHoc.getCoSoTrucThuoc().getMaCoSo());sb.append(System.lineSeparator());
-//            duLieu.add(sb.toString());
-//        }
-//        return duLieu;
-//    }
+	public static void xuLyDuLieu(ArrayList<String> duLieu) {
+		// duyệt qua duLieu và bắt đầu xử lý!
+		for (var tam : duLieu) {
+			// tách chuỗi tam
+			String[] cacThuocTinh = tam.split("#");
+			String ma = cacThuocTinh[0];
+			// thiết lập các thuộc tính cho đối tượng
+			String ten = cacThuocTinh[1];
+			String email = cacThuocTinh[2];
+			boolean gioiTinh = (cacThuocTinh[3].equals("1"));
+			String sdt = cacThuocTinh[4];
+			int ngay = Integer.valueOf(cacThuocTinh[5]);
+			int thang = Integer.valueOf(cacThuocTinh[6]);
+			int nam = Integer.valueOf(cacThuocTinh[7]);
+			var ngaySinh = new NgayThang(ngay, thang, nam);
+			String diaChi = cacThuocTinh[8];
+
+			// tạo ra dối tượng và thêm vào dsKhachHang
+			dsKhachHang.add(new KhachHang(ten, email, gioiTinh, sdt, ngaySinh, diaChi));
+		}
+	}
+	
+	public static ArrayList<String> trichXuatDuLieu() {
+		ArrayList<String> duLieu = new ArrayList<>();
+		
+		for (var khachHang : dsKhachHang) {
+			boolean gt = khachHang.getGioiTinh();
+			String gioiTinh = (gt == true) ? "1" : "0";
+
+			String ngaySinh = khachHang.getNgaySinh()
+					.toString().replaceAll("/", "#");
+			
+			String tam = khachHang.getMaKhachHang() + "#"
+					+ khachHang.getHoTen() + "#"
+					+ khachHang.getEmail() + "#"
+					+ gioiTinh + "#"
+					+ khachHang.getSoDienThoai() + "#"
+					+ ngaySinh + "#" 
+					+ khachHang.getDiaChi() + "\n";
+			
+			duLieu.add(tam);
+		}
+		
+		return duLieu;
+	}
+	
+	// Hàm load dữ liệu từ file
+	public static void loadDuLieu() {
+		String filePath = "C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlKhachHang.txt";
+		ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
+		xuLyDuLieu(duLieu);
+	}
+	
+	// Hàm save dữ liệu vào file
+	public static void saveDuLieu() {
+		String filePath = "C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlKhachHang.txt";
+		ArrayList<String> duLieu = trichXuatDuLieu();
+		DocGhiFile.ghiDuLieuFile(filePath, duLieu);
+	}
+
+	// Hàm in danh sách khách hàng
+	public static void inDanhSach(ArrayList<KhachHang> dsKhachHang) {
+		System.out.println("*".repeat(127));
+
+		System.out.printf("%-10s* %-25s* %-25s* %-10s* %-15s* %-15s* %-30s*\n",
+				"Mã khách hàng", "Ho ten", "Email", "G/tinh", "SDT", "Ngay sinh", "Dia chi");
+
+		System.out.println("*".repeat(127));
+
+		for (var khachHang : dsKhachHang) {
+			String gioiTinh = (khachHang.getGioiTinh()) ? "Nam" : "Nu";
+
+			System.out.printf("%-10s %-25s %-25s %-10s %-15s %-15s %-30s %-1s\n",
+					"* " + khachHang.getMaKhachHang(),
+					"* " + khachHang.getHoTen(),
+					"* " + khachHang.getEmail(), 
+					"* " + gioiTinh, 
+					"* " + khachHang.getSoDienThoai(),
+					"* " + khachHang.getNgaySinh(), 
+					"* " + khachHang.getDiaChi(), 
+					"*");
+		}
+		System.out.println("*".repeat(127));
+	}
+
+	public static KhachHang timKhachHangTheoMa(String maKH){
+		for (KhachHang khachHang: QLKhachHang.getDsKhachHang()) {
+			if (khachHang.getMaKhachHang().equals(maKH)){
+				return khachHang;
+			}
+		}
+		return null;
+	}
+
+	
+	public static void main(String[] args) {
+		loadDuLieu();
+		inDanhSach(dsKhachHang);
+		saveDuLieu();
+	}
 }

@@ -67,9 +67,8 @@ public class QLCoSo {
 
     public static void luuDuLieu() {
         ArrayList<String> duLieu = xuLyDuLieuDeLuu();
-        if(DocGhiFile.ghiDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlCoSo.txt",duLieu)){
-            System.out.println("Da luu du lieu");
-        }
+        DocGhiFile.ghiDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlCoSo.txt",duLieu);
+
     }
     public static ArrayList<String> xuLyDuLieuDeLuu() {
         // duyệt qua duLieu và bắt đầu xử lý!

@@ -1,10 +1,3 @@
 CS1#Cơ sở 1#Địa chỉ 1
 CS2#Cơ sở 2#Địa chỉ 2
 CS3#Cơ sở 3#Địa chỉ 3
-CS4#Cơ sở 4#Địa chỉ 4
-CS5#Cơ sở 5#Địa chỉ 5
-CS6#Cơ sở 6#Địa chỉ 6
-CS7#Cơ sở 7#Địa chỉ 7
-CS8#Cơ sở 8#Địa chỉ 8
-CS9#Cơ sở 9#Địa chỉ 9
-CS10#Cơ sở 10#Địa chỉ 10

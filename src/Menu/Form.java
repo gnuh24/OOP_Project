@@ -2,8 +2,10 @@ package Menu;
 
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import NguoiDung.KhachHang;
+import QuanLyDoiTuong.QLKhachHang;
 import QuanLyDoiTuong.QLLichPhongVan;
 import TaiKhoan.*;
+import ThoiGian.NgayThang;
 import Utils.ScannerUtils;
 
 public class Form {
@@ -56,6 +58,8 @@ public class Form {
             Form.password = curPassword;
             if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.GiangVien)){
                 Menu.giaoDienGiangVien();
+            } else if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.TroGiang)) {
+                Menu.giaoDienTroGiang();
             }
 
         }
@@ -95,7 +99,7 @@ public class Form {
 
     @SuppressWarnings("all") //Bỏ qua tất ca các cảnh báo
     private static TrangThaiDangNhap checkTrangThai(String id){
-        String mauCanTest = id.substring(0, 1);
+        String mauCanTest = id.substring(0, 2);
         if (mauCanTest.equals("GV")){
             return TrangThaiDangNhap.GiangVien;
         }   else if (mauCanTest.equals("TG")) {
@@ -121,13 +125,41 @@ public class Form {
         System.out.println("Nhập email");
         String email = ScannerUtils.inputString();
 
+        System.out.println("Chọn giới tính:");
+        System.out.println("1. Nam");
+        System.out.println("Các nút còn lại sẽ là nữ");
+        boolean gioiTinh ;
+        String genderChoice = ScannerUtils.inputString();
+        if (genderChoice.equals("1")){
+            gioiTinh = true;
+        }
+        else gioiTinh = false;
+
+
         System.out.println("Nhập số điện thoại");
         String sdt = ScannerUtils.inputString();
 
+        System.out.println("Nhập địa chỉ");
+        String diaChi = ScannerUtils.inputString();
 
-        LichPhongVan lichPhongVan = new LichPhongVan(new KhachHang(hoTen, email, sdt));
+        System.out.println("Nhập ngày tháng năm sinh: ");
+        System.out.println("Ngày: ");
+        int ngay = ScannerUtils.inputInt("Bạn chỉ được nhập số ngày");
+        System.out.println("Tháng: ");
+
+        int thang = ScannerUtils.inputInt("Bạn chỉ được nhập số tháng phù hợp");
+        System.out.println("Năm: ");
+
+        int nam = ScannerUtils.inputInt("Bạn chỉ được nhập số năm phù hợp");
+        NgayThang ngayThang = new NgayThang(ngay, thang, nam);
+
+
+
+        KhachHang khachHang = new KhachHang(hoTen, email, gioiTinh, sdt, ngayThang, diaChi);
+        QLKhachHang.getDsKhachHang().add(khachHang);
+        LichPhongVan lichPhongVan = new LichPhongVan(khachHang);
         QLLichPhongVan.getDsLichPhongVan().add(lichPhongVan);
-
+        System.out.println(QLLichPhongVan.getDsLichPhongVan());
         System.out.println("Bạn đã đăng ký thành công !!");
         QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
         Menu.giaoDienKhachHang();

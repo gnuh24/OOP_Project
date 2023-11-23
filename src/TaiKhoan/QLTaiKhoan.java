@@ -1,6 +1,7 @@
 package TaiKhoan;
 
 import Menu.Menu;
+import Utils.DocGhiFile;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,58 @@ public class QLTaiKhoan {
 
     public static void setDsTaiKhoan(ArrayList<TaiKhoan> dsTaiKhoan) {
         QLTaiKhoan.dsTaiKhoan = dsTaiKhoan;
+    }
+
+    public static void xuLyDuLieu(ArrayList<String> duLieu) {
+        // duyệt qua duLieu và bắt đầu xử lý!
+        for (var tam : duLieu) {
+            // tách chuỗi tam
+            String[] cacThuocTinh = tam.split("#");
+
+            // thiết lập các thuộc tính cho đối tượng
+            String id = cacThuocTinh[0];
+            String tenTaiKhoan = cacThuocTinh[1];
+            String matKhau = cacThuocTinh[2];
+            boolean trangThai = (cacThuocTinh[3].equals("1"));
+
+            // tạo ra dối tượng và thêm vào dsTaiKhoan
+            dsTaiKhoan.add(new TaiKhoan(id, tenTaiKhoan, matKhau, trangThai));
+        }
+    }
+
+    public static ArrayList<String> trichXuatDuLieu() {
+        ArrayList<String> duLieu = new ArrayList<>();
+
+        for (var taiKhoan : dsTaiKhoan) {
+            String id = taiKhoan.getId();
+            String tenTaiKhoan = taiKhoan.getTenTaiKhoan();
+            String matKhau = taiKhoan.getMatKhau();
+            boolean tt = taiKhoan.isTrangThai();
+            String trangThai = (tt) ? "1" : "0";
+
+            String tam = id + "#"
+                    + tenTaiKhoan + "#"
+                    + matKhau + "#"
+                    + trangThai;
+
+            duLieu.add(tam);
+        }
+
+        return duLieu;
+    }
+
+    // Hàm load dữ liệu từ file
+    public static void loadDuLieu() {
+        String filePath = "C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlTaiKhoan";
+        ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
+        xuLyDuLieu(duLieu);
+    }
+
+    // Hàm save dữ liệu vào file
+    public static void saveDuLieu() {
+        String filePath = "C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlTaiKhoan";
+        ArrayList<String> duLieu = trichXuatDuLieu();
+        DocGhiFile.ghiDuLieuFile(filePath, duLieu);
     }
 
     public static void inDSTaiKhoan(ArrayList<TaiKhoan> dsTaiKhoan){
