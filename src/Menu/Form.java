@@ -11,6 +11,16 @@ public class Form {
     private static String username;
     private static String password;
 
+    private static TrangThaiDangNhap trangThaiDangNhap;
+
+    public static TrangThaiDangNhap getTrangThaiDangNhap() {
+        return trangThaiDangNhap;
+    }
+
+    public static void setTrangThaiDangNhap(TrangThaiDangNhap trangThaiDangNhap) {
+        Form.trangThaiDangNhap = trangThaiDangNhap;
+    }
+
     public static String getId() {
         return id;
     }
@@ -42,6 +52,11 @@ public class Form {
         String curPassword = ScannerUtils.inputString();
 
         if (isLoginValid(curUsername, curPassword)){
+            Form.username = curUsername;
+            Form.password = curPassword;
+            if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.GiangVien)){
+                Menu.giaoDienGiangVien();
+            }
 
         }
         else {
@@ -71,8 +86,32 @@ public class Form {
         if (!taiKhoan.getMatKhau().equals(password)){
             return false;
         }
+        else{
+            Form.setId(taiKhoan.getId());
+            Form.setTrangThaiDangNhap(Form.checkTrangThai(Form.getId()));
+            return true;
+        }
+    }
 
-        return true;
+    @SuppressWarnings("all") //Bỏ qua tất ca các cảnh báo
+    private static TrangThaiDangNhap checkTrangThai(String id){
+        String mauCanTest = id.substring(0, 1);
+        if (mauCanTest.equals("GV")){
+            return TrangThaiDangNhap.GiangVien;
+        }   else if (mauCanTest.equals("TG")) {
+                return TrangThaiDangNhap.TroGiang;
+        }   else if (mauCanTest.equals("HV")) {
+                return TrangThaiDangNhap.HocVien;
+        }   else if (mauCanTest.equals("QL")) {
+                return TrangThaiDangNhap.QuanLy;
+        }   else if (mauCanTest.equals("CV")) {
+                return TrangThaiDangNhap.CongTacVien;
+        }   else if (mauCanTest.equals("GD")) {
+                return TrangThaiDangNhap.GiamDoc;
+        } else {
+            System.out.println("ID không hợp lệ !!");
+            return null;
+        }
     }
 
     public static void dangKyPhongVan(){

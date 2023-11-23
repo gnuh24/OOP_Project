@@ -28,6 +28,15 @@ public class LichPhongVan {
         this.trangThaiPhongVan = TrangThaiPhongVan.CHO_DUYET;
     }
 
+    public LichPhongVan(String maCaPhongVan, GiangVien giangVien, NgayThang ngayThang, Gio gioPV, KhachHang khachHang, TrangThaiPhongVan trangThaiPhongVan) {
+        this.maCaPhongVan = maCaPhongVan;
+        this.giangVien = giangVien;
+        this.ngayThang = ngayThang;
+        this.gioPV = gioPV;
+        this.khachHang = khachHang;
+        this.trangThaiPhongVan = trangThaiPhongVan;
+    }
+
     public String getMaCaPhongVan() {
         return maCaPhongVan;
     }
