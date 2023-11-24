@@ -8,46 +8,22 @@ public enum Thu {
                 thuString="Ba";
                 break;
             case Tu:
-                thuString="Tu";
+                thuString="Tư";
                 break;
             case Nam:
-                thuString="Nam";
+                thuString="Năm";
                 break;
             case Sau:
-                thuString="Sau";
+                thuString="Sáu";
                 break;
             case Bay:
-                thuString="Bay";
+                thuString="Bảy";
                 break;
             case ChuNhat:
-                thuString="ChuNhat";
+                thuString="Chủ nhật";
                 break;
         }
         return thuString;
-    }
-    public int toInt(Thu thuEnum){
-        int thuInt=2;
-        switch (thuEnum) {
-            case Ba:
-                thuInt=3;
-                break;
-            case Tu:
-                thuInt=4;
-                break;
-            case Nam:
-                thuInt=5;
-                break;
-            case Sau:
-                thuInt=6;
-                break;
-            case Bay:
-                thuInt=7;
-                break;
-            case ChuNhat:
-                thuInt=8;
-                break;
-        }
-        return thuInt;
     }
     public static Thu toThu(String thuString){
         Thu thuEnum=Hai;
@@ -55,46 +31,23 @@ public enum Thu {
             case "Ba":
                 thuEnum=Ba;
                 break;
-            case "Tu":
+            case "Tư":
                 thuEnum=Tu;
                 break;
-            case "Nam":
+            case "Năm":
                 thuEnum=Nam;
                 break;
-            case "Sau":
+            case "Sáu":
                 thuEnum=Sau;
                 break;
-            case "Bay":
+            case "Bảy":
                 thuEnum=Bay;
                 break;
-            case "ChuNhat":
+            case "Chủ nhật":
                 thuEnum=ChuNhat;
                 break;
         }
         return thuEnum;
     }
-    public static Thu toThu(int thuInt){
-        Thu thuEnum=Hai;
-        switch (thuInt) {
-            case 3:
-                thuEnum=Ba;
-                break;
-            case 4:
-                thuEnum=Tu;
-                break;
-            case 5:
-                thuEnum=Nam;
-                break;
-            case 6:
-                thuEnum=Sau;
-                break;
-            case 7:
-                thuEnum=Bay;
-                break;
-            case 8:
-                thuEnum=ChuNhat;
-                break;
-        }
-        return thuEnum;
-    }
+  
 }

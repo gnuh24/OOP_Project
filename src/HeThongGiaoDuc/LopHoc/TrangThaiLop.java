@@ -3,13 +3,13 @@ package HeThongGiaoDuc.LopHoc;
 public enum TrangThaiLop {
     Sap_Khai_Giang, Dang_Hoc, Da_Ket_Thuc;
     public String toString(TrangThaiLop trangThaiLop){
-        String trangThaiLopString="Sap khai giang";
+        String trangThaiLopString="Sắp khai giảng";
         switch (trangThaiLop) {
             case Dang_Hoc:
-                trangThaiLopString = "Dang hoc";
+                trangThaiLopString = "Đang học";
                 break;
             case Da_Ket_Thuc:
-                trangThaiLopString = "Da ket thuc";
+                trangThaiLopString = "Đã kết thúc";
                 break;
         }
         return trangThaiLopString;
@@ -17,10 +17,10 @@ public enum TrangThaiLop {
     public static TrangThaiLop toTrangThaiLop(String trangThaiLopString){
         TrangThaiLop trangThaiLop=Sap_Khai_Giang;
         switch (trangThaiLopString) {
-            case "Dang hoc":
+            case "Đang học":
                 trangThaiLop=Dang_Hoc;
                 break;
-            case "Da ket thuc":
+            case "Đã kết thúc":
                 trangThaiLop=Da_Ket_Thuc;
                 break;
         }
