@@ -1,8 +1,6 @@
 package QuanLyDoiTuong;
 
 import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
-import HeThongGiaoDuc.LopHoc.LopHoc;
-import NguoiDung.HocVien;
 
 import java.util.ArrayList;
 

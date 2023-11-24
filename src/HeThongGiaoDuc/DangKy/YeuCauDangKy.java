@@ -1,7 +1,6 @@
 package HeThongGiaoDuc.DangKy;
 
 import HeThongGiaoDuc.LopHoc.LopHoc;
-import NguoiDung.HocVien;
 
 public class YeuCauDangKy {
     private String maDangKy;

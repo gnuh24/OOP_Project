@@ -4,13 +4,10 @@ package Menu;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
-import NguoiDung.GiangVien;
 import QuanLyDoiTuong.*;
 import ThoiGian.Gio;
 import ThoiGian.NgayThang;
 import Utils.ScannerUtils;
-
-import java.util.Scanner;
 
 
 public class Menu {

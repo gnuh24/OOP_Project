@@ -3,8 +3,6 @@ package HeThongGiaoDuc.LopHoc;
 import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
 import HeThongGiaoDuc.CoSoVatChat.PhongHoc;
-import NguoiDung.GiangVien;
-import NguoiDung.TroGiang;
 import ThoiGian.CaHoc;
 
 import java.util.ArrayList;

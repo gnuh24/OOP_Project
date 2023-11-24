@@ -1,8 +1,6 @@
 package Menu;
 
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
-import NguoiDung.KhachHang;
-import QuanLyDoiTuong.QLKhachHang;
 import QuanLyDoiTuong.QLLichPhongVan;
 import TaiKhoan.*;
 import ThoiGian.NgayThang;

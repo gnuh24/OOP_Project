@@ -1,7 +1,5 @@
 package HeThongGiaoDuc.LopHoc;
 
-import NguoiDung.HocVien;
-
 public class HocVienLopHoc {
     LopHoc lopHoc;
     HocVien hocVien;

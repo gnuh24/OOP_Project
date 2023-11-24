@@ -1,7 +1,5 @@
 package HeThongGiaoDuc.PhongVan;
 
-import NguoiDung.GiangVien;
-import NguoiDung.KhachHang;
 import QuanLyDoiTuong.QLLichPhongVan;
 import ThoiGian.Gio;
 import ThoiGian.NgayThang;

@@ -1,11 +1,7 @@
 package QuanLyDoiTuong;
 
-import HeThongGiaoDuc.CoSoVatChat.CoSo;
-import HeThongGiaoDuc.CoSoVatChat.PhongHoc;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
-import NguoiDung.GiangVien;
-import NguoiDung.KhachHang;
 import ThoiGian.Gio;
 import ThoiGian.NgayThang;
 import Utils.DocGhiFile;

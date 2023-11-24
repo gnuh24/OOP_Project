@@ -1,9 +1,6 @@
 package QuanLyDoiTuong;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
-import HeThongGiaoDuc.LopHoc.LopHoc;
-import NguoiDung.CongTacVien;
-import NguoiDung.HocVien;
 import ThoiGian.NgayThang;
 import Utils.DocGhiFile;
 

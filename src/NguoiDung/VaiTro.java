@@ -47,5 +47,23 @@ public enum VaiTro {
         }
     }
 
+    public static String toCode(VaiTro vaiTro){
+        if (vaiTro.equals(VaiTro.HocVien)){
+            return "HV";
+        } else if (vaiTro.equals(VaiTro.GiangVien)) {
+            return "GV";
+        } else if (vaiTro.equals(VaiTro.TroGiang)) {
+            return "TG";
+        } else if (vaiTro.equals(VaiTro.CongTacVien)) {
+            return "CTV";
+        } else if (vaiTro.equals(VaiTro.QuanLy)) {
+            return "QL";
+        } else if (vaiTro.equals(VaiTro.GiamDoc)) {
+            return "GD";
+        } else {
+            return "KH";
+        }
+    }
+
 
 }
