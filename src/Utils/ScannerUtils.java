@@ -50,15 +50,4 @@ public class ScannerUtils {
         return input.nextLine();
     }
 
-    // hàm nhập email
-    // hàm nhập số điện thoại
-
-    //
-
-
-
-
-
-
-
 }
