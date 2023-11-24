@@ -1,7 +1,9 @@
 // M.T.T. Kiet
-
 package Utils;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class ScannerUtils {
@@ -59,6 +61,47 @@ public class ScannerUtils {
     public static String inputString() {
         Scanner input = new Scanner(System.in);
         return input.nextLine();
+    }
+
+    public static LocalDate inputDate() {
+        Scanner input = new Scanner(System.in);
+        String userInput = input.nextLine();
+        String regex = "(\\d{2}/){2}\\d{4}";
+
+        while (!userInput.matches(regex)) {
+            System.err.println("Khong phai dinh dang Ngay. Hay nhap lai:\n");
+            userInput = input.nextLine();
+        }
+
+        return LocalDate.parse(userInput);
+    }
+
+    public static LocalDate stringToDate(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter
+                .ofPattern("dd/MM/yyyy");
+
+        return LocalDate.parse(date, formatter);
+    }
+
+    public static String dateToString(LocalDate date) {
+        DateTimeFormatter formatter = DateTimeFormatter
+                .ofPattern("dd/MM/yyyy");
+
+        return date.format(formatter);
+    }
+
+    public static LocalTime inputTime() {
+        Scanner input = new Scanner(System.in);
+        String userInput = input.nextLine();
+        String regex = "\\d{2}/\\d{2}";
+
+        while (!userInput.matches(regex)) {
+            System.err.println("Khong phai dinh dang Thoi gian. Hay nhap lai:\n");
+            userInput = input.nextLine();
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH/mm");
+        return LocalTime.parse(userInput, formatter);
     }
 
 }
