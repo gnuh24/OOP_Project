@@ -1,33 +1,34 @@
 package ThoiGian;
 
+import java.time.LocalTime;
 
 public class CaHoc {
     Thu thu;
-    Gio gioVaoHoc;
-    Gio gioTanHoc;
+    LocalTime gioVaoHoc;
+    LocalTime gioTanHoc;
 
     public CaHoc() {
     }
 
-    public CaHoc(Thu thu, Gio gioVaoHoc, Gio gioTanHoc) {
+    public CaHoc(Thu thu, LocalTime gioVaoHoc, LocalTime gioTanHoc) {
         this.thu = thu;
         this.gioVaoHoc = gioVaoHoc;
         this.gioTanHoc = gioTanHoc;
     }
 
-    public Gio getGioVaoHoc() {
+    public LocalTime getGioVaoHoc() {
         return gioVaoHoc;
     }
 
-    public void setGioVaoHoc(Gio gioVaoHoc) {
+    public void setGioVaoHoc(LocalTime gioVaoHoc) {
         this.gioVaoHoc = gioVaoHoc;
     }
 
-    public Gio getGioTanHoc() {
+    public LocalTime getGioTanHoc() {
         return gioTanHoc;
     }
 
-    public void setGioTanHoc(Gio gioTanHoc) {
+    public void setGioTanHoc(LocalTime gioTanHoc) {
         this.gioTanHoc = gioTanHoc;
     }
 
@@ -38,6 +39,5 @@ public class CaHoc {
     public void setThu(Thu thu) {
         this.thu = thu;
     }
-
 
 }
