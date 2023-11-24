@@ -2,6 +2,7 @@ package Utils;
 
 import java.util.Scanner;
 
+
 public class ScannerUtils {
 
 
@@ -48,6 +49,12 @@ public class ScannerUtils {
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
+
+    // hàm nhập email
+    // hàm nhập số điện thoại
+
+    //
+
 
 
 
