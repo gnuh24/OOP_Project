@@ -1,6 +1,7 @@
 package Utils;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Convert {
@@ -18,5 +19,19 @@ public class Convert {
         return date.format(formatter);
     }
 
+<<<<<<< HEAD
+=======
+    public static LocalTime stringToTime(String time) {
+        DateTimeFormatter formatter = DateTimeFormatter
+                .ofPattern("HH:mm");
+
+        return LocalTime.parse(time, formatter);
+    }
+
+    public static String timeToString(LocalTime time) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return time.format(formatter);
+    }
+>>>>>>> 48f45773d665be9fe85bda988045a3bbd825085f
 
 }
