@@ -20,7 +20,7 @@ public class ScannerUtils {
         return Integer.parseInt(userInput);
     }
 
-    public static double inputDoule() {
+    public static double inputDouble() {
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
 
@@ -48,7 +48,7 @@ public class ScannerUtils {
     public static String inputSDT() {
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
-        //Số điện thoại 10 số
+        // Số điện thoại 10 số
         String regex = "0[35789]\\d{8}";
 
         while (!userInput.matches(regex)) {
@@ -74,7 +74,8 @@ public class ScannerUtils {
             userInput = input.nextLine();
         }
 
-        return LocalDate.parse(userInput);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(userInput, formatter);
     }
 
     public static LocalTime inputTime() {
