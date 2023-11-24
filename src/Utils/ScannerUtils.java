@@ -77,20 +77,6 @@ public class ScannerUtils {
         return LocalDate.parse(userInput);
     }
 
-    public static LocalDate stringToDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter
-                .ofPattern("dd/MM/yyyy");
-
-        return LocalDate.parse(date, formatter);
-    }
-
-    public static String dateToString(LocalDate date) {
-        DateTimeFormatter formatter = DateTimeFormatter
-                .ofPattern("dd/MM/yyyy");
-
-        return date.format(formatter);
-    }
-
     public static LocalTime inputTime() {
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();

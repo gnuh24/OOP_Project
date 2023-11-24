@@ -2,13 +2,22 @@ package QuanLyDoiTuong;
 
 import NguoiDung.User;
 import NguoiDung.VaiTro;
+import Utils.Convert;
 import Utils.DocGhiFile;
+import Utils.ScannerUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
 
 public class QLUser {
+
+    public static void main(String[] args) {
+        loadDuLieu();
+        inThongTin(dsUser);
+        inThongTin(dsUser.get(1));
+        saveDuLieu();
+    }
     public static ArrayList<User> dsUser = new ArrayList<>();
 
     public static ArrayList<User> getDsUser() {
@@ -32,10 +41,8 @@ public class QLUser {
             String email = cacThuocTinh[2];
             boolean gioiTinh = (cacThuocTinh[3].equals("1"));
 
-            // Định dạng của chuỗi
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            // Chuyển đổi chuỗi thành LocalDate
-            LocalDate localDate = LocalDate.parse(cacThuocTinh[4], formatter);
+
+            LocalDate localDate = Convert.stringToDate(cacThuocTinh[4]);
 
             String sdt = cacThuocTinh[5];
             String diaChi = cacThuocTinh[6];
@@ -60,19 +67,20 @@ public class QLUser {
             boolean tt = user.isTrangThai();
             String trangThai = (tt) ? "1" : "0";
 
-            //String ngaySinh = ScannerUtils.;
+            String ngaySinh = Convert.dateToString(user.getNgaySinh());
+            String vaiTro = VaiTro.toString(user.getVaiTro());
 
             StringBuilder sb = new StringBuilder();
             sb.append(user.getMaUser()).append("#");
             sb.append(user.getHoTen()).append("#");
             sb.append(user.getEmail()).append("#");
             sb.append(gioiTinh).append("#");
-
-            sb.append(user.getSoDienThoai()).append("#");
             sb.append(ngaySinh).append("#");
+            sb.append(user.getSoDienThoai()).append("#");
             sb.append(user.getDiaChi()).append("#");
-            sb.append(user.getMa()).append("#");
-            sb.append(trangThai);sb.append(System.lineSeparator());
+            sb.append(vaiTro).append("#");
+            sb.append(trangThai);
+            sb.append(System.lineSeparator());
 
             duLieu.add(sb.toString());
         }
@@ -100,26 +108,54 @@ public class QLUser {
     }
 
 
+    public static void inThongTin(ArrayList<User> dsUser) {
+        System.out.println("*".repeat(171));
 
-    // Hàm in thông tin giảng viên
-    public static void inThongTinGiangVien(ArrayList<GiangVien> dsGiangVien) {
-        System.out.println("*".repeat(148));
+        System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-15s* %-15s* %-20s*\n", "Mã user", "Họ và tên", "Email",
+                "Giới tính", "Ngày sinh", "Số điện thoại", "Địa chỉ", "Vại trò", "Trạng Thái");
 
-        System.out.printf("%-20s %-25s %-10s %-15s %-15s %-25s %-10s %-20s*\n", "* Ho ten", "* Email", "* G/tinh",
-                "* SDT", "* Ngay sinh", "* Dia chi", "* Ma", "* Trang thai");
+        System.out.println("*".repeat(171));
 
-        System.out.println("*".repeat(148));
+        for (User user: QLUser.getDsUser()) {
+            String gioiTinh = (user.isGioiTinh()) ? "Nam" : "Nu";
+            String trangThai = (user.isTrangThai()) ? "Hoat dong" : "Ngung hoat dong";
 
-        for (var giangVien : dsGiangVien) {
-            String gioiTinh = (giangVien.getGioiTinh()) ? "Nam" : "Nu";
-            String trangThai = (giangVien.getTrangThai()) ? "Hoat dong" : "Ngung hoat dong";
-
-            System.out.printf("%-20s %-25s %-10s %-15s %-15s %-25s %-10s %-20s*\n", "* " + giangVien.getHoTen(),
-                    "* " + giangVien.getEmail(), "* " + gioiTinh, "* " + giangVien.getSoDienThoai(),
-                    "* " + giangVien.getNgaySinh(), "* " + giangVien.getDiaChi(), "* " + giangVien.getMa(),
-                    "* " + trangThai);
+            System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-15s* %-15s* %-20s*\n",
+                    user.getMaUser(),
+                    user.getHoTen(),
+                    user.getEmail(),
+                    gioiTinh,
+                    Convert.dateToString(user.getNgaySinh()),
+                    user.getSoDienThoai(),
+                    user.getDiaChi(),
+                    VaiTro.toString(user.getVaiTro()),
+                    trangThai );
         }
-        System.out.println("*".repeat(148));
+        System.out.println("*".repeat(171));
+    }
+
+    public static void inThongTin(User user) {
+        System.out.println("*".repeat(171));
+
+        System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-15s* %-15s* %-20s*\n", "Mã user", "Họ và tên", "Email",
+                "Giới tính", "Ngày sinh", "Số điện thoại", "Địa chỉ", "Vại trò", "Trạng Thái");
+
+        System.out.println("*".repeat(171));
+
+            String gioiTinh = (user.isGioiTinh()) ? "Nam" : "Nu";
+            String trangThai = (user.isTrangThai()) ? "Hoat dong" : "Ngung hoat dong";
+
+            System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-15s* %-15s* %-20s*\n",
+                    user.getMaUser(),
+                    user.getHoTen(),
+                    user.getEmail(),
+                    gioiTinh,
+                    Convert.dateToString(user.getNgaySinh()),
+                    user.getSoDienThoai(),
+                    user.getDiaChi(),
+                    VaiTro.toString(user.getVaiTro()),
+                    trangThai );
+        System.out.println("*".repeat(171));
     }
 
     public static User timUserTheoMa(String idUser){

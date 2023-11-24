@@ -1,0 +1,3 @@
+KH0001#Nguyen Van A#nguyenvana@gmail.com#1#05/12/1990#123456789#Hanoi#Khách hàng#1
+KH0002#Tran Thi B#tranthib@gmail.com#0#05/12/1990#987654321#HCMC#Khách hàng#0
+KH0003#Le Van C#levanc@gmail.com#1#05/12/1990#111223344#Danang#Khách hàng#1
