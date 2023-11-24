@@ -16,7 +16,5 @@ public class GiangVien extends TroGiang {
                     boolean trangThai) {
         super(hoTen, email, gioiTinh, soDienThoai, ngaySinh, diaChi, ma, trangThai);
     }
-    public void xemlichPhongVan() {
 
-    }
 }

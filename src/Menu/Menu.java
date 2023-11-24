@@ -1,17 +1,23 @@
 package Menu;
 
-import HeThongGiaoDuc.LopHoc.LopHoc;
+
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
+import HeThongGiaoDuc.PhongVan.LichPhongVan;
+import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
+import NguoiDung.GiangVien;
 import QuanLyDoiTuong.*;
+import ThoiGian.Gio;
+import ThoiGian.NgayThang;
 import Utils.ScannerUtils;
 
-import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class Menu {
     public static void main(String[] args) {
         LoadDuLieu.loading();
-//        Menu.giaoDienGiangVien();
         Menu.giaoDienKhachHang();
+        //Menu.giaoDienCongTacVien();
     }
 
     public static void exit(){
@@ -20,6 +26,8 @@ public class Menu {
         LoadDuLieu.saving();
         System.exit(0);
     }
+
+
 
     public static void giaoDienKhachHang(){
         int choice;
@@ -114,7 +122,7 @@ public class Menu {
 
 
                 case 5:
-                    Menu.giaoDienKhachHang();
+                    Form.logout();
                     break;
 
                 case 6:
@@ -155,7 +163,7 @@ public class Menu {
                     break;
 
                 case 4:
-                    Menu.giaoDienKhachHang();
+                    Form.logout();
                     break;
 
                 case 5:
@@ -195,7 +203,7 @@ public class Menu {
                     break;
 
                 case 5:
-                    Menu.giaoDienKhachHang();
+                    Form.logout();
                     break;
 
                 case 6:
@@ -209,8 +217,8 @@ public class Menu {
         int choice;
         do{
             System.out.printf("-----------------------------------------------CHÀO MỪNG %s ĐÃ ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88-----------------------------------------------\n", Form.getId());
-            System.out.println("1. Xem thời khóa biểu các lớp đang học và sắp khai giảng");
-            System.out.println("2. Xem điểm");
+            System.out.println("1. Sắp xếp lịch phổng vấn.");
+            System.out.println("2. Thay đổi trạng thái lịch phổng vấn ");
             System.out.println("3. Đóng học phí");
             System.out.println("4. Đăng ký khóa học mới");
             System.out.println("5. Đăng xuất");
@@ -224,7 +232,76 @@ public class Menu {
 
             switch (choice){
                 case 1:
-                    QLLopHoc.inDSLopHoc(QLLopHoc.timKiemLopTheoTrangThai(QLLopHoc.timKiemLopTheoTroGiang(Form.getId()), TrangThaiLop.Dang_Hoc));
+                    QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
+                    System.out.println("Bạn muốn xét thay đổi lịch phổng vấn nào (Nhập ID)");
+                    System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
+
+                    String id = ScannerUtils.inputString();
+
+                    if (id.equals("1")){
+                        Menu.giaoDienCongTacVien();
+                    }
+
+                    else{
+                        LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id);
+                        if (lichPhongVan == null){
+                            System.out.println("Mã không tồn tại !!!");
+                            Menu.giaoDienCongTacVien();
+                        }
+                        else{
+                            System.out.printf("Bạn đã chọn lịch phổng vấn %s \n", lichPhongVan.getMaCaPhongVan());
+                            System.out.println("Hãy chọn giảng viên phù hợp :33");
+                            System.out.println("Nếu muốn thoát hãy ấn 1");
+                            QLGiangVien.inThongTinGiangVien(QLGiangVien.getDsGiangVien());
+                            String idGV = ScannerUtils.inputString();
+
+                            if (idGV.equals("1")){
+                                Menu.giaoDienCongTacVien();
+                            }
+
+                            else {
+                                GiangVien giangVien = QLGiangVien.timKiemGiangVienTheoMa(idGV);
+                                if (giangVien == null){
+                                    System.out.println("Giang viên không tồn tại !!");
+                                    Menu.giaoDienCongTacVien();
+                                }
+                                else{
+                                    lichPhongVan.setGiangVien(giangVien);
+                                    System.out.println("Đã thêm giảng vie6n thành công !!");
+                                }
+
+
+                                System.out.println("Nhập ngày");
+                                int ngay = ScannerUtils.inputInt("Bạn chỉ được nhập các số nguyên !!");
+                                System.out.println("Nhập tháng");
+                                int thang = ScannerUtils.inputInt("Bạn chỉ được nhập các số nguyên !!");
+                                System.out.println("Nhập năm");
+                                int nam = ScannerUtils.inputInt("Bạn chỉ được nhập các số nguyên !!");
+                                NgayThang ngayThang = new NgayThang(ngay, thang, nam);
+                                lichPhongVan.setNgayThang(ngayThang);
+                                System.out.println("Đã thêm ngày tháng thành công !!");
+
+
+                                System.out.println("Nhập giờ");
+                                int gio = ScannerUtils.inputInt("Bạn chỉ được nhập các số nguyên !!");
+                                System.out.println("Nhập phút");
+                                int phut = ScannerUtils.inputInt("Bạn chỉ được nhập các số nguyên !!");
+                                Gio gioHoc = new Gio(gio, phut);
+                                lichPhongVan.setGioPV(gioHoc);
+                                System.out.println("Đã thêm giờ thành công !!");
+
+                                if (lichPhongVan.isValid()){
+                                    lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.CHO_PHONGVAN);
+                                    System.out.println("Đã duyệt thành công cho mã phổng vấn " + lichPhongVan.getMaCaPhongVan());
+                                    QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.dsLichPhongVan);
+                                    Menu.giaoDienCongTacVien();
+                                }
+                            }
+                        }
+                    }
+
+
+
                     break;
                 case 2:
                     QLLopHoc.inDSLopHoc(QLLopHoc.timKiemLopTheoTrangThai(QLLopHoc.timKiemLopTheoTroGiang(Form.getId()), TrangThaiLop.Sap_Khai_Giang));
@@ -235,7 +312,7 @@ public class Menu {
                     break;
 
                 case 5:
-                    Menu.giaoDienKhachHang();
+                    Form.logout();
                     break;
 
                 case 6:
@@ -275,7 +352,7 @@ public class Menu {
                     break;
 
                 case 5:
-                    Menu.giaoDienKhachHang();
+                    Form.logout();
                     break;
 
                 case 6:
@@ -315,7 +392,7 @@ public class Menu {
                     break;
 
                 case 5:
-                    Menu.giaoDienKhachHang();
+                    Form.logout();
                     break;
 
                 case 6:

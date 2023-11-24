@@ -84,4 +84,8 @@ public class LichPhongVan {
     public void setTrangThaiPhongVan(TrangThaiPhongVan trangThaiPhongVan) {
         this.trangThaiPhongVan = trangThaiPhongVan;
     }
+
+    public boolean isValid(){
+        return this.getGiangVien() != null && this.getNgayThang() != null && this.getGioPV() != null;
+    }
 }

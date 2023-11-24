@@ -42,31 +42,33 @@ public class QLKhachHang extends CaNhan {
 			dsKhachHang.add(new KhachHang(ten, email, gioiTinh, sdt, ngaySinh, diaChi));
 		}
 	}
-	
+
 	public static ArrayList<String> trichXuatDuLieu() {
 		ArrayList<String> duLieu = new ArrayList<>();
-		
+
 		for (var khachHang : dsKhachHang) {
 			boolean gt = khachHang.getGioiTinh();
-			String gioiTinh = (gt == true) ? "1" : "0";
+			String gioiTinh = (gt) ? "1" : "0";
 
 			String ngaySinh = khachHang.getNgaySinh()
 					.toString().replaceAll("/", "#");
-			
-			String tam = khachHang.getMaKhachHang() + "#"
-					+ khachHang.getHoTen() + "#"
-					+ khachHang.getEmail() + "#"
-					+ gioiTinh + "#"
-					+ khachHang.getSoDienThoai() + "#"
-					+ ngaySinh + "#" 
-					+ khachHang.getDiaChi() + "\n";
-			
-			duLieu.add(tam);
+
+			StringBuilder tam = new StringBuilder();
+			tam.append(khachHang.getMaKhachHang()).append("#")
+					.append(khachHang.getHoTen()).append("#")
+					.append(khachHang.getEmail()).append("#")
+					.append(gioiTinh).append("#")
+					.append(khachHang.getSoDienThoai()).append("#")
+					.append(ngaySinh).append("#")
+					.append(khachHang.getDiaChi()).append(System.lineSeparator());
+
+			duLieu.add(tam.toString());
 		}
-		
+
 		return duLieu;
 	}
-	
+
+
 	// Hàm load dữ liệu từ file
 	public static void loadDuLieu() {
 		String filePath = "C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlKhachHang.txt";

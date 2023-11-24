@@ -18,12 +18,4 @@ public class TroGiang extends CaNhanTrungTam {
         super(hoTen, email, gioiTinh, soDienThoai, ngaySinh, diaChi, ma, trangThai);
     }
 
-    public void xemLichDayKhoaHienTai() {
-    }
-
-    public void xemLichDayKhoaSapKhaiGiang() {
-    }
-
-    public void xemDanhSachHocVienTheoLop(String maLop) {
-    }
 }

@@ -9,6 +9,18 @@ public abstract class CaNhanTrungTam extends CaNhan {
 
     public CaNhanTrungTam(){}
 
+    public CaNhanTrungTam(String hoTen,
+                          String email,
+                          boolean gioiTinh,
+                          String soDienThoai,
+                          NgayThang ngaySinh,
+                          String diaChi,
+                          boolean trangThai) {
+
+        super(hoTen, email,  gioiTinh,  soDienThoai, ngaySinh, diaChi);
+        this.trangThai = trangThai;
+    }
+
 
     public CaNhanTrungTam(String hoTen,
                    String email,

@@ -14,6 +14,12 @@ public class NgayThang {
         this.nam = nam;
     }
 
+    public void nhapNgayThang(){
+        System.out.println();
+    }
+
+
+
     public int getNgay() {
         return ngay;
     }

@@ -193,10 +193,15 @@ public class QLLichPhongVan {
 
     }
 
-    public static void main(String[] args) {
-        QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
+    public static LichPhongVan timKiemLichPhongVanTheoMa(String idPhongVan){
+        LichPhongVan lichPhongVan = null;
+        for(LichPhongVan lichPhongVan1: QLLichPhongVan.getDsLichPhongVan()){
+            if (lichPhongVan1.getMaCaPhongVan().equals(idPhongVan)){
+                return lichPhongVan1;
+            }
+        }
+        return lichPhongVan;
     }
-
     public static ArrayList<LichPhongVan>  timKiemLichPhongVanTheoGV(String IDgiangVien){
         ArrayList<LichPhongVan> ketQua = new ArrayList<>();
 
@@ -232,5 +237,7 @@ public class QLLichPhongVan {
 
         return ketQua;
     }
+
+
 
 }

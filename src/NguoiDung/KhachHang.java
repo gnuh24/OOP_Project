@@ -35,5 +35,6 @@ public class KhachHang extends CaNhan {
         this.maKhachHang =  "KH" + maCuoi;
     }
 
-    public void dangKyThamGiaPhongVan() {}
+
+
 }

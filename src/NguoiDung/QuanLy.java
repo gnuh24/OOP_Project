@@ -18,15 +18,4 @@ public class QuanLy extends CongTacVien {
 
     }
 
-    public void themKhoaHocMoi(){
-    }
-
-    public void themLop(){
-
-    }
-
-    public void suaLop(){
-
-    }
-
 }

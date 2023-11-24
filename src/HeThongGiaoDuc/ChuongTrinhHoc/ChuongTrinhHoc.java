@@ -15,6 +15,9 @@ public class ChuongTrinhHoc {
     public ChuongTrinhHoc() {
     }
 
+    public static void main(String[] args) {
+        System.out.println("Nguyễn Nhật Trường".equals("Nguyễn Nhật Trường"));
+    }
 
 
     public ChuongTrinhHoc(String maChuongTrinh,String theLoai, String trinhDo, String khoaHoc, int thoiLuong,  int hocPhi) {

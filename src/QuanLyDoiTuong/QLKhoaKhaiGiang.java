@@ -1,6 +1,9 @@
 package QuanLyDoiTuong;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
+import HeThongGiaoDuc.LopHoc.LopHoc;
+import NguoiDung.CongTacVien;
+import NguoiDung.HocVien;
 import ThoiGian.NgayThang;
 import Utils.DocGhiFile;
 
@@ -150,7 +153,6 @@ public class QLKhoaKhaiGiang {
 				dem++;
 			}
 		}
-
 		return dem;
 	}
 
@@ -163,14 +165,14 @@ public class QLKhoaKhaiGiang {
 			// thiết lập các thuộc tính cho đối tượng
 			String ma = cacThuocTinh[0];
 
-			int ngay1 = Integer.valueOf(cacThuocTinh[1]); // unboxed
-			int thang1 = Integer.valueOf(cacThuocTinh[2]); // unboxed
-			int nam1 = Integer.valueOf(cacThuocTinh[3]); // unboxed: Integer ngầm chuyển thành int một cách an toàn
+			int ngay1 = Integer.parseInt(cacThuocTinh[1]); // unboxed
+			int thang1 = Integer.parseInt(cacThuocTinh[2]); // unboxed
+			int nam1 = Integer.parseInt(cacThuocTinh[3]); // unboxed: Integer ngầm chuyển thành int một cách an toàn
 			NgayThang ngayBatDau = new NgayThang(ngay1, thang1, nam1);
 
-			int ngay2 = Integer.valueOf(cacThuocTinh[4]); // unboxed
-			int thang2 = Integer.valueOf(cacThuocTinh[5]); // unboxed
-			int nam2 = Integer.valueOf(cacThuocTinh[6]); // unboxed: Integer ngầm chuyển thành int một cách an toàn
+			int ngay2 = Integer.parseInt(cacThuocTinh[4]); // unboxed
+			int thang2 = Integer.parseInt(cacThuocTinh[5]); // unboxed
+			int nam2 = Integer.parseInt(cacThuocTinh[6]); // unboxed: Integer ngầm chuyển thành int một cách an toàn
 			NgayThang ngayKetThuc = new NgayThang(ngay2, thang2, nam2);
 
 

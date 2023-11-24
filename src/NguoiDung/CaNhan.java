@@ -39,6 +39,10 @@ public abstract class CaNhan {
         this.diaChi = diaChi;
     }
 
+    public void nhapThongTinCaNhan(){
+
+    }
+
     public String getHoTen() {
         return hoTen;
     }

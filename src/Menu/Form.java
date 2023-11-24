@@ -47,6 +47,14 @@ public class Form {
         Form.password = password;
     }
 
+    public static void logout(){
+        Form.setId(null);
+        Form.setPassword(null);
+        Form.setUsername(null);
+        Form.setTrangThaiDangNhap(null);
+        Menu.giaoDienKhachHang();
+    }
+
     public static void login(){
         System.out.println("Xin mời bạn nhập tài khoản: ");
         String curUsername = ScannerUtils.inputString();
