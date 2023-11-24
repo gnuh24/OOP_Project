@@ -18,7 +18,7 @@ public class DocGhiFile {
                 duLieu.add(dong);
             }
         } catch (IOException e) {
-            System.out.println("Khong doc duoc file");
+            System.out.println("Lỗi trong việc đọc file !!");
             e.printStackTrace();
         }
         return duLieu;
@@ -30,7 +30,7 @@ public class DocGhiFile {
             fileDoiTuong.close();
             return true;
         } catch (IOException e) {
-            System.out.println("Khong The ghi vao file");
+            System.out.println("Lõi trong việc viết file !!");
             e.printStackTrace();
         }
         return false;
@@ -45,7 +45,7 @@ public class DocGhiFile {
             fileDoiTuong.close();
             return true;
         } catch (IOException e) {
-            System.out.println("Khong The ghi vao file");
+            System.out.println("Lõi trong việc viết file !!");
             e.printStackTrace();
         }
         return false;
