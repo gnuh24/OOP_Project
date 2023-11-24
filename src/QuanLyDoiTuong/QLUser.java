@@ -15,7 +15,8 @@ public class QLUser {
     public static void main(String[] args) {
         loadDuLieu();
         inThongTin(dsUser);
-        inThongTin(dsUser.get(1));
+        System.out.println(demUserTheoVaiTro(VaiTro.GiangVien));
+        inThongTin(timUserTheoVaiTro(VaiTro.GiangVien));
         saveDuLieu();
     }
     public static ArrayList<User> dsUser = new ArrayList<>();
@@ -116,7 +117,7 @@ public class QLUser {
 
         System.out.println("*".repeat(171));
 
-        for (User user: QLUser.getDsUser()) {
+        for (User user: dsUser) {
             String gioiTinh = (user.isGioiTinh()) ? "Nam" : "Nu";
             String trangThai = (user.isTrangThai()) ? "Hoat dong" : "Ngung hoat dong";
 

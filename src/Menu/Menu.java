@@ -2,11 +2,10 @@
 //
 //
 //import HeThongGiaoDuc.LopHoc.TrangThaiLop;
-//import HeThongGiaoDuc.PhongVan.LichPhongVan;
 //import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
-//import QuanLyDoiTuong.*;
-//import ThoiGian.Gio;
-//import ThoiGian.NgayThang;
+//import NguoiDung.VaiTro;
+//import QuanLyDoiTuong.QLChuongTrinhHoc;
+//import QuanLyDoiTuong.QLUser;
 //import Utils.ScannerUtils;
 //
 //
@@ -38,7 +37,7 @@
 //            System.out.println("6. Đăng nhập");
 //            System.out.println("7. Thoát chương trình");
 //            System.out.println("Bạn đã có lựa chọn chưa ?");
-//            choice = ScannerUtils.inputInt("Bạn chỉ được nhập các số nguyên là các lựa chọn trên màn hình !!");
+//            choice = ScannerUtils.inputInt();
 //
 //            if (choice < 1 || choice > 7 ){
 //                System.out.println("Bạn chỉ được nhập các lựa chọn từ 1 -> 7 trên màn hình");
@@ -46,7 +45,7 @@
 //
 //            switch (choice){
 //                case 1:
-//                    QLGiangVien.inThongTinGiangVien(QLGiangVien.getDsGiangVien());
+//                    QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.GiangVien));
 //                    break;
 //                case 2:
 //                    QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());

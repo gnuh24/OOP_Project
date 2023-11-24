@@ -1,32 +1,34 @@
 //package HeThongGiaoDuc.PhongVan;
 //
+//import NguoiDung.User;
 //import QuanLyDoiTuong.QLLichPhongVan;
-//import ThoiGian.Gio;
-//import ThoiGian.NgayThang;
+//
+//import java.time.LocalDate;
+//import java.time.LocalTime;
 //
 //public class LichPhongVan {
 //    private String maCaPhongVan;
 //
-//    private GiangVien giangVien;
+//    private User giangVien;
 //
-//    private NgayThang ngayThang;
+//    private LocalDate ngayThang;
 //
-//    private Gio gioPV;
+//    private LocalTime gioPV;
 //
-//    private KhachHang khachHang;
+//    private User khachHang;
 //
 //    private TrangThaiPhongVan trangThaiPhongVan;
 //
 //    public LichPhongVan(){}
 //
-//    public LichPhongVan(KhachHang khachHang){
+//    public LichPhongVan(User khachHang){
 //        int id = QLLichPhongVan.getDsLichPhongVan().size() + 1;
 //        this.maCaPhongVan = "LPV" + id;
 //        this.khachHang = khachHang;
 //        this.trangThaiPhongVan = TrangThaiPhongVan.CHO_DUYET;
 //    }
 //
-//    public LichPhongVan(String maCaPhongVan, GiangVien giangVien, NgayThang ngayThang, Gio gioPV, KhachHang khachHang, TrangThaiPhongVan trangThaiPhongVan) {
+//    public LichPhongVan(String maCaPhongVan, User giangVien, LocalDate ngayThang, LocalTime gioPV, User khachHang, TrangThaiPhongVan trangThaiPhongVan) {
 //        this.maCaPhongVan = maCaPhongVan;
 //        this.giangVien = giangVien;
 //        this.ngayThang = ngayThang;
@@ -43,35 +45,35 @@
 //        this.maCaPhongVan = maCaPhongVan;
 //    }
 //
-//    public GiangVien getGiangVien() {
+//    public User getGiangVien() {
 //        return giangVien;
 //    }
 //
-//    public void setGiangVien(GiangVien giangVien) {
+//    public void setGiangVien(User giangVien) {
 //        this.giangVien = giangVien;
 //    }
 //
-//    public NgayThang getNgayThang() {
+//    public LocalDate getNgayThang() {
 //        return ngayThang;
 //    }
 //
-//    public void setNgayThang(NgayThang ngayThang) {
+//    public void setNgayThang(LocalDate ngayThang) {
 //        this.ngayThang = ngayThang;
 //    }
 //
-//    public Gio getGioPV() {
+//    public LocalTime getGioPV() {
 //        return gioPV;
 //    }
 //
-//    public void setGioPV(Gio gioPV) {
+//    public void setGioPV(LocalTime gioPV) {
 //        this.gioPV = gioPV;
 //    }
 //
-//    public KhachHang getKhachHang() {
+//    public User getKhachHang() {
 //        return khachHang;
 //    }
 //
-//    public void setKhachHang(KhachHang khachHang) {
+//    public void setKhachHang(User khachHang) {
 //        this.khachHang = khachHang;
 //    }
 //

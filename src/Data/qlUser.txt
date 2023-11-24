@@ -1,3 +1,21 @@
 KH0001#Nguyen Van A#nguyenvana@gmail.com#1#05/12/1990#123456789#Hanoi#Khách hàng#1
 KH0002#Tran Thi B#tranthib@gmail.com#0#05/12/1990#987654321#HCMC#Khách hàng#0
 KH0003#Le Van C#levanc@gmail.com#1#05/12/1990#111223344#Danang#Khách hàng#1
+HV0001#Nguyen Van A#nguyenvana@gmail.com#1#05/12/1990#123456789#Hanoi#Học viên#1
+HV0002#Tran Thi B#tranthib@gmail.com#0#05/12/1990#987654321#HCMC#Học viên#0
+HV0003#Le Van C#levanc@gmail.com#1#05/12/1990#111223344#Danang#Học viên#1
+TG0001#Nguyen Van A#nguyenvana@gmail.com#1#05/12/1990#123456789#Hanoi#Trợ giảng#1
+TG0002#Tran Thi B#tranthib@gmail.com#0#05/12/1990#987654321#HCMC#Trợ giảng#0
+TG0003#Le Van C#levanc@gmail.com#1#05/12/1990#111223344#Danang#Trợ giảng#1
+GV0001#Nguyen Van A#nguyenvana@gmail.com#1#05/12/1990#123456789#Hanoi#Giảng viên#1
+GV0002#Tran Thi B#tranthib@gmail.com#0#05/12/1990#987654321#HCMC#Giảng viên#0
+GV0003#Le Van C#levanc@gmail.com#1#05/12/1990#111223344#Danang#Giảng viên#1
+CTV0001#Nguyen Van A#nguyenvana@gmail.com#1#05/12/1990#123456789#Hanoi#Cộng tác viên#1
+CTV0002#Tran Thi B#tranthib@gmail.com#0#05/12/1990#987654321#HCMC#Cộng tác viên#0
+CTV0003#Le Van C#levanc@gmail.com#1#05/12/1990#111223344#Danang#Cộng tác viên#1
+QL0001#Nguyen Van A#nguyenvana@gmail.com#1#05/12/1990#123456789#Hanoi#Quản lý#1
+QL0002#Tran Thi B#tranthib@gmail.com#0#05/12/1990#987654321#HCMC#Quản lý#0
+QL0003#Le Van C#levanc@gmail.com#1#05/12/1990#111223344#Danang#Quản lý#1
+GD0001#Nguyen Van A#nguyenvana@gmail.com#1#05/12/1990#123456789#Hanoi#Giám đốc#1
+GD0002#Tran Thi B#tranthib@gmail.com#0#05/12/1990#987654321#HCMC#Giám đốc#0
+GD0003#Le Van C#levanc@gmail.com#1#05/12/1990#111223344#Danang#Giám đốc#1

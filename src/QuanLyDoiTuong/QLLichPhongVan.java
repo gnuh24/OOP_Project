@@ -2,10 +2,12 @@
 //
 //import HeThongGiaoDuc.PhongVan.LichPhongVan;
 //import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
-//import ThoiGian.Gio;
-//import ThoiGian.NgayThang;
+//import NguoiDung.User;
+//import Utils.Convert;
 //import Utils.DocGhiFile;
 //
+//import java.time.LocalDate;
+//import java.time.LocalTime;
 //import java.util.ArrayList;
 //
 //public class QLLichPhongVan {
@@ -20,7 +22,7 @@
 //    }
 //
 //    public static void loadDuLieu(){
-//        ArrayList<String> duLieu= DocGhiFile.docDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlLichPhongVan.txt");
+//        ArrayList<String> duLieu= DocGhiFile.docDuLieuFile("src\\Data\\qlLichPhongVan.txt");
 //        xuLyDuLieu(duLieu);
 //        System.out.println("Đã tải xong LỊCH PHỔNG VẤN");
 //
@@ -37,21 +39,17 @@
 //            String maCa = cacThuocTinh[0];
 //
 //            String maGiangVien = cacThuocTinh[1];
-//            GiangVien giangVien = QLGiangVien.timKiemGiangVienTheoMa(maGiangVien);
+//            User giangVien = QLUser.timUserTheoMa(maGiangVien);
 //
-//            NgayThang ngayThang = null;
-//            if (!cacThuocTinh[2].equals("") && !cacThuocTinh[3].equals("") && !cacThuocTinh[4].equals("")){
-//                int ngay = Integer.parseInt(cacThuocTinh[2]);
-//                int thang = Integer.parseInt(cacThuocTinh[3]);
-//                int nam = Integer.parseInt(cacThuocTinh[4]);
-//                ngayThang = new NgayThang(ngay, thang, nam);
+//            LocalDate ngayThang = null;
+//            if ( !cacThuocTinh[2].equals("") ){
+//                ngayThang = Convert.stringToDate(cacThuocTinh[2]);
 //            }
 //
-//            Gio thoiGian = null;
-//            if (!cacThuocTinh[5].equals("") && !cacThuocTinh[6].equals("")){
-//                int gio =  Integer.parseInt(cacThuocTinh[5]);
-//                int phut =  Integer.parseInt(cacThuocTinh[6]);
-//                thoiGian = new Gio(gio, phut);
+//            LocalTime thoiGian = null;
+//            if (!cacThuocTinh[3].equals("")){
+//
+//                thoiGian = Convert.;
 //            }
 //
 //
@@ -82,7 +80,7 @@
 //
 //    public static void saveDuLieu() {
 //        ArrayList<String> duLieu = xuLyDuLieuDeLuu();
-//        DocGhiFile.ghiDuLieuFile("C:\\Users\\Tuan Hung\\Desktop\\Exercise\\SGU OOP - Mr Khai\\ProjectQuanLyTrungTamTiengAnh\\src\\Data\\qlLichPhongVan.txt",duLieu);
+//        DocGhiFile.ghiDuLieuFile("src\\Data\\qlLichPhongVan.txt",duLieu);
 //        System.out.println("Đã lưu xong LỊCH PHỔNG VẤN");
 //
 //    }
