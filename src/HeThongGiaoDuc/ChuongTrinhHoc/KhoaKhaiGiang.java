@@ -1,8 +1,5 @@
 package HeThongGiaoDuc.ChuongTrinhHoc;
 import QuanLyDoiTuong.QLKhoaKhaiGiang;
-import ThoiGian.NgayThang;
-
-
 
 
 public class KhoaKhaiGiang {
