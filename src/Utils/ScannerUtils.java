@@ -1,43 +1,31 @@
-// Kiet
-
-package Utils;
+// M.T.T. Kiet
 
 import java.util.Scanner;
 
-public class ScannerUtils {
+public class Test {
 
-    public static int inputInt(String errorMessage) {
+    public static int inputInt() {
         Scanner input = new Scanner(System.in);
-        try {
+        String userInput = input.nextLine();
 
-            return Integer.parseInt(input.nextLine());
-
-        } catch (Exception e) {
-            System.out.println(errorMessage);
+        while (!userInput.matches("\\b-?\\d+\\b")) {
+            System.err.println("Dau vao khong phai so nguyen. Hay nhap lai:\n");
+            userInput = input.nextLine();
         }
-        return inputInt(errorMessage);
+
+        return Integer.parseInt(userInput);
     }
 
-    public static float inputFloat(String errorMessage) {
+    public static double inputDoule() {
         Scanner input = new Scanner(System.in);
+        String userInput = input.nextLine();
 
-        try {
-            return Float.parseFloat(input.nextLine());
-        } catch (Exception e) {
-            System.out.println(errorMessage);
+        while (!userInput.matches("\\b-?\\d+(.\\d+)?")) {
+            System.err.println("Dau vao khong phai so thuc. Hay nhap lai:\n");
+            userInput = input.nextLine();
         }
-        return inputFloat(errorMessage);
-    }
 
-    public static double inputDouble(String errorMessage) {
-        Scanner input = new Scanner(System.in);
-
-        try {
-            return input.nextDouble();
-        } catch (Exception e) {
-            System.out.println(errorMessage);
-        }
-        return inputDouble(errorMessage);
+        return Double.parseDouble(userInput);
     }
 
     public static String inputString() {
