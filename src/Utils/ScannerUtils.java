@@ -1,3 +1,7 @@
+// M.T.T. Kiet
+
+package Utils;
+
 import java.util.Scanner;
 
 public class ScannerUtils {
