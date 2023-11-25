@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 public class QLCoSo {
-    public static ArrayList<CoSo> dsCoSo = new ArrayList<>();
+    private static ArrayList<CoSo> dsCoSo = new ArrayList<>();
 
     public static ArrayList<CoSo> getDsCoSo() {
         return dsCoSo;
