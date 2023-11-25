@@ -17,6 +17,7 @@ public class ScannerUtils {
             userInput = input.nextLine();
         }
 
+        input.close();
         return Integer.parseInt(userInput);
     }
 
@@ -29,6 +30,7 @@ public class ScannerUtils {
             userInput = input.nextLine();
         }
 
+        input.close();
         return Double.parseDouble(userInput);
     }
 
@@ -43,6 +45,7 @@ public class ScannerUtils {
             userInput = input.nextLine();
         }
 
+        input.close();
         return userInput;
     }
 
@@ -58,11 +61,13 @@ public class ScannerUtils {
             userInput = input.nextLine();
         }
 
+        input.close();
         return userInput;
     }
 
     public static String inputString() {
         Scanner input = new Scanner(System.in);
+        input.close();
         return input.nextLine();
     }
 
@@ -78,6 +83,7 @@ public class ScannerUtils {
             userInput = input.nextLine();
         }
 
+        input.close();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(userInput, formatter);
     }
@@ -93,6 +99,7 @@ public class ScannerUtils {
             userInput = input.nextLine();
         }
 
+        input.close();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return LocalTime.parse(userInput, formatter);
     }
