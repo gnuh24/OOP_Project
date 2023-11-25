@@ -19,7 +19,7 @@ public class QLLichPhongVan {
 //        QLUser.saveDuLieu();
 //        QLLichPhongVan.loadDuLieu();
 //    }
-    public static ArrayList<LichPhongVan> dsLichPhongVan = new ArrayList<>();
+    private static ArrayList<LichPhongVan> dsLichPhongVan = new ArrayList<>();
 
     public static ArrayList<LichPhongVan> getDsLichPhongVan() {
         return dsLichPhongVan;
