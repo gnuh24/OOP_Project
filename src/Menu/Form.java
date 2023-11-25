@@ -1,57 +1,36 @@
-//package Menu;
-//
+package Menu;
+
 //import HeThongGiaoDuc.PhongVan.LichPhongVan;
 //import QuanLyDoiTuong.QLLichPhongVan;
-//import TaiKhoan.*;
-//import Utils.ScannerUtils;
-//
-//public class Form {
-//    private static String id;
-//    private static String username;
-//    private static String password;
-//
-//    private static TrangThaiDangNhap trangThaiDangNhap;
-//
-//    public static TrangThaiDangNhap getTrangThaiDangNhap() {
-//        return trangThaiDangNhap;
-//    }
-//
-//    public static void setTrangThaiDangNhap(TrangThaiDangNhap trangThaiDangNhap) {
-//        Form.trangThaiDangNhap = trangThaiDangNhap;
-//    }
-//
-//    public static String getId() {
-//        return id;
-//    }
-//
-//    public static void setId(String id) {
-//        Form.id = id;
-//    }
-//
-//    public static String getUsername() {
-//        return username;
-//    }
-//
-//    public static void setUsername(String username) {
-//        Form.username = username;
-//    }
-//
-//    public static String getPassword() {
-//        return password;
-//    }
-//
-//    public static void setPassword(String password) {
-//        Form.password = password;
-//    }
-//
-//    public static void logout(){
-//        Form.setId(null);
-//        Form.setPassword(null);
-//        Form.setUsername(null);
-//        Form.setTrangThaiDangNhap(null);
-//        Menu.giaoDienKhachHang();
-//    }
-//
+import HeThongGiaoDuc.PhongVan.LichPhongVan;
+import NguoiDung.User;
+import NguoiDung.VaiTro;
+import QuanLyDoiTuong.QLLichPhongVan;
+import QuanLyDoiTuong.QLUser;
+import TaiKhoan.*;
+import Utils.ScannerUtils;
+
+import java.time.LocalDate;
+
+public class Form {
+
+    private static TaiKhoan taiKhoan;
+
+    public static TaiKhoan getTaiKhoan() {
+        return taiKhoan;
+    }
+
+    public static void setTaiKhoan(TaiKhoan taiKhoan) {
+        Form.taiKhoan = taiKhoan;
+    }
+
+    public static void logout(){
+        Form.setTaiKhoan(null);
+        Menu.giaoDienKhachHang();
+    }
+
+
+
 //    public static void login(){
 //        System.out.println("Xin mời bạn nhập tài khoản: ");
 //        String curUsername = ScannerUtils.inputString();
@@ -59,19 +38,17 @@
 //        String curPassword = ScannerUtils.inputString();
 //
 //        if (isLoginValid(curUsername, curPassword)){
-//            Form.username = curUsername;
-//            Form.password = curPassword;
-//            if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.GiangVien)){
+//            if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.GiangVien)){
 //                Menu.giaoDienGiangVien();
-//            } else if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.TroGiang)) {
+//            } else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.TroGiang)) {
 //                Menu.giaoDienTroGiang();
-//            }else if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.HocVien)) {
+//            }else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.HocVien)) {
 //                Menu.giaoDienHocVien();
-//            }else if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.CongTacVien)) {
+//            }else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.CongTacVien)) {
 //                Menu.giaoDienCongTacVien();
-//            }else if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.QuanLy)) {
+//            }else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.QuanLy)) {
 //                Menu.giaoDienQuanLy();
-//            }else if (Form.getTrangThaiDangNhap().equals(TrangThaiDangNhap.GiamDoc)) {
+//            }else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.GiamDoc)) {
 //                Menu.giaoDienGiamDoc();
 //            }else {
 //                System.out.println("Lỗi đăng nhập !!!");
@@ -96,7 +73,7 @@
 //
 //
 //    }
-//
+
 //    private static boolean isLoginValid(String curUsername, String password){
 //        TaiKhoan taiKhoan = QLTaiKhoan.timTaiKhoanTheoUsername(curUsername);
 //        if (taiKhoan == null){
@@ -107,77 +84,69 @@
 //            return false;
 //        }
 //        else{
-//            Form.setId(taiKhoan.getId());
+//            Form.setId(taiKhoan.getUser());
 //            Form.setTrangThaiDangNhap(Form.checkTrangThai(Form.getId()));
 //            return true;
 //        }
 //    }
-//
-//    @SuppressWarnings("all") //Bỏ qua tất ca các cảnh báo
-//    private static TrangThaiDangNhap checkTrangThai(String id){
-//        String mauCanTest = id.substring(0, 2);
-//        if (mauCanTest.equals("GV")){
-//            return TrangThaiDangNhap.GiangVien;
-//        }   else if (mauCanTest.equals("TG")) {
-//                return TrangThaiDangNhap.TroGiang;
-//        }   else if (mauCanTest.equals("HV")) {
-//                return TrangThaiDangNhap.HocVien;
-//        }   else if (mauCanTest.equals("QL")) {
-//                return TrangThaiDangNhap.QuanLy;
-//        }   else if (mauCanTest.equals("CV")) {
-//                return TrangThaiDangNhap.CongTacVien;
-//        }   else if (mauCanTest.equals("GD")) {
-//                return TrangThaiDangNhap.GiamDoc;
-//        } else {
-//            System.out.println("ID không hợp lệ !!");
-//            return null;
-//        }
-//    }
-//
-//    public static void dangKyPhongVan(){
-//        System.out.println("Nhập họ và tên");
-//        String hoTen = ScannerUtils.inputString();
-//
-//        System.out.println("Nhập email");
-//        String email = ScannerUtils.inputString();
-//
-//        System.out.println("Chọn giới tính:");
-//        System.out.println("1. Nam");
-//        System.out.println("Các nút còn lại sẽ là nữ");
-//        boolean gioiTinh ;
-//        String genderChoice = ScannerUtils.inputString();
-//        if (genderChoice.equals("1")){
-//            gioiTinh = true;
-//        }
-//        else gioiTinh = false;
-//
-//
-//        System.out.println("Nhập số điện thoại");
-//        String sdt = ScannerUtils.inputString();
-//
-//        System.out.println("Nhập địa chỉ");
-//        String diaChi = ScannerUtils.inputString();
-//
-//        System.out.println("Nhập ngày tháng năm sinh: ");
-//        System.out.println("Ngày: ");
-//        int ngay = ScannerUtils.inputInt("Bạn chỉ được nhập số ngày");
-//        System.out.println("Tháng: ");
-//
-//        int thang = ScannerUtils.inputInt("Bạn chỉ được nhập số tháng phù hợp");
-//        System.out.println("Năm: ");
-//
-//        int nam = ScannerUtils.inputInt("Bạn chỉ được nhập số năm phù hợp");
-//        NgayThang ngayThang = new NgayThang(ngay, thang, nam);
-//
-//
-//
-//        KhachHang khachHang = new KhachHang(hoTen, email, gioiTinh, sdt, ngayThang, diaChi);
-//        QLKhachHang.getDsKhachHang().add(khachHang);
-//        LichPhongVan lichPhongVan = new LichPhongVan(khachHang);
-//        QLLichPhongVan.getDsLichPhongVan().add(lichPhongVan);
-//        System.out.println(QLLichPhongVan.getDsLichPhongVan());
-//        System.out.println("Bạn đã đăng ký thành công !!");
-//        QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
-//        Menu.giaoDienKhachHang();
-//    }
-//}
+
+    @SuppressWarnings("all") //Bỏ qua tất ca các cảnh báo
+    private static TrangThaiDangNhap checkTrangThai(String id){
+        String mauCanTest = id.substring(0, 2);
+        if (mauCanTest.equals("GV")){
+            return TrangThaiDangNhap.GiangVien;
+        }   else if (mauCanTest.equals("TG")) {
+                return TrangThaiDangNhap.TroGiang;
+        }   else if (mauCanTest.equals("HV")) {
+                return TrangThaiDangNhap.HocVien;
+        }   else if (mauCanTest.equals("QL")) {
+                return TrangThaiDangNhap.QuanLy;
+        }   else if (mauCanTest.equals("CV")) {
+                return TrangThaiDangNhap.CongTacVien;
+        }   else if (mauCanTest.equals("GD")) {
+                return TrangThaiDangNhap.GiamDoc;
+        } else {
+            System.out.println("ID không hợp lệ !!");
+            return null;
+        }
+    }
+
+    public static void dangKyPhongVan(){
+        System.out.println("Nhập họ và tên");
+        String hoTen = ScannerUtils.inputString();
+
+        System.out.println("Nhập email");
+        String email = ScannerUtils.inputEmail();
+
+        System.out.println("Chọn giới tính:");
+        System.out.println("1. Nam");
+        System.out.println("Các nút còn lại sẽ là nữ");
+        boolean gioiTinh ;
+        String genderChoice = ScannerUtils.inputString();
+        if (genderChoice.equals("1")){
+            gioiTinh = true;
+        }
+        else gioiTinh = false;
+
+
+        System.out.println("Nhập số điện thoại");
+        String sdt = ScannerUtils.inputSDT();
+
+        System.out.println("Nhập địa chỉ");
+        String diaChi = ScannerUtils.inputString();
+
+        System.out.println("Nhập ngày tháng năm sinh: ");
+        LocalDate ngayThang = ScannerUtils.inputDate();
+
+
+
+        User khachHang = new User(hoTen, email, gioiTinh, ngayThang, sdt, diaChi, VaiTro.KhachHang);
+        QLUser.getDsUser().add(khachHang);
+        LichPhongVan lichPhongVan = new LichPhongVan(khachHang);
+        QLLichPhongVan.getDsLichPhongVan().add(lichPhongVan);
+        System.out.println(QLLichPhongVan.getDsLichPhongVan());
+        System.out.println("Bạn đã đăng ký thành công !!");
+        QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
+        Menu.giaoDienKhachHang();
+    }
+}

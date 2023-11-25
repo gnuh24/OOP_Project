@@ -1,30 +1,40 @@
 package TaiKhoan;
 
+import NguoiDung.User;
+
 public class TaiKhoan {
-    private String id;
+    private User user;
     private String tenTaiKhoan;
     private String matKhau;
     private boolean trangThai;
 
-    // Constructors
-    public TaiKhoan(String id, String tenTaiKhoan, String matKhau, boolean trangThai) {
-        this.id = id;
+    public TaiKhoan(User user) {
+        this.user = user;
+        this.tenTaiKhoan = user.getHoTen() + user.getMaUser();
+        this.matKhau = "123456";
+        this.trangThai = true;
+    }
+
+    public TaiKhoan(User user, String tenTaiKhoan, String matKhau) {
+        this.user = user;
+        this.tenTaiKhoan = tenTaiKhoan;
+        this.matKhau = matKhau;
+        this.trangThai = true;
+    }
+
+    public TaiKhoan(User user, String tenTaiKhoan, String matKhau, boolean trangThai) {
+        this.user = user;
         this.tenTaiKhoan = tenTaiKhoan;
         this.matKhau = matKhau;
         this.trangThai = trangThai;
     }
 
-    public TaiKhoan(String id, String tenTaiKhoan, String matKhau) {
-        this(id, tenTaiKhoan, matKhau, true);
+    public User getUser() {
+        return user;
     }
 
-    // Setters & Getters
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTenTaiKhoan() {
@@ -50,5 +60,4 @@ public class TaiKhoan {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-
 }

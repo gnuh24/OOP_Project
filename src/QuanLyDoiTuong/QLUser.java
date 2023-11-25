@@ -195,6 +195,16 @@ public class QLUser {
         return null;
     }
 
+    public static ArrayList<User> timUserTheoVaiTro(VaiTro vaiTro, boolean trangThai){
+        ArrayList<User> ketQua = new ArrayList<>();
+        for (User user: QLUser.getDsUser()) {
+            if (user.getVaiTro().equals(vaiTro) && user.isTrangThai() == trangThai){
+                ketQua.add(user);
+            }
+        }
+        return ketQua;
+    }
+
     public static ArrayList<User> timUserTheoVaiTro(VaiTro vaiTro){
         ArrayList<User> ketQua = new ArrayList<>();
         for (User user: QLUser.getDsUser()) {

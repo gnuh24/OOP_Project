@@ -19,3 +19,4 @@ QL0003#Le Van C#levanc@gmail.com#1#05/12/1990#111223344#Danang#Quản lý#1
 GD0001#Nguyen Van A#nguyenvana@gmail.com#1#05/12/1990#123456789#Hanoi#Giám đốc#1
 GD0002#Tran Thi B#tranthib@gmail.com#0#05/12/1990#987654321#HCMC#Giám đốc#0
 GD0003#Le Van C#levanc@gmail.com#1#05/12/1990#111223344#Danang#Giám đốc#1
+KH4#Ngô Tuấn Hưng#hungnt@gmail.com#1#02/04/2004#0938240359#Đại học Sài Gòn#Khách hàng#1

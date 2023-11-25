@@ -1,6 +1,7 @@
 package Menu;
 
 import QuanLyDoiTuong.*;
+import TaiKhoan.QLTaiKhoan;
 
 public class LoadDuLieu {
     public static void loading(){
@@ -11,11 +12,12 @@ public class LoadDuLieu {
         QLCoSo.loadDuLieu();
         QLPhongHoc.loadDuLieu();
         QLCaHoc.loadDuLieu();
+        QLUser.loadDuLieu();
 
-//        QLTaiKhoan.loadDuLieu();
 
         //Dữ liệu phức tạp có các trường là các đối tượng
-//        QLLichPhongVan.loadDuLieu();
+        QLTaiKhoan.loadDuLieu();
+        QLLichPhongVan.loadDuLieu();
 //        QLKetQuaPhongVan.loadDuLieu();
 
         //Dữ liệu cấp cao (Quan trọng và phụ thuộc vào các đối tượng rất nhiều)
@@ -30,12 +32,9 @@ public class LoadDuLieu {
         QLKhoaKhaiGiang.saveDuLieu();
         QLCoSo.luuDuLieu();
         QLPhongHoc.luuDuLieu();
-
-
-
-//        QLTaiKhoan.saveDuLieu();
-//
-//        QLLichPhongVan.saveDuLieu();
+        QLTaiKhoan.saveDuLieu();
+        QLUser.saveDuLieu();
+        QLLichPhongVan.saveDuLieu();
 //        QLKetQuaPhongVan.saveDuLieu();
     }
 }
