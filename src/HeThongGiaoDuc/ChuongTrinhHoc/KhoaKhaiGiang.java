@@ -1,9 +1,8 @@
 package HeThongGiaoDuc.ChuongTrinhHoc;
+
 import QuanLyDoiTuong.QLKhoaKhaiGiang;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-
 
 public class KhoaKhaiGiang {
 	private String maKhoa;
@@ -27,17 +26,17 @@ public class KhoaKhaiGiang {
 		// Sinh ra tenKhoa phụ thuộc vào năm của ngày bắt đầu khóa khai giảng
 		int namBatDau = ngayBatDau.getYear(); // lấy ra năm bắt đầu
 
-		int duoiTen =  QLKhoaKhaiGiang.demSoKhoaCungNam(namBatDau) + 1;
+		int duoiTen = QLKhoaKhaiGiang.demSoKhoaCungNam(namBatDau) + 1;
 		// thiết lập tên Khóa khai giảng
 		this.maKhoa = namBatDau % 100 + "."
 				+ duoiTen;
 	}
 
-	public String getTenKhoa() {
+	public String getMaKhoa() {
 		return maKhoa;
 	}
 
-	public void setTenKhoa(String maKhoa) {
+	public void setMaKhoa(String maKhoa) {
 		this.maKhoa = maKhoa;
 	}
 

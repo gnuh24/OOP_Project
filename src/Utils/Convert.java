@@ -28,6 +28,7 @@ public class Convert {
 
     public static String timeToString(LocalTime time) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+
         return time.format(formatter);
     }
 

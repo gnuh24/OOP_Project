@@ -1,6 +1,5 @@
 package NguoiDung;
 
-
 import QuanLyDoiTuong.QLUser;
 import Utils.ScannerUtils;
 
@@ -8,22 +7,22 @@ import java.time.LocalDate;
 
 public class User {
 
-        private String maUser;
-        private String hoTen;
-        private String email;
-        private boolean gioiTinh;
+    private String maUser;
+    private String hoTen;
+    private String email;
+    private boolean gioiTinh;
 
-        private LocalDate ngaySinh;
+    private LocalDate ngaySinh;
 
-        private String soDienThoai;
-        private String diaChi;
+    private String soDienThoai;
+    private String diaChi;
 
-        private VaiTro vaiTro;
+    private VaiTro vaiTro;
 
-        private boolean trangThai;
+    private boolean trangThai;
 
-
-    public User(String maUser, String hoTen, String email, boolean gioiTinh, LocalDate ngaySinh, String soDienThoai, String diaChi, VaiTro vaiTro, boolean trangThai) {
+    public User(String maUser, String hoTen, String email, boolean gioiTinh, LocalDate ngaySinh, String soDienThoai,
+            String diaChi, VaiTro vaiTro, boolean trangThai) {
         this.maUser = maUser;
         this.hoTen = hoTen;
         this.email = email;
@@ -35,7 +34,8 @@ public class User {
         this.trangThai = trangThai;
     }
 
-    public User(String hoTen, String email, boolean gioiTinh, LocalDate ngaySinh, String soDienThoai, String diaChi, VaiTro vaiTro) {
+    public User(String hoTen, String email, boolean gioiTinh, LocalDate ngaySinh, String soDienThoai, String diaChi,
+            VaiTro vaiTro) {
         this.hoTen = hoTen;
         this.email = email;
         this.gioiTinh = gioiTinh;
@@ -62,7 +62,7 @@ public class User {
 
     }
 
-    public User(){
+    public User() {
         nhapThongTin();
 
         this.vaiTro = VaiTro.KhachHang;
@@ -70,16 +70,15 @@ public class User {
         autoIncrementID(getVaiTro());
     }
 
-    private void autoIncrementID(VaiTro vaiTro){
+    private void autoIncrementID(VaiTro vaiTro) {
         int so = QLUser.demUserTheoVaiTro(vaiTro) + 1;
         this.maUser = VaiTro.toCode(getVaiTro()) + so;
     }
 
-    public void nhapThongTin(){
+    public void nhapThongTin() {
 
         System.out.println("Nhập họ và tên: ");
         this.hoTen = ScannerUtils.inputString();
-
 
     }
 
