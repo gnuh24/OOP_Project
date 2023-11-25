@@ -1,7 +1,9 @@
 package HeThongGiaoDuc.DangKy;
 
 import HeThongGiaoDuc.LopHoc.LopHoc;
+import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import NguoiDung.User;
+import QuanLyDoiTuong.QLYeuCauDangKy;
 
 public class YeuCauDangKy {
     private String maDangKy;
@@ -13,14 +15,24 @@ public class YeuCauDangKy {
 
     private TrangThaiDangKy trangThaiDangKy;
 
+    private KhuyenMai khuyenMai;
 
 
-    public YeuCauDangKy(String maDangKy, User hocVien, LopHoc lopHoc, int soTienPhaiDong, TrangThaiDangKy trangThaiDangKy) {
+
+
+    public YeuCauDangKy(String maDangKy, User hocVien, LopHoc lopHoc, int soTienPhaiDong, TrangThaiDangKy trangThaiDangKy, KhuyenMai khuyenMai) {
         this.maDangKy = maDangKy;
         this.hocVien = hocVien;
         this.lopHoc = lopHoc;
         this.soTienPhaiDong = soTienPhaiDong;
         this.trangThaiDangKy = trangThaiDangKy;
+        this.khuyenMai = khuyenMai;
+    }
+
+
+    private String autoIncrement(){
+        int a = QLYeuCauDangKy.getDsYeuCauDangKy().size() + 1;
+        return "YCDK" + a;
     }
 
     public String getMaDangKy() {
@@ -61,5 +73,13 @@ public class YeuCauDangKy {
 
     public void setTrangThaiDangKy(TrangThaiDangKy trangThaiDangKy) {
         this.trangThaiDangKy = trangThaiDangKy;
+    }
+
+    public KhuyenMai getKhuyenMai() {
+        return khuyenMai;
+    }
+
+    public void setKhuyenMai(KhuyenMai khuyenMai) {
+        this.khuyenMai = khuyenMai;
     }
 }

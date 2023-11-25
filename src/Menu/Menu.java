@@ -84,8 +84,10 @@ public class Menu {
             System.out.println("2. Xem lịch dạy của khóa sắp khai giảng");
             System.out.println("3. Xem danh sách học sinh của các lớp");
             System.out.println("4. Xem danh sách lịch phổng vấn");
-            System.out.println("5. Đăng xuất");
-            System.out.println("6. Thoát chương trình");
+            System.out.println("5. Nhập điểm cho thí sinh phổng vấn");
+            System.out.println("6. Nhập điểm cho học viên các lớp");
+            System.out.println("7. Đăng xuất");
+            System.out.println("8. Thoát chương trình");
             System.out.println("Bạn đã có lựa chọn chưa ?");
             choice = ScannerUtils.inputInt();
 
@@ -123,12 +125,15 @@ public class Menu {
                     QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.timKiemLichPhongVanTheoGV(QLUser.timUserTheoMa(Form.getTaiKhoan().getUser().getMaUser()).getMaUser()));
                     break;
 
-
                 case 5:
+                    QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.timKiemLichPhongVanTheoGV(QLUser.timUserTheoMa(Form.getTaiKhoan().getUser().getMaUser()).getMaUser()));
+                    System.out.println("Hãy chọn buổi phổng vấn bạn muốn nhập điểm");
+
+                case 7:
                     Form.logout();
                     break;
 
-                case 6:
+                case 8:
                     Menu.exit();
                     break;
             }
