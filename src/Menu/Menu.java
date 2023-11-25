@@ -11,6 +11,7 @@ import QuanLyDoiTuong.QLLichPhongVan;
 import QuanLyDoiTuong.QLUser;
 import Utils.ScannerUtils;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -294,10 +295,65 @@ public class Menu {
 
 
                     break;
-//                case 2:
-//                    QLLopHoc.inDSLopHoc(QLLopHoc.timKiemLopTheoTrangThai(QLLopHoc.timKiemLopTheoTroGiang(Form.getId()), TrangThaiLop.Sap_Khai_Giang));
-//                    break;
-//
+                case 2:
+                    QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
+                    System.out.println("Bạn muốn xét thay đổi lịch phổng vấn nào (Nhập ID)");
+                    System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
+
+                    String idPV = ScannerUtils.inputString();
+
+                    if (idPV.equals("1")){
+                        Menu.giaoDienCongTacVien();
+                    }
+
+                    else{
+                        LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(idPV);
+                        if (lichPhongVan == null){
+                            System.out.println("Mã không tồn tại !!!");
+                            Menu.giaoDienCongTacVien();
+                        }
+                        else{
+                            System.out.printf("Bạn đã chọn lịch phổng vấn %s \n", lichPhongVan.getMaCaPhongVan());
+                            System.out.println("Hãy chọn trạng thái bạn muốn thay đổi :33");
+                            System.out.println("1. Chờ duyệt");
+                            System.out.println("2. Chờ phổng vấn");
+                            System.out.println("3. Đã phổng vấn");
+                            System.out.println("4. Hủy");
+                            System.out.println("Ấn bất cứ nút nào khác để thoát về màn hình chính !!");
+
+
+
+                            String case2Choice = ScannerUtils.inputString();
+
+                            if (case2Choice.equals("1")){
+                                lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.CHO_DUYET);
+                                System.out.println("Đã thay đổi thành công !!");
+                                QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.dsLichPhongVan);
+                            }
+                            else if (case2Choice.equals("2")){
+                                lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.CHO_PHONGVAN);
+                                System.out.println("Đã thay đổi thành công !!");
+                                QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.dsLichPhongVan);
+
+                            }
+                            else if (case2Choice.equals("3")){
+                                lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.DA_PHONGVAN);
+                                System.out.println("Đã thay đổi thành công !!");
+                                QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.dsLichPhongVan);
+
+                            }
+                            else if (case2Choice.equals("4")){
+                                lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.HUY);
+                                System.out.println("Đã thay đổi thành công !!");
+                                QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.dsLichPhongVan);
+                            }
+                        }
+                    }
+
+
+
+                    break;
+
 //                case 3:
 //                    QLLopHoc.inDSLopHoc(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc));
 //                    break;
