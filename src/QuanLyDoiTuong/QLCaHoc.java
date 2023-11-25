@@ -1,5 +1,6 @@
 package QuanLyDoiTuong;
 
+import Menu.LoadDuLieu;
 import ThoiGian.CaHoc;
 import ThoiGian.Thu;
 import Utils.DocGhiFile;
@@ -8,6 +9,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class QLCaHoc {
+	public static void main(String[] args) {
+		QLCaHoc.loadDuLieu();
+		QLCaHoc.inDanhSach(QLCaHoc.getDsCaHoc());
+	}
 	private static ArrayList<CaHoc> dsCaHoc = new ArrayList<>();
 
 	public static ArrayList<CaHoc> getDsCaHoc() {
@@ -19,17 +24,17 @@ public class QLCaHoc {
 	}
 
 	public static void inDanhSach(ArrayList<CaHoc> dsCaHoc) {
-		System.out.println("*".repeat(62));
-		System.out.printf("* %-15s* %-20s* %-20s*\n", "Thu", "Giờ bắt đầu", "Giờ kết thúc");
-		System.out.println("*".repeat(62));
+		System.out.println("*".repeat(47));
+		System.out.printf("* %-10s* %-15s* %-15s*\n", "Thu", "Giờ bắt đầu", "Giờ kết thúc");
+		System.out.println("*".repeat(47));
 		for (CaHoc caHoc : dsCaHoc) {
 			System.out.printf(
-					"* %-15s* %-20s* %-20s*\n",
+					"* %-10s* %-15s* %-15s*\n",
 					caHoc.getThu(),
 					caHoc.getGioVaoHoc(),
 					caHoc.getGioTanHoc());
 		}
-		System.out.println("*".repeat(62));
+		System.out.println("*".repeat(47));
 	}
 
 	public static void xuLyDuLieu(ArrayList<String> duLieu) {
@@ -39,30 +44,8 @@ public class QLCaHoc {
 			String[] cacThuocTinh = tam.split("#");
 
 			// thiết lập các thuộc tính cho đối tượng
-			Thu thu = null;
-			switch (cacThuocTinh[0]) {
-				case "Hai":
-					thu = Thu.Hai;
-					break;
-				case "Ba":
-					thu = Thu.Ba;
-					break;
-				case "Tu":
-					thu = Thu.Tu;
-					break;
-				case "Nam":
-					thu = Thu.Nam;
-					break;
-				case "Sau":
-					thu = Thu.Sau;
-					break;
-				case "Bay":
-					thu = Thu.Bay;
-					break;
-				case "ChuNhat":
-					thu = Thu.ChuNhat;
-					break;
-			}
+			Thu thu = Thu.toThu(cacThuocTinh[0]);
+
 			String[] gioVaoHoc = cacThuocTinh[1].split("[hp]");
 			String[] gioTanHoc = cacThuocTinh[2].split("[hp]");
 
