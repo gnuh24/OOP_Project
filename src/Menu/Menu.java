@@ -18,8 +18,14 @@ import java.time.LocalTime;
 
 public class Menu {
     public static void main(String[] args) {
-        LoadDuLieu.loading();
-        Menu.giaoDienKhachHang();
+//        LoadDuLieu.loading();
+//        Menu.giaoDienKhachHang();
+        Integer a = 500;
+        Integer b = 500;
+        System.out.println(a == b);
+        Integer c = 100;
+        Integer d = 100;
+        System.out.println(c == d);
         //Menu.giaoDienCongTacVien();
     }
 

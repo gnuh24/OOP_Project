@@ -36,7 +36,7 @@ public class QLKhoaKhaiGiang {
 
 
 			System.out.printf("* %-10s* %-15s* %-15s*\n",
-					khoaKhaiGiang.getTenKhoa(),
+					khoaKhaiGiang.getMaKhoa(),
 					Convert.dateToString(khoaKhaiGiang.getNgayBatDau()),
 					Convert.dateToString(khoaKhaiGiang.getNgayKetThuc())
 			);
@@ -49,7 +49,7 @@ public class QLKhoaKhaiGiang {
 	public static KhoaKhaiGiang timKiemTheoTenKhoa(String tenKhoa) {
 		// Duyệt qua tất cả các khóa khai giảng
 		for (KhoaKhaiGiang khoaKhaiGiang : dsKhoaKhaiGiang)
-			if (khoaKhaiGiang.getTenKhoa().equals(tenKhoa)) // nếu tìm thấy khóa có tên khóa cần tìm
+			if (khoaKhaiGiang.getMaKhoa().equals(tenKhoa)) // nếu tìm thấy khóa có tên khóa cần tìm
 				return khoaKhaiGiang; // thì trả về khóa khai giảng đó
 
 		// nếu không tìm thấy, trả về null
@@ -153,7 +153,7 @@ public class QLKhoaKhaiGiang {
 
 		for (var khoaKhaiGiang : dsKhoaKhaiGiang) {
 
-			String tam = khoaKhaiGiang.getTenKhoa() + "#"
+			String tam = khoaKhaiGiang.getMaKhoa() + "#"
 					+ Convert.dateToString(khoaKhaiGiang.getNgayBatDau()) + "#"
 					+ Convert.dateToString(khoaKhaiGiang.getNgayKetThuc()) + "\n";
 

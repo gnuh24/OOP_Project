@@ -30,7 +30,7 @@ public class QLLopHoc {
           lopHoc.getKhoa().getMaKhoa(), lopHoc.getChuongTrinh().getKhoaHoc(),
           lopHoc.getPhongHocMacDinh().getMaPhongHoc(),
           lopHoc.getPhongHocMacDinh().getCoSoTrucThuoc().getTenCoSo(),
-          QLHocVienLopHoc.demHocVienTheoLopHoc(lopHoc.getMaLop()),
+//          QLHocVienLopHoc.demHocVienTheoLopHoc(lopHoc.getMaLop()),
           lopHoc.getTrangThai());
     }
     System.out.println("*".repeat(151));
