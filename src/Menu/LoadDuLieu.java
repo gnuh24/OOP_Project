@@ -18,9 +18,10 @@ public class LoadDuLieu {
         //Dữ liệu phức tạp có các trường là các đối tượng
         QLTaiKhoan.loadDuLieu();
         QLLichPhongVan.loadDuLieu();
-//        QLKetQuaPhongVan.loadDuLieu();
 
         //Dữ liệu cấp cao (Quan trọng và phụ thuộc vào các đối tượng rất nhiều)
+        QLKetQuaPhongVan.loadDuLieu();
+
     }
 
     public static void main(String[] args) {
@@ -35,6 +36,6 @@ public class LoadDuLieu {
         QLTaiKhoan.saveDuLieu();
         QLUser.saveDuLieu();
         QLLichPhongVan.saveDuLieu();
-//        QLKetQuaPhongVan.saveDuLieu();
+        QLKetQuaPhongVan.saveDuLieu();
     }
 }

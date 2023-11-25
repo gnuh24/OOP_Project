@@ -1,4 +1,4 @@
 LPV1####KH0001#Hủy
 LPV2####KH0002#Chờ duyệt
 LPV3####KH0003#Chờ duyệt
-LPV4#GV0003#27/11/2023#15:20#KH4#Chờ phổng vấn
+LPV4#GV0001#28/11/2023#15:30#KH4#Đã phổng vấn

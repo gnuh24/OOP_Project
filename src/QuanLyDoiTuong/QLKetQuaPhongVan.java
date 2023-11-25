@@ -20,19 +20,15 @@ public class QLKetQuaPhongVan {
     }
 
     public static void inDSKetQuaPhongVan(ArrayList<KetQuaPhongVan> dsKetQuaPhongVan){
-        System.out.println("*".repeat(100));
-        System.out.printf("* %-20s* %-20s* %-20s* %-20s*", "Mã ca phổng vấn", "Điểm phổng vấn", "Chương Trình Phù Hợp", "Trạng thái");
-        System.out.println("*".repeat(100));
+        System.out.println("*".repeat(133));
+        System.out.printf("* %-20s* %-20s* %-20s* %-20s* %-20s* %-20s*\n", "Mã ca phổng vấn", "Tên khách hàng", "Số điện thoại","Điểm phổng vấn", "Chương Trình Phù Hợp", "Trạng thái");
+        System.out.println("*".repeat(133));
         for (KetQuaPhongVan ketQuaPhongVan: dsKetQuaPhongVan){
-            String lienHe;
-            if(ketQuaPhongVan.getLienHe().equals(LienHe.ChuaLienHe)){
-                lienHe = "Chưa liên hệ";
-            } else if(ketQuaPhongVan.getLienHe().equals(LienHe.DaLienHe)){
-                lienHe = "Đã liên hệ";
-            } else lienHe = "Đã từ chối";
-
-            System.out.printf("* %-20s* %-20s* %-20s* %-20s*", ketQuaPhongVan.getLichPhongVan().getMaCaPhongVan(), ketQuaPhongVan.getDiem(), ketQuaPhongVan.getChuongTrinhHocDeXuat().getKhoaHoc(), lienHe);
+            String lienHe = LienHe.toString(ketQuaPhongVan.getLienHe());
+            System.out.printf("* %-20s* %-20s* %-20s* %-20s* %-20s* %-20s*\n", ketQuaPhongVan.getLichPhongVan().getMaCaPhongVan(), ketQuaPhongVan.getLichPhongVan().getKhachHang().getHoTen(), ketQuaPhongVan.getLichPhongVan().getKhachHang().getSoDienThoai(), ketQuaPhongVan.getDiem(), ketQuaPhongVan.getChuongTrinhHocDeXuat().getKhoaHoc(), lienHe);
         }
+        System.out.println("*".repeat(133));
+
 
     }
 
@@ -90,5 +86,14 @@ public class QLKetQuaPhongVan {
         DocGhiFile.ghiDuLieuFile(filePath, duLieu);
         System.out.println("Đã lưu xong KẾT QUẢ PHỔNG VẤN");
 
+    }
+
+    public static KetQuaPhongVan timKetQuaPhongVanTheoMa(String id){
+        for (KetQuaPhongVan ketQuaPhongVan: QLKetQuaPhongVan.getDsKetQuaPhongVan()){
+            if (ketQuaPhongVan.getLichPhongVan().getMaCaPhongVan().equals(id)){
+                return ketQuaPhongVan;
+            }
+        }
+        return null;
     }
 }
