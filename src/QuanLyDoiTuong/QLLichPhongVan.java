@@ -118,7 +118,7 @@ public class QLLichPhongVan {
         System.out.println("*".repeat(128));
         System.out.printf("* %-10s* %-30s* %-30s* %-15s* %-15s* %-15s*\n", "Mã PV", "Tên khách hàng", "Tên người phổng vấn", "Ngày tháng", "Thời gian", "Trạng thái");
         System.out.println("*".repeat(128));
-        for (LichPhongVan lichPhongVan1: QLLichPhongVan.getDsLichPhongVan()){
+        for (LichPhongVan lichPhongVan1: lichPhongVan){
             String pvMa, pvHoTenGiangVien, pvNgayThang, pvGio, pvHoTenKhachHang, pvTrangThai;
             pvMa = lichPhongVan1.getMaCaPhongVan();
 
@@ -169,11 +169,10 @@ public class QLLichPhongVan {
         ArrayList<LichPhongVan> ketQua = new ArrayList<>();
 
         for(LichPhongVan lichPhongVan: QLLichPhongVan.getDsLichPhongVan()){
-            if (lichPhongVan.getGiangVien().getMaUser().equals(IDgiangVien)){
+            if (lichPhongVan.getGiangVien() != null && lichPhongVan.getGiangVien().getMaUser().equals(IDgiangVien)){
                 ketQua.add(lichPhongVan);
             }
         }
-
         return ketQua;
     }
     public static ArrayList<LichPhongVan>  timKiemTheoNgay(LocalDate ngayThang){

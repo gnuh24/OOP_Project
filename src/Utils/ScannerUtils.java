@@ -33,6 +33,7 @@ public class ScannerUtils {
     }
 
     public static String inputEmail() {
+        System.out.println("Xin mời nhập email. (VD: hungnt@gmail.com)");
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
         String regex = "\\w+[\\w\\.]*[\\w_]*[\\w\\+]\\w*@[a-zA-Z]+(.[a-zA-Z]+)+";
@@ -46,6 +47,7 @@ public class ScannerUtils {
     }
 
     public static String inputSDT() {
+        System.out.println("Xin mời nhập ngày tháng năm. (VD: 0938240359)");
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
         // Số điện thoại 10 số
@@ -65,6 +67,8 @@ public class ScannerUtils {
     }
 
     public static LocalDate inputDate() {
+        System.out.println("Xin mời nhập ngày tháng năm. (VD: 02/04/2004)");
+
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
         String regex = "(\\d{2}/){2}\\d{4}";
@@ -79,6 +83,7 @@ public class ScannerUtils {
     }
 
     public static LocalTime inputTime() {
+        System.out.println("Xin mời nhập thời gian (VD: 20:30)");
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
         String regex = "\\d{2}:\\d{2}";

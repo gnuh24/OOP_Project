@@ -31,83 +31,61 @@ public class Form {
 
 
 
-//    public static void login(){
-//        System.out.println("Xin mời bạn nhập tài khoản: ");
-//        String curUsername = ScannerUtils.inputString();
-//        System.out.println("Xin mời bạn nhập mật khẩu: ");
-//        String curPassword = ScannerUtils.inputString();
-//
-//        if (isLoginValid(curUsername, curPassword)){
-//            if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.GiangVien)){
-//                Menu.giaoDienGiangVien();
-//            } else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.TroGiang)) {
-//                Menu.giaoDienTroGiang();
-//            }else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.HocVien)) {
-//                Menu.giaoDienHocVien();
-//            }else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.CongTacVien)) {
-//                Menu.giaoDienCongTacVien();
+    public static void login(){
+        System.out.println("Xin mời bạn nhập tài khoản: ");
+        String curUsername = ScannerUtils.inputString();
+        System.out.println("Xin mời bạn nhập mật khẩu: ");
+        String curPassword = ScannerUtils.inputString();
+
+        if (isLoginValid(curUsername, curPassword)){
+            if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.GiangVien)){
+                Menu.giaoDienGiangVien();
+            } else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.TroGiang)) {
+                Menu.giaoDienTroGiang();
+            }else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.HocVien)) {
+                Menu.giaoDienHocVien();
+            }else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.CongTacVien)) {
+                Menu.giaoDienCongTacVien();
 //            }else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.QuanLy)) {
 //                Menu.giaoDienQuanLy();
 //            }else if (Form.taiKhoan.getUser().getVaiTro().equals(VaiTro.GiamDoc)) {
 //                Menu.giaoDienGiamDoc();
-//            }else {
-//                System.out.println("Lỗi đăng nhập !!!");
-//                Menu.giaoDienKhachHang();
-//            }
-//
-//        }
-//        else {
-//            System.out.println("Thông tin đăng nhập không đúng hãy kiểm tra lại !!");
-//            System.out.println("1. Đăng nhập lại");
-//            System.out.println("Nhấn bất cứ nút nào để trở màn hình chính");
-//            String choice = ScannerUtils.inputString();
-//
-//
-//            if (choice.equals("1")){
-//                Form.login();
-//            }
-//            else {
-//                Menu.giaoDienKhachHang();
-//            }
-//        }
-//
-//
-//    }
+            }else {
+                System.out.println("Lỗi đăng nhập !!!");
+                Menu.giaoDienKhachHang();
+            }
 
-//    private static boolean isLoginValid(String curUsername, String password){
-//        TaiKhoan taiKhoan = QLTaiKhoan.timTaiKhoanTheoUsername(curUsername);
-//        if (taiKhoan == null){
-//            return false;
-//        }
-//
-//        if (!taiKhoan.getMatKhau().equals(password)){
-//            return false;
-//        }
-//        else{
-//            Form.setId(taiKhoan.getUser());
-//            Form.setTrangThaiDangNhap(Form.checkTrangThai(Form.getId()));
-//            return true;
-//        }
-//    }
+        }
+        else {
+            System.out.println("Thông tin đăng nhập không đúng hãy kiểm tra lại !!");
+            System.out.println("1. Đăng nhập lại");
+            System.out.println("Nhấn bất cứ nút nào để trở màn hình chính");
+            String choice = ScannerUtils.inputString();
 
-    @SuppressWarnings("all") //Bỏ qua tất ca các cảnh báo
-    private static TrangThaiDangNhap checkTrangThai(String id){
-        String mauCanTest = id.substring(0, 2);
-        if (mauCanTest.equals("GV")){
-            return TrangThaiDangNhap.GiangVien;
-        }   else if (mauCanTest.equals("TG")) {
-                return TrangThaiDangNhap.TroGiang;
-        }   else if (mauCanTest.equals("HV")) {
-                return TrangThaiDangNhap.HocVien;
-        }   else if (mauCanTest.equals("QL")) {
-                return TrangThaiDangNhap.QuanLy;
-        }   else if (mauCanTest.equals("CV")) {
-                return TrangThaiDangNhap.CongTacVien;
-        }   else if (mauCanTest.equals("GD")) {
-                return TrangThaiDangNhap.GiamDoc;
-        } else {
-            System.out.println("ID không hợp lệ !!");
-            return null;
+
+            if (choice.equals("1")){
+                Form.login();
+            }
+            else {
+                Menu.giaoDienKhachHang();
+            }
+        }
+
+
+    }
+
+    private static boolean isLoginValid(String curUsername, String password){
+        TaiKhoan taiKhoan = QLTaiKhoan.timTaiKhoanTheoUsername(curUsername);
+        if (taiKhoan == null){
+            return false;
+        }
+
+        if (!taiKhoan.getMatKhau().equals(password)){
+            return false;
+        }
+        else{
+            Form.setTaiKhoan(taiKhoan);
+            return true;
         }
     }
 
