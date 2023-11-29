@@ -162,7 +162,7 @@ public class QLLopHoc {
 
   }
 
-  public static LopHoc tinKiemLopTheoMaLop(String maLop) {
+  public static LopHoc timKiemLopTheoMaLop(String maLop) {
     for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
       if (lopHoc.getMaLop().equals(maLop)) {
         return lopHoc;
@@ -171,7 +171,7 @@ public class QLLopHoc {
     return null;
   }
 
-  public static LopHoc tinKiemLopTheoTenLop(String tenLop) {
+  public static LopHoc timKiemLopTheoTenLop(String tenLop) {
     for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
       if (lopHoc.getTenLop().equals(tenLop)) {
         return lopHoc;

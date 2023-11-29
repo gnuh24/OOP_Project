@@ -3,22 +3,14 @@ package HeThongGiaoDuc.LopHoc;
 import NguoiDung.User;
 
 public class HocVienLopHoc {
-  LopHoc lopHoc;
   User hocVien;
+  LopHoc lopHoc;
 
   public HocVienLopHoc() {
   }
 
-  public HocVienLopHoc(LopHoc lopHoc, User hocVien) {
-    this.lopHoc = lopHoc;
+  public HocVienLopHoc(User hocVien, LopHoc lopHoc) {
     this.hocVien = hocVien;
-  }
-
-  public LopHoc getLopHoc() {
-    return lopHoc;
-  }
-
-  public void setLopHoc(LopHoc lopHoc) {
     this.lopHoc = lopHoc;
   }
 
@@ -26,8 +18,16 @@ public class HocVienLopHoc {
     return hocVien;
   }
 
+  public LopHoc getLopHoc() {
+    return lopHoc;
+  }
+
   public void setHocVien(User hocVien) {
     this.hocVien = hocVien;
+  }
+
+  public void setLopHoc(LopHoc lopHoc) {
+    this.lopHoc = lopHoc;
   }
 
 }
