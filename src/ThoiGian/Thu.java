@@ -1,53 +1,56 @@
 package ThoiGian;
+
 public enum Thu {
     Hai, Ba, Tu, Nam, Sau, Bay, ChuNhat;
-    public String toString(Thu thuEnum){
-        String thuString="Hai";
+
+    public static String toString(Thu thuEnum) {
+        String thuString = "Hai";
         switch (thuEnum) {
             case Ba:
-                thuString="Ba";
+                thuString = "Ba";
                 break;
             case Tu:
-                thuString="Tư";
+                thuString = "Tư";
                 break;
             case Nam:
-                thuString="Năm";
+                thuString = "Năm";
                 break;
             case Sau:
-                thuString="Sáu";
+                thuString = "Sáu";
                 break;
             case Bay:
-                thuString="Bảy";
+                thuString = "Bảy";
                 break;
             case ChuNhat:
-                thuString="Chủ nhật";
+                thuString = "Chủ nhật";
                 break;
         }
         return thuString;
     }
-    public static Thu toThu(String thuString){
-        Thu thuEnum=Hai;
+
+    public static Thu toThu(String thuString) {
+        Thu thuEnum = Hai;
         switch (thuString) {
             case "Ba":
-                thuEnum=Ba;
+                thuEnum = Ba;
                 break;
             case "Tư":
-                thuEnum=Tu;
+                thuEnum = Tu;
                 break;
             case "Năm":
-                thuEnum=Nam;
+                thuEnum = Nam;
                 break;
             case "Sáu":
-                thuEnum=Sau;
+                thuEnum = Sau;
                 break;
             case "Bảy":
-                thuEnum=Bay;
+                thuEnum = Bay;
                 break;
             case "Chủ nhật":
-                thuEnum=ChuNhat;
+                thuEnum = ChuNhat;
                 break;
         }
         return thuEnum;
     }
-  
+
 }

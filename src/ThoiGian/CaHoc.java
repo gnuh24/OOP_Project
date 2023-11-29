@@ -40,4 +40,9 @@ public class CaHoc {
         this.thu = thu;
     }
 
+    @Override
+    public String toString() {
+        return "Thứ " + thu.toString() + ": " + gioVaoHoc.toString() + " -> " + gioTanHoc.toString();
+    }
+
 }

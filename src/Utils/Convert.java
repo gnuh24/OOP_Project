@@ -32,4 +32,8 @@ public class Convert {
         return time.format(formatter);
     }
 
+    public static void main(String[] args) {
+        System.out.println("khdsfiush");
+        System.out.println(stringToTime("01:30"));
+    }
 }

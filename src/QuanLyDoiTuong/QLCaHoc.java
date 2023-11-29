@@ -1,42 +1,43 @@
 package QuanLyDoiTuong;
 
-import Menu.LoadDuLieu;
 import ThoiGian.CaHoc;
 import ThoiGian.Thu;
+import Utils.Convert;
 import Utils.DocGhiFile;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class QLCaHoc {
-	public static void main(String[] args) {
-		QLCaHoc.loadDuLieu();
-		QLCaHoc.inDanhSach(QLCaHoc.getDsCaHoc());
-	}
+	// data
 	private static ArrayList<CaHoc> dsCaHoc = new ArrayList<>();
 
+	// getter
 	public static ArrayList<CaHoc> getDsCaHoc() {
 		return dsCaHoc;
 	}
 
+	// setter
 	public static void setDsCaHoc(ArrayList<CaHoc> dsCaHoc) {
 		QLCaHoc.dsCaHoc = dsCaHoc;
 	}
 
+	// Hàm để in ra danh sách các Ca Học
 	public static void inDanhSach(ArrayList<CaHoc> dsCaHoc) {
-		System.out.println("*".repeat(47));
-		System.out.printf("* %-10s* %-15s* %-15s*\n", "Thu", "Giờ bắt đầu", "Giờ kết thúc");
-		System.out.println("*".repeat(47));
+		System.out.println("*".repeat(52));
+		System.out.printf("* %-15s* %-15s* %-15s*\n", "Thu", "Giờ bắt đầu", "Giờ kết thúc");
+		System.out.println("*".repeat(52));
 		for (CaHoc caHoc : dsCaHoc) {
 			System.out.printf(
-					"* %-10s* %-15s* %-15s*\n",
-					caHoc.getThu(),
-					caHoc.getGioVaoHoc(),
-					caHoc.getGioTanHoc());
+					"* %-15s* %-15s* %-15s*\n",
+					Thu.toString(caHoc.getThu()),
+					Convert.timeToString(caHoc.getGioVaoHoc()),
+					Convert.timeToString(caHoc.getGioTanHoc()));
 		}
-		System.out.println("*".repeat(47));
+		System.out.println("*".repeat(52));
 	}
 
+	// xử lý dữ liệu từ chuỗi thành đối tượng
 	public static void xuLyDuLieu(ArrayList<String> duLieu) {
 		// duyệt qua duLieu và bắt đầu xử lý!
 		for (var tam : duLieu) {
@@ -45,25 +46,50 @@ public class QLCaHoc {
 
 			// thiết lập các thuộc tính cho đối tượng
 			Thu thu = Thu.toThu(cacThuocTinh[0]);
+			LocalTime gioVaoHoc = Convert.stringToTime(cacThuocTinh[1]);
+			LocalTime gioTanHoc = Convert.stringToTime(cacThuocTinh[2]);
 
-			String[] gioVaoHoc = cacThuocTinh[1].split("[hp]");
-			String[] gioTanHoc = cacThuocTinh[2].split("[hp]");
-
-			// tạo ra dối tượng và thêm vào dsCaHoc
-			dsCaHoc.add(
-					new CaHoc(
-							thu,
-							LocalTime.of(Integer.parseInt(gioVaoHoc[0]), Integer.parseInt(gioVaoHoc[1])),
-							LocalTime.of(Integer.parseInt(gioTanHoc[0]), Integer.parseInt(gioTanHoc[1]))));
+			dsCaHoc.add(new CaHoc(thu, gioVaoHoc, gioTanHoc));
 		}
 	}
 
 	// Hàm load dữ liệu từ file
 	public static void loadDuLieu() {
-		String filePath = "src\\Data\\qlCaHoc.txt";
+		// Sửa đường dẫn này:
+		String filePath = "D:\\learning\\do-an\\oop\\OOP_Project\\src\\Data\\qlCaHoc.txt";
+
 		ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
 		xuLyDuLieu(duLieu);
 		System.out.println("Đã tải xong CA HỌC");
+	}
+
+	// xử lý dữ liệu từ đối tượng thành chuỗi để lưu
+	public static ArrayList<String> trichXuatDuLieu() {
+		ArrayList<String> duLieu = new ArrayList<>();
+
+		for (CaHoc caHoc : dsCaHoc) {
+			StringBuilder sb = new StringBuilder();
+
+			sb
+					.append(Thu.toString(caHoc.getThu())).append("#")
+					.append(Convert.timeToString(caHoc.getGioVaoHoc())).append("#")
+					.append(Convert.timeToString(caHoc.getGioTanHoc()))
+					.append(System.lineSeparator());
+
+			duLieu.add(sb.toString());
+		}
+
+		return duLieu;
+	}
+
+	// Hàm save dữ liệu vào file
+	public static void saveDuLieu() {
+		// sửa đường dẫn này:
+		String filePath = "D:\\learning\\do-an\\oop\\OOP_Project\\src\\Data\\qlCaHoc_save.txt";
+
+		ArrayList<String> duLieu = trichXuatDuLieu();
+		DocGhiFile.ghiDuLieuFile(filePath, duLieu);
+		System.out.println("Đã lưu xong CaHoc");
 	}
 
 	public static ArrayList<CaHoc> timCaHocTheoThu(Thu thu) {
@@ -76,4 +102,10 @@ public class QLCaHoc {
 		return result;
 	}
 
+	public static void main(String[] args) {
+		loadDuLieu();
+		inDanhSach(QLCaHoc.getDsCaHoc());
+		System.out.println("hi..... from a prince");
+		saveDuLieu();
+	}
 }

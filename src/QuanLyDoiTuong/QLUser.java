@@ -29,7 +29,7 @@ public class QLUser {
     }
 
     public static void xuLyDuLieu(ArrayList<String> duLieu) {
-        // duyệt qua\ duLieu và bắt đầu xử lý!
+        // duyệt qua duLieu và bắt đầu xử lý!
         for (String temp : duLieu) {
             // tách chuỗi tam
             String[] cacThuocTinh = temp.split("#");
@@ -53,6 +53,7 @@ public class QLUser {
         }
     }
 
+    // Tạo ra chuỗi thông tin từ danh sách để lưu
     public static ArrayList<String> trichXuatDuLieu() {
         ArrayList<String> duLieu = new ArrayList<>();
 
@@ -91,7 +92,6 @@ public class QLUser {
         ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
         xuLyDuLieu(duLieu);
         System.out.println("Đã tải xong USER");
-
     }
 
     // Hàm save dữ liệu vào file

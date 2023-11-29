@@ -6,6 +6,7 @@ import Utils.DocGhiFile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 public class QLKhoaKhaiGiang {
 
 	public static void main(String[] args) {
@@ -13,8 +14,8 @@ public class QLKhoaKhaiGiang {
 		inDanhSachKhoaKhaiGiang(dsKhoaKhaiGiang);
 		saveDuLieu();
 	}
-	private static ArrayList<KhoaKhaiGiang> dsKhoaKhaiGiang = new ArrayList<>();
 
+	private static ArrayList<KhoaKhaiGiang> dsKhoaKhaiGiang = new ArrayList<>();
 
 	public static ArrayList<KhoaKhaiGiang> getDsKhoaKhaiGiang() {
 		return dsKhoaKhaiGiang;
@@ -34,28 +35,25 @@ public class QLKhoaKhaiGiang {
 
 		for (KhoaKhaiGiang khoaKhaiGiang : DSKhoaKhaiGiang) {
 
-
 			System.out.printf("* %-10s* %-15s* %-15s*\n",
 					khoaKhaiGiang.getMaKhoa(),
 					Convert.dateToString(khoaKhaiGiang.getNgayBatDau()),
-					Convert.dateToString(khoaKhaiGiang.getNgayKetThuc())
-			);
+					Convert.dateToString(khoaKhaiGiang.getNgayKetThuc()));
 		}
 		System.out.println("***********************************************");
 
 	}
 
 	// Hàm tìm kiếm khóa khai giảng theo tên khóa
-	public static KhoaKhaiGiang timKiemTheoTenKhoa(String tenKhoa) {
+	public static KhoaKhaiGiang timKiemTheoMaKhoa(String maKhoa) {
 		// Duyệt qua tất cả các khóa khai giảng
 		for (KhoaKhaiGiang khoaKhaiGiang : dsKhoaKhaiGiang)
-			if (khoaKhaiGiang.getMaKhoa().equals(tenKhoa)) // nếu tìm thấy khóa có tên khóa cần tìm
+			if (khoaKhaiGiang.getMaKhoa().equals(maKhoa)) // nếu tìm thấy khóa có tên khóa cần tìm
 				return khoaKhaiGiang; // thì trả về khóa khai giảng đó
 
 		// nếu không tìm thấy, trả về null
 		return null;
 	}
-
 
 	// Hàm tìm các Khóa khai giảng có ngày bắt đầu theo thời gian chỉ định
 	public static ArrayList<KhoaKhaiGiang> timKiemKhoaBatDauTheoThang(int thang, int nam) {
@@ -64,7 +62,7 @@ public class QLKhoaKhaiGiang {
 		// Duyệt qua tất cả các khóa khai giảng
 		for (KhoaKhaiGiang khoaKhaiGiang : dsKhoaKhaiGiang)
 			if (thang == khoaKhaiGiang.getNgayBatDau().getMonth().getValue()
-					&& nam == khoaKhaiGiang.getNgayBatDau().getYear() )
+					&& nam == khoaKhaiGiang.getNgayBatDau().getYear())
 				cacKhoaTimThay.add(khoaKhaiGiang);
 
 		if (cacKhoaTimThay.isEmpty())
@@ -122,7 +120,7 @@ public class QLKhoaKhaiGiang {
 	// Hàm đếm số lượng khóa học theo năm
 	public static int demSoKhoaCungNam(int nam) {
 		int dem = 0;
-		for (KhoaKhaiGiang khoaKhaiGiang: dsKhoaKhaiGiang) {
+		for (KhoaKhaiGiang khoaKhaiGiang : dsKhoaKhaiGiang) {
 			if (khoaKhaiGiang.getNgayBatDau().getYear() == nam) {
 				dem++;
 			}
@@ -143,8 +141,7 @@ public class QLKhoaKhaiGiang {
 
 			LocalDate ngayKetThuc = Convert.stringToDate(cacThuocTinh[2]);
 
-
-			dsKhoaKhaiGiang.add(new KhoaKhaiGiang(tenKhoa,ngayBatDau, ngayKetThuc));
+			dsKhoaKhaiGiang.add(new KhoaKhaiGiang(tenKhoa, ngayBatDau, ngayKetThuc));
 		}
 	}
 
@@ -162,7 +159,6 @@ public class QLKhoaKhaiGiang {
 
 		return duLieu;
 	}
-
 
 	// Hàm save dữ liệu vào file
 	public static void saveDuLieu() {
