@@ -1,64 +1,58 @@
 // MTTK
 package HeThongGiaoDuc.LopHoc;
 
+import NguoiDung.User;
 import QuanLyDoiTuong.QLKetQua;
 
 public class KetQua {
-  String maKetQua;
-  HocVienLopHoc hocVienLopHoc;
+  User hocVien;
+  LopHoc lopHoc;
   double diem;
   String danhGia;
+  
 
   // Constructor nay chi duoc su dung ben trong class
-  public KetQua(String maKetQua, HocVienLopHoc hocVienLopHoc, double diem, String danhGia) {
-    this.maKetQua = maKetQua;
-    this.hocVienLopHoc = hocVienLopHoc;
+
+  public KetQua() {
+  }
+  
+  public KetQua(User hocVien, LopHoc lopHoc) {
+    this.hocVien = hocVien;
+    this.lopHoc = lopHoc;
+    this.diem=-1;
+    this.danhGia="Chưa có đánh giá";
+  }
+
+  public KetQua(User hocVien, LopHoc lopHoc, double diem, String danhGia) {
+    this.hocVien = hocVien;
+    this.lopHoc = lopHoc;
     this.diem = diem;
     this.danhGia = danhGia;
   }
-
-  public KetQua(HocVienLopHoc hocVienLopHoc, double diem, String danhGia) {
-    this.maKetQua = autoIncreament();
+  public User getHocVien() {
+    return hocVien;
   }
-
-
-
-  private String autoIncreament(){
-      int size = QLKetQua.getDsKetQua().size() + 1;
-      return "KQ" + size;
+  public void setHocVien(User hocVien) {
+    this.hocVien = hocVien;
   }
-
-
-  public String getMaKetQua() {
-    return maKetQua;
+  public LopHoc getLopHoc() {
+    return lopHoc;
   }
-
-  public void setMaKetQua(String maKetQua) {
-    this.maKetQua = maKetQua;
+  public void setLopHoc(LopHoc lopHoc) {
+    this.lopHoc = lopHoc;
   }
-
-  public HocVienLopHoc getHocVienLopHoc() {
-    return hocVienLopHoc;
-  }
-
-  public void setHocVienLopHoc(HocVienLopHoc hocVienLopHoc) {
-    this.hocVienLopHoc = hocVienLopHoc;
-  }
-
   public double getDiem() {
     return diem;
   }
-
   public void setDiem(double diem) {
     this.diem = diem;
   }
-
   public String getDanhGia() {
     return danhGia;
   }
-
   public void setDanhGia(String danhGia) {
     this.danhGia = danhGia;
   }
+
 
 }

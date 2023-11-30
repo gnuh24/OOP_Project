@@ -7,7 +7,6 @@ import java.util.List;
 import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
 import HeThongGiaoDuc.CoSoVatChat.PhongHoc;
-import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
 import HeThongGiaoDuc.LopHoc.KetQua;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
@@ -19,7 +18,7 @@ import Utils.DocGhiFile;
 
 public class QLKetQua {
   // data
-  private static ArrayList<KetQua> dsKetQua = new ArrayList<>();
+  private static ArrayList<KetQua> dsKetQua = new ArrayList<KetQua>();
 
   // getter
   public static ArrayList<KetQua> getDsKetQua() {
@@ -43,13 +42,14 @@ public class QLKetQua {
       // thiết lập các thuộc tính cho đối tượng KetQua
       String maHocVien = cacThuocTinh[0];
       String maLopHoc = cacThuocTinh[1];
-      HocVienLopHoc hocVienLopHoc = QLHocVienLopHoc.timKiemTheoMaHocVienMaLopHoc(maHocVien, maLopHoc);
+      User hocVien = QLUser.timUserTheoMa(maHocVien);
+      LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLopHoc);
       double diem = Double.parseDouble(cacThuocTinh[2]);
       String danhGia = cacThuocTinh[3];
 
       // tạo ra dối tượng và thêm vào dsKetQua
       dsKetQua.add(
-          new KetQua(hocVienLopHoc, diem, danhGia));
+          new KetQua(hocVien, lopHoc, diem, danhGia));
     }
   }
 
@@ -70,8 +70,9 @@ public class QLKetQua {
     for (KetQua ketQua : dsKetQua) {
       StringBuilder sb = new StringBuilder();
       sb
-          .append(ketQua.getHocVienLopHoc().getHocVien().getMaUser()).append("#")
-          .append(ketQua.getHocVienLopHoc().getLopHoc().getMaLop())
+          .append(ketQua.getHocVien().getMaUser()).append("#")
+          .append(ketQua.getLopHoc().getMaLop()).append("#")
+          .append(ketQua.getDiem())
           .append(System.lineSeparator());
 
       duLieu.add(sb.toString());
@@ -93,36 +94,25 @@ public class QLKetQua {
   // hàm in ra danh sách kết quả
   public static void inDanhSach(ArrayList<KetQua> dsKetQua) {
     System.out.println("*".repeat(123));
-    System.out.printf("%-20s* %-25s* %-10s* %-10s* %-50s*\n",
-        "Mã kết quả", "Tên học viên", "Tên lớp học", "Điểm", "Đánh giá");
+    System.out.printf("%-25s* %-10s* %-10s* %-50s*\n",
+         "Tên học viên", "Tên lớp học", "Điểm", "Đánh giá");
     System.out.println("*".repeat(123));
 
     for (KetQua ketQua : dsKetQua) {
-      System.out.printf("%-20s* %-25s* %-10s* %-10s* %-50s*\n",
-          ketQua.getMaKetQua(),
-          ketQua.getHocVienLopHoc().getHocVien().getHoTen(),
-          ketQua.getHocVienLopHoc().getLopHoc().getTenLop(),
+      System.out.printf("%-25s* %-10s* %-10s* %-50s*\n",
+          ketQua.getHocVien().getHoTen(),
+          ketQua.getLopHoc().getTenLop(),
           ketQua.getDiem(),
           ketQua.getDanhGia());
       System.out.println("*".repeat(123));
     }
   }
 
-  public static KetQua timKiemTheoMa(String maKetQua) {
-    for (KetQua ketQua : dsKetQua) {
-      if (ketQua.getMaKetQua().equals(maKetQua)) {
-        return ketQua;
-      }
-    }
-
-    return null;
-  }
-
-  public static List<KetQua> timKiemTheoHocVien(String maHocVien) {
+  public static ArrayList<KetQua> timKiemTheoHocVien(String maHocVien) {
     ArrayList<KetQua> ketQuaTimKiem = new ArrayList<>();
 
     for (KetQua ketQua : dsKetQua) {
-      if (ketQua.getHocVienLopHoc().getHocVien().getMaUser().equals(maHocVien)) {
+      if (ketQua.getHocVien().getMaUser().equals(maHocVien)) {
         ketQuaTimKiem.add(ketQua);
       }
     }
@@ -130,16 +120,27 @@ public class QLKetQua {
     return ketQuaTimKiem;
   }
 
-  public static List<KetQua> timKiemTheoLopHoc(String malopHoc) {
+  public static ArrayList<KetQua> timKiemTheoLopHoc(String malopHoc) {
     ArrayList<KetQua> ketQuaTimKiem = new ArrayList<>();
 
     for (KetQua ketQua : dsKetQua) {
-      if (ketQua.getHocVienLopHoc().getLopHoc().getMaLop().equals(malopHoc)) {
+      if (ketQua.getLopHoc().getMaLop().equals(malopHoc)) {
         ketQuaTimKiem.add(ketQua);
       }
     }
 
     return ketQuaTimKiem;
+  }
+
+  public static int demHocVienTheoLopHoc(String maLop) {
+    int dem = 0;
+    for (KetQua ketQua : dsKetQua) {
+      if (ketQua.getLopHoc().getMaLop().equals(maLop)) {
+        dem++;
+      }
+    }
+
+    return dem;
   }
 
   public static void main(String[] args) {
