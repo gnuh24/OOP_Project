@@ -22,7 +22,6 @@ public class LoadDuLieu {
 
         //Dữ liệu cấp cao (Quan trọng và phụ thuộc vào các đối tượng rất nhiều)
         QLKetQuaPhongVan.loadDuLieu();
-        QLHocVienLopHoc.loadDuLieu();
 
     }
 

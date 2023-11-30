@@ -154,7 +154,7 @@ public class QLLopHoc {
           lopHoc.getChuongTrinh().getKhoaHoc(),
           lopHoc.getPhongHocMacDinh().getMaPhongHoc(),
           lopHoc.getPhongHocMacDinh().getCoSoTrucThuoc().getTenCoSo(),
-          QLHocVienLopHoc.demHocVienTheoLopHoc(lopHoc.getMaLop()),
+          QLKetQua.demHocVienTheoLopHoc(lopHoc.getMaLop()),
           lopHoc.getTrangThai(),
           lopHoc.getGiangVien().getHoTen(),
           lopHoc.getTroGiang().getHoTen());
