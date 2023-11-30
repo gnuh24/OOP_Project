@@ -162,7 +162,6 @@ public class QLLopHoc {
     System.out.println("*".repeat(245));
   }
 
-
   public static LopHoc timKiemLopTheoMaLop(String maLop) {
     for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
       if (lopHoc.getMaLop().equals(maLop)) {

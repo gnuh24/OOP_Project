@@ -1,13 +1,17 @@
 package Menu.Actor;
 
+import java.text.Normalizer.Form;
+
 import Menu.Session;
+import QuanLyDoiTuong.QLLopHoc;
 import Utils.ScannerUtils;
 
-public class ActorTroGiang extends Actor{
-    public void giaoDien(){
+public class ActorTroGiang extends Actor {
+    public void giaoDien() {
         int choice;
-        do{
-            System.out.println("-----------------------------------------------CHÀO MỪNG BẠN ĐÃ ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88-----------------------------------------------");
+        do {
+            System.out.println(
+                    "-----------------------------------------------CHÀO MỪNG BẠN ĐÃ ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88-----------------------------------------------");
             System.out.println("1. Xem lịch dạy của khóa hiện tại");
             System.out.println("2. Xem lịch dạy của khóa sắp khai giảng");
             System.out.println("3. Xem danh sách học sinh của các lớp");
@@ -16,23 +20,21 @@ public class ActorTroGiang extends Actor{
             System.out.println("Bạn đã có lựa chọn chưa ?");
             choice = ScannerUtils.inputInt();
 
-            if (choice < 1 || choice > 5 ){
+            if (choice < 1 || choice > 5) {
                 System.out.println("Bạn chỉ được nhập các lựa chọn  trên màn hình");
             }
 
-            switch (choice){
+            switch (choice) {
+                case 1:
+                    xemDanhSachLopHoc();
+                    break;
+                case 2:
+                    xemDanhSachLopSapKhaiGiang();
+                    break;
 
-
-//                case 1:
-//                    QLLopHoc.inDSLopHoc(QLLopHoc.timKiemLopTheoTrangThai(QLLopHoc.timKiemLopTheoTroGiang(Form.getId()), TrangThaiLop.Dang_Hoc));
-//                    break;
-//                case 2:
-//                    QLLopHoc.inDSLopHoc(QLLopHoc.timKiemLopTheoTrangThai(QLLopHoc.timKiemLopTheoTroGiang(Form.getId()), TrangThaiLop.Sap_Khai_Giang));
-//                    break;
-//
-//                case 3:
-//                    QLLopHoc.inDSLopHoc(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc));
-//                    break;
+                case 3:
+                    xemDanhSachHocVien();
+                    break;
 
                 case 4:
                     Session.logout();
@@ -45,16 +47,19 @@ public class ActorTroGiang extends Actor{
         } while (true);
     }
 
-    protected void xemDanhSachLopHoc(){
-
+    protected void xemDanhSachLopHoc() {
+        QLLopHoc.inDSLopHoc(
+                QLLopHoc.timKiemLopTheoTrangThai(
+                        QLLopHoc.timKiemLopTheoTroGiang(Form.getId()), TrangThaiLop.Dang_Hoc));
     }
 
-    protected void xemDanhSachLopSapKhaiGiang(){
-
+    protected void xemDanhSachLopSapKhaiGiang() {
+        QLLopHoc.inDSLopHoc(
+                QLLopHoc.timKiemLopTheoTrangThai(
+                        QLLopHoc.timKiemLopTheoTroGiang(Form.getId()), TrangThaiLop.Sap_Khai_Giang));
     }
 
-
-    protected void xemDanhSachHocVien(){
-
+    protected void xemDanhSachHocVien() {
+        QLLopHoc.inDSLopHoc(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc));
     }
 }
