@@ -3,6 +3,7 @@ package HeThongGiaoDuc.LopHoc;
 import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
 import HeThongGiaoDuc.CoSoVatChat.PhongHoc;
+import QuanLyDoiTuong.QLLopHoc;
 import ThoiGian.CaHoc;
 import NguoiDung.User;
 
@@ -22,9 +23,27 @@ public class LopHoc {
   public LopHoc() {
   }
 
+
+  //Dùng khi Quản lý muốn tạo lớp
+  public LopHoc(String tenLop, KhoaKhaiGiang khoa, ChuongTrinhHoc chuongTrinh) {
+    this.tenLop = tenLop;
+    this.khoa = khoa;
+    this.chuongTrinh = chuongTrinh;
+    this.maLop = autoIncreament();
+    this.trangThai = TrangThaiLop.Cho_Sap_Xep;
+  }
+
+  private String autoIncreament(){
+    int size = QLLopHoc.getDsLopHoc().size() + 1;
+    return  "LH" + size;
+  }
+
+
+  //Dùng để đọc từ file ra
+
   public LopHoc(String maLop, String tenLop, TrangThaiLop trangThai, ArrayList<CaHoc> caHocMacDinh,
-      KhoaKhaiGiang khoa, ChuongTrinhHoc chuongTrinh, PhongHoc phongHocMacDinh,
-      User giangVien, User troGiang) {
+                KhoaKhaiGiang khoa, ChuongTrinhHoc chuongTrinh, PhongHoc phongHocMacDinh,
+                User giangVien, User troGiang) {
     this.maLop = maLop;
     this.tenLop = tenLop;
     this.trangThai = trangThai;

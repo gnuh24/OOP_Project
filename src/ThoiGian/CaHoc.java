@@ -42,7 +42,7 @@ public class CaHoc {
 
     @Override
     public String toString() {
-        return "Thứ " + thu.toString() + ": " + gioVaoHoc.toString() + " -> " + gioTanHoc.toString();
+        return "Thứ " + Thu.toString(thu) + ": " + gioVaoHoc.toString() + " -> " + gioTanHoc.toString();
     }
 
 }

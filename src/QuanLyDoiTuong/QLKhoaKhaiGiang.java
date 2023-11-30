@@ -162,14 +162,14 @@ public class QLKhoaKhaiGiang {
 
 	// Hàm save dữ liệu vào file
 	public static void saveDuLieu() {
-		String filePath = "src\\Data\\qlKhoaKhaiGiang";
+		String filePath = "src\\Data\\qlKhoaKhaiGiang.txt";
 		ArrayList<String> duLieu = trichXuatDuLieu();
 		DocGhiFile.ghiDuLieuFile(filePath, duLieu);
 	}
 
 	// Hàm load dữ liệu từ file
 	public static void loadDuLieu() {
-		String filePath = "src\\Data\\qlKhoaKhaiGiang";
+		String filePath = "src\\Data\\qlKhoaKhaiGiang.txt";
 		ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
 		xuLyDuLieu(duLieu);
 	}

@@ -1,4 +1,4 @@
 package Menu.Actor;
 
-public class ActorGiamDoc {
+public class ActorGiamDoc extends ActorQuanLy{
 }

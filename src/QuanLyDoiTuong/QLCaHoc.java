@@ -56,7 +56,7 @@ public class QLCaHoc {
 	// Hàm load dữ liệu từ file
 	public static void loadDuLieu() {
 		// Sửa đường dẫn này:
-		String filePath = "D:\\learning\\do-an\\oop\\OOP_Project\\src\\Data\\qlCaHoc.txt";
+		String filePath = "src\\Data\\qlCaHoc.txt";
 
 		ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
 		xuLyDuLieu(duLieu);
@@ -85,7 +85,7 @@ public class QLCaHoc {
 	// Hàm save dữ liệu vào file
 	public static void saveDuLieu() {
 		// sửa đường dẫn này:
-		String filePath = "D:\\learning\\do-an\\oop\\OOP_Project\\src\\Data\\qlCaHoc_save.txt";
+		String filePath = "src\\Data\\qlCaHoc.txt";
 
 		ArrayList<String> duLieu = trichXuatDuLieu();
 		DocGhiFile.ghiDuLieuFile(filePath, duLieu);

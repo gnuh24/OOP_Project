@@ -56,7 +56,7 @@ public class QLKetQua {
   // hàm load dữ liệu từ file
   public static void loadDuLieu() {
     // sửa đường dẫn này:
-    String filePath = "D:\\learning\\do-an\\oop\\OOP_Project\\src\\Data\\qlKetQua.txt";
+    String filePath = "src\\Data\\qlKetQua.txt";
 
     ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
     xuLyDuLieu(duLieu);
@@ -83,7 +83,7 @@ public class QLKetQua {
   // Hàm save dữ liệu vào file
   public static void saveDuLieu() {
     // sửa đường dẫn này:
-    String filePath = "D:\\learning\\do-an\\oop\\OOP_Project\\src\\Data\\qlKetQua_save.txt";
+    String filePath = "src\\Data\\qlKetQua.txt";
 
     ArrayList<String> duLieu = trichXuatDuLieu();
     DocGhiFile.ghiDuLieuFile(filePath, duLieu);
@@ -143,6 +143,8 @@ public class QLKetQua {
   }
 
   public static void main(String[] args) {
+
     loadDuLieu();
+    inDanhSach(dsKetQua);
   }
 }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class QLHocVienLopHoc {
   // data
-  public static ArrayList<HocVienLopHoc> dsHocVienLopHoc;
+  public static ArrayList<HocVienLopHoc> dsHocVienLopHoc = new ArrayList<>();
 
   // getter
   public static ArrayList<HocVienLopHoc> getDsHocVienLophoc() {
@@ -47,7 +47,7 @@ public class QLHocVienLopHoc {
   // Hàm load dữ liệu từ file
   public static void loadDuLieu() {
     // Sửa đường dẫn này:
-    String filePath = "D:\\learning\\do-an\\oop\\OOP_Project\\src\\Data\\qlHocVienLopHoc.txt";
+    String filePath = "src\\Data\\qlHocVienLopHoc.txt";
 
     ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
     xuLyDuLieu(duLieu);
@@ -75,7 +75,7 @@ public class QLHocVienLopHoc {
   // Hàm save dữ liệu vào file
   public static void saveDuLieu() {
     // sửa đường dẫn này:
-    String filePath = "D:\\learning\\do-an\\oop\\OOP_Project\\src\\Data\\qlHocVienLopHoc_save.txt";
+    String filePath = "src\\Data\\qlHocVienLopHoc.txt";
 
     ArrayList<String> duLieu = trichXuatDuLieu();
     DocGhiFile.ghiDuLieuFile(filePath, duLieu);

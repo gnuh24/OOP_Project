@@ -7,6 +7,7 @@ import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
 import HeThongGiaoDuc.CoSoVatChat.PhongHoc;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
+import Menu.LoadDuLieu;
 import NguoiDung.User;
 import ThoiGian.CaHoc;
 import ThoiGian.Thu;
@@ -69,7 +70,7 @@ public class QLLopHoc {
   // hàm load dữ liệu từ file
   public static void loadDuLieu() {
     // sửa đường dẫn này:
-    String filePath = "D:\\learning\\do-an\\oop\\OOP_Project\\src\\Data\\qlLopHoc.txt";
+    String filePath = "src\\Data\\qlLopHoc.txt";
 
     ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
     xuLyDuLieu(duLieu);
@@ -128,7 +129,7 @@ public class QLLopHoc {
   // Hàm save dữ liệu vào file
   public static void saveDuLieu() {
     // sửa đường dẫn này:
-    String filePath = "D:\\learning\\do-an\\oop\\OOP_Project\\src\\Data\\qlLopHoc_save.txt";
+    String filePath = "src\\Data\\qlLopHoc.txt";
 
     ArrayList<String> duLieu = trichXuatDuLieu();
     DocGhiFile.ghiDuLieuFile(filePath, duLieu);
@@ -137,14 +138,14 @@ public class QLLopHoc {
 
   // hàm in ra danh sách lớp học
   public static void inDanhSach(ArrayList<LopHoc> dsLopHoc) {
-    System.out.println("*".repeat(151));
-    System.out.printf("* %-10s* %-10s* %-10s* %-10s* %-10s* %-20s* %-10s* %-10s* %-20s* %-20s* %-20s* %-20s*\n",
-        "Mã lớp", "Tên lớp", "Ca học 1", "Ca học 2", "Tên khóa", "Mã chương trình",
+    System.out.println("*".repeat(245));
+    System.out.printf("* %-10s* %-20s* %-30s* %-30s* %-10s* %-20s* %-10s* %-10s* %-20s* %-20s* %-20s* %-20s*\n",
+        "Mã lớp", "Tên lớp", "Ca học 1", "Ca học 2", "Tên khóa", "Tên chương trình",
         "Mã phòng", "Tên cơ sở", "Số lượng học viên", "Trạng thái", "Giảng viên", "Trợ giảng");
-    System.out.println("*".repeat(151));
+    System.out.println("*".repeat(245));
 
     for (LopHoc lopHoc : dsLopHoc) {
-      System.out.printf("* %-10s* %-10s* %-10s* %-10s* %-10s* %-20s* %-10s* %-10s* %-20s* %-20s*\n",
+      System.out.printf("* %-10s* %-20s* %-30s* %-30s* %-10s* %-20s* %-10s* %-10s* %-20s* %-20s* %-20s* %-20s*\n",
           lopHoc.getMaLop(),
           lopHoc.getTenLop(),
           lopHoc.getCaHocMacDinh().get(0).toString(),
@@ -158,9 +159,9 @@ public class QLLopHoc {
           lopHoc.getGiangVien().getHoTen(),
           lopHoc.getTroGiang().getHoTen());
     }
-    System.out.println("*".repeat(151));
-
+    System.out.println("*".repeat(245));
   }
+
 
   public static LopHoc timKiemLopTheoMaLop(String maLop) {
     for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
@@ -243,7 +244,7 @@ public class QLLopHoc {
   // test
   public static void main(String[] args) {
     System.out.println("hi");
-    loadDuLieu();
+    LoadDuLieu.loading();
     System.out.println(dsLopHoc.size());
     inDanhSach(dsLopHoc);
     saveDuLieu();

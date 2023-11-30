@@ -1,12 +1,9 @@
 package Menu.Actor;
 
-import HeThongGiaoDuc.LopHoc.TrangThaiLop;
-import Menu.Session;
-import QuanLyDoiTuong.QLLopHoc;
 import Utils.ScannerUtils;
 
-public class ActorHocVien extends  Actor{
-    public  void giaoDien(){
+public class ActorQuanLy extends ActorCongTacVien{
+        public void giaoDien(){
         int choice;
         do{
             System.out.println("-----------------------------------------------CHÀO MỪNG BẠN ĐÃ ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88-----------------------------------------------");
@@ -20,23 +17,19 @@ public class ActorHocVien extends  Actor{
             choice = ScannerUtils.inputInt();
 
             if (choice < 1 || choice > 5 ){
-                System.out.println("Bạn chỉ được nhập các lựa chọn từ 1 -> 5 trên màn hình");
+                System.out.println("Bạn chỉ được nhập các lựa chọn  trên màn hình");
             }
 
             switch (choice){
                 case 1:
-                    QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()), TrangThaiLop.Dang_Hoc));
                     break;
                 case 2:
-                    QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()), TrangThaiLop.Sap_Khai_Giang));
                     break;
 
                 case 3:
-                    QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc));
                     break;
 
                 case 5:
-                    Session.logout();
                     break;
 
                 case 6:

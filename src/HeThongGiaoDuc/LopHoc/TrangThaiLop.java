@@ -1,7 +1,7 @@
 package HeThongGiaoDuc.LopHoc;
 
 public enum TrangThaiLop {
-    Sap_Khai_Giang, Dang_Hoc, Da_Ket_Thuc;
+    Sap_Khai_Giang, Dang_Hoc, Da_Ket_Thuc, Cho_Sap_Xep;
 
     public String toString(TrangThaiLop trangThaiLopEnum) {
         String trangThaiLopString = "Sắp khai giảng";
@@ -12,6 +12,8 @@ public enum TrangThaiLop {
             case Da_Ket_Thuc:
                 trangThaiLopString = "Đã kết thúc";
                 break;
+            case Cho_Sap_Xep:
+                trangThaiLopString = "Đang chờ sắp xếp";
         }
         return trangThaiLopString;
     }
@@ -24,6 +26,9 @@ public enum TrangThaiLop {
                 break;
             case "Đã kết thúc":
                 trangThaiLop = Da_Ket_Thuc;
+                break;
+            case "Đang chờ sắp xếp":
+                trangThaiLop = Cho_Sap_Xep;
                 break;
         }
         return trangThaiLop;

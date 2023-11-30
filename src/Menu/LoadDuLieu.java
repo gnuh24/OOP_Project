@@ -16,11 +16,13 @@ public class LoadDuLieu {
 
 
         //Dữ liệu phức tạp có các trường là các đối tượng
+        QLLopHoc.loadDuLieu();
         QLTaiKhoan.loadDuLieu();
         QLLichPhongVan.loadDuLieu();
 
         //Dữ liệu cấp cao (Quan trọng và phụ thuộc vào các đối tượng rất nhiều)
         QLKetQuaPhongVan.loadDuLieu();
+        QLHocVienLopHoc.loadDuLieu();
 
     }
 

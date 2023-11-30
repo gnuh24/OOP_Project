@@ -1,6 +1,8 @@
 // MTTK
 package HeThongGiaoDuc.LopHoc;
 
+import QuanLyDoiTuong.QLKetQua;
+
 public class KetQua {
   String maKetQua;
   HocVienLopHoc hocVienLopHoc;
@@ -8,7 +10,7 @@ public class KetQua {
   String danhGia;
 
   // Constructor nay chi duoc su dung ben trong class
-  private KetQua(String maKetQua, HocVienLopHoc hocVienLopHoc, double diem, String danhGia) {
+  public KetQua(String maKetQua, HocVienLopHoc hocVienLopHoc, double diem, String danhGia) {
     this.maKetQua = maKetQua;
     this.hocVienLopHoc = hocVienLopHoc;
     this.diem = diem;
@@ -16,25 +18,16 @@ public class KetQua {
   }
 
   public KetQua(HocVienLopHoc hocVienLopHoc, double diem, String danhGia) {
-    this("KQ" + hocVienLopHoc.getHocVien().getMaUser() + hocVienLopHoc.getLopHoc().getMaLop(),
-        hocVienLopHoc,
-        diem,
-        danhGia);
+    this.maKetQua = autoIncreament();
   }
 
-  public KetQua(HocVienLopHoc hocVienLopHoc, double diem) {
-    this("KQ" + hocVienLopHoc.getHocVien().getMaUser() + hocVienLopHoc.getLopHoc().getMaLop(),
-        hocVienLopHoc,
-        diem,
-        "");
+
+
+  private String autoIncreament(){
+      int size = QLKetQua.getDsKetQua().size() + 1;
+      return "KQ" + size;
   }
 
-  public KetQua(HocVienLopHoc hocVienLopHoc) {
-    this("KQ" + hocVienLopHoc.getHocVien().getMaUser() + hocVienLopHoc.getLopHoc().getMaLop(),
-        hocVienLopHoc,
-        0.0,
-        "");
-  }
 
   public String getMaKetQua() {
     return maKetQua;

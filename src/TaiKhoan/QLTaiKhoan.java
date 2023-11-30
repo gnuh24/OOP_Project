@@ -66,7 +66,7 @@ public class QLTaiKhoan {
 
     // Hàm load dữ liệu từ file
     public static void loadDuLieu() {
-        String filePath = "src\\Data\\qlTaiKhoan";
+        String filePath = "src\\Data\\qlTaiKhoan.txt";
         ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
         xuLyDuLieu(duLieu);
         System.out.println("Đã tải xong TÀI KHOẢN");
@@ -74,7 +74,7 @@ public class QLTaiKhoan {
 
     // Hàm save dữ liệu vào file
     public static void saveDuLieu() {
-        String filePath = "src\\Data\\qlTaiKhoan";
+        String filePath = "src\\Data\\qlTaiKhoan.txt";
         ArrayList<String> duLieu = trichXuatDuLieu();
         DocGhiFile.ghiDuLieuFile(filePath, duLieu);
         System.out.println("Đã lưu xong TÀI KHOẢN");
