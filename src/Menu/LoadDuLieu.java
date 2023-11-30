@@ -24,10 +24,6 @@ public class LoadDuLieu {
 
     }
 
-    public static void main(String[] args) {
-        LoadDuLieu.loading();
-    }
-
     public static void saving(){
         QLChuongTrinhHoc.luuDuLieu();
         QLKhoaKhaiGiang.saveDuLieu();
