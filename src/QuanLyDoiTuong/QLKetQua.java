@@ -72,7 +72,8 @@ public class QLKetQua {
       sb
           .append(ketQua.getHocVien().getMaUser()).append("#")
           .append(ketQua.getLopHoc().getMaLop()).append("#")
-          .append(ketQua.getDiem())
+          .append(ketQua.getDiem()).append("#")
+          .append(ketQua.getDanhGia())
           .append(System.lineSeparator());
 
       duLieu.add(sb.toString());
