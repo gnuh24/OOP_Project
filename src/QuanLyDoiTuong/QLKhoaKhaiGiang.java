@@ -25,7 +25,7 @@ public class QLKhoaKhaiGiang {
 		QLKhoaKhaiGiang.dsKhoaKhaiGiang = dsKhoaKhaiGiang;
 	}
 
-	private static void inDanhSachKhoaKhaiGiang(ArrayList<KhoaKhaiGiang> DSKhoaKhaiGiang) {
+	public static void inDanhSachKhoaKhaiGiang(ArrayList<KhoaKhaiGiang> DSKhoaKhaiGiang) {
 		System.out.println("***********************************************");
 		System.out.printf("* %-10s* %-15s* %-15s*\n",
 				"Mã khóa",
