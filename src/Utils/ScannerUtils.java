@@ -36,7 +36,7 @@ public class ScannerUtils {
         System.out.println("Xin mời nhập email. (VD: hungnt@gmail.com)");
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
-        String regex = "\\w+[\\w\\.]*[\\w_]*[\\w\\+]\\w*@[a-zA-Z]+(.[a-zA-Z]+)+";
+        String regex = "\\w+[\\w-_\\.]*@[a-zA-Z]+(.[a-zA-Z]+)+";
 
         while (!userInput.matches(regex)) {
             System.err.println("Không phải là một email. Hãy nhập lại !!!\n");
@@ -97,10 +97,10 @@ public class ScannerUtils {
         return LocalTime.parse(userInput, formatter);
     }
 
-    public static double inputDiem(){
+    public static double inputDiem() {
         System.out.println("Xin mời nhập điểm: ");
         double userInput = ScannerUtils.inputDouble();
-        while (userInput < 0 || userInput > 10){
+        while (userInput < 0 || userInput > 10) {
             System.out.println("Bạn chỉ đụược nhập điểm từ 0 -> 10");
             userInput = ScannerUtils.inputDouble();
         }

@@ -16,18 +16,11 @@ public class ActorGiangVien extends ActorTroGiang {
 
     public void giaoDien() {
         int choice;
-<<<<<<< HEAD
-        do{
-            System.out.println("-----------------------------------------------CHÀO MỪNG BẠN ĐÃ ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88-----------------------------------------------");
-            System.out.println("1. Xem lịch dạy của lớp hiện tại");
-            System.out.println("2. Xem lịch dạy của lớp sắp khai giảng");
-=======
         do {
             System.out.println(
                     "-----------------------------------------------CHÀO MỪNG BẠN ĐÃ ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88-----------------------------------------------");
-            System.out.println("1. Xem lịch dạy của khóa hiện tại");
-            System.out.println("2. Xem lịch dạy của khóa sắp khai giảng");
->>>>>>> c7400b6b342a4f738840f2181cce477ac4bb0b32
+            System.out.println("1. Xem lịch dạy của lớp hiện tại");
+            System.out.println("2. Xem lịch dạy của lớp sắp khai giảng");
             System.out.println("3. Xem danh sách học sinh của các lớp");
             System.out.println("4. Xem danh sách lịch phổng vấn");
             System.out.println("5. Nhập điểm cho thí sinh phổng vấn");
@@ -54,12 +47,7 @@ public class ActorGiangVien extends ActorTroGiang {
                     break;
 
                 case 4:
-<<<<<<< HEAD
-
-//                    QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.timKiemLichPhongVanTheoGV());
-=======
                     xemLichPhongVan();
->>>>>>> c7400b6b342a4f738840f2181cce477ac4bb0b32
                     break;
 
                 case 5:
