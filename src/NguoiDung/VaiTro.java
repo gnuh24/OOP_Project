@@ -2,9 +2,7 @@ package NguoiDung;
 
 public enum VaiTro {
     KhachHang,
-
     HocVien,
-
     GiangVien,
     TroGiang,
     CongTacVien,
