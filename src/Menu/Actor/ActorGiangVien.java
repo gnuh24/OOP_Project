@@ -6,6 +6,7 @@ import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
 import Menu.Menu;
+import Menu.Session;
 import QuanLyDoiTuong.*;
 import Utils.ScannerUtils;
 
@@ -106,6 +107,6 @@ public class ActorGiangVien extends ActorTroGiang {
 
     private void xemLichPhongVan() {
         QLLichPhongVan.inDSLichPhongVan(
-                QLLichPhongVan.timKiemLichPhongVanTheoGV(Form.getId()));
+                QLLichPhongVan.timKiemLichPhongVanTheoGV(Session.getTaiKhoan().getUser().getMaUser()));
     }
 }
