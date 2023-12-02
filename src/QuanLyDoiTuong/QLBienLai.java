@@ -65,9 +65,6 @@ public class QLBienLai {
 
     public static void thongKeDoanhThuTheoChuongTrinh(){
         int []tongDoanhThu=new int[18];
-        for(int i=0; i<tongDoanhThu.length; i++){
-            tongDoanhThu[i]=0;
-        }
         for (BienLai bienLai : QLBienLai.dsBienLai) {
             tongDoanhThu[0]+=bienLai.getSoTienDaDong();
             switch (bienLai.getYeuCauDangKy().getLopHoc().getChuongTrinh().getMaChuongTrinh()) {
@@ -114,9 +111,5 @@ public class QLBienLai {
         System.out.println("----------------------------------------------------------------------------------------");
 
     }
-
-
-    public void 
-
 
 }
