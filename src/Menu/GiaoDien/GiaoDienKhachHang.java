@@ -1,4 +1,4 @@
-package Menu.Actor;
+package Menu.GiaoDien;
 
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
@@ -13,7 +13,7 @@ import Utils.ScannerUtils;
 
 import java.time.LocalDate;
 
-public class ActorKhachHang extends Actor{
+public class GiaoDienKhachHang extends GiaoDien {
     public void giaoDien() {
         int choice;
         do {

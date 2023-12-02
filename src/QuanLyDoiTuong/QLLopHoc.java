@@ -171,6 +171,15 @@ public class QLLopHoc {
     return null;
   }
 
+  public static LopHoc timKiemLopTheoMaLop(String maLop, ArrayList<LopHoc> dsLopHoc) {
+    for (LopHoc lopHoc : dsLopHoc) {
+      if (lopHoc.getMaLop().equals(maLop)) {
+        return lopHoc;
+      }
+    }
+    return null;
+  }
+
   public static LopHoc timKiemLopTheoTenLop(String tenLop) {
     for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
       if (lopHoc.getTenLop().equals(tenLop)) {

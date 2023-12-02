@@ -1,8 +1,8 @@
-package Menu.Actor;
+package Menu.GiaoDien;
 
 import Menu.LoadDuLieu;
 
-public abstract class Actor {
+public abstract class GiaoDien {
     public abstract void giaoDien();
 
     public void exit(){

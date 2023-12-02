@@ -1,12 +1,11 @@
-package Menu.Actor;
+package Menu.GiaoDien;
 
-import java.text.Normalizer.Form;
-
+import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import Menu.Session;
 import QuanLyDoiTuong.QLLopHoc;
 import Utils.ScannerUtils;
 
-public class ActorTroGiang extends Actor {
+public class GiaoDienTroGiang extends GiaoDien {
     public void giaoDien() {
         int choice;
         do {
@@ -48,20 +47,20 @@ public class ActorTroGiang extends Actor {
     }
 
     protected void xemDanhSachLopHoc() {
-        QLLopHoc.inDSLopHoc(
+        QLLopHoc.inDanhSach(
                 QLLopHoc.timKiemLopTheoTrangThai(
                         QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()),
                         TrangThaiLop.Dang_Hoc));
     }
 
     protected void xemDanhSachLopSapKhaiGiang() {
-        QLLopHoc.inDSLopHoc(
+        QLLopHoc.inDanhSach(
                 QLLopHoc.timKiemLopTheoTrangThai(
                         QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()),
                         TrangThaiLop.Sap_Khai_Giang));
     }
 
     protected void xemDanhSachHocVien() {
-        QLLopHoc.inDSLopHoc(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc));
+        QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc));
     }
 }

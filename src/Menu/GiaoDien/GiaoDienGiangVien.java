@@ -1,18 +1,10 @@
-package Menu.Actor;
+package Menu.GiaoDien;
 
-import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
-import HeThongGiaoDuc.LopHoc.LopHoc;
-import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
-import HeThongGiaoDuc.PhongVan.LichPhongVan;
-import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
-import Menu.Menu;
 import Menu.Session;
 import QuanLyDoiTuong.*;
 import Utils.ScannerUtils;
 
-import java.util.ArrayList;
-
-public class ActorGiangVien extends ActorTroGiang {
+public class GiaoDienGiangVien extends GiaoDienTroGiang {
 
     public void giaoDien() {
         int choice;

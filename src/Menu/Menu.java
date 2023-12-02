@@ -1,9 +1,9 @@
 package Menu;
 
-import Menu.Actor.ActorKhachHang;
+import Menu.GiaoDien.GiaoDienKhachHang;
 
 public class Menu {
-    private static final ActorKhachHang actorKhachHang = new ActorKhachHang();
+    private static final GiaoDienKhachHang actorKhachHang = new GiaoDienKhachHang();
 
     public static void main(String[] args) {
         LoadDuLieu.loading();

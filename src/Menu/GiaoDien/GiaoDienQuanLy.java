@@ -1,12 +1,8 @@
-package Menu.Actor;
+package Menu.GiaoDien;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import javax.swing.text.DateFormatter;
-
-import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
 import HeThongGiaoDuc.LopHoc.KetQua;
 import HeThongGiaoDuc.LopHoc.LopHoc;
@@ -17,7 +13,7 @@ import QuanLyDoiTuong.QLLopHoc;
 import Utils.Convert;
 import Utils.ScannerUtils;
 
-public class ActorQuanLy extends ActorCongTacVien{
+public class GiaoDienQuanLy extends GiaoDienCongTacVien {
     public void giaoDien(){
 
         int choice;

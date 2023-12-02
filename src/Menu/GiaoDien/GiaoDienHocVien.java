@@ -1,11 +1,11 @@
-package Menu.Actor;
+package Menu.GiaoDien;
 
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import Menu.Session;
 import QuanLyDoiTuong.QLLopHoc;
 import Utils.ScannerUtils;
 
-public class ActorHocVien extends  Actor{
+public class GiaoDienHocVien extends GiaoDien {
     public  void giaoDien(){
         int choice;
         do{
