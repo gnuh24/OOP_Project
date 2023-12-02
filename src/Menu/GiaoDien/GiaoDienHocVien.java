@@ -1,4 +1,4 @@
-package Menu.Actor;
+package Menu.GiaoDien;
 
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import Menu.Session;
@@ -6,8 +6,13 @@ import QuanLyDoiTuong.QLKetQua;
 import QuanLyDoiTuong.QLLopHoc;
 import Utils.ScannerUtils;
 
+<<<<<<< HEAD:src/Menu/GiaoDien/GiaoDienHocVien.java
+public class GiaoDienHocVien extends GiaoDien {
+    public  void giaoDien(){
+=======
 public class ActorHocVien extends Actor {
     public void giaoDien() {
+>>>>>>> 2a6a7d989f59edf39194fbe3de34ff3746348965:src/Menu/Actor/ActorHocVien.java
         int choice;
         do {
             System.out.println(

@@ -1,5 +1,7 @@
-package Menu.Actor;
+package Menu.GiaoDien;
 
+<<<<<<< HEAD:src/Menu/GiaoDien/GiaoDienGiangVien.java
+=======
 import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
 import HeThongGiaoDuc.LopHoc.KetQua;
 import HeThongGiaoDuc.LopHoc.LopHoc;
@@ -8,14 +10,19 @@ import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.LienHe;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
 import Menu.Menu;
+>>>>>>> 2a6a7d989f59edf39194fbe3de34ff3746348965:src/Menu/Actor/ActorGiangVien.java
 import Menu.Session;
 import QuanLyDoiTuong.*;
 import Utils.ScannerUtils;
 
+<<<<<<< HEAD:src/Menu/GiaoDien/GiaoDienGiangVien.java
+public class GiaoDienGiangVien extends GiaoDienTroGiang {
+=======
 import java.text.Normalizer.Form;
 import java.util.ArrayList;
 
 public class ActorGiangVien extends ActorTroGiang {
+>>>>>>> 2a6a7d989f59edf39194fbe3de34ff3746348965:src/Menu/Actor/ActorGiangVien.java
 
     public void giaoDien() {
         int choice;

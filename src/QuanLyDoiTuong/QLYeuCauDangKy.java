@@ -16,39 +16,39 @@ public class QLYeuCauDangKy {
         QLYeuCauDangKy.dsYeuCauDangKy = dsYeuCauDangKy;
     }
 
-    public static YeuCauDangKy timKiemTheoMa(String maYCDK) {
-        for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
-            if (yeuCauDangKy.getMaDangKy().equals(maYCDK)) {
+    public static YeuCauDangKy timKiemTheoMa(String maYCDK){
+        for (YeuCauDangKy yeuCauDangKy: QLYeuCauDangKy.getDsYeuCauDangKy()){
+            if (yeuCauDangKy.getMaDangKy().equals(maYCDK)){
                 return yeuCauDangKy;
             }
         }
         return null;
     }
 
-    public static ArrayList<YeuCauDangKy> timKiemTheoMaHocVien(String maHocVien) {
+    public static ArrayList<YeuCauDangKy> timKiemTheoMaHocVien(String maHocVien){
         ArrayList<YeuCauDangKy> ketQua = new ArrayList<>();
-        for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
-            if (yeuCauDangKy.getHocVien().getMaUser().equals(maHocVien)) {
+        for (YeuCauDangKy yeuCauDangKy: QLYeuCauDangKy.getDsYeuCauDangKy()){
+            if (yeuCauDangKy.getHocVien().getMaUser().equals(maHocVien)){
                 ketQua.add(yeuCauDangKy);
             }
         }
         return ketQua;
     }
 
-    public static ArrayList<YeuCauDangKy> timKiemTheoMaLop(String maLop) {
+    public static ArrayList<YeuCauDangKy> timKiemTheoMaLop(String maLop){
         ArrayList<YeuCauDangKy> ketQua = new ArrayList<>();
-        for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
-            if (yeuCauDangKy.getLopHoc().getMaLop().equals(maLop)) {
+        for (YeuCauDangKy yeuCauDangKy: QLYeuCauDangKy.getDsYeuCauDangKy()){
+            if (yeuCauDangKy.getLopHoc().getMaLop().equals(maLop)){
                 ketQua.add(yeuCauDangKy);
             }
         }
         return ketQua;
     }
 
-    public static ArrayList<YeuCauDangKy> timKiemTheoTrangThai(TrangThaiDangKy trangThaiDangKy) {
+    public static ArrayList<YeuCauDangKy> timKiemTheoTrangThai(TrangThaiDangKy trangThaiDangKy){
         ArrayList<YeuCauDangKy> ketQua = new ArrayList<>();
-        for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
-            if (yeuCauDangKy.getTrangThaiDangKy().equals(trangThaiDangKy)) {
+        for (YeuCauDangKy yeuCauDangKy: QLYeuCauDangKy.getDsYeuCauDangKy()){
+            if (yeuCauDangKy.getTrangThaiDangKy().equals(trangThaiDangKy)){
                 ketQua.add(yeuCauDangKy);
             }
         }

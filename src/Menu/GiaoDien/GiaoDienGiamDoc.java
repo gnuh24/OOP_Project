@@ -1,9 +1,9 @@
-package Menu.Actor;
+package Menu.GiaoDien;
 
 import QuanLyDoiTuong.QLChuongTrinhHoc;
 import Utils.ScannerUtils;
 
-public class ActorGiamDoc extends ActorQuanLy{
+public class GiaoDienGiamDoc extends GiaoDienQuanLy {
     public void thayDoiHocPhi(){
         QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
         System.out.println("Nhập mã chương trình muốn thay đổi học phí");

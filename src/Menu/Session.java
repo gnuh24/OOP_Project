@@ -2,28 +2,22 @@ package Menu;
 
 //import HeThongGiaoDuc.PhongVan.LichPhongVan;
 //import QuanLyDoiTuong.QLLichPhongVan;
-import HeThongGiaoDuc.PhongVan.LichPhongVan;
-import Menu.Actor.*;
-import NguoiDung.User;
+import Menu.GiaoDien.*;
 import NguoiDung.VaiTro;
-import QuanLyDoiTuong.QLLichPhongVan;
-import QuanLyDoiTuong.QLUser;
 import TaiKhoan.*;
 import Utils.ScannerUtils;
-
-import java.time.LocalDate;
 
 public class Session {
 
     private static TaiKhoan taiKhoan;
 
-    private static final ActorKhachHang actorKhachHang= new ActorKhachHang();
-    private static final ActorHocVien actorHocVien= new ActorHocVien();
-    private static final ActorTroGiang actorTroGiang= new ActorTroGiang();
-    private static final ActorGiangVien actorGiangVien= new ActorGiangVien();
-    private static final ActorCongTacVien actorCongTacVien= new ActorCongTacVien();
-    private static final ActorQuanLy actorQuanLy= new ActorQuanLy();
-    private static final ActorGiamDoc actorGiamDoc = new ActorGiamDoc();
+    private static final GiaoDienKhachHang actorKhachHang= new GiaoDienKhachHang();
+    private static final GiaoDienHocVien actorHocVien= new GiaoDienHocVien();
+    private static final GiaoDienTroGiang actorTroGiang= new GiaoDienTroGiang();
+    private static final GiaoDienGiangVien actorGiangVien= new GiaoDienGiangVien();
+    private static final GiaoDienCongTacVien actorCongTacVien= new GiaoDienCongTacVien();
+    private static final GiaoDienQuanLy actorQuanLy= new GiaoDienQuanLy();
+    private static final GiaoDienGiamDoc actorGiamDoc = new GiaoDienGiamDoc();
 
     public static TaiKhoan getTaiKhoan() {
         return taiKhoan;
@@ -35,7 +29,7 @@ public class Session {
 
     public static void logout(){
         Session.setTaiKhoan(null);
-        ActorKhachHang actorKhachHang = new ActorKhachHang();
+        GiaoDienKhachHang actorKhachHang = new GiaoDienKhachHang();
         actorKhachHang.giaoDien();
     }
 

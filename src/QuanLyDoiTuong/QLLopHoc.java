@@ -13,9 +13,7 @@ import ThoiGian.CaHoc;
 import ThoiGian.Thu;
 import Utils.Convert;
 import Utils.DocGhiFile;
-import Utils.ScannerUtils;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -173,6 +171,15 @@ public class QLLopHoc {
     return null;
   }
 
+  public static LopHoc timKiemLopTheoMaLop(String maLop, ArrayList<LopHoc> dsLopHoc) {
+    for (LopHoc lopHoc : dsLopHoc) {
+      if (lopHoc.getMaLop().equals(maLop)) {
+        return lopHoc;
+      }
+    }
+    return null;
+  }
+
   public static LopHoc timKiemLopTheoTenLop(String tenLop) {
     for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
       if (lopHoc.getTenLop().equals(tenLop)) {
@@ -242,43 +249,6 @@ public class QLLopHoc {
     return dsLopHocin;
   }
 
-
-
-  public static void taoLopMoi(){
-        String tenLop;
-        String khoa;
-        String chuongTrinhHoc;
-        System.out.println("Nhập tên lớp: ");
-        tenLop = ScannerUtils.inputString();
-
-        LocalDate ngayBatDau = LocalDate.now();
-        System.out.printf("* %-10s* %-15s* %-15s*\n",
-				"Mã khóa",
-				"Ngày bắt đầu",
-				"Ngày kết thúc");
-		System.out.println("***********************************************");
-		for (KhoaKhaiGiang khoaKhaiGiang : QLKhoaKhaiGiang.getDsKhoaKhaiGiang()) {
-            if(khoaKhaiGiang.getNgayBatDau().compareTo(ngayBatDau)>0){
-			    System.out.printf("* %-10s* %-15s* %-15s*\n",
-                khoaKhaiGiang.getMaKhoa(),
-                Convert.dateToString(khoaKhaiGiang.getNgayBatDau()),
-                Convert.dateToString(khoaKhaiGiang.getNgayKetThuc()));
-            }
-		}
-        System.out.println("Nhập mã khóa khai giảng");
-        khoa = ScannerUtils.inputString();
-
-        QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
-
-        System.out.println("Nhập mã khóa chương trình học");
-        chuongTrinhHoc = ScannerUtils.inputString();
-
-        LopHoc lopHoc = new LopHoc(tenLop, QLKhoaKhaiGiang.timKiemTheoMaKhoa(khoa), QLChuongTrinhHoc.timKiemTheoMa(chuongTrinhHoc));
-
-        QLLopHoc.getDsLopHoc().add(lopHoc);
-        System.out.println("Đã thêm lớp");
-    }
-
   // test
   public static void main(String[] args) {
     System.out.println("hi");
@@ -287,8 +257,5 @@ public class QLLopHoc {
     inDanhSach(dsLopHoc);
     saveDuLieu();
   }
-
-
-
 
 }
