@@ -6,13 +6,8 @@ import QuanLyDoiTuong.QLKetQua;
 import QuanLyDoiTuong.QLLopHoc;
 import Utils.ScannerUtils;
 
-<<<<<<< HEAD:src/Menu/GiaoDien/GiaoDienHocVien.java
 public class GiaoDienHocVien extends GiaoDien {
     public  void giaoDien(){
-=======
-public class ActorHocVien extends Actor {
-    public void giaoDien() {
->>>>>>> 2a6a7d989f59edf39194fbe3de34ff3746348965:src/Menu/Actor/ActorHocVien.java
         int choice;
         do {
             System.out.println(
@@ -61,11 +56,11 @@ public class ActorHocVien extends Actor {
     }
 
     private void xemTKBCacLopDangHoc() {
-        QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc);
+        QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc));
     }
 
     private void xemTKBCacLopSapKhaiGiang() {
-        QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang);
+        QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang));
     }
 
     private void xemDiem() {

@@ -1,6 +1,7 @@
 package Menu.GiaoDien;
 
 import HeThongGiaoDuc.DangKy.YeuCauDangKy;
+import HeThongGiaoDuc.LopHoc.KetQua;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
@@ -9,11 +10,10 @@ import HeThongGiaoDuc.PhongVan.LienHe;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
 import NguoiDung.User;
 import NguoiDung.VaiTro;
-import QuanLyDoiTuong.QLKetQuaPhongVan;
-import QuanLyDoiTuong.QLLichPhongVan;
-import QuanLyDoiTuong.QLLopHoc;
-import QuanLyDoiTuong.QLUser;
+import QuanLyDoiTuong.*;
 import Utils.ScannerUtils;
+import org.w3c.dom.ls.LSOutput;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -222,29 +222,157 @@ public class GiaoDienCongTacVien extends GiaoDien {
     }
 
 
+    private void dangKyMonHoc(){
+        System.out.println("Bạn muốn đăng ký môn học cho Học viên cũ hay Khách hàng mới ?");
+        System.out.println("1. Học viên cũ");
+        System.out.println("2. Khách hàng mới");
+        System.out.println("Ấn các số còn lại để thoát !!");
+        int case4choice = ScannerUtils.inputInt();
+        switch (case4choice){
+            case 1:
+                dangKyMonHocChoHocVien();
+            case 2:
+                System.out.println("Theo quy định của Trung Tâm học viên mới bắt buộc phải thông qua phổng đầu vào để có thể tham gia vào học.");
+                System.out.println("1. Đăng ký phổng vấn !!");
+                System.out.println("2. Khách hàng mới đã phổng vấn");
+                System.out.println("Ấn các số còn lại để thoát !!");
+                int choice = ScannerUtils.inputInt();
+                switch (choice){
+                    case 1:
+                        dangKyPhongVan();
+                        break;
+                    case 2:
+                        QLKetQuaPhongVan.inDSKetQuaPhongVan(QLKetQuaPhongVan.getDsKetQuaPhongVan());
+                        System.out.println("Hãy chọn kết quả phổng vấn tương ứng với khách hàng.");
+                        String ma = ScannerUtils.inputString();
+                        KetQuaPhongVan ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(ma);
+                        while (ketQuaPhongVan == null){
+                            System.out.println("Mã nhập không đúng xin mời nhập lại !!");
+                            ma = ScannerUtils.inputString();
+                            ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(ma);
+                        }
+                        dangKyMonHocChoKhachHang(ketQuaPhongVan);
+
+                }
+        }
+    }
+
+
     private void dangKyMonHocChoHocVien(){
+        ArrayList<LopHoc> dsCacLopCacLopDangHoc = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc);
+        ArrayList<LopHoc> dsCacLopCacLopSapKhaiGiang = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang);
+        ArrayList<LopHoc> dsCacLopHocPhuHop = new ArrayList<>(dsCacLopCacLopDangHoc);
+        QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
+        System.out.println("Bạn chọn lớp học nào ??");
+        String malop = ScannerUtils.inputString();
+        LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+        while (lopHoc == null){
+            System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+            malop = ScannerUtils.inputString();
+            lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+        }
 
+        System.out.println("Bạn có muốn thanh toán luôn học phí ?");
+        System.out.println("1. Tôi muốn đóng ");
+        System.out.println("2. Tôi chỉ muốn ghi danh");
+        System.out.println("Ấn các số còn lại để thoát !!");
 
+        int luaChon = ScannerUtils.inputInt();
+
+        if (luaChon == 1){
+//            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(ketQuaPhongVan.getLichPhongVan().getKhachHang(), lopHoc, dongTien);
+//            KetQua ketQua = new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc());
+        }else if(luaChon == 2){
+            QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.HocVien));
+            System.out.println("Nhập mã học viên: ");
+            String maHV = ScannerUtils.inputString();
+            User user = QLUser.timUserTheoMa(maHV);
+            while (user == null){
+                System.out.println("Không tìm thấy mã học viên !!");
+                System.out.println("Xin mời nhập lại !!");
+                maHV = ScannerUtils.inputString();
+                user = QLUser.timUserTheoMa(maHV);
+            }
+
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc);
+            QLKetQua.getDsKetQua().add(new KetQua(user, yeuCauDangKy.getLopHoc()));
+            System.out.println("Đăng ký thành công !!");
+        }else {
+            giaoDien();
+        }
     }
     private void dangKyMonHocChoKhachHang(KetQuaPhongVan ketQuaPhongVan){
         ArrayList<LopHoc> dsCacLopCungChuongTrinh = QLLopHoc.timKiemLopTheoChuongTrinh(ketQuaPhongVan.getChuongTrinhHocDeXuat().getMaChuongTrinh());
         ArrayList<LopHoc> dsCacLopCacLopDangHoc = QLLopHoc.timKiemLopTheoTrangThai(dsCacLopCungChuongTrinh, TrangThaiLop.Dang_Hoc);
         ArrayList<LopHoc> dsCacLopCacLopSapKhaiGiang = QLLopHoc.timKiemLopTheoTrangThai(dsCacLopCungChuongTrinh, TrangThaiLop.Sap_Khai_Giang);
         ArrayList<LopHoc> dsCacLopHocPhuHop = new ArrayList<>(dsCacLopCacLopDangHoc);
+
         dsCacLopHocPhuHop.addAll(dsCacLopCacLopSapKhaiGiang);
-
-
         QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
         System.out.println("Bạn chọn lớp học nào ??");
-        String maLop = ScannerUtils.inputString();
-        LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsCacLopHocPhuHop);
+        String malop = ScannerUtils.inputString();
+        LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
         while (lopHoc == null){
             System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
-            maLop = ScannerUtils.inputString();
+            malop = ScannerUtils.inputString();
+            lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
         }
 
+        System.out.println("Bạn có muốn thanh toán luôn học phí ?");
+        System.out.println("1. Tôi muốn đóng ");
+        System.out.println("2. Tôi chỉ muốn ghi danh");
+        System.out.println("Ấn các số còn lại để thoát !!");
+
+        int luaChon = ScannerUtils.inputInt();
+
+        if (luaChon == 1){
+//            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(ketQuaPhongVan.getLichPhongVan().getKhachHang(), lopHoc, dongTien);
+//            KetQua ketQua = new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc());
+        }else if(luaChon == 2){
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(ketQuaPhongVan.getLichPhongVan().getKhachHang(), lopHoc);
+            QLKetQua.getDsKetQua().add(new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc()));
+            System.out.println("Đăng ký thành công !!");
+        }else {
+            giaoDien();
+        }
+    }
+
+    public void dangKyPhongVan(){
+        System.out.println("Nhập họ và tên");
+        String hoTen = ScannerUtils.inputString();
+
+        System.out.println("Nhập email");
+        String email = ScannerUtils.inputEmail();
+
+        System.out.println("Chọn giới tính:");
+        System.out.println("1. Nam");
+        System.out.println("Các nút còn lại sẽ là nữ");
+        boolean gioiTinh ;
+        String genderChoice = ScannerUtils.inputString();
+        if (genderChoice.equals("1")){
+            gioiTinh = true;
+        }
+        else gioiTinh = false;
 
 
-        YeuCauDangKy(ketQuaPhongVan.getLichPhongVan().getKhachHang(), );
+        System.out.println("Nhập số điện thoại");
+        String sdt = ScannerUtils.inputSDT();
+
+        System.out.println("Nhập địa chỉ");
+        String diaChi = ScannerUtils.inputString();
+
+        System.out.println("Nhập ngày tháng năm sinh: ");
+        LocalDate ngayThang = ScannerUtils.inputDate();
+
+
+
+        User khachHang = new User(hoTen, email, gioiTinh, ngayThang, sdt, diaChi, VaiTro.KhachHang);
+        QLUser.getDsUser().add(khachHang);
+        LichPhongVan lichPhongVan = new LichPhongVan(khachHang);
+        QLLichPhongVan.getDsLichPhongVan().add(lichPhongVan);
+        System.out.println(QLLichPhongVan.getDsLichPhongVan());
+        System.out.println("Bạn đã đăng ký thành công !!");
+        QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
+        giaoDien();
     }
 }

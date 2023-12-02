@@ -1,5 +1,7 @@
 package HeThongGiaoDuc.DangKy;
 
+import QuanLyDoiTuong.QLKetQua;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,11 +12,24 @@ public class BienLai {
     private LocalDateTime ngayThanhToan;
     public BienLai() {
     }
+
+    public BienLai(YeuCauDangKy yeuCauDangKy, int soTienDaDong) {
+        this.maBienLai = autoIncrement();
+        this.yeuCauDangKy = yeuCauDangKy;
+        this.soTienDaDong = soTienDaDong;
+        this.ngayThanhToan = LocalDateTime.now();
+    }
+
     public BienLai(String maBienLai, YeuCauDangKy yeuCauDangKy, int soTienDaDong, LocalDateTime ngayThanhToan) {
         this.maBienLai = maBienLai;
         this.yeuCauDangKy = yeuCauDangKy;
         this.soTienDaDong = soTienDaDong;
         this.ngayThanhToan = ngayThanhToan;
+    }
+
+    private String autoIncrement(){
+        int a = QLKetQua.getDsKetQua().size() + 1;
+        return  "KQ" + a;
     }
     public String getMaBienLai() {
         return maBienLai;

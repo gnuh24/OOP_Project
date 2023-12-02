@@ -4,6 +4,7 @@ import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
 import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.LienHe;
+import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
 import Utils.DocGhiFile;
 
 import java.util.ArrayList;
@@ -95,5 +96,11 @@ public class QLKetQuaPhongVan {
             }
         }
         return null;
+    }
+
+    public static  ArrayList<KetQuaPhongVan> timKetQuaPhongVanTheoTrangThai(TrangThaiPhongVan trangThaiPhongVan){
+        for (KetQuaPhongVan ketQuaPhongVan: QLKetQuaPhongVan.getDsKetQuaPhongVan()) {
+            if (ketQuaPhongVan)
+        }
     }
 }
