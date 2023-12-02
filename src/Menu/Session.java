@@ -29,7 +29,6 @@ public class Session {
 
     public static void logout(){
         Session.setTaiKhoan(null);
-        GiaoDienKhachHang actorKhachHang = new GiaoDienKhachHang();
         actorKhachHang.giaoDien();
     }
 

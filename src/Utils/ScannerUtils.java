@@ -49,7 +49,7 @@ public class ScannerUtils {
     }
 
     public static String inputSDT() {
-        System.out.println("Xin mời nhập ngày tháng năm. (VD: 0938240359)");
+        System.out.println("Xin mời nhập số điện thoại. (VD: 0938240359)");
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
         // Số điện thoại 10 số
@@ -218,6 +218,18 @@ public class ScannerUtils {
         } while (diaChi.trim().isEmpty());
 
         return diaChi;
+    }
+
+    public static int inputHocPhi() {
+        System.out.println("Nhập học phí: ");
+        int hocPhi = ScannerUtils.inputInt();
+
+        while (hocPhi < 0) {
+            System.out.println("Học phí không thể là một số âm. Hãy nhập lại: ");
+            hocPhi = ScannerUtils.inputInt();
+        }
+
+        return hocPhi;
     }
 
 
