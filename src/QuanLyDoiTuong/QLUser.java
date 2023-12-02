@@ -2,6 +2,7 @@ package QuanLyDoiTuong;
 
 import NguoiDung.User;
 import NguoiDung.VaiTro;
+import TaiKhoan.*;
 import Utils.Convert;
 import Utils.DocGhiFile;
 
@@ -164,6 +165,7 @@ public class QLUser {
         return null;
     }
 
+
     public static User timUserTheoHoTen(String tenUser) {
         for (User user : QLUser.getDsUser()) {
             if (user.getHoTen().equals(tenUser)) {
@@ -219,6 +221,18 @@ public class QLUser {
             }
         }
         return count;
+    }
+
+    public static ArrayList<User> timNhungUserChuaCoTaiKhoan(){
+        ArrayList<User> ds = new ArrayList<>();
+        for (User user: QLUser.getDsUser()){
+            for (TaiKhoan tk: QLTaiKhoan.getDsTaiKhoan()){
+                if (user.getMaUser().equals(tk.getUser().getMaUser())){
+                    ds.add(user);
+                }
+            }
+        }
+        return ds;
     }
 
 }
