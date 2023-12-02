@@ -1,10 +1,13 @@
 package QuanLyDoiTuong;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
+import HeThongGiaoDuc.LopHoc.KetQua;
 import Utils.Convert;
 import Utils.DocGhiFile;
+import Utils.ScannerUtils;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class QLKhoaKhaiGiang {
@@ -173,5 +176,20 @@ public class QLKhoaKhaiGiang {
 		ArrayList<String> duLieu = DocGhiFile.docDuLieuFile(filePath);
 		xuLyDuLieu(duLieu);
 	}
+
+
+	public void taoKhoaMoi(){
+        DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate ngayBatDau = LocalDate.now();
+        ngayBatDau.format(formater);
+	    LocalDate ngayKetThuc = LocalDate.now();
+        ngayKetThuc.format(formater);
+        KhoaKhaiGiang khoaKhaiGiangMoi = new KhoaKhaiGiang(ngayBatDau, ngayKetThuc);
+        QLKhoaKhaiGiang.getDsKhoaKhaiGiang().add(khoaKhaiGiangMoi);
+
+        System.out.println("Đã thêm khóa");
+    }
+
+	
 
 }

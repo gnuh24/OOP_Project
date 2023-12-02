@@ -1,6 +1,7 @@
 package QuanLyDoiTuong;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
+import HeThongGiaoDuc.LopHoc.KetQua;
 import Utils.DocGhiFile;
 import Utils.ScannerUtils;
 import java.util.ArrayList;
