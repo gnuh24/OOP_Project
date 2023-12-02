@@ -1,13 +1,22 @@
 package Menu.GiaoDien;
 
+import java.util.ArrayList;
+
+import HeThongGiaoDuc.DangKy.YeuCauDangKy;
+import HeThongGiaoDuc.LopHoc.KetQua;
+import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import Menu.Session;
+import NguoiDung.User;
+import NguoiDung.VaiTro;
 import QuanLyDoiTuong.QLKetQua;
 import QuanLyDoiTuong.QLLopHoc;
+import QuanLyDoiTuong.QLUser;
+import QuanLyDoiTuong.QLYeuCauDangKy;
 import Utils.ScannerUtils;
 
 public class GiaoDienHocVien extends GiaoDien {
-    public  void giaoDien(){
+    public void giaoDien() {
         int choice;
         do {
             System.out.println(
@@ -65,5 +74,50 @@ public class GiaoDienHocVien extends GiaoDien {
 
     private void xemDiem() {
         QLKetQua.inDanhSach(QLKetQua.timKiemTheoHocVien(Session.getTaiKhoan().getUser().getMaUser()));
+    }
+
+    private void dangKyMonHocChoHocVien() {
+        ArrayList<LopHoc> dsCacLopCacLopDangHoc = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc);
+        ArrayList<LopHoc> dsCacLopCacLopSapKhaiGiang = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang);
+        ArrayList<LopHoc> dsCacLopHocPhuHop = new ArrayList<>(dsCacLopCacLopDangHoc);
+
+        QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
+
+        System.out.println("Bạn chọn lớp học nào ??");
+
+        String malop = ScannerUtils.inputString();
+        LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+
+        while (lopHoc == null) {
+            System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+            malop = ScannerUtils.inputString();
+            lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+        }
+
+        System.out.println("Bạn có muốn thanh toán luôn học phí ?");
+        System.out.println("1. Tôi muốn đóng ");
+        System.out.println("2. Tôi chỉ muốn ghi danh");
+        System.out.println("Ấn các số còn lại để thoát !!");
+
+        int luaChon = ScannerUtils.inputInt();
+        User hocVien = Session.getTaiKhoan().getUser();
+
+        if (luaChon == 1) {
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(hocVien, lopHoc, lopHoc.getChuongTrinh().getHocPhi());
+
+            QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
+            QLKetQua.getDsKetQua().add(new KetQua(hocVien, lopHoc));
+
+            System.out.println("Đăng ký thành công !!");
+        } else if (luaChon == 2) {
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(hocVien, lopHoc);
+
+            QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
+            QLKetQua.getDsKetQua().add(new KetQua(hocVien, lopHoc));
+
+            System.out.println("Đăng ký thành công !!");
+        } else {
+            giaoDien();
+        }
     }
 }
