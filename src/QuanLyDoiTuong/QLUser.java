@@ -5,6 +5,7 @@ import NguoiDung.VaiTro;
 import TaiKhoan.*;
 import Utils.Convert;
 import Utils.DocGhiFile;
+import Utils.ScannerUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -165,6 +166,15 @@ public class QLUser {
         return null;
     }
 
+    public static User timUserTheoMa(String idUser, ArrayList<User> dsUser) {
+        for (User user : dsUser) {
+            if (user.getMaUser().equals(idUser)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
 
     public static User timUserTheoHoTen(String tenUser) {
         for (User user : QLUser.getDsUser()) {
@@ -224,15 +234,31 @@ public class QLUser {
     }
 
     public static ArrayList<User> timNhungUserChuaCoTaiKhoan(){
-        ArrayList<User> ds = new ArrayList<>();
+        ArrayList<User> dsNhungNguoiCoTaiKhoan = new ArrayList<>();
         for (User user: QLUser.getDsUser()){
             for (TaiKhoan tk: QLTaiKhoan.getDsTaiKhoan()){
                 if (user.getMaUser().equals(tk.getUser().getMaUser())){
-                    ds.add(user);
+                    dsNhungNguoiCoTaiKhoan.add(user);
                 }
             }
         }
-        return ds;
+        ArrayList<User> temp = new ArrayList<>(QLUser.getDsUser());
+        temp.removeAll(dsNhungNguoiCoTaiKhoan);
+        return temp;
+    }
+
+    public static User themUserMoi(){
+        String hoTen = ScannerUtils.inputName();
+        String email = ScannerUtils.inputEmail();
+        boolean gioiTinh = ScannerUtils.inputGioiTinh();
+        LocalDate ngaySinh = ScannerUtils.inputDate();
+        String soDienThoai = ScannerUtils.inputSDT();
+        String diaChi = ScannerUtils.inputDiaChi();
+        VaiTro vaiTro = ScannerUtils.inputVaiTro();
+        User newUser = new User(hoTen, email, gioiTinh, ngaySinh,soDienThoai,diaChi, vaiTro);
+        QLUser.getDsUser().add(newUser);
+        System.out.println("Bạn đã thêm thông tin User thành công !!");
+        return newUser;
     }
 
 }

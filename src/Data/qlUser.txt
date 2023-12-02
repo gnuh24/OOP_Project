@@ -22,3 +22,4 @@ GD0003#Le Van C#levanc@gmail.com#1#05/12/1990#111223344#Danang#Giám đốc#1
 KH4#Ngô Tuấn Hưng#hungnt@gmail.com#1#02/04/2004#0938240359#Đại học Sài Gòn#Khách hàng#1
 KH5#ba roi om#123abc@gmail.com#1#11/09/3000#0987654312#123asdqwe#Khách hàng#1
 KH6#Lai Dinh Khai#laiDinhKhai@gmail.com#1#02/04/2004#0938240359#Đại học Sài Gòn#Khách hàng#1
+QL4#Đỗ Khôi Nguyên#khoiNguyen@gmail.com#1#23/11/2004#0933404527#Đại học Sài Gòn DCT1226#Quản lý#1

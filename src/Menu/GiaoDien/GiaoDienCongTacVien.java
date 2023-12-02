@@ -8,9 +8,12 @@ import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.LienHe;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
+import Menu.Session;
 import NguoiDung.User;
 import NguoiDung.VaiTro;
 import QuanLyDoiTuong.*;
+import TaiKhoan.QLTaiKhoan;
+import TaiKhoan.TaiKhoan;
 import Utils.ScannerUtils;
 import org.w3c.dom.ls.LSOutput;
 
@@ -29,8 +32,11 @@ public class GiaoDienCongTacVien extends GiaoDien {
             System.out.println("2. Thay đổi trạng thái lịch phổng vấn ");
             System.out.println("3. Xem danh sách các cuộc phổng vấn đã có kết quả");
             System.out.println("4. Đăng ký khóa học mới");
-            System.out.println("5. Đăng xuất");
-            System.out.println("6. Thoát chương trình");
+            System.out.println("5. Tạo tài khoản mới");
+            System.out.println("6. Thêm thông tin vào hệ thống");
+
+            System.out.println("7. Đăng xuất");
+            System.out.println("8. Thoát chương trình");
             System.out.println("Bạn đã có lựa chọn chưa ?");
             choice = ScannerUtils.inputInt();
 
@@ -51,13 +57,20 @@ public class GiaoDienCongTacVien extends GiaoDien {
                     break;
 
                 case 4:
-
+                    dangKyMonHoc();
                     break;
                 case 5:
-                    //Form.logout();
+                    taoTaiKhoanMoi();
                     break;
 
                 case 6:
+                    QLUser.themUserMoi();
+                    break;
+
+                case 7:
+                    Session.logout();
+                    break;
+                case 8:
                     exit();
                     break;
             }
@@ -376,8 +389,6 @@ public class GiaoDienCongTacVien extends GiaoDien {
         giaoDien();
     }
 
-
-
     private void taoTaiKhoanMoi(){
         System.out.println("Bạn muốn tạo tài khoản cho đối tượng nào ?");
         System.out.println("1. Những người đã có thông tin trong cơ sở dữ liệu");
@@ -386,8 +397,30 @@ public class GiaoDienCongTacVien extends GiaoDien {
         int choice = ScannerUtils.inputInt();
         switch (choice){
             case 1:
+                ArrayList<User> dsNguoiChuaCoTaiKhoan = QLUser.timNhungUserChuaCoTaiKhoan();
+                QLUser.inThongTin(dsNguoiChuaCoTaiKhoan);
+                System.out.println("Đây là những người chưa có tài khoản !!");
+                System.out.println("Bạn muốn tạo tài khoản cho ai ??");
+                String id = ScannerUtils.inputString();
+                User user = QLUser.timUserTheoMa(id, dsNguoiChuaCoTaiKhoan);
+                if (user == null){
+                    System.out.println("Không tìm thấy mã thông tin của người bạn cần tạo !!");
+
+                }else {
+                    QLTaiKhoan.taoTaiKhoanMoi(user);
+                }
+                break;
+            case 2:
+                    QLTaiKhoan.taoTaiKhoanMoi(QLUser.themUserMoi());
+                break;
+
 
         }
-
+        giaoDien();
     }
+
+
 }
+
+
+

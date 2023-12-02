@@ -1,5 +1,7 @@
 package NguoiDung;
 
+import Utils.ScannerUtils;
+
 public enum VaiTro {
     KhachHang,
     HocVien,

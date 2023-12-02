@@ -202,51 +202,51 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
 //        } while (true);
 //    }
 
-    private void nhapDiemChoHocVienLopHoc() {
-        super.xemDanhSachHocVien();
-        do {
-            System.out.println("Bạn muốn nhập điểm cho học viên nào? (Nhập id):");
-            System.out.println("Nhập -1 để thoát.");
-
-            String id = ScannerUtils.inputString();
-
-            // thoát
-            if (id.equals("-1")) {
-                this.giaoDien();
-                return;
-            }
-            // tiếp tục
-            else {
-                ArrayList<KetQua> ketQuaCuaHocVien = QLKetQua.timKiemTheoHocVien(id);
-
-                // nếu tìm thấy ketQua ứng với id đã cung cấp
-                if (ketQuaCuaHocVien == null) {
-                    System.out.println("Không tìm thấy!");
-
-
-                }
-
-                // ngược lại nếu không tìm thấy thì in ra thông báo
-                else {
-                    for (KetQua ketQua : ketQuaCuaHocVien) {
-                        String tenHocVien = ketQua.getHocVien().getHoTen();
-                        String tenLop = ketQua.getLopHoc().getTenLop();
-
-                        System.out.println("Nhập điểm cho " + tenHocVien + " tại lớp " + tenLop + " (ví dụ: 9.8)");
-                        System.out.println("(Hoặc nhập -1 để thoát / kí tự bất kỳ khác để bỏ qua)");
-
-                        String diem = ScannerUtils.inputString();
-
-                        if (diem.equals("-1")) {
-                            this.giaoDien();
-                            return;
-                        } else if (diem.matches("\\d(.\\d)?")) {
-                            ketQua.setDiem(diem);
-                            System.out.println("Nhập điểm thành công!");
-                        }
-                    }
-                }
-            }
-        } while (true);
-    }
+//    private void nhapDiemChoHocVienLopHoc() {
+//        super.xemDanhSachHocVien();
+//        do {
+//            System.out.println("Bạn muốn nhập điểm cho học viên nào? (Nhập id):");
+//            System.out.println("Nhập -1 để thoát.");
+//
+//            String id = ScannerUtils.inputString();
+//
+//            // thoát
+//            if (id.equals("-1")) {
+//                this.giaoDien();
+//                return;
+//            }
+//            // tiếp tục
+//            else {
+//                ArrayList<KetQua> ketQuaCuaHocVien = QLKetQua.timKiemTheoHocVien(id);
+//
+//                // nếu tìm thấy ketQua ứng với id đã cung cấp
+//                if (ketQuaCuaHocVien == null) {
+//                    System.out.println("Không tìm thấy!");
+//
+//
+//                }
+//
+//                // ngược lại nếu không tìm thấy thì in ra thông báo
+//                else {
+//                    for (KetQua ketQua : ketQuaCuaHocVien) {
+//                        String tenHocVien = ketQua.getHocVien().getHoTen();
+//                        String tenLop = ketQua.getLopHoc().getTenLop();
+//
+//                        System.out.println("Nhập điểm cho " + tenHocVien + " tại lớp " + tenLop + " (ví dụ: 9.8)");
+//                        System.out.println("(Hoặc nhập -1 để thoát / kí tự bất kỳ khác để bỏ qua)");
+//
+//                        String diem = ScannerUtils.inputString();
+//
+//                        if (diem.equals("-1")) {
+//                            this.giaoDien();
+//                            return;
+//                        } else if (diem.matches("\\d(.\\d)?")) {
+//                            ketQua.setDiem(diem);
+//                            System.out.println("Nhập điểm thành công!");
+//                        }
+//                    }
+//                }
+//            }
+//        } while (true);
+//    }
 }

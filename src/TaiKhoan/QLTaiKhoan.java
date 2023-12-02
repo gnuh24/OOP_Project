@@ -1,6 +1,7 @@
 package TaiKhoan;
 
 //import Menu.Menu;
+import NguoiDung.User;
 import QuanLyDoiTuong.QLUser;
 import Utils.DocGhiFile;
 
@@ -98,6 +99,13 @@ public class QLTaiKhoan {
         System.out.println("*".repeat(55));
 
 
+    }
+
+    public static TaiKhoan taoTaiKhoanMoi(User user){
+        TaiKhoan taiKhoan = new TaiKhoan(user);
+        QLTaiKhoan.getDsTaiKhoan().add(taiKhoan);
+        System.out.println("Tạo tài khoản mới thành công !!");
+        return taiKhoan;
     }
 
     public static TaiKhoan timTaiKhoanTheoUsername(String username){
