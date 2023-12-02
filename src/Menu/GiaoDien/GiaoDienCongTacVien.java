@@ -375,4 +375,19 @@ public class GiaoDienCongTacVien extends GiaoDien {
         QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
         giaoDien();
     }
+
+
+
+    private void taoTaiKhoanMoi(){
+        System.out.println("Bạn muốn tạo tài khoản cho đối tượng nào ?");
+        System.out.println("1. Những người đã có thông tin trong cơ sở dữ liệu");
+        System.out.println("2. Những người chưa có thông tin trong cơ sở dữ liệu");
+        System.out.println("Các số còn lại để thoát !!");
+        int choice = ScannerUtils.inputInt();
+        switch (choice){
+            case 1:
+
+        }
+
+    }
 }
