@@ -97,10 +97,4 @@ public class QLKetQuaPhongVan {
         }
         return null;
     }
-
-    public static  ArrayList<KetQuaPhongVan> timKetQuaPhongVanTheoTrangThai(TrangThaiPhongVan trangThaiPhongVan){
-        for (KetQuaPhongVan ketQuaPhongVan: QLKetQuaPhongVan.getDsKetQuaPhongVan()) {
-            if (ketQuaPhongVan)
-        }
-    }
 }

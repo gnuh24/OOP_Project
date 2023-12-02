@@ -115,6 +115,15 @@ public class QLChuongTrinhHoc {
         return duLieu;
     }
 
+    public static void thayDoiHocPhi(){
+        QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
+        System.out.println("Nhập mã chương trình muốn thay đổi học phí");
+        String maChuongTrinh=ScannerUtils.inputString();
+        System.out.println("Nhập học phí mới mới");
+        int hocPhi=ScannerUtils.inputInt();
+        QLChuongTrinhHoc.timKiemTheoMa(maChuongTrinh).setHocPhi(hocPhi);
+    }
+
 //    public static void main(String[] args) {
 //        loadDuLieu();
 //        inChuongTrinhHoc(dsChuongTrinhHoc);
