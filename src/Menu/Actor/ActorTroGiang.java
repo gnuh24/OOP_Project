@@ -50,13 +50,15 @@ public class ActorTroGiang extends Actor {
     protected void xemDanhSachLopHoc() {
         QLLopHoc.inDSLopHoc(
                 QLLopHoc.timKiemLopTheoTrangThai(
-                        QLLopHoc.timKiemLopTheoTroGiang(Form.getId()), TrangThaiLop.Dang_Hoc));
+                        QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()),
+                        TrangThaiLop.Dang_Hoc));
     }
 
     protected void xemDanhSachLopSapKhaiGiang() {
         QLLopHoc.inDSLopHoc(
                 QLLopHoc.timKiemLopTheoTrangThai(
-                        QLLopHoc.timKiemLopTheoTroGiang(Form.getId()), TrangThaiLop.Sap_Khai_Giang));
+                        QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()),
+                        TrangThaiLop.Sap_Khai_Giang));
     }
 
     protected void xemDanhSachHocVien() {

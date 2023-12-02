@@ -6,6 +6,7 @@ import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
 import Menu.Menu;
+import Menu.Session;
 import QuanLyDoiTuong.*;
 import Utils.ScannerUtils;
 
@@ -18,8 +19,8 @@ public class ActorGiangVien extends ActorTroGiang {
         do {
             System.out.println(
                     "-----------------------------------------------CHÀO MỪNG BẠN ĐÃ ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88-----------------------------------------------");
-            System.out.println("1. Xem lịch dạy của khóa hiện tại");
-            System.out.println("2. Xem lịch dạy của khóa sắp khai giảng");
+            System.out.println("1. Xem lịch dạy của lớp hiện tại");
+            System.out.println("2. Xem lịch dạy của lớp sắp khai giảng");
             System.out.println("3. Xem danh sách học sinh của các lớp");
             System.out.println("4. Xem danh sách lịch phổng vấn");
             System.out.println("5. Nhập điểm cho thí sinh phổng vấn");
@@ -106,6 +107,6 @@ public class ActorGiangVien extends ActorTroGiang {
 
     private void xemLichPhongVan() {
         QLLichPhongVan.inDSLichPhongVan(
-                QLLichPhongVan.timKiemLichPhongVanTheoGV(Form.getId()));
+                QLLichPhongVan.timKiemLichPhongVanTheoGV(Session.getTaiKhoan().getUser().getMaUser()));
     }
 }

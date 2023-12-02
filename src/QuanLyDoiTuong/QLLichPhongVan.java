@@ -11,14 +11,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class QLLichPhongVan {
-
-//    public static void main(String[] args) {
-//        QLUser.loadDuLieu();
-//        QLLichPhongVan.loadDuLieu();
-//        inDSLichPhongVan(dsLichPhongVan);
-//        QLUser.saveDuLieu();
-//        QLLichPhongVan.loadDuLieu();
-//    }
     private static ArrayList<LichPhongVan> dsLichPhongVan = new ArrayList<>();
 
     public static ArrayList<LichPhongVan> getDsLichPhongVan() {
