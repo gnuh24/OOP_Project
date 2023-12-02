@@ -147,7 +147,7 @@ public class QLKetQua {
   }
 
 
-  public void thongKeHocVienTheoChuongTrinh(){
+  public static void thongKeHocVienTheoChuongTrinh(){
     int []demSoHocVienCTH=new int[17];
     for(int i=0; i<demSoHocVienCTH.length;i++){
         demSoHocVienCTH[i]=0;
@@ -191,7 +191,7 @@ public class QLKetQua {
 }
 
 
-  public void thongKeHocVienTheoNam(){
+  public static void thongKeHocVienTheoThang(){
         int []demHocVien=new int[13];
         for(int i=0; i<demHocVien.length; i++){
             demHocVien[i]=0;
@@ -229,7 +229,7 @@ public class QLKetQua {
         }
     }
 
-    public void thongKeHocVienTheoKhoa(){
+    public static void thongKeHocVienTheoKhoa(){
       int demHocVien=0;
       QLKhoaKhaiGiang.inDanhSachKhoaKhaiGiang(QLKhoaKhaiGiang.getDsKhoaKhaiGiang());
       System.out.println("Nhập mã Khóa");
@@ -240,11 +240,20 @@ public class QLKetQua {
           }
       }
       System.out.println("Số học viên của khóa: "+demHocVien);
-  }
+    }
 
-  public static void main(String[] args) {
 
-    loadDuLieu();
-    inDanhSach(dsKetQua);
-  }
+    public static void thongKeTheoNam(){
+      
+    }
+
+
+
+
+//   public static void main(String[] args) {
+
+//     loadDuLieu();
+//     inDanhSach(dsKetQua);
+//   }
+// }
 }

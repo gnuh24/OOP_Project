@@ -244,7 +244,7 @@ public class QLLopHoc {
 
 
 
-  public void taoLopMoi(){
+  public static void taoLopMoi(){
         String tenLop;
         String khoa;
         String chuongTrinhHoc;

@@ -178,7 +178,7 @@ public class QLKhoaKhaiGiang {
 	}
 
 
-	public void taoKhoaMoi(){
+	public static void taoKhoaMoi(){
         DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate ngayBatDau = LocalDate.now();
         ngayBatDau.format(formater);

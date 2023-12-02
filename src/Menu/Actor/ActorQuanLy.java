@@ -27,12 +27,13 @@ public class ActorQuanLy extends ActorCongTacVien{
             System.out.println("2. Tạo lớp mới");
             System.out.println("3. Thống kê học sinh theo chương trình học");
             System.out.println("4. Thống kê học sinh theo khóa");
-            System.out.println("5. Thống kê học sinh theo năm");
-            System.out.println("6. Thống kê doanh thu theo chương trình");
-            System.out.println("7. Thống kê doanh thu theo khóa");
-            System.out.println("8. Thống kê doanh thu theo tháng");
-            System.out.println("9. THống kê doanh thu theo năm");
-            System.out.println("10. Đăng xuất");
+            System.out.println("5. Thống kê học sinh theo tháng trong năm");
+            System.out.println("6. Thống kê học sinh theo năm");
+            System.out.println("7. Thống kê doanh thu theo chương trình");
+            System.out.println("8. Thống kê doanh thu theo khóa");
+            System.out.println("9. Thống kê doanh thu theo tháng");
+            System.out.println("10. THống kê doanh thu theo năm");
+            System.out.println("11. Đăng xuất");
             System.out.println("Bạn đã có lựa chọn chưa?");
             do{
                 choice = ScannerUtils.inputInt();
@@ -43,23 +44,23 @@ public class ActorQuanLy extends ActorCongTacVien{
 
             switch (choice){
                 case 1:
-                    taoKhoaMoi();
+                    QLKhoaKhaiGiang.taoKhoaMoi();
                     break;
 
                 case 2:
-                    taoLopMoi();
+                    QLLopHoc.taoLopMoi();
                     break;
 
                 case 3:
-                    thongKeHocVienTheoChuongTrinh();
+                    QLKetQua.thongKeHocVienTheoChuongTrinh();
                     break;
 
                 case 4:
-                    thongKeHocVienTheoKhoa();
+                    QLKetQua.thongKeHocVienTheoKhoa();
                     break;
 
                 case 5:
-                    thongKeHocVienTheoNam();
+                    QLKetQua.thongKeHocVienTheoThang();
                     break;
 
                 case 6:
@@ -74,8 +75,12 @@ public class ActorQuanLy extends ActorCongTacVien{
 
                 case 9:
                     break;
-
+                    
                 case 10:
+                    break;
+
+
+                case 11:
                     System.out.println("Bạn thực sự muốn thoát");
                     exit();
                     break;
