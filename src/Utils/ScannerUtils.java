@@ -32,6 +32,18 @@ public class ScannerUtils {
         return Double.parseDouble(userInput);
     }
 
+    public static double inputDiem() {
+        Scanner input = new Scanner(System.in);
+        String userInput = input.nextLine();
+
+        while (!userInput.matches("\\d(.\\d)?")) {
+            System.err.println("Không phải điểm số. Hãy nhập lại !!!\n");
+            userInput = input.nextLine();
+        }
+
+        return Double.parseDouble(userInput);
+    }
+
     public static String inputEmail() {
         System.out.println("Xin mời nhập email. (VD: hungnt@gmail.com)");
         Scanner input = new Scanner(System.in);
