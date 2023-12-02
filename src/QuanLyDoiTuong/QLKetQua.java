@@ -122,15 +122,6 @@ public class QLKetQua {
     return ketQuaTimKiem;
   }
 
-  public static ArrayList<KetQua> timKiemTheoHocVien(String maHocVien, ArrayList<KetQua> dsKetQua) {
-    for (KetQua ketQua : dsKetQua) {
-      if (ketQua.getHocVien().getMaUser().equals(maHocVien)) {
-        return ketQua;
-      }
-    }
-
-    return null;
-  }
 
   public static ArrayList<KetQua> timKiemTheoLopHoc(String malopHoc) {
     ArrayList<KetQua> ketQuaTimKiem = new ArrayList<>();
