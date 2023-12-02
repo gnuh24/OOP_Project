@@ -5,12 +5,14 @@ import HeThongGiaoDuc.LopHoc.KetQua;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
+import HeThongGiaoDuc.PhongVan.LienHe;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
 import Menu.Menu;
 import Menu.Session;
 import QuanLyDoiTuong.*;
 import Utils.ScannerUtils;
 
+import java.text.Normalizer.Form;
 import java.util.ArrayList;
 
 public class ActorGiangVien extends ActorTroGiang {
@@ -52,44 +54,50 @@ public class ActorGiangVien extends ActorTroGiang {
                     break;
 
                 case 5:
-                    QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.timKiemLichPhongVanTheoGV(
-                            QLUser.timUserTheoMa(Form.getTaiKhoan().getUser().getMaUser()).getMaUser()));
-                    System.out.println("Hãy chọn buổi phổng vấn bạn muốn nhập điểm (Nhập ID)");
-                    System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
+                    // QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.timKiemLichPhongVanTheoGV(
+                    // QLUser.timUserTheoMa(Form.getTaiKhoan().getUser().getMaUser()).getMaUser()));
+                    // System.out.println("Hãy chọn buổi phổng vấn bạn muốn nhập điểm (Nhập ID)");
+                    // System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
 
-                    String id = ScannerUtils.inputString();
+                    // String id = ScannerUtils.inputString();
 
-                    if (!id.equals("1")) {
-                        LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id);
-                        if (lichPhongVan == null) {
-                            System.out.println("Mã không tồn tại !!!");
-                            Menu.giaoDienGiangVien();
-                        } else if (!lichPhongVan.getTrangThaiPhongVan().equals(TrangThaiPhongVan.DA_PHONGVAN)) {
-                            System.out.println("Bạn không thể chấm điểm khi buổi phổng vấn chưa diễn ra!!");
-                            Menu.giaoDienGiangVien();
-                        } else {
-                            System.out.printf("Bạn đã chọn lịch phổng vấn %s \n",
-                                    lichPhongVan.getMaCaPhongVan());
-                            double diem = ScannerUtils.inputDiem();
+                    // if (!id.equals("1")) {
+                    // LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id);
+                    // if (lichPhongVan == null) {
+                    // System.out.println("Mã không tồn tại !!!");
+                    // Menu.giaoDienGiangVien();
+                    // } else if
+                    // (!lichPhongVan.getTrangThaiPhongVan().equals(TrangThaiPhongVan.DA_PHONGVAN))
+                    // {
+                    // System.out.println("Bạn không thể chấm điểm khi buổi phổng vấn chưa diễn
+                    // ra!!");
+                    // Menu.giaoDienGiangVien();
+                    // } else {
+                    // System.out.printf("Bạn đã chọn lịch phổng vấn %s \n",
+                    // lichPhongVan.getMaCaPhongVan());
+                    // double diem = ScannerUtils.inputDiem();
 
-                            System.out.println("Bạn muốn đề xuất chương trình nào cho khách ?");
-                            QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
+                    // System.out.println("Bạn muốn đề xuất chương trình nào cho khách ?");
+                    // QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
 
-                            String maChuongTrinh = ScannerUtils.inputString();
-                            ChuongTrinhHoc chuongTrinhHoc = QLChuongTrinhHoc.timKiemTheoMa(maChuongTrinh);
-                            if (chuongTrinhHoc == null) {
-                                System.out.println("Không tìm thấy chương trình !!");
-                            } else {
-                                KetQuaPhongVan ketQuaPhongVan = new KetQuaPhongVan(lichPhongVan, diem,
-                                        chuongTrinhHoc);
-                                QLKetQuaPhongVan.getDsKetQuaPhongVan().add(ketQuaPhongVan);
-                                System.out.println("Đã chấm điểm thành công !!");
-                            }
-                        }
-                    } else {
-                        this.giaoDien();
-                        ;
-                    }
+                    // String maChuongTrinh = ScannerUtils.inputString();
+                    // ChuongTrinhHoc chuongTrinhHoc =
+                    // QLChuongTrinhHoc.timKiemTheoMa(maChuongTrinh);
+
+                    // if (chuongTrinhHoc == null) {
+                    // System.out.println("Không tìm thấy chương trình !!");
+                    // } else {
+                    // KetQuaPhongVan ketQuaPhongVan = new KetQuaPhongVan(lichPhongVan, diem,
+                    // chuongTrinhHoc);
+                    // QLKetQuaPhongVan.getDsKetQuaPhongVan().add(ketQuaPhongVan);
+                    // System.out.println("Đã chấm điểm thành công !!");
+                    // }
+                    // }
+                    // } else {
+                    // this.giaoDien();
+
+                    // }
+                    nhapDiemChoThiSinhPhongVan();
                     break;
 
                 case 6:
@@ -119,37 +127,75 @@ public class ActorGiangVien extends ActorTroGiang {
 
             String id = ScannerUtils.inputString();
 
+            // thoát
             if (id.equals("-1")) {
                 this.giaoDien();
                 return;
-            } else {
-                ArrayList<KetQua> ketQuaCuaHocVien = QLKetQua.timKiemTheoHocVien(id);
+            }
+            // tiếp tục
+            else {
+                KetQuaPhongVan ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(id);
 
-                // nếu tìm thấy ketQua ứng với id đã cung cấp
-                if (ketQuaCuaHocVien) {
-                    for (KetQua ketQua : ketQuaCuaHocVien) {
-                        String tenHocVien = ketQua.getHocVien().getHoTen();
-                        String tenLop = ketQua.getLopHoc().getTenLop();
+                // nếu tìm thấy ketQuaPhongVan ứng với id đã cung cấp
+                if (ketQuaPhongVan) {
+                    // th1: chưa phỏng vấn
+                    if (!ketQuaPhongVan.getLichPhongVan().getTrangThaiPhongVan()
+                            .equals(TrangThaiPhongVan.DA_PHONGVAN)) {
+                        System.out.println("Bạn không thể chấm điểm khi buổi phổng vấn chưa diễn ra!!");
+                        this.giaoDien();
+                        return;
+                    }
+                    // th2: đã phỏng vấn
+                    else {
+                        String tenKhachHang = ketQuaPhongVan.getLichPhongVan().getKhachHang().getHoTen();
 
-                        System.out.println("Nhập điểm cho " + tenHocVien + " tại lớp " + tenLop + " (ví dụ: 9.8)");
+                        System.out.println("Nhập điểm cho " + tenKhachHang + " của ca phỏng vấn "
+                                + id + " (ví dụ: 9.8)");
                         System.out.println("(Hoặc nhập -1 để thoát / kí tự bất kỳ khác để bỏ qua)");
 
+                        // nhập điểm
                         String diem = ScannerUtils.inputString();
 
+                        // thoát
                         if (diem.equals("-1")) {
                             this.giaoDien();
                             return;
-                        } else if (diem.matches("\\d(.\\d)?")) {
-                            ketQua.setDiem(diem);
+                        }
+                        // tiếp tục
+                        else if (diem.matches("\\d(.\\d)?")) {
+                            // update điểm;
+                            ketQuaPhongVan.setDiem(Double.parseDouble(diem));
+                            System.out.println("Đã chấm điểm thành công !!");
+
+                            // update chương trình học đề xuất
+                            System.out.println("Bạn muốn đề xuất chương trình nào cho khách ?");
+                            QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
+                            String maChuongTrinh = ScannerUtils.inputString();
+                            ChuongTrinhHoc chuongTrinhHoc = QLChuongTrinhHoc.timKiemTheoMa(maChuongTrinh);
+
+                            if (chuongTrinhHoc == null) {
+                                System.out.println("Không tìm thấy chương trình !!");
+                            } else {
+                                ketQuaPhongVan.setChuongTrinhHocDeXuat(chuongTrinhHoc);
+                                System.out.println("Đề xuất chương trình học thành công !!");
+                            }
+
+                            // update liên hệ
+                            ketQuaPhongVan.setLienHe(LienHe.DaLienHe);
+                        }
+                        // nhập sai định dạng điểm
+                        else {
+                            System.out.println("Không đúng định dạng điểm");
                         }
                     }
                 }
 
                 // ngược lại nếu không tìm thấy thì in ra thông báo
                 else {
-                    System.out.println("Không tìm thấy học viên!");
+                    System.out.println("Không tìm thấy kết quả phỏng vấn!");
                 }
             }
+
         } while (true);
     }
 
@@ -161,10 +207,13 @@ public class ActorGiangVien extends ActorTroGiang {
 
             String id = ScannerUtils.inputString();
 
+            // thoát
             if (id.equals("-1")) {
                 this.giaoDien();
                 return;
-            } else {
+            }
+            // tiếp tục
+            else {
                 ArrayList<KetQua> ketQuaCuaHocVien = QLKetQua.timKiemTheoHocVien(id);
 
                 // nếu tìm thấy ketQua ứng với id đã cung cấp
@@ -183,13 +232,14 @@ public class ActorGiangVien extends ActorTroGiang {
                             return;
                         } else if (diem.matches("\\d(.\\d)?")) {
                             ketQua.setDiem(diem);
+                            System.out.println("Nhập điểm thành công!");
                         }
                     }
                 }
 
                 // ngược lại nếu không tìm thấy thì in ra thông báo
                 else {
-                    System.out.println("Không tìm thấy học viên!");
+                    System.out.println("Không tìm thấy!");
                 }
             }
         } while (true);
