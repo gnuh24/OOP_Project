@@ -4,8 +4,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import HeThongGiaoDuc.CoSoVatChat.CoSo;
+import HeThongGiaoDuc.CoSoVatChat.PhongHoc;
 import HeThongGiaoDuc.DangKy.BienLai;
 import HeThongGiaoDuc.LopHoc.KetQua;
+import Utils.DocGhiFile;
 import Utils.ScannerUtils;
 
 public class QLBienLai {
@@ -19,6 +22,51 @@ public class QLBienLai {
 
     public static void setDsBienLai(ArrayList<BienLai> dsBienLai) {
         QLBienLai.dsBienLai = dsBienLai;
+    }
+
+
+    public static void loadDuLieu(){
+        ArrayList<String> duLieu=DocGhiFile.docDuLieuFile("src\\Data\\qlBienLai.txt");
+        xuLyDuLieu(duLieu);
+        System.out.println("Đã tải xong biên lai");
+
+    }
+
+    public static void xuLyDuLieu(ArrayList<String> duLieu) {
+        // duyệt qua duLieu và bắt đầu xử lý!
+        for (String dong : duLieu) {
+            // tách chuỗi tam
+            String[] cacThuocTinh = dong.split("#");
+
+            String maBienLai=cacThuocTinh[0];
+            String maDangKy=cacThuocTinh[1];
+            int soTienDaDong=Integer.parseInt(cacThuocTinh[2]);
+            String Date=cacThuocTinh[3];
+
+            QLBienLai.dsBienLai.add(new BienLai(maBienLai, QLYeuCauDangKy.timKiemTheoMa(maDangKy), soTienDaDong, LocalDateTime.parse(Date)));
+        }
+    }
+
+    public static void luuDuLieu() {
+        ArrayList<String> duLieu = xuLyDuLieuDeLuu();
+        if(DocGhiFile.ghiDuLieuFile("src\\Data\\qlBienLai.txt", duLieu)){
+            System.out.println("Đã lưu xong Biên lai");
+
+        }
+    }
+    public static ArrayList<String> xuLyDuLieuDeLuu() {
+        // duyệt qua duLieu và bắt đầu xử lý!
+        ArrayList<String> duLieu=new ArrayList<String>();
+        for (BienLai bienLai:dsBienLai) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(bienLai.getMaBienLai()).append("#")
+            .append(bienLai.getYeuCauDangKy().getMaDangKy()).append("#")
+            .append(bienLai.getSoTienDaDong()).append("#")
+            .append(bienLai.getNgayThanhToan()).append(System.lineSeparator());
+
+            duLieu.add(sb.toString());
+        }
+        return duLieu;
     }
 
     public static ArrayList<BienLai> timKiemTheoNgay(LocalDateTime ngay){
