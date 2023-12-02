@@ -97,7 +97,7 @@ public class QLKetQua {
   public static void inDanhSach(ArrayList<KetQua> dsKetQua) {
     System.out.println("*".repeat(123));
     System.out.printf("%-25s* %-10s* %-10s* %-50s*\n",
-         "Tên học viên", "Tên lớp học", "Điểm", "Đánh giá");
+        "Tên học viên", "Tên lớp học", "Điểm", "Đánh giá");
     System.out.println("*".repeat(123));
 
     for (KetQua ketQua : dsKetQua) {
@@ -120,6 +120,16 @@ public class QLKetQua {
     }
 
     return ketQuaTimKiem;
+  }
+
+  public static ArrayList<KetQua> timKiemTheoHocVien(String maHocVien, ArrayList<KetQua> dsKetQua) {
+    for (KetQua ketQua : dsKetQua) {
+      if (ketQua.getHocVien().getMaUser().equals(maHocVien)) {
+        return ketQua;
+      }
+    }
+
+    return null;
   }
 
   public static ArrayList<KetQua> timKiemTheoLopHoc(String malopHoc) {

@@ -2,7 +2,6 @@ package HeThongGiaoDuc.PhongVan;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
 
-
 public class KetQuaPhongVan {
     LichPhongVan lichPhongVan;
     double diem;
@@ -10,9 +9,6 @@ public class KetQuaPhongVan {
     ChuongTrinhHoc chuongTrinhHocDeXuat;
 
     LienHe lienHe;
-
-
-
 
     public KetQuaPhongVan() {
     }
@@ -30,7 +26,6 @@ public class KetQuaPhongVan {
         this.chuongTrinhHocDeXuat = chuongTrinhHocDeXuat;
         this.lienHe = lienHe;
     }
-
 
     public LichPhongVan getLichPhongVan() {
         return lichPhongVan;
