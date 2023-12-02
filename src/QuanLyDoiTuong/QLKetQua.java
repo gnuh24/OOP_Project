@@ -2,6 +2,7 @@ package QuanLyDoiTuong;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
@@ -244,7 +245,14 @@ public class QLKetQua {
 
 
     public static void thongKeTheoNam(){
-      
+      ArrayList<KetQua> dsKetQuas = new ArrayList<>(getDsKetQua());
+      dsKetQuas.sort(new Comparator<KetQua>(){
+        @Override
+        public int compare(KetQua o1, KetQua o2) {
+          return o1.getLopHoc().getKhoa().get
+        }
+
+      }); 
     }
 
 
