@@ -17,6 +17,7 @@ public class DocGhiFile {
                 String dong = fileReader.nextLine();
                 duLieu.add(dong);
             }
+            fileReader.close();
         } catch (IOException e) {
             System.out.println("Lỗi trong việc đọc file !!");
             e.printStackTrace();
