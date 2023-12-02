@@ -63,7 +63,7 @@ public class User {
     }
 
     public User() {
-        nhapThongTinBoiKhachHang();
+        nhapThongTin();
         this.vaiTro = VaiTro.KhachHang;
         this.trangThai = true;
         autoIncrementID(getVaiTro());
@@ -74,7 +74,7 @@ public class User {
         this.maUser = VaiTro.toCode(getVaiTro()) + so;
     }
 
-    public void nhapThongTinBoiKhachHang(){
+    public void nhapThongTin(){
         this.hoTen = ScannerUtils.inputName();
         this.email = ScannerUtils.inputEmail();
         this.gioiTinh = ScannerUtils.inputGioiTinh();

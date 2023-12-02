@@ -4,3 +4,4 @@ LPV3####KH0003#Chờ duyệt
 LPV4#GV0001#28/11/2023#15:30#KH4#Đã phổng vấn
 LPV5#GV0001#24/12/2023#13:00#KH5#Chờ phổng vấn
 LPV6####KH6#Chờ duyệt
+LPV7####KH7#Chờ duyệt
