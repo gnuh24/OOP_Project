@@ -2,6 +2,7 @@ package QuanLyDoiTuong;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 
@@ -200,9 +201,9 @@ public class QLKetQua {
         System.out.println("Nhập năm muốn kiểm tra: ");
         int nam = ScannerUtils.inputInt();
         for(KetQua ketQua:QLKetQua.getDsKetQua()){
-            if(ketQua.getLopHoc().getKhoa().getNgayBatDau().getYear()==nam){
+            if(ketQua.getLopHoc().getKhoa().getNgayKetThuc().getYear()==nam){
                 demHocVien[0]++;
-                switch (ketQua.getLopHoc().getKhoa().getNgayBatDau().getMonthValue()) {
+                switch (ketQua.getLopHoc().getKhoa().getNgayKetThuc().getMonthValue()) {
                     case 1: demHocVien[1]++; break;
                     case 2: demHocVien[2]++; break;
                     case 3: demHocVien[3]++; break;
@@ -245,14 +246,24 @@ public class QLKetQua {
 
 
     public static void thongKeTheoNam(){
-      ArrayList<KetQua> dsKetQuas = new ArrayList<>(getDsKetQua());
-      dsKetQuas.sort(new Comparator<KetQua>(){
+      QLKetQua.dsKetQua.sort(new Comparator<KetQua>(){
         @Override
         public int compare(KetQua o1, KetQua o2) {
-          return o1.getLopHoc().getKhoa().get
+          return o1.getLopHoc().getKhoa().getNgayKetThuc().compareTo(o2.getLopHoc().getKhoa().getNgayKetThuc());
         }
 
-      }); 
+      });
+      int demHocVien=0, nam=getDsKetQua().get(0).getLopHoc().getKhoa().getNgayKetThuc().getYear();
+      for (KetQua ketQua : dsKetQua) {
+        if(ketQua.getLopHoc().getKhoa().getNgayKetThuc().getYear()==nam){
+            demHocVien++;
+        }
+        else{
+          System.out.println("Năm: "+nam+" | Học viên: "+demHocVien);
+          demHocVien=0;
+          nam=ketQua.getLopHoc().getKhoa().getNgayKetThuc().getYear();
+        }
+      }
     }
 
 
