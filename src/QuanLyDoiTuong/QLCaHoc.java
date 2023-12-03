@@ -25,11 +25,13 @@ public class QLCaHoc {
 	// Hàm để in ra danh sách các Ca Học
 	public static void inDanhSach(ArrayList<CaHoc> dsCaHoc) {
 		System.out.println("*".repeat(52));
-		System.out.printf("* %-15s* %-15s* %-15s*\n", "Thu", "Giờ bắt đầu", "Giờ kết thúc");
+		System.out.printf("* %-15s* %-15s* %-15s* %-15s*\n", "Số thử tự","Thu", "Giờ bắt đầu", "Giờ kết thúc");
 		System.out.println("*".repeat(52));
+		int index = 1;
 		for (CaHoc caHoc : dsCaHoc) {
 			System.out.printf(
-					"* %-15s* %-15s* %-15s*\n",
+					"* %-15d* %-15s* %-15s* %-15s*\n",
+					index++,
 					Thu.toString(caHoc.getThu()),
 					Convert.timeToString(caHoc.getGioVaoHoc()),
 					Convert.timeToString(caHoc.getGioTanHoc()));

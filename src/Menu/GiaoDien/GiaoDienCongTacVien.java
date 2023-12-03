@@ -1,5 +1,6 @@
 package Menu.GiaoDien;
 
+import HeThongGiaoDuc.CoSoVatChat.PhongHoc;
 import HeThongGiaoDuc.DangKy.BienLai;
 import HeThongGiaoDuc.DangKy.YeuCauDangKy;
 import HeThongGiaoDuc.LopHoc.KetQua;
@@ -15,6 +16,7 @@ import NguoiDung.VaiTro;
 import QuanLyDoiTuong.*;
 import TaiKhoan.QLTaiKhoan;
 import TaiKhoan.TaiKhoan;
+import ThoiGian.CaHoc;
 import Utils.ScannerUtils;
 import org.w3c.dom.ls.LSOutput;
 
@@ -69,9 +71,11 @@ public class GiaoDienCongTacVien extends GiaoDien {
                     QLUser.themUserMoi();
                     break;
                 case 7:
+
                     break;
 
                 case 8:
+                    sapXepLopHoc();
                     break;
 
                 case 9:
@@ -438,11 +442,100 @@ public class GiaoDienCongTacVien extends GiaoDien {
         if (lopHoc == null){
             System.out.println("Không tìm thấy mã lớp !!!");
             sapXepLopHoc();
-        }else {
         }
+        else {
+
+            ArrayList<User> dsGiangVien = QLUser.timUserTheoVaiTro(VaiTro.GiangVien, true);
+            ArrayList<User> dsTroGiang = QLUser.timUserTheoVaiTro(VaiTro.TroGiang, true);
+
+
+            ArrayList<CaHoc> dsCaHoc = new ArrayList<>();
+            QLCaHoc.inDanhSach(QLCaHoc.getDsCaHoc());
+            System.out.println("Hãy chọn ca học thứ 1 mà bạn muốn ?");
+            int choiceCaHoc1 = ScannerUtils.inputInt();
+            if (choiceCaHoc1 < 1 || choiceCaHoc1 > QLCaHoc.getDsCaHoc().size()){
+                System.out.println("Ca học không hợp lẹ !!");
+                sapXepLopHoc();
+            }else{
+                dsCaHoc.add(QLCaHoc.getDsCaHoc().get(choiceCaHoc1 - 1));
+            }
+
+            QLCaHoc.inDanhSach(QLCaHoc.getDsCaHoc());
+            System.out.println("Hãy chọn ca học thứ 2 mà bạn muốn ?");
+            int choiceCaHoc2 = ScannerUtils.inputInt();
+            if (choiceCaHoc2 < 1 || choiceCaHoc2 > QLCaHoc.getDsCaHoc().size()){
+                System.out.println("Ca học không hợp lẹ !!");
+                sapXepLopHoc();
+            }else{
+                if (choiceCaHoc2 == choiceCaHoc1){
+                    System.out.println("Bạn không được chọn 2 ca học giống nhau !!");
+                    sapXepLopHoc();
+                }else{
+                    dsCaHoc.add(QLCaHoc.getDsCaHoc().get(choiceCaHoc2 - 1));
+                }
+            }
+
+            lopHoc.setCaHocMacDinh(dsCaHoc);
+
+            QLUser.inThongTin(dsGiangVien);
+            System.out.println("Hãy chọn giảng viên phù hợp.");
+            String maGV = ScannerUtils.inputString();
+            User giangVien = QLUser.timUserTheoMa(maGV, dsGiangVien);
+
+            while (giangVien == null){
+                System.out.println("Mã giảng viên không hợp lẹ !!");
+                System.out.println("Hãy chọn giảng viên phù hợp.");
+                maGV = ScannerUtils.inputString();
+                giangVien = QLUser.timUserTheoMa(maGV, dsGiangVien);
+            }
+
+            lopHoc.setGiangVien(giangVien);
+            System.out.println("Đã thêm giảng viên thành công !!");
+
+
+
+            QLUser.inThongTin(dsTroGiang);
+            System.out.println("Hãy chọn trợ giảng phù hợp.");
+            String maTG = ScannerUtils.inputString();
+            User troGiang = QLUser.timUserTheoMa(maTG, dsTroGiang);
+
+            while (troGiang == null){
+                System.out.println("Mã giảng viên không hợp lẹ !!");
+                System.out.println("Hãy chọn trợ giảng phù hợp.");
+                maTG = ScannerUtils.inputString();
+                troGiang = QLUser.timUserTheoMa(maTG, dsTroGiang);
+            }
+
+            lopHoc.setTroGiang(troGiang);
+            System.out.println("Đã thêm trợ giảng thành công !!");
+
+
+            QLPhongHoc.inDSPhongHoc(QLPhongHoc.getDsPhongHoc());
+            System.out.println("Hãy chọn phòng học phù hợp.");
+            String maPhong = ScannerUtils.inputString();
+            PhongHoc phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(maPhong);
+
+            while (phongHoc == null){
+                System.out.println("Phòng học không hợp lệ !!");
+                System.out.println("Hãy chọn phòng học phù hợp.");
+                maPhong = ScannerUtils.inputString();
+                phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(maPhong);
+            }
+
+            lopHoc.setPhongHocMacDinh(phongHoc);
+            System.out.println("Đã thêm phòng học thành công !!");
+
+            lopHoc.setTrangThai(TrangThaiLop.Sap_Khai_Giang);
+            System.out.println("Đã sắp xếp thành công cho lớp học  !!");
+
+        }
+        giaoDien();
     }
 
-
+    private void chuyenLop(){
+        System.out.println("Hãy nhập mã học sinh muốn chuyển lớp !!");
+        String maHV = ScannerUtils.inputString();
+    }
 }
 
 
