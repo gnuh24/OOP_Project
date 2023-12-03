@@ -251,7 +251,7 @@ public class QLUser {
         String hoTen = ScannerUtils.inputName();
         String email = ScannerUtils.inputEmail();
         boolean gioiTinh = ScannerUtils.inputGioiTinh();
-        LocalDate ngaySinh = ScannerUtils.inputDate();
+        LocalDate ngaySinh = ScannerUtils.inputDate("Nhập ngày sinh. ");
         String soDienThoai = ScannerUtils.inputSDT();
         String diaChi = ScannerUtils.inputDiaChi();
         VaiTro vaiTro = ScannerUtils.inputVaiTro();

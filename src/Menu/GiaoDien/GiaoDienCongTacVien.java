@@ -35,8 +35,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
             System.out.println("4. Đăng ký khóa học mới");
             System.out.println("5. Tạo tài khoản mới");
             System.out.println("6. Thêm thông tin vào hệ thống");
-            System.out.println("7. Đăng xuất");
-            System.out.println("8. Thoát chương trình");
+            System.out.println("7. Chuyển lớp cho học sinh");
+            System.out.println("8. Sắp xep cho các lớp sắp khai giảng");
+            System.out.println("9. Đăng xuất");
+            System.out.println("10. Thoát chương trình");
             System.out.println("Bạn đã có lựa chọn chưa ?");
             choice = ScannerUtils.inputInt();
 
@@ -66,11 +68,16 @@ public class GiaoDienCongTacVien extends GiaoDien {
                 case 6:
                     QLUser.themUserMoi();
                     break;
-
                 case 7:
+                    break;
+
+                case 8:
+                    break;
+
+                case 9:
                     Session.logout();
                     break;
-                case 8:
+                case 10:
                     exit();
                     break;
             }
@@ -116,7 +123,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
                         System.out.println("Đã thêm giảng vie6n thành công !!");
                     }
 
-                    LocalDate ngayThang = ScannerUtils.inputDate();
+                    LocalDate ngayThang = ScannerUtils.inputDate("Nhập ngày phổng vấn. ");
                     lichPhongVan.setNgayThang(ngayThang);
                     System.out.println("Đã thêm ngày tháng thành công !!");
 
@@ -347,17 +354,18 @@ public class GiaoDienCongTacVien extends GiaoDien {
         System.out.println("Ấn các số còn lại để thoát !!");
 
         int luaChon = ScannerUtils.inputInt();
-
+        User user = new User(
+                ketQuaPhongVan.getLichPhongVan().getKhachHang().getHoTen(),
+                ketQuaPhongVan.getLichPhongVan().getKhachHang().getEmail(),
+                ketQuaPhongVan.getLichPhongVan().getKhachHang().isGioiTinh(),
+                ketQuaPhongVan.getLichPhongVan().getKhachHang().getNgaySinh(),
+                ketQuaPhongVan.getLichPhongVan().getKhachHang().getSoDienThoai(),
+                ketQuaPhongVan.getLichPhongVan().getKhachHang().getDiaChi(),
+                VaiTro.HocVien);
+        QLUser.getDsUser().add(user);
         if (luaChon == 1){
             int dongTien = ScannerUtils.inputHocPhi();
-            User user = new User(
-                    ketQuaPhongVan.getLichPhongVan().getKhachHang().getHoTen(),
-                    ketQuaPhongVan.getLichPhongVan().getKhachHang().getEmail(),
-                    ketQuaPhongVan.getLichPhongVan().getKhachHang().isGioiTinh(),
-                    ketQuaPhongVan.getLichPhongVan().getKhachHang().getNgaySinh(),
-                    ketQuaPhongVan.getLichPhongVan().getKhachHang().getSoDienThoai(),
-                    ketQuaPhongVan.getLichPhongVan().getKhachHang().getDiaChi(),
-                    VaiTro.HocVien);
+
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc, dongTien);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
             QLKetQua.getDsKetQua().add( new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
@@ -365,8 +373,8 @@ public class GiaoDienCongTacVien extends GiaoDien {
             bienLai.inBienLai();
             QLBienLai.getDsBienLai().add(bienLai);
         }else if(luaChon == 2){
-            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(ketQuaPhongVan.getLichPhongVan().getKhachHang(), lopHoc);
-            QLKetQua.getDsKetQua().add(new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc()));
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc);
+            QLKetQua.getDsKetQua().add(new KetQua(user, yeuCauDangKy.getLopHoc()));
             System.out.println("Đăng ký thành công !!");
         }else {
             giaoDien();
@@ -379,9 +387,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
         boolean gioiTinh = ScannerUtils.inputGioiTinh();
         String sdt = ScannerUtils.inputSDT();
         String diaChi = ScannerUtils.inputDiaChi();
-
-        System.out.println("Nhập ngày tháng năm sinh: ");
-        LocalDate ngayThang = ScannerUtils.inputDate();
+        LocalDate ngayThang = ScannerUtils.inputDate("Nhập ngày tháng năm sinh: ");
 
 
         User khachHang = new User(hoTen, email, gioiTinh, ngayThang, sdt, diaChi, VaiTro.KhachHang);
@@ -425,7 +431,15 @@ public class GiaoDienCongTacVien extends GiaoDien {
     }
 
     private void sapXepLopHoc(){
-
+        QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Cho_Sap_Xep));
+        System.out.println("Bạn chọn lớp nào để sắp xếp ?");
+        String choice = ScannerUtils.inputString();
+        LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(choice);
+        if (lopHoc == null){
+            System.out.println("Không tìm thấy mã lớp !!!");
+            sapXepLopHoc();
+        }else {
+        }
     }
 
 

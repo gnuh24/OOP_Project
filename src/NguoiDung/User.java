@@ -1,9 +1,14 @@
 package NguoiDung;
 
+import HeThongGiaoDuc.LopHoc.LopHoc;
+import QuanLyDoiTuong.QLLopHoc;
 import QuanLyDoiTuong.QLUser;
+import ThoiGian.CaHoc;
+import ThoiGian.Thu;
 import Utils.ScannerUtils;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class User {
 
@@ -78,10 +83,29 @@ public class User {
         this.hoTen = ScannerUtils.inputName();
         this.email = ScannerUtils.inputEmail();
         this.gioiTinh = ScannerUtils.inputGioiTinh();
-        this.ngaySinh = ScannerUtils.inputDate();
+        this.ngaySinh = ScannerUtils.inputDate("Nhập ngày sinh: ");
         this.soDienThoai = ScannerUtils.inputSDT();
         this.diaChi = ScannerUtils.inputDiaChi();
     }
+
+    public boolean isBusy(Thu thu, LocalTime localTime) {
+        for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
+            CaHoc caHoc1 = lopHoc.getCaHocMacDinh().get(0);
+            CaHoc caHoc2 = lopHoc.getCaHocMacDinh().get(1);
+
+            if (caHoc1.getThu().equals(thu) &&
+                    caHoc1.getGioVaoHoc().isBefore(localTime) &&
+                    caHoc1.getGioTanHoc().isAfter(localTime)) {
+                return true;
+            } else if (caHoc2.getThu().equals(thu) &&
+                    caHoc2.getGioVaoHoc().isBefore(localTime) &&
+                    caHoc2.getGioTanHoc().isAfter(localTime)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public String getMaUser() {
         return maUser;

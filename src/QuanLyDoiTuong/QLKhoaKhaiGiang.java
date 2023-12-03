@@ -179,16 +179,23 @@ public class QLKhoaKhaiGiang {
 
 
 	public static void taoKhoaMoi(){
-        DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate ngayBatDau = LocalDate.now();
-        ngayBatDau.format(formater);
-	    LocalDate ngayKetThuc = LocalDate.now();
-        ngayKetThuc.format(formater);
-        KhoaKhaiGiang khoaKhaiGiangMoi = new KhoaKhaiGiang(ngayBatDau, ngayKetThuc);
-        QLKhoaKhaiGiang.getDsKhoaKhaiGiang().add(khoaKhaiGiangMoi);
+		LocalDate ngayBatDau = ScannerUtils.inputDate("Nhập ngày bắt đầu");
+		LocalDate ngayKetThuc = ScannerUtils.inputDate("Nhập ngày kết thúc");
+		KhoaKhaiGiang khoaKhaiGiangMoi = new KhoaKhaiGiang(ngayBatDau, ngayKetThuc);
+		QLKhoaKhaiGiang.getDsKhoaKhaiGiang().add(khoaKhaiGiangMoi);
+		System.out.println("Đã thêm khóa");
+	}
 
-        System.out.println("Đã thêm khóa");
-    }
+	public static ArrayList<KhoaKhaiGiang> timKiemKhoaChuaBatDau(){
+		ArrayList<KhoaKhaiGiang> ketQua = new ArrayList<>();
+		LocalDate ngayHienTai = LocalDate.now();
+		for (KhoaKhaiGiang khoaKhaiGiang : QLKhoaKhaiGiang.getDsKhoaKhaiGiang()) {
+			if( khoaKhaiGiang.getNgayBatDau().isAfter(ngayHienTai) ){
+				ketQua.add(khoaKhaiGiang);
+			}
+		}
+		return ketQua;
+	}
 
 	
 

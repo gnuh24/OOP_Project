@@ -42,7 +42,10 @@ public class CaHoc {
 
     @Override
     public String toString() {
-        return "Thứ " + Thu.toString(thu) + ": " + gioVaoHoc.toString() + " -> " + gioTanHoc.toString();
+        if (thu != null && gioVaoHoc != null && gioTanHoc != null){
+            return "Thứ " + Thu.toString(thu) + ": " + gioVaoHoc + " -> " + gioTanHoc;
+        }
+        return "Chưa cập nhật";
     }
 
 }
