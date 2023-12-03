@@ -2,6 +2,7 @@ package Menu.GiaoDien;
 
 import java.util.ArrayList;
 
+import HeThongGiaoDuc.DangKy.BienLai;
 import HeThongGiaoDuc.DangKy.YeuCauDangKy;
 import HeThongGiaoDuc.LopHoc.KetQua;
 import HeThongGiaoDuc.LopHoc.LopHoc;
@@ -9,6 +10,7 @@ import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import Menu.Session;
 import NguoiDung.User;
 import NguoiDung.VaiTro;
+import QuanLyDoiTuong.QLBienLai;
 import QuanLyDoiTuong.QLKetQua;
 import QuanLyDoiTuong.QLLopHoc;
 import QuanLyDoiTuong.QLUser;
@@ -147,4 +149,69 @@ public class GiaoDienHocVien extends GiaoDien {
             giaoDien();
         }
     }
+
+    public static int soTienConNo(YeuCauDangKy YCDK) {
+	    int tienNo = YCDK.getTongHocPhi();	
+	    for (BienLai bienLai : QLBienLai.getDsBienLai()){
+            if (bienLai.getYeuCauDangKy().getMaDangKy().equals(YCDK.getMaDangKy())) {
+                tienNo -= bienLai.getSoTienDaDong();
+            }
+
+	    return tienNo;
+    }
+
+    private void inSoTienConNo(ArrayList<YeuCauDangKy> cacYCDK) {
+        // in ra số tiền còn nợ của từng yêu cầu đăng ký
+        System.out.println("*".repeat(100));
+        System.out.printf("* %-20s* %-20s* %-25s* %-25s*\n",
+                "Mã đăng ký", "Tên lớp học", "Tổng học phí", "Số tiền còn nợ");
+
+        for (YeuCauDangKy YCDK : cacYCDK) {
+            // chỉ in ra các YCDK còn nợ học phí
+            if (soTienConNo(YCDK) > 0) {
+                System.out.printf("* %-20s* %-20s* %-25s* %-25s*\n",
+                        YCDK.getMaDangKy(),
+                        YCDK.getLopHoc().getTenLop(),
+                        YCDK.getTongHocPhi(),
+                        soTienConNo(YCDK));
+            }
+        }
+
+        System.out.println("*".repeat(100));
+    }
+
+    private void dongHocPhi() {
+        // xác định học viên này
+        User hocVien = Session.getTaiKhoan().getUser();
+
+        // tìm các yêu cầu đăng ký của học viên này
+        ArrayList<YeuCauDangKy> cacYCDK = QLYeuCauDangKy.timKiemTheoMaHocVien(hocVien.getMaUser());
+
+        // in ra số tiền còn nợ
+        inSoTienConNo(cacYCDK);
+
+        // chọn ycdk muốn đóng
+        System.out.println("Bạn muốn thanh toán cho Yêu cầu đăng ký nào? (Nhập mã đăng ký)");
+        String input = ScannerUtils.inputString();
+        YeuCauDangKy YCDK = QLYeuCauDangKy.timKiemTheoMaDangKy(input, cacYCDK);
+
+        while (YCDK == null) {
+            System.out.println("Không tìm thấy Yêu cầu đăng ký phù hợp. Vui lòng nhập lại");
+
+            input = ScannerUtils.inputString();
+            YCDK = QLYeuCauDangKy.timKiemTheoMaDangKy(input, cacYCDK);
+        }
+
+        // bước tiếp theo, đóng học phí
+        System.out.print("Nhập số tiền bạn muốn thanh toán (VND): ");
+        int tien = ScannerUtils.inputHocPhi();
+
+        // tạo và in biên lai
+        BienLai bienLai = new BienLai(YCDK, tien);
+        bienLai.inBienLai();
+        QLBienLai.getDsBienLai().add(bienLai);
+
+        System.out.println("\nThanh toán thành công!!");
+    }
+
 }
