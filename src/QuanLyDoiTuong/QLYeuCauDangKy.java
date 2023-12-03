@@ -75,7 +75,7 @@ public class QLYeuCauDangKy {
                     .append(yeuCauDangKy.getTongHocPhi()).append("#")
                     .append(yeuCauDangKy.getTrangThaiDangKy()).append("#")
                     .append(yeuCauDangKy.getKhuyenMai()).append("#")
-                    .append(yeuCauDangKy.getLocalDate()).append("#")
+                    .append(yeuCauDangKy.getLocalDate())
                     .append(System.lineSeparator());
 
             duLieu.add(sb.toString());

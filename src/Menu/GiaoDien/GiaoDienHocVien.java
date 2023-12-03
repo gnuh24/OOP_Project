@@ -27,7 +27,7 @@ public class GiaoDienHocVien extends GiaoDien {
             System.out.println("2. Xem thời khóa biểu các lớp sắp khai giảng");
             System.out.println("3. Xem điểm");
             System.out.println("4. Đóng học phí");
-            System.out.println("5. Đăng ký khóa học mới");
+            System.out.println("5. Đăng ký lớp học mới");
             System.out.println("6. Đăng xuất");
             System.out.println("7. Thoát chương trình");
             System.out.println("Bạn đã có lựa chọn chưa ?");
@@ -50,6 +50,7 @@ public class GiaoDienHocVien extends GiaoDien {
                     break;
 
                 case 4:
+                    dongHocPhi();
                     break;
 
                 case 5:
@@ -85,6 +86,7 @@ public class GiaoDienHocVien extends GiaoDien {
                 .timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang);
 
         ArrayList<LopHoc> dsCacLopHocPhuHop = new ArrayList<>(dsCacLopCacLopDangHoc);
+        dsCacLopHocPhuHop.addAll(dsCacLopCacLopSapKhaiGiang);
 
         // Hiển thị cho học viên các lớp học phù hợp
         QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
@@ -106,43 +108,21 @@ public class GiaoDienHocVien extends GiaoDien {
         System.out.println("Ấn các số còn lại để thoát !!");
 
         int luaChon = ScannerUtils.inputInt();
-
+        User temp = Session.getTaiKhoan().getUser();
         if (luaChon == 1) {
-            QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.HocVien));
-            System.out.println("Nhập mã học viên: ");
-
-            String maHV = ScannerUtils.inputString();
-            User user = QLUser.timUserTheoMa(maHV);
-
-            while (user == null) {
-                System.out.println("Không tìm thấy mã học viên !!");
-                System.out.println("Xin mời nhập lại !!");
-                maHV = ScannerUtils.inputString();
-                user = QLUser.timUserTheoMa(maHV);
-            }
-
-            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc, lopHoc.getChuongTrinh().getHocPhi());
+            int dongTien = ScannerUtils.inputHocPhi();
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(Session.getTaiKhoan().getUser(), lopHoc, dongTien);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
-            QLKetQua.getDsKetQua().add(new KetQua(user, lopHoc));
-
+            QLKetQua.getDsKetQua().add( new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
+            BienLai bienLai = new BienLai(yeuCauDangKy, dongTien);
+            bienLai.inBienLai();
+            QLBienLai.getDsBienLai().add(bienLai);
             System.out.println("Đăng ký thành công !!");
         } else if (luaChon == 2) {
-            QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.HocVien));
-            System.out.println("Nhập mã học viên: ");
 
-            String maHV = ScannerUtils.inputString();
-            User user = QLUser.timUserTheoMa(maHV);
-
-            while (user == null) {
-                System.out.println("Không tìm thấy mã học viên !!");
-                System.out.println("Xin mời nhập lại !!");
-                maHV = ScannerUtils.inputString();
-                user = QLUser.timUserTheoMa(maHV);
-            }
-
-            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc);
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(temp, lopHoc);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
-            QLKetQua.getDsKetQua().add(new KetQua(user, lopHoc));
+            QLKetQua.getDsKetQua().add(new KetQua(temp, lopHoc));
 
             System.out.println("Đăng ký thành công !!");
         } else {
