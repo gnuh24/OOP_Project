@@ -98,12 +98,13 @@ public class QLKetQua {
   // hàm in ra danh sách kết quả
   public static void inDanhSach(ArrayList<KetQua> dsKetQua) {
     System.out.println("*".repeat(114));
-    System.out.printf("* %-25s* %-20s* %-10s* %-50s*\n",
-        "Tên học viên", "Tên lớp học", "Điểm", "Đánh giá");
+    System.out.printf("* %-10s* %-25s* %-20s* %-10s* %-50s*\n",
+        "STT", "Tên học viên", "Tên lớp học", "Điểm", "Đánh giá");
     System.out.println("*".repeat(114));
-
+    int index = 1;
     for (KetQua ketQua : dsKetQua) {
-      System.out.printf("* %-25s* %-20s* %-10s* %-50s*\n",
+      System.out.printf("* %-10s* %-25s* %-20s* %-10s* %-50s*\n",
+          index++,
           ketQua.getHocVien().getHoTen(),
           ketQua.getLopHoc().getTenLop(),
           ketQua.getDiem() == -1.0 ? "": ketQua.getDiem(),

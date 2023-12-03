@@ -94,6 +94,16 @@ public class QLYeuCauDangKy {
         System.out.println("Đã lưu xong Yeu Cau Dang Ky");
     }
 
+    public static YeuCauDangKy timKiemChinhXacTheoHocVienVaLopHoc(String maHocVien, String maLopHoc){
+        YeuCauDangKy ketQua = null;
+        for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
+            if (yeuCauDangKy.getHocVien().getMaUser().equals(maHocVien) && yeuCauDangKy.getLopHoc().getMaLop().equals(maLopHoc)) {
+                return ketQua;
+            }
+        }
+        return ketQua;
+    }
+
     public static ArrayList<YeuCauDangKy> timKiemTheoMaHocVien(String maHocVien) {
         ArrayList<YeuCauDangKy> ketQua = new ArrayList<>();
         for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
