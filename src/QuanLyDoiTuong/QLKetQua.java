@@ -153,6 +153,7 @@ public class QLKetQua {
     public static void thongKeHocVienTheoChuongTrinh(){
         int demHocVien=0;
         System.out.printf("%-18s %-18s\n","Mã chương trình","Số lượng học viên");
+        System.out.println("*".repeat(40));
         for(ChuongTrinhHoc chuongTrinhHoc:QLChuongTrinhHoc.getDsChuongTrinhHoc()){
             for(KetQua ketQua:dsKetQua){
                 if (ketQua.getLopHoc().getChuongTrinh().getMaChuongTrinh().equals(chuongTrinhHoc.getMaChuongTrinh())) {
@@ -176,37 +177,23 @@ public class QLKetQua {
         for(KetQua ketQua:QLKetQua.getDsKetQua()){
             if(ketQua.getLopHoc().getKhoa().getNgayKetThuc().getYear()==nam){
                 demHocVien[0]++;
-                switch (ketQua.getLopHoc().getKhoa().getNgayKetThuc().getMonthValue()) {
-                    case 1: demHocVien[1]++; break;
-                    case 2: demHocVien[2]++; break;
-                    case 3: demHocVien[3]++; break;
-                    case 4: demHocVien[4]++; break;
-                    case 5: demHocVien[5]++; break;
-                    case 6: demHocVien[6]++; break;
-                    case 7: demHocVien[7]++; break;
-                    case 8: demHocVien[8]++; break;
-                    case 9: demHocVien[9]++; break;
-                    case 10: demHocVien[10]++; break;
-                    case 11: demHocVien[11]++; break;
-                    case 12: demHocVien[12]++; break;
-                }
+                demHocVien[ketQua.getLopHoc().getKhoa().getNgayKetThuc().getMonthValue()]++;
             }
         }
 
-        System.out.println("Số học viên năm "+nam+" "+demHocVien[0]);
-        System.out.println("----------------------------------------------------------------------------------------");
+        System.out.println("Tổng số học viên: "+demHocVien[0]);
+        System.out.printf("%-20s %-20s\n","Tháng","Số học viên");
+        System.out.println("*".repeat(40));
         for(int i=1; i<demHocVien.length; i++){
-            System.out.printf("%-10s","Tháng"+i+"|"+demHocVien[i]+"| ");
-            for(int j=0; j<demHocVien[i]; j++){
-                System.out.print("*");
-            }
-            System.out.println("");
+            System.out.printf("%-20s %-20s\n",i,demHocVien[i]);
         }
+        System.out.println("*".repeat(40));
     }
 
     public static void thongKeHocVienTheoKhoa(){
         int demHocVien = 0;
         System.out.printf("%-10s %-10s %-10s %-10s\n", "Mã khóa","Ngày bắt đầu","Ngày kết thúc","Số lượng học viên");
+        System.out.println("*".repeat(40));
         for(KhoaKhaiGiang khoaKhaiGiang:QLKhoaKhaiGiang.getDsKhoaKhaiGiang()){
             for (KetQua ketQua:dsKetQua) {
                 if (ketQua.getLopHoc().getKhoa().getMaKhoa().equals(khoaKhaiGiang.getMaKhoa())) {
@@ -216,6 +203,8 @@ public class QLKetQua {
             System.out.printf("%-10s %-10s %-10s %-10s\n",khoaKhaiGiang.getMaKhoa(),khoaKhaiGiang.getNgayBatDau(),khoaKhaiGiang.getNgayKetThuc(), demHocVien);
             demHocVien=0;
         }
+        System.out.println("*".repeat(40));
+
     }
 
 
@@ -228,16 +217,19 @@ public class QLKetQua {
 
       });
       int demHocVien=0, nam=getDsKetQua().get(0).getLopHoc().getKhoa().getNgayKetThuc().getYear();
+      System.out.printf("%-20s -20s\n","Năm","Số học viên");
+      System.out.println("*".repeat(40));
       for (KetQua ketQua : dsKetQua) {
         if(ketQua.getLopHoc().getKhoa().getNgayKetThuc().getYear()==nam){
             demHocVien++;
         }
         else{
-          System.out.println("Năm: "+nam+" | Học viên: "+demHocVien);
+          System.out.printf("%-20s %-20s", ketQua.getLopHoc().getKhoa().getNgayKetThuc().getYear(), demHocVien);
           demHocVien=0;
           nam=ketQua.getLopHoc().getKhoa().getNgayKetThuc().getYear();
         }
       }
+      System.out.println("*".repeat(40));
     }
 
     public static void xemTKBCacLopDangHoc(User user) {

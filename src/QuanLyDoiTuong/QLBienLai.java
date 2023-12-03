@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
 import HeThongGiaoDuc.CoSoVatChat.CoSo;
 import HeThongGiaoDuc.CoSoVatChat.PhongHoc;
 import HeThongGiaoDuc.DangKy.BienLai;
@@ -172,21 +173,15 @@ public class QLBienLai {
             }
         }
 
-        System.out.println("----------------------------------------------------------------------------------------");
         System.out.println("Tong doanh thu: " + tongDoanhThu[0]);
-        int min = tongDoanhThu[0];
+        System.out.println("*".repeat(50));
+        System.out.printf("%-20s %-20s\n","Chương trình", "Doanh thu");
+        System.out.println("*".repeat(50));
         for (int i = 1; i < tongDoanhThu.length; i++) {
-            if (min > tongDoanhThu[i])
-                min = tongDoanhThu[i];
+            System.out.printf("%-20s %-20s\n", "CTH"+i,tongDoanhThu[i]);
         }
-        for (int i = 1; i < tongDoanhThu.length; i++) {
-            System.out.printf("%-10s", "CTH" + i + "|" + tongDoanhThu[i] + "| ");
-            for (int j = 0; j < tongDoanhThu[i] / min; j++) {
-                System.out.print("*");
-            }
-            System.out.println("");
-        }
-        System.out.println("----------------------------------------------------------------------------------------");
+        System.out.println("*".repeat(50));
+
 
     }
 
@@ -199,66 +194,35 @@ public class QLBienLai {
         int nam = ScannerUtils.inputInt();
         for (BienLai bienLai : QLBienLai.dsBienLai) {
             if (bienLai.getNgayThanhToan().getYear() == nam) {
-                tongDoanhThu[0]++;
-                switch (bienLai.getNgayThanhToan().getMonthValue()) {
-                    case 1:
-                        tongDoanhThu[1]++;
-                        break;
-                    case 2:
-                        tongDoanhThu[2]++;
-                        break;
-                    case 3:
-                        tongDoanhThu[3]++;
-                        break;
-                    case 4:
-                        tongDoanhThu[4]++;
-                        break;
-                    case 5:
-                        tongDoanhThu[5]++;
-                        break;
-                    case 6:
-                        tongDoanhThu[6]++;
-                        break;
-                    case 7:
-                        tongDoanhThu[7]++;
-                        break;
-                    case 8:
-                        tongDoanhThu[8]++;
-                        break;
-                    case 9:
-                        tongDoanhThu[9]++;
-                        break;
-                    case 10:
-                        tongDoanhThu[10]++;
-                        break;
-                    case 11:
-                        tongDoanhThu[11]++;
-                        break;
-                    case 12:
-                        tongDoanhThu[12]++;
-                        break;
-                }
+                tongDoanhThu[0] += bienLai.getSoTienDaDong();
+                tongDoanhThu[bienLai.getNgayThanhToan().getMonthValue()] += bienLai.getSoTienDaDong();
             }
         }
 
-        System.out.println("Tổng doanh thu năm " + nam + " " + tongDoanhThu[0]);
-        System.out.println("----------------------------------------------------------------------------------------");
+        System.out.println("Tổng doanh thu năm "+nam+": "+tongDoanhThu[0]);
+        System.out.println("*".repeat(50));
+        System.out.printf("%-20s %-20s\n","Tháng", "Doanh thu");
+        System.out.println("*".repeat(50));
         for (int i = 1; i < tongDoanhThu.length; i++) {
-            System.out.println("Tháng" + i + " | " + tongDoanhThu[i]);
+            System.out.printf("%-20s %-20s\n", i,tongDoanhThu[i]);
         }
+        System.out.println("*".repeat(50));
     }
 
     public static void thongKeDoanhThuTheoKhoa() {
         int tongDoanhThu = 0;
-        QLKhoaKhaiGiang.inDanhSachKhoaKhaiGiang(QLKhoaKhaiGiang.getDsKhoaKhaiGiang());
-        System.out.println("Nhập mã Khóa");
-        String maKhoa = ScannerUtils.inputString();
-        for (BienLai bienLai : QLBienLai.dsBienLai) {
-            if (bienLai.getYeuCauDangKy().getLopHoc().getKhoa().getMaKhoa().equals(maKhoa)) {
-                tongDoanhThu += bienLai.getSoTienDaDong();
-            }
+        System.out.printf("%-20s %-02s\n","Khóa","Doanh thu");
+        System.out.println("*".repeat(40));
+        for(KhoaKhaiGiang khoaKhaiGiang:QLKhoaKhaiGiang.getDsKhoaKhaiGiang()){
+            for(BienLai bienLai:dsBienLai){
+                if (bienLai.getYeuCauDangKy().getLopHoc().getKhoa().getMaKhoa().equals(khoaKhaiGiang.getMaKhoa())) {
+                    tongDoanhThu+=bienLai.getSoTienDaDong();
+                }
+            }   
+            System.out.printf("%-20s %-20s\n",khoaKhaiGiang.getMaKhoa(),tongDoanhThu);
+            tongDoanhThu=0;
         }
-        System.out.println("Tổng doanh thu của khóa: " + tongDoanhThu);
+        System.out.println("*".repeat(40));
     }
 
     public static void thongKeTheoNam() {
@@ -270,15 +234,18 @@ public class QLBienLai {
 
         });
         int tongDoanhThu = 0, nam = getDsBienLai().get(0).getNgayThanhToan().getYear();
+        System.out.printf("%-20s %-02s\n","Năm","Doanh thu");
+        System.out.println("*".repeat(40));
         for (BienLai bienLai : QLBienLai.dsBienLai) {
             if (bienLai.getNgayThanhToan().getYear() == nam) {
                 tongDoanhThu += bienLai.getSoTienDaDong();
             } else {
-                System.out.println("Năm: " + nam + " | Doanh thu: " + tongDoanhThu);
+                System.out.println();
                 tongDoanhThu = 0;
                 nam = bienLai.getNgayThanhToan().getYear();
             }
         }
+        System.out.println("*".repeat(40));
     }
 
     public static int soTienConNo(YeuCauDangKy YCDK) {
