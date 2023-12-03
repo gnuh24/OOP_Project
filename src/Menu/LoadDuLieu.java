@@ -22,6 +22,9 @@ public class LoadDuLieu {
 
         //Dữ liệu cấp cao (Quan trọng và phụ thuộc vào các đối tượng rất nhiều)
         QLKetQuaPhongVan.loadDuLieu();
+        QLYeuCauDangKy.loadDuLieu();
+        QLBienLai.loadDuLieu();
+        QLKetQua.loadDuLieu();
 
     }
 
@@ -34,5 +37,8 @@ public class LoadDuLieu {
         QLUser.saveDuLieu();
         QLLichPhongVan.saveDuLieu();
         QLKetQuaPhongVan.saveDuLieu();
+        QLKetQua.saveDuLieu();
+        QLYeuCauDangKy.luuDuLieu();
+        QLBienLai.luuDuLieu();
     }
 }

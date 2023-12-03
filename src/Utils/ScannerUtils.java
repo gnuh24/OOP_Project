@@ -1,6 +1,8 @@
 // M.T.T. Kiet
 package Utils;
 
+import NguoiDung.VaiTro;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -47,7 +49,7 @@ public class ScannerUtils {
     }
 
     public static String inputSDT() {
-        System.out.println("Xin mời nhập ngày tháng năm. (VD: 0938240359)");
+        System.out.println("Xin mời nhập số điện thoại. (VD: 0938240359)");
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
         // Số điện thoại 10 số
@@ -106,5 +108,129 @@ public class ScannerUtils {
         }
         return userInput;
     }
+
+    public static VaiTro inputVaiTro(){
+        System.out.println("Hãy phân loại người dùng. ");
+        System.out.println("1. Khách hàng");
+        System.out.println("2. Học viên");
+        System.out.println("3. Trợ giảng");
+        System.out.println("4. Giảng viên");
+        System.out.println("5. Cộng tác viên");
+        System.out.println("6. Quản lý");
+        System.out.println("7. Giám đốc");
+
+        boolean isValid = false;
+        VaiTro vaiTro = null;
+
+        while (!isValid){
+            int input = ScannerUtils.inputInt();
+
+            switch (input){
+                case 1:
+                    vaiTro = VaiTro.KhachHang;
+                    isValid = true;
+                    break;
+
+                case 2:
+                    vaiTro = VaiTro.HocVien;
+                    isValid = true;
+                    break;
+
+                case 3:
+                    vaiTro = VaiTro.TroGiang;
+                    isValid = true;
+                    break;
+
+                case 4:
+                    vaiTro = VaiTro.GiangVien;
+                    isValid = true;
+                    break;
+
+                case 5:
+                    vaiTro = VaiTro.CongTacVien;
+                    isValid = true;
+                    break;
+
+                case 6:
+                    vaiTro = VaiTro.QuanLy;
+                    isValid = true;
+                    break;
+
+                case 7:
+                    vaiTro = VaiTro.GiamDoc;
+                    isValid = true;
+                    break;
+
+                default:
+                    System.out.println("Bạn chỉ được nhập các giá trị chỉ định !!!");
+            }
+        }
+
+        return vaiTro;
+    }
+
+    public static boolean inputGioiTinh() {
+        int luaChonGioiTinh;
+
+        do {
+            System.out.println("Nhập giới tính: ");
+            System.out.println("1. Nam");
+            System.out.println("2. Nữ");
+
+            luaChonGioiTinh = ScannerUtils.inputInt();
+
+            if (luaChonGioiTinh != 1 && luaChonGioiTinh != 2) {
+                System.out.println("Vui lòng chỉ chọn 1 (Nam) hoặc 2 (Nữ). Hãy nhập lại.");
+            }
+
+        } while (luaChonGioiTinh != 1 && luaChonGioiTinh != 2);
+
+        return luaChonGioiTinh == 1;
+    }
+
+    public static String inputName() {
+        String ten;
+
+        do {
+            System.out.println("Nhập tên: ");
+            ten = ScannerUtils.inputString();
+
+            if (ten.trim().isEmpty()) {
+                System.out.println("Tên không được để trống. Hãy nhập lại.");
+            }
+
+        } while (ten.trim().isEmpty());
+
+        return ten;
+    }
+
+    public static String inputDiaChi() {
+        String diaChi;
+
+        do {
+            System.out.println("Nhập địa chỉ: ");
+            diaChi = ScannerUtils.inputString();
+
+            if (diaChi.trim().isEmpty()) {
+                System.out.println("Địa chỉ không được để trống. Hãy nhập lại.");
+            }
+
+        } while (diaChi.trim().isEmpty());
+
+        return diaChi;
+    }
+
+    public static int inputHocPhi() {
+        System.out.println("Nhập học phí: ");
+        int hocPhi = ScannerUtils.inputInt();
+
+        while (hocPhi < 0) {
+            System.out.println("Học phí không thể là một số âm. Hãy nhập lại: ");
+            hocPhi = ScannerUtils.inputInt();
+        }
+
+        return hocPhi;
+    }
+
 
 }

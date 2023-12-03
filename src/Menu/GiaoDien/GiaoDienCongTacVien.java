@@ -1,5 +1,6 @@
 package Menu.GiaoDien;
 
+import HeThongGiaoDuc.DangKy.BienLai;
 import HeThongGiaoDuc.DangKy.YeuCauDangKy;
 import HeThongGiaoDuc.LopHoc.KetQua;
 import HeThongGiaoDuc.LopHoc.LopHoc;
@@ -8,9 +9,12 @@ import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.LienHe;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
+import Menu.Session;
 import NguoiDung.User;
 import NguoiDung.VaiTro;
 import QuanLyDoiTuong.*;
+import TaiKhoan.QLTaiKhoan;
+import TaiKhoan.TaiKhoan;
 import Utils.ScannerUtils;
 import org.w3c.dom.ls.LSOutput;
 
@@ -29,8 +33,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
             System.out.println("2. Thay đổi trạng thái lịch phổng vấn ");
             System.out.println("3. Xem danh sách các cuộc phổng vấn đã có kết quả");
             System.out.println("4. Đăng ký khóa học mới");
-            System.out.println("5. Đăng xuất");
-            System.out.println("6. Thoát chương trình");
+            System.out.println("5. Tạo tài khoản mới");
+            System.out.println("6. Thêm thông tin vào hệ thống");
+            System.out.println("7. Đăng xuất");
+            System.out.println("8. Thoát chương trình");
             System.out.println("Bạn đã có lựa chọn chưa ?");
             choice = ScannerUtils.inputInt();
 
@@ -51,13 +57,20 @@ public class GiaoDienCongTacVien extends GiaoDien {
                     break;
 
                 case 4:
-
+                    dangKyMonHoc();
                     break;
                 case 5:
-                    //Form.logout();
+                    taoTaiKhoanMoi();
                     break;
 
                 case 6:
+                    QLUser.themUserMoi();
+                    break;
+
+                case 7:
+                    Session.logout();
+                    break;
+                case 8:
                     exit();
                     break;
             }
@@ -231,6 +244,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
         switch (case4choice){
             case 1:
                 dangKyMonHocChoHocVien();
+                break;
             case 2:
                 System.out.println("Theo quy định của Trung Tâm học viên mới bắt buộc phải thông qua phổng đầu vào để có thể tham gia vào học.");
                 System.out.println("1. Đăng ký phổng vấn !!");
@@ -250,8 +264,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
                             System.out.println("Mã nhập không đúng xin mời nhập lại !!");
                             ma = ScannerUtils.inputString();
                             ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(ma);
+
                         }
                         dangKyMonHocChoKhachHang(ketQuaPhongVan);
+                        break;
 
                 }
         }
@@ -280,8 +296,14 @@ public class GiaoDienCongTacVien extends GiaoDien {
         int luaChon = ScannerUtils.inputInt();
 
         if (luaChon == 1){
-//            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(ketQuaPhongVan.getLichPhongVan().getKhachHang(), lopHoc, dongTien);
-//            KetQua ketQua = new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc());
+            int dongTien = ScannerUtils.inputHocPhi();
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(Session.getTaiKhoan().getUser(), lopHoc, dongTien);
+            QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
+            QLKetQua.getDsKetQua().add( new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
+            BienLai bienLai = new BienLai(yeuCauDangKy, dongTien);
+            bienLai.inBienLai();
+            QLBienLai.getDsBienLai().add(bienLai);
+
         }else if(luaChon == 2){
             QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.HocVien));
             System.out.println("Nhập mã học viên: ");
@@ -295,6 +317,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
             }
 
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc);
+            QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
             QLKetQua.getDsKetQua().add(new KetQua(user, yeuCauDangKy.getLopHoc()));
             System.out.println("Đăng ký thành công !!");
         }else {
@@ -326,8 +349,21 @@ public class GiaoDienCongTacVien extends GiaoDien {
         int luaChon = ScannerUtils.inputInt();
 
         if (luaChon == 1){
-//            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(ketQuaPhongVan.getLichPhongVan().getKhachHang(), lopHoc, dongTien);
-//            KetQua ketQua = new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc());
+            int dongTien = ScannerUtils.inputHocPhi();
+            User user = new User(
+                    ketQuaPhongVan.getLichPhongVan().getKhachHang().getHoTen(),
+                    ketQuaPhongVan.getLichPhongVan().getKhachHang().getEmail(),
+                    ketQuaPhongVan.getLichPhongVan().getKhachHang().isGioiTinh(),
+                    ketQuaPhongVan.getLichPhongVan().getKhachHang().getNgaySinh(),
+                    ketQuaPhongVan.getLichPhongVan().getKhachHang().getSoDienThoai(),
+                    ketQuaPhongVan.getLichPhongVan().getKhachHang().getDiaChi(),
+                    VaiTro.HocVien);
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc, dongTien);
+            QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
+            QLKetQua.getDsKetQua().add( new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
+            BienLai bienLai = new BienLai(yeuCauDangKy, dongTien);
+            bienLai.inBienLai();
+            QLBienLai.getDsBienLai().add(bienLai);
         }else if(luaChon == 2){
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(ketQuaPhongVan.getLichPhongVan().getKhachHang(), lopHoc);
             QLKetQua.getDsKetQua().add(new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc()));
@@ -338,32 +374,14 @@ public class GiaoDienCongTacVien extends GiaoDien {
     }
 
     public void dangKyPhongVan(){
-        System.out.println("Nhập họ và tên");
-        String hoTen = ScannerUtils.inputString();
-
-        System.out.println("Nhập email");
+        String hoTen = ScannerUtils.inputName();
         String email = ScannerUtils.inputEmail();
-
-        System.out.println("Chọn giới tính:");
-        System.out.println("1. Nam");
-        System.out.println("Các nút còn lại sẽ là nữ");
-        boolean gioiTinh ;
-        String genderChoice = ScannerUtils.inputString();
-        if (genderChoice.equals("1")){
-            gioiTinh = true;
-        }
-        else gioiTinh = false;
-
-
-        System.out.println("Nhập số điện thoại");
+        boolean gioiTinh = ScannerUtils.inputGioiTinh();
         String sdt = ScannerUtils.inputSDT();
-
-        System.out.println("Nhập địa chỉ");
-        String diaChi = ScannerUtils.inputString();
+        String diaChi = ScannerUtils.inputDiaChi();
 
         System.out.println("Nhập ngày tháng năm sinh: ");
         LocalDate ngayThang = ScannerUtils.inputDate();
-
 
 
         User khachHang = new User(hoTen, email, gioiTinh, ngayThang, sdt, diaChi, VaiTro.KhachHang);
@@ -376,8 +394,6 @@ public class GiaoDienCongTacVien extends GiaoDien {
         giaoDien();
     }
 
-
-
     private void taoTaiKhoanMoi(){
         System.out.println("Bạn muốn tạo tài khoản cho đối tượng nào ?");
         System.out.println("1. Những người đã có thông tin trong cơ sở dữ liệu");
@@ -386,8 +402,34 @@ public class GiaoDienCongTacVien extends GiaoDien {
         int choice = ScannerUtils.inputInt();
         switch (choice){
             case 1:
+                ArrayList<User> dsNguoiChuaCoTaiKhoan = QLUser.timNhungUserChuaCoTaiKhoan();
+                QLUser.inThongTin(dsNguoiChuaCoTaiKhoan);
+                System.out.println("Đây là những người chưa có tài khoản !!");
+                System.out.println("Bạn muốn tạo tài khoản cho ai ??");
+                String id = ScannerUtils.inputString();
+                User user = QLUser.timUserTheoMa(id, dsNguoiChuaCoTaiKhoan);
+                if (user == null){
+                    System.out.println("Không tìm thấy mã thông tin của người bạn cần tạo !!");
+
+                }else {
+                    QLTaiKhoan.taoTaiKhoanMoi(user);
+                }
+                break;
+            case 2:
+                    QLTaiKhoan.taoTaiKhoanMoi(QLUser.themUserMoi());
+                break;
+
 
         }
+        giaoDien();
+    }
+
+    private void sapXepLopHoc(){
 
     }
+
+
 }
+
+
+

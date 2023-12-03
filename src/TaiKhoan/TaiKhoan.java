@@ -10,7 +10,7 @@ public class TaiKhoan {
 
     public TaiKhoan(User user) {
         this.user = user;
-        this.tenTaiKhoan = user.getHoTen() + user.getMaUser();
+        this.tenTaiKhoan = user.getMaUser();
         this.matKhau = "123456";
         this.trangThai = true;
     }
