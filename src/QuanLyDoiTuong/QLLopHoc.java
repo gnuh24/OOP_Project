@@ -84,17 +84,17 @@ public class QLLopHoc {
       ChuongTrinhHoc chuongTrinhHoc = QLChuongTrinhHoc.timKiemTheoMa(cacThuocTinh[10]);
 
       PhongHoc phongHoc = null;
-      if (!cacThuocTinh[11].equals("")){
+      if (!cacThuocTinh[11].equals(" ")){
           phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(cacThuocTinh[11]);
       }
 
       User giangVien = null;
-      if (!cacThuocTinh[12].equals("")) {
+      if (!cacThuocTinh[12].equals(" ")) {
           giangVien = QLUser.timUserTheoMa(cacThuocTinh[12]);
       }
 
       User troGiang = null;
-      if (!cacThuocTinh[13].equals("")) {
+      if (!cacThuocTinh[13].equals(" ")) {
         troGiang = QLUser.timUserTheoMa(cacThuocTinh[13]);
       }
 
@@ -122,24 +122,24 @@ public class QLLopHoc {
     for (LopHoc lopHoc : dsLopHoc) {
       String maLop = lopHoc.getMaLop();
       String tenLop = lopHoc.getTenLop();
-      String trangThai = lopHoc.getTrangThai().toString();
+      String trangThai = TrangThaiLop.toString(lopHoc.getTrangThai());
       String maKhoa = lopHoc.getKhoa().getMaKhoa();
       String maChuongTrinh = lopHoc.getChuongTrinh().getMaChuongTrinh();
 
 
       CaHoc caHoc1 = lopHoc.getCaHocMacDinh().get(0);
-      String thu1 = (caHoc1 != null) ? Thu.toString(caHoc1.getThu()) : "";
-      String gioVaoHoc1 = (caHoc1 != null) ? Convert.timeToString(caHoc1.getGioVaoHoc()) : "";
-      String gioTanHoc1 = (caHoc1 != null) ? Convert.timeToString(caHoc1.getGioTanHoc()) : "";
+      String thu1 = Thu.toString(caHoc1.getThu());
+      String gioVaoHoc1 = (caHoc1.getGioVaoHoc() != null) ? Convert.timeToString(caHoc1.getGioVaoHoc()) : "";
+      String gioTanHoc1 = (caHoc1.getGioTanHoc() != null) ? Convert.timeToString(caHoc1.getGioTanHoc()) : "";
 
       CaHoc caHoc2 = lopHoc.getCaHocMacDinh().get(1);
-      String thu2 = (caHoc2 != null) ? Thu.toString(caHoc2.getThu()) : "";
-      String gioVaoHoc2 = (caHoc2 != null) ? Convert.timeToString(caHoc2.getGioVaoHoc()) : "";
-      String gioTanHoc2 = (caHoc2 != null) ? Convert.timeToString(caHoc2.getGioTanHoc()) : "";
+      String thu2 = Thu.toString(caHoc2.getThu());
+      String gioVaoHoc2 = (caHoc2.getGioVaoHoc() != null) ? Convert.timeToString(caHoc2.getGioVaoHoc()) : "";
+      String gioTanHoc2 = (caHoc2.getGioTanHoc() != null) ? Convert.timeToString(caHoc2.getGioTanHoc()) : "";
 
-      String maPhong = (lopHoc.getPhongHocMacDinh() != null) ? lopHoc.getPhongHocMacDinh().getMaPhongHoc() : "";
-      String maGiangVien = (lopHoc.getGiangVien() != null) ? lopHoc.getGiangVien().getMaUser() : "";
-      String maTroGiang = (lopHoc.getTroGiang() != null) ? lopHoc.getTroGiang().getMaUser() : "";
+      String maPhong = (lopHoc.getPhongHocMacDinh() != null) ? lopHoc.getPhongHocMacDinh().getMaPhongHoc() : " ";
+      String maGiangVien = (lopHoc.getGiangVien() != null) ? lopHoc.getGiangVien().getMaUser() : " ";
+      String maTroGiang = (lopHoc.getTroGiang() != null) ? lopHoc.getTroGiang().getMaUser() : " ";
 
 
       StringBuilder sb = new StringBuilder();
@@ -178,14 +178,14 @@ public class QLLopHoc {
 
   // hàm in ra danh sách lớp học
   public static void inDanhSach(ArrayList<LopHoc> dsLopHoc) {
-    System.out.println("*".repeat(245));
-    System.out.printf("* %-10s* %-20s* %-30s* %-30s* %-10s* %-20s* %-10s* %-10s* %-20s* %-20s* %-20s* %-20s*\n",
+    System.out.println("*".repeat(265));
+    System.out.printf("* %-10s* %-20s* %-30s* %-30s* %-10s* %-20s* %-20s* %-20s* %-20s* %-20s* %-20s* %-20s*\n",
         "Mã lớp", "Tên lớp", "Ca học 1", "Ca học 2", "Tên khóa", "Tên chương trình",
         "Mã phòng", "Tên cơ sở", "Số lượng học viên", "Trạng thái", "Giảng viên", "Trợ giảng");
-    System.out.println("*".repeat(245));
+    System.out.println("*".repeat(265));
 
     for (LopHoc lopHoc : dsLopHoc) {
-      System.out.printf("* %-10s* %-20s* %-30s* %-30s* %-10s* %-20s* %-10s* %-10s* %-20s* %-20s* %-20s* %-20s*\n",
+      System.out.printf("* %-10s* %-20s* %-30s* %-30s* %-10s* %-20s* %-20s* %-20s* %-20s* %-20s* %-20s* %-20s*\n",
           lopHoc.getMaLop(),
           lopHoc.getTenLop(),
           lopHoc.getCaHocMacDinh().get(0).toString(),
@@ -197,12 +197,12 @@ public class QLLopHoc {
           lopHoc.getPhongHocMacDinh() != null ? lopHoc.getPhongHocMacDinh().getMaPhongHoc(): "Chưa cập nhật",
           lopHoc.getPhongHocMacDinh() != null ? lopHoc.getPhongHocMacDinh().getCoSoTrucThuoc().getTenCoSo(): "Chưa cập nhật",
           QLKetQua.demHocVienTheoLopHoc(lopHoc.getMaLop()),
-          lopHoc.getTrangThai(),
+          TrangThaiLop.toString(lopHoc.getTrangThai()),
 
           lopHoc.getGiangVien() != null ? lopHoc.getGiangVien().getHoTen() : "Chưa cập nhật",
               lopHoc.getTroGiang() != null ? lopHoc.getTroGiang().getHoTen() : "Chưa cập nhật");
     }
-    System.out.println("*".repeat(245));
+    System.out.println("*".repeat(265));
   }
 
   public static LopHoc timKiemLopTheoMaLop(String maLop) {

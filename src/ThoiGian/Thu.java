@@ -4,29 +4,33 @@ public enum Thu {
     Hai, Ba, Tu, Nam, Sau, Bay, ChuNhat;
 
     public static String toString(Thu thuEnum) {
-        String thuString = null;
-        switch (thuEnum) {
-            case Hai:
-                thuString = "Hai";
-                break;
-            case Ba:
-                thuString = "Ba";
-                break;
-            case Tu:
-                thuString = "Tư";
-                break;
-            case Nam:
-                thuString = "Năm";
-                break;
-            case Sau:
-                thuString = "Sáu";
-                break;
-            case Bay:
-                thuString = "Bảy";
-                break;
-            case ChuNhat:
-                thuString = "Chủ nhật";
-                break;
+        String thuString = "";
+        if (thuEnum == null){
+            return thuString;
+        }else{
+            switch (thuEnum) {
+                case Hai:
+                    thuString = "Hai";
+                    break;
+                case Ba:
+                    thuString = "Ba";
+                    break;
+                case Tu:
+                    thuString = "Tư";
+                    break;
+                case Nam:
+                    thuString = "Năm";
+                    break;
+                case Sau:
+                    thuString = "Sáu";
+                    break;
+                case Bay:
+                    thuString = "Bảy";
+                    break;
+                case ChuNhat:
+                    thuString = "Chủ nhật";
+                    break;
+            }
         }
         return thuString;
     }

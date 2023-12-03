@@ -204,16 +204,17 @@ public class QLKetQua {
     }
 
     public static void thongKeHocVienTheoKhoa(){
-      int demHocVien=0;
-      QLKhoaKhaiGiang.inDanhSachKhoaKhaiGiang(QLKhoaKhaiGiang.getDsKhoaKhaiGiang());
-      System.out.println("Nhập mã Khóa");
-      String maKhoa = ScannerUtils.inputString();
-      for(KetQua ketQua:QLKetQua.getDsKetQua()){
-          if(ketQua.getLopHoc().getKhoa().getMaKhoa().equals(maKhoa)){
-              demHocVien++;
-          }
-      }
-      System.out.println("Số học viên của khóa: "+demHocVien);
+        int demHocVien = 0;
+        System.out.printf("%-10s %-10s %-10s %-10s\n", "Mã khóa","Ngày bắt đầu","Ngày kết thúc","Số lượng học viên");
+        for(KhoaKhaiGiang khoaKhaiGiang:QLKhoaKhaiGiang.getDsKhoaKhaiGiang()){
+            for (KetQua ketQua:dsKetQua) {
+                if (ketQua.getLopHoc().getKhoa().getMaKhoa().equals(khoaKhaiGiang.getMaKhoa())) {
+                    demHocVien++;
+                }
+            }
+            System.out.printf("%-10s %-10s %-10s %-10s\n",khoaKhaiGiang.getMaKhoa(),khoaKhaiGiang.getNgayBatDau(),khoaKhaiGiang.getNgayKetThuc(), demHocVien);
+            demHocVien=0;
+        }
     }
 
 

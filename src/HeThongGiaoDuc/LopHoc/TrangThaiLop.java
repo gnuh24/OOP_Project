@@ -3,7 +3,7 @@ package HeThongGiaoDuc.LopHoc;
 public enum TrangThaiLop {
     Sap_Khai_Giang, Dang_Hoc, Da_Ket_Thuc, Cho_Sap_Xep;
 
-    public String toString(TrangThaiLop trangThaiLopEnum) {
+    public static String toString(TrangThaiLop trangThaiLopEnum) {
         String trangThaiLopString = "Sắp khai giảng";
         switch (trangThaiLopEnum) {
             case Dang_Hoc:

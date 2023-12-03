@@ -282,12 +282,14 @@ public class QLBienLai {
     }
 
     public static int soTienConNo(YeuCauDangKy YCDK) {
-	    int tienNo = YCDK.getTongHocPhi();	
-	    for (BienLai bienLai : QLBienLai.getDsBienLai()){
+        int tienNo = YCDK.getTongHocPhi();
+        for (BienLai bienLai : QLBienLai.getDsBienLai()) {
             if (bienLai.getYeuCauDangKy().getMaDangKy().equals(YCDK.getMaDangKy())) {
                 tienNo -= bienLai.getSoTienDaDong();
             }
-
-	    return tienNo;
+        }
+        return tienNo;
     }
+
+
 }
