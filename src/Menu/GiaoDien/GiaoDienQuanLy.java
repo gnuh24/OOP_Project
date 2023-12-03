@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
 import HeThongGiaoDuc.LopHoc.KetQua;
 import HeThongGiaoDuc.LopHoc.LopHoc;
+import Menu.Session;
 import QuanLyDoiTuong.QLBienLai;
 import QuanLyDoiTuong.QLChuongTrinhHoc;
 import QuanLyDoiTuong.QLKetQua;
@@ -31,13 +32,14 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
             System.out.println("9. Thống kê doanh thu theo tháng");
             System.out.println("10. THống kê doanh thu theo năm");
             System.out.println("11. Đăng xuất");
+            System.out.println("12. Thoát chương trình");
             System.out.println("Bạn đã có lựa chọn chưa?");
             do{
                 choice = ScannerUtils.inputInt();
-                if (choice < 1 || choice > 11){
+                if (choice < 1 || choice > 12){
                     System.out.println("Bạn chỉ được nhập các lựa chọn  trên màn hình");
                 }
-            }while(choice < 1 || choice > 11);
+            }while(choice < 1 || choice > 12);
 
             switch (choice){
                 case 1:
@@ -81,7 +83,9 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
                     break;
 
                 case 11:
-                    System.out.println("Bạn thực sự muốn thoát");
+                    Session.logout();
+                    break;
+                case 12:
                     exit();
                     break;
             }

@@ -149,48 +149,20 @@ public class QLKetQua {
   }
 
 
-  public static void thongKeHocVienTheoChuongTrinh(){
-    int []demSoHocVienCTH=new int[17];
-    for(int i=0; i<demSoHocVienCTH.length;i++){
-        demSoHocVienCTH[i]=0;
-    }
-    for(KetQua ketQua:QLKetQua.getDsKetQua()){
-        switch (ketQua.getLopHoc().getChuongTrinh().getMaChuongTrinh()) {
-            case "CTH001":  demSoHocVienCTH[0]++; break;
-            case "CTH002":  demSoHocVienCTH[1]++; break;
-            case "CTH003":  demSoHocVienCTH[2]++; break;
-            case "CTH004":  demSoHocVienCTH[3]++; break;
-            case "CTH005":  demSoHocVienCTH[4]++; break;
-            case "CTH006":  demSoHocVienCTH[5]++; break;
-            case "CTH007":  demSoHocVienCTH[6]++; break;
-            case "CTH008":  demSoHocVienCTH[7]++; break;
-            case "CTH009":  demSoHocVienCTH[8]++; break;
-            case "CTH010":  demSoHocVienCTH[9]++; break;
-            case "CTH011": demSoHocVienCTH[10]++; break;
-            case "CTH012": demSoHocVienCTH[11]++; break;
-            case "CTH013": demSoHocVienCTH[12]++; break;
-            case "CTH014": demSoHocVienCTH[13]++; break;
-            case "CTH015": demSoHocVienCTH[14]++; break;
-            case "CTH016": demSoHocVienCTH[15]++; break;
-            case "CTH017": demSoHocVienCTH[16]++; break;
+    public static void thongKeHocVienTheoChuongTrinh(){
+        int demHocVien=0;
+        System.out.printf("%-18s %-18s\n","Mã chương trình","Số lượng học viên");
+        for(ChuongTrinhHoc chuongTrinhHoc:QLChuongTrinhHoc.getDsChuongTrinhHoc()){
+            for(KetQua ketQua:dsKetQua){
+                if (ketQua.getLopHoc().getChuongTrinh().getMaChuongTrinh().equals(chuongTrinhHoc.getMaChuongTrinh())) {
+                    demHocVien++;
+                }
+            }
+
+            System.out.printf("%-18s %-18s\n",chuongTrinhHoc.getMaChuongTrinh(), demHocVien);
+            demHocVien=0;
         }
     }
-    int min=demSoHocVienCTH[0];
-    for(int i=1; i<demSoHocVienCTH.length;i++){
-        if(min>demSoHocVienCTH[i])
-            min=demSoHocVienCTH[i];
-    }
-    if(min==0) min=1;
-    System.out.println("----------------------------------------------------------------------------------------");
-    for(int i=0; i<demSoHocVienCTH.length; i++){
-        System.out.printf("%-10s","CTH"+i+"|"+demSoHocVienCTH[i]+"| ");
-        for(int j=0; j<(demSoHocVienCTH[i]/min); j++){
-            System.out.print("*");
-        }
-        System.out.println("");
-    }
-    System.out.println("----------------------------------------------------------------------------------------");
-}
 
 
   public static void thongKeHocVienTheoThang(){

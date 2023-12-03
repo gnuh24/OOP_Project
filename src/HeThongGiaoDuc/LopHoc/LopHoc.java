@@ -13,7 +13,7 @@ public class LopHoc {
   String maLop;
   String tenLop;
   TrangThaiLop trangThai;
-  ArrayList<CaHoc> caHocMacDinh;
+  ArrayList<CaHoc> caHocMacDinh = new ArrayList<>();
   KhoaKhaiGiang khoa;
   ChuongTrinhHoc chuongTrinh;
   PhongHoc phongHocMacDinh;
@@ -30,6 +30,10 @@ public class LopHoc {
     this.khoa = khoa;
     this.chuongTrinh = chuongTrinh;
     this.maLop = autoIncreament();
+
+    this.caHocMacDinh.add(new CaHoc());
+    this.caHocMacDinh.add(new CaHoc());
+
     this.trangThai = TrangThaiLop.Cho_Sap_Xep;
   }
 

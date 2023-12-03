@@ -37,6 +37,7 @@ public class LoadDuLieu {
         QLUser.saveDuLieu();
         QLLichPhongVan.saveDuLieu();
         QLKetQuaPhongVan.saveDuLieu();
+        QLLopHoc.saveDuLieu();
         QLKetQua.saveDuLieu();
         QLYeuCauDangKy.luuDuLieu();
         QLBienLai.luuDuLieu();

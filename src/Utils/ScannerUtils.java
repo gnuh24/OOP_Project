@@ -68,8 +68,8 @@ public class ScannerUtils {
         return input.nextLine();
     }
 
-    public static LocalDate inputDate() {
-        System.out.println("Xin mời nhập ngày tháng năm. (VD: 02/04/2004)");
+    public static LocalDate inputDate(String displayString) {
+        System.out.println(displayString + " (VD: 02/04/2004)");
 
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();

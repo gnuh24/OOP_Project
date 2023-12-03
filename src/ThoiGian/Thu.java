@@ -4,8 +4,11 @@ public enum Thu {
     Hai, Ba, Tu, Nam, Sau, Bay, ChuNhat;
 
     public static String toString(Thu thuEnum) {
-        String thuString = "Hai";
+        String thuString = null;
         switch (thuEnum) {
+            case Hai:
+                thuString = "Hai";
+                break;
             case Ba:
                 thuString = "Ba";
                 break;
@@ -29,8 +32,11 @@ public enum Thu {
     }
 
     public static Thu toThu(String thuString) {
-        Thu thuEnum = Hai;
+        Thu thuEnum = null;
         switch (thuString) {
+            case "Hai":
+                thuEnum = Hai;
+                break;
             case "Ba":
                 thuEnum = Ba;
                 break;
