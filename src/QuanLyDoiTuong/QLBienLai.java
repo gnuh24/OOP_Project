@@ -290,6 +290,4 @@ public class QLBienLai {
         }
         return tienNo;
     }
-
-
 }
