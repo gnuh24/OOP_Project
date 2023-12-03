@@ -97,19 +97,20 @@ public class QLKetQua {
 
   // hàm in ra danh sách kết quả
   public static void inDanhSach(ArrayList<KetQua> dsKetQua) {
-    System.out.println("*".repeat(123));
-    System.out.printf("%-25s* %-10s* %-10s* %-50s*\n",
+    System.out.println("*".repeat(114));
+    System.out.printf("* %-25s* %-20s* %-10s* %-50s*\n",
         "Tên học viên", "Tên lớp học", "Điểm", "Đánh giá");
-    System.out.println("*".repeat(123));
+    System.out.println("*".repeat(114));
 
     for (KetQua ketQua : dsKetQua) {
-      System.out.printf("%-25s* %-10s* %-10s* %-50s*\n",
+      System.out.printf("* %-25s* %-20s* %-10s* %-50s*\n",
           ketQua.getHocVien().getHoTen(),
           ketQua.getLopHoc().getTenLop(),
-          ketQua.getDiem(),
+          ketQua.getDiem() == -1.0 ? "": ketQua.getDiem(),
           ketQua.getDanhGia());
-      System.out.println("*".repeat(123));
     }
+    System.out.println("*".repeat(114));
+
   }
 
   public static ArrayList<KetQua> timKiemTheoHocVien(String maHocVien) {
@@ -237,6 +238,30 @@ public class QLKetQua {
           nam=ketQua.getLopHoc().getKhoa().getNgayKetThuc().getYear();
         }
       }
+    }
+
+    public static void xemTKBCacLopDangHoc(User user) {
+        ArrayList<LopHoc> lopHocs = new ArrayList<>();
+        for (KetQua ketQua :dsKetQua) {
+            if (ketQua.getHocVien().getMaUser().equals(user.getMaUser())) {
+                if(ketQua.getLopHoc().getTrangThai().equals(TrangThaiLop.Dang_Hoc)){
+                    lopHocs.add(ketQua.getLopHoc());
+                }
+            }
+        }
+        QLLopHoc.inDanhSach(lopHocs);
+    }
+
+    public static void xemTKBCacLopSapKhaiGiang(User user) {
+        ArrayList<LopHoc> lopHocs = new ArrayList<>();
+        for (KetQua ketQua :dsKetQua) {
+            if (ketQua.getHocVien().getMaUser().equals(user.getMaUser())) {
+                if(ketQua.getLopHoc().getTrangThai().equals(TrangThaiLop.Sap_Khai_Giang)){
+                    lopHocs.add(ketQua.getLopHoc());
+                }
+            }
+        }
+        QLLopHoc.inDanhSach(lopHocs);
     }
 
 

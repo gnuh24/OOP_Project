@@ -39,10 +39,10 @@ public class GiaoDienHocVien extends GiaoDien {
 
             switch (choice) {
                 case 1:
-                    xemTKBCacLopDangHoc();
+                    QLKetQua.xemTKBCacLopDangHoc(Session.getTaiKhoan().getUser());
                     break;
                 case 2:
-                    xemTKBCacLopSapKhaiGiang();
+                    QLKetQua.xemTKBCacLopSapKhaiGiang(Session.getTaiKhoan().getUser());
                     break;
 
                 case 3:
@@ -66,14 +66,6 @@ public class GiaoDienHocVien extends GiaoDien {
                     break;
             }
         } while (true);
-    }
-
-    private void xemTKBCacLopDangHoc() {
-        QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc));
-    }
-
-    private void xemTKBCacLopSapKhaiGiang() {
-        QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang));
     }
 
     private void xemDiem() {

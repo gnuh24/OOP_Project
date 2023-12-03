@@ -1,5 +1,6 @@
 package HeThongGiaoDuc.DangKy;
 
+import QuanLyDoiTuong.QLBienLai;
 import QuanLyDoiTuong.QLKetQua;
 
 import java.time.LocalDateTime;
@@ -28,8 +29,8 @@ public class BienLai {
     }
 
     private String autoIncrement(){
-        int a = QLKetQua.getDsKetQua().size() + 1;
-        return  "KQ" + a;
+        int a = QLBienLai.getDsBienLai().size() + 1;
+        return  "BL" + a;
     }
     public String getMaBienLai() {
         return maBienLai;
