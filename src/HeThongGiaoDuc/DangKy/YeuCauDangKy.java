@@ -72,6 +72,14 @@ public class YeuCauDangKy {
         return "YCDK" + a;
     }
 
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
+    }
+
     public String getMaDangKy() {
         return maDangKy;
     }

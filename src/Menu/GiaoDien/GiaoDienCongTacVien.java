@@ -244,6 +244,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
         switch (case4choice){
             case 1:
                 dangKyMonHocChoHocVien();
+                break;
             case 2:
                 System.out.println("Theo quy định của Trung Tâm học viên mới bắt buộc phải thông qua phổng đầu vào để có thể tham gia vào học.");
                 System.out.println("1. Đăng ký phổng vấn !!");
@@ -266,6 +267,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
 
                         }
                         dangKyMonHocChoKhachHang(ketQuaPhongVan);
+                        break;
 
                 }
         }
@@ -420,6 +422,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
 
         }
         giaoDien();
+    }
+
+    private void sapXepLopHoc(){
+
     }
 
 
