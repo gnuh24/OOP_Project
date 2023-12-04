@@ -8,19 +8,19 @@ import java.time.format.DateTimeFormatter;
 public class BienLai {
     private String maBienLai;
     private YeuCauDangKy yeuCauDangKy;
-    private int soTienDaDong;
+    private double soTienDaDong;
     private LocalDateTime ngayThanhToan;
     public BienLai() {
     }
 
-    public BienLai(YeuCauDangKy yeuCauDangKy, int soTienDaDong) {
+    public BienLai(YeuCauDangKy yeuCauDangKy, double soTienDaDong) {
         this.maBienLai = autoIncrement();
         this.yeuCauDangKy = yeuCauDangKy;
         this.soTienDaDong = soTienDaDong;
         this.ngayThanhToan = LocalDateTime.now();
     }
 
-    public BienLai(String maBienLai, YeuCauDangKy yeuCauDangKy, int soTienDaDong, LocalDateTime ngayThanhToan) {
+    public BienLai(String maBienLai, YeuCauDangKy yeuCauDangKy, double soTienDaDong, LocalDateTime ngayThanhToan) {
         this.maBienLai = maBienLai;
         this.yeuCauDangKy = yeuCauDangKy;
         this.soTienDaDong = soTienDaDong;
@@ -43,10 +43,10 @@ public class BienLai {
     public void setYeuCauDangKy(YeuCauDangKy yeuCauDangKy) {
         this.yeuCauDangKy = yeuCauDangKy;
     }
-    public int getSoTienDaDong() {
+    public double getSoTienDaDong() {
         return soTienDaDong;
     }
-    public void setSoTienDaDong(int soTienDaDong) {
+    public void setSoTienDaDong(double soTienDaDong) {
         this.soTienDaDong = soTienDaDong;
     }
     public LocalDateTime getNgayThanhToan() {
@@ -66,10 +66,5 @@ public class BienLai {
         System.out.println("Số tiền: "+this.getSoTienDaDong());
         System.out.println("Ngày đóng: "+this.getNgayThanhToan().format(formatter));
     }
-
-    // public static void main(String[] args) {
-    //     DateTimeFormatter formatter=DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-    //     LocalDateTime day = LocalDateTime.now();
-    // }
 
 }

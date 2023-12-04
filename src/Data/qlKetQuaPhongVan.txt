@@ -1,2 +1,2 @@
-LPV2#8.0#CTH014#Liên hệ sau
-LPV3#5.5#CTH011#Chưa liên hệ
+LPV1#8.0#CTH014#Liên hệ sau
+LPV2#5.5#CTH011#Chưa liên hệ

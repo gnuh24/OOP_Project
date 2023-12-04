@@ -120,8 +120,8 @@ public class GiaoDienHocVien extends GiaoDien {
         }
     }
 
-    public static int soTienConNo(YeuCauDangKy YCDK) {
-        int tienNo = YCDK.getTongHocPhi();
+    public static double soTienConNo(YeuCauDangKy YCDK) {
+        double tienNo = YCDK.getTongHocPhi();
         for (BienLai bienLai : QLBienLai.getDsBienLai()) {
             if (bienLai.getYeuCauDangKy().getMaDangKy().equals(YCDK.getMaDangKy())) {
                 tienNo -= bienLai.getSoTienDaDong();

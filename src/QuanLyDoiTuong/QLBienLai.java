@@ -36,7 +36,7 @@ public class QLBienLai {
 
             String maBienLai = cacThuocTinh[0];
             String maDangKy = cacThuocTinh[1];
-            int soTienDaDong = Integer.parseInt(cacThuocTinh[2]);
+            double soTienDaDong = Double.parseDouble(cacThuocTinh[2]);
             String Date = cacThuocTinh[3];
 
             QLBienLai.dsBienLai.add(new BienLai(maBienLai, QLYeuCauDangKy.timKiemTheoMa(maDangKy), soTienDaDong,
@@ -111,7 +111,7 @@ public class QLBienLai {
     }
 
     public static void thongKeDoanhThuTheoChuongTrinh() {
-        int[] tongDoanhThu = new int[18];
+        double[] tongDoanhThu = new double[18];
         for (BienLai bienLai : QLBienLai.dsBienLai) {
             tongDoanhThu[0] += bienLai.getSoTienDaDong();
             switch (bienLai.getYeuCauDangKy().getLopHoc().getChuongTrinh().getMaChuongTrinh()) {
@@ -183,10 +183,7 @@ public class QLBienLai {
     }
 
     public static void thongKeDoanhThuTheoThang() {
-        int[] tongDoanhThu = new int[13];
-        for (int i = 0; i < tongDoanhThu.length; i++) {
-            tongDoanhThu[i] = 0;
-        }
+        double[] tongDoanhThu = new double[13];
         System.out.println("Nhập năm muốn kiểm tra: ");
         int nam = ScannerUtils.inputInt();
         for (BienLai bienLai : QLBienLai.dsBienLai) {
@@ -207,8 +204,8 @@ public class QLBienLai {
     }
 
     public static void thongKeDoanhThuTheoKhoa() {
-        int tongDoanhThu = 0;
-        System.out.printf("%-20s %-02s\n","Khóa","Doanh thu");
+        double tongDoanhThu = 0;
+        System.out.printf("%-20s %-20s\n","Khóa","Doanh thu");
         System.out.println("*".repeat(40));
         for(KhoaKhaiGiang khoaKhaiGiang:QLKhoaKhaiGiang.getDsKhoaKhaiGiang()){
             for(BienLai bienLai:dsBienLai){
@@ -230,8 +227,8 @@ public class QLBienLai {
             }
 
         });
-        int tongDoanhThu = 0, nam = getDsBienLai().get(0).getNgayThanhToan().getYear();
-        System.out.printf("%-20s %-02s\n","Năm","Doanh thu");
+        double tongDoanhThu = 0, nam = getDsBienLai().get(0).getNgayThanhToan().getYear();
+        System.out.printf("%-20s %-20s\n","Năm","Doanh thu");
         System.out.println("*".repeat(40));
         for (BienLai bienLai : QLBienLai.dsBienLai) {
             if (bienLai.getNgayThanhToan().getYear() == nam) {
@@ -245,8 +242,8 @@ public class QLBienLai {
         System.out.println("*".repeat(40));
     }
 
-    public static int soTienConNo(YeuCauDangKy YCDK) {
-        int tienNo = YCDK.getTongHocPhi();
+    public static double soTienConNo(YeuCauDangKy YCDK) {
+        double tienNo = YCDK.getTongHocPhi();
         for (BienLai bienLai : QLBienLai.getDsBienLai()) {
             if (bienLai.getYeuCauDangKy().getMaDangKy().equals(YCDK.getMaDangKy())) {
                 tienNo -= bienLai.getSoTienDaDong();

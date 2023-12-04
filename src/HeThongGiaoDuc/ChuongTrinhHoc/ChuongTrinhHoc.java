@@ -10,17 +10,12 @@ public class ChuongTrinhHoc {
 
     private String khoaHoc;
     private int thoiLuong;
-    private int hocPhi;
+    private double hocPhi;
 
     public ChuongTrinhHoc() {
     }
 
-    public static void main(String[] args) {
-        System.out.println("Nguyễn Nhật Trường".equals("Nguyễn Nhật Trường"));
-    }
-
-
-    public ChuongTrinhHoc(String maChuongTrinh,String theLoai, String trinhDo, String khoaHoc, int thoiLuong,  int hocPhi) {
+    public ChuongTrinhHoc(String maChuongTrinh,String theLoai, String trinhDo, String khoaHoc, int thoiLuong,  double hocPhi) {
         this.maChuongTrinh = maChuongTrinh;
         this.theLoai = theLoai;
         this.trinhDo = trinhDo;
@@ -69,11 +64,11 @@ public class ChuongTrinhHoc {
         this.thoiLuong = thoiLuong;
     }
 
-    public int getHocPhi() {
+    public double getHocPhi() {
         return hocPhi;
     }
 
-    public void setHocPhi(int hocPhi) {
+    public void setHocPhi(double hocPhi) {
         this.hocPhi = hocPhi;
     }
 }

@@ -286,22 +286,34 @@ public class GiaoDienCongTacVien extends GiaoDien {
         QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
         System.out.println("Bạn chọn lớp học nào ??");
         String malop = ScannerUtils.inputString();
+        System.out.println("Nhấn 1 để thoát");
+        if (malop.equals("1")){
+            return;
+        }
         LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
         while (lopHoc == null){
             System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
             malop = ScannerUtils.inputString();
             lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+            System.out.println("Nhấn 1 để thoát");
+            if (malop.equals("1")){
+                return;
+            }
         }
 
         System.out.println("Bạn có muốn thanh toán luôn học phí ?");
         System.out.println("1. Tôi muốn đóng ");
         System.out.println("2. Tôi chỉ muốn ghi danh");
         System.out.println("Ấn các số còn lại để thoát !!");
-
         int luaChon = ScannerUtils.inputInt();
 
         if (luaChon == 1){
-            int dongTien = ScannerUtils.inputHocPhi();
+            System.out.println("Nếu đóng tiền trọn gói bạn sẽ được giảm 30% học phí");
+            System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*70/100,  lopHoc.getChuongTrinh().getHocPhi());
+            System.out.println("Nếu đăng ký sớm thì bạn vẫn sẽ được giảm 15% học phí");
+            System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*85/100,  lopHoc.getChuongTrinh().getHocPhi());
+
+            double dongTien = ScannerUtils.inputHocPhi();
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(Session.getTaiKhoan().getUser(), lopHoc, dongTien);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
             QLHocVienLopHoc.getDsKetQua().add( new HocVienLopHoc(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
@@ -309,24 +321,31 @@ public class GiaoDienCongTacVien extends GiaoDien {
             bienLai.inBienLai();
             QLBienLai.getDsBienLai().add(bienLai);
 
+
         }else if(luaChon == 2){
             QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.HocVien));
             System.out.println("Nhập mã học viên: ");
             String maHV = ScannerUtils.inputString();
             User user = QLUser.timUserTheoMa(maHV);
+            System.out.println("Nhấn 1 để thoát");
+            if (maHV.equals("1")){
+                return;
+            }
             while (user == null){
                 System.out.println("Không tìm thấy mã học viên !!");
                 System.out.println("Xin mời nhập lại !!");
                 maHV = ScannerUtils.inputString();
                 user = QLUser.timUserTheoMa(maHV);
+                System.out.println("Nhấn 1 để thoát");
+                if (maHV.equals("1")){
+                    return;
+                }
             }
 
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
             QLHocVienLopHoc.getDsKetQua().add(new HocVienLopHoc(user, yeuCauDangKy.getLopHoc()));
             System.out.println("Đăng ký thành công !!");
-        }else {
-            giaoDien();
         }
     }
     private void dangKyMonHocChoKhachHang(KetQuaPhongVan ketQuaPhongVan){
@@ -340,10 +359,18 @@ public class GiaoDienCongTacVien extends GiaoDien {
         System.out.println("Bạn chọn lớp học nào ??");
         String malop = ScannerUtils.inputString();
         LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+        System.out.println("Nhấn 1 để thoát");
+        if (malop.equals("1")){
+            return;
+        }
         while (lopHoc == null){
             System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
             malop = ScannerUtils.inputString();
             lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+            System.out.println("Nhấn 1 để thoát");
+            if (malop.equals("1")){
+                return;
+            }
         }
 
         System.out.println("Bạn có muốn thanh toán luôn học phí ?");
@@ -363,8 +390,11 @@ public class GiaoDienCongTacVien extends GiaoDien {
         QLUser.getDsUser().add(user);
         if (luaChon == 1){
             System.out.println("Nếu đóng tiền trọn gói bạn sẽ được giảm 30% học phí");
-            System.out.printf("Chỉ phải thanh toán %dđ\n", lopHoc.getChuongTrinh().getHocPhi()*70/100);
-            int dongTien = ScannerUtils.inputHocPhi();
+            System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*70/100,  lopHoc.getChuongTrinh().getHocPhi());
+            System.out.println("Nếu đăng ký sớm thì bạn vẫn sẽ được giảm 15% học phí");
+            System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*85/100,  lopHoc.getChuongTrinh().getHocPhi());
+
+            double dongTien = ScannerUtils.inputHocPhi();
 
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc, dongTien);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
@@ -372,12 +402,13 @@ public class GiaoDienCongTacVien extends GiaoDien {
             BienLai bienLai = new BienLai(yeuCauDangKy, dongTien);
             bienLai.inBienLai();
             QLBienLai.getDsBienLai().add(bienLai);
+            ketQuaPhongVan.setLienHe(LienHe.DaDangKy);
+
         }else if(luaChon == 2){
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc);
             QLHocVienLopHoc.getDsKetQua().add(new HocVienLopHoc(user, yeuCauDangKy.getLopHoc()));
             System.out.println("Đăng ký thành công !!");
-        }else {
-            giaoDien();
+            ketQuaPhongVan.setLienHe(LienHe.DaDangKy);
         }
     }
 

@@ -22,11 +22,11 @@ public class QLKetQuaPhongVan {
 
     public static void inDSKetQuaPhongVan(ArrayList<KetQuaPhongVan> dsKetQuaPhongVan){
         System.out.println("*".repeat(133));
-        System.out.printf("* %-20s* %-20s* %-20s* %-20s* %-20s* %-20s*\n", "Mã ca phổng vấn", "Tên khách hàng", "Số điện thoại","Điểm phổng vấn", "Chương Trình Phù Hợp", "Trạng thái");
+        System.out.printf("* %-20s* %-30s* %-20s* %-20s* %-20s* %-20s*\n", "Mã ca phổng vấn", "Tên khách hàng", "Số điện thoại","Điểm phổng vấn", "Chương Trình Phù Hợp", "Trạng thái");
         System.out.println("*".repeat(133));
         for (KetQuaPhongVan ketQuaPhongVan: dsKetQuaPhongVan){
             String lienHe = LienHe.toString(ketQuaPhongVan.getLienHe());
-            System.out.printf("* %-20s* %-20s* %-20s* %-20s* %-20s* %-20s*\n", ketQuaPhongVan.getLichPhongVan().getMaCaPhongVan(), ketQuaPhongVan.getLichPhongVan().getKhachHang().getHoTen(), ketQuaPhongVan.getLichPhongVan().getKhachHang().getSoDienThoai(), ketQuaPhongVan.getDiem(), ketQuaPhongVan.getChuongTrinhHocDeXuat().getKhoaHoc(), lienHe);
+            System.out.printf("* %-20s* %-30s* %-20s* %-20s* %-20s* %-20s*\n", ketQuaPhongVan.getLichPhongVan().getMaCaPhongVan(), ketQuaPhongVan.getLichPhongVan().getKhachHang().getHoTen(), ketQuaPhongVan.getLichPhongVan().getKhachHang().getSoDienThoai(), ketQuaPhongVan.getDiem(), ketQuaPhongVan.getChuongTrinhHocDeXuat().getKhoaHoc(), lienHe);
         }
         System.out.println("*".repeat(133));
 

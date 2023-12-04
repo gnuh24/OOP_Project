@@ -21,7 +21,7 @@ public class QLChuongTrinhHoc {
         System.out.printf("* %-15s*   %-27s*   %-23s*   %-20s*   %-12s*   %-15s*\n", "Code", "Thể loại", "Trình độ", "Tên khóa học", "Thời lượng", "Học phí");
         System.out.println("*".repeat(135));
         for (ChuongTrinhHoc i: dsChuongTrinhHoc){
-            System.out.printf("* %-15s*   %-27s*   %-23s*   %-20s*   %-12d*   %-15d*\n", i.getMaChuongTrinh(), i.getTheLoai(), i.getTrinhDo(), i.getKhoaHoc(), i.getThoiLuong(), i.getHocPhi());
+            System.out.printf("* %-15s*   %-27s*   %-23s*   %-20s*   %-12d*   %-15f*\n", i.getMaChuongTrinh(), i.getTheLoai(), i.getTrinhDo(), i.getKhoaHoc(), i.getThoiLuong(), i.getHocPhi());
         }
         System.out.println("*".repeat(135));
 

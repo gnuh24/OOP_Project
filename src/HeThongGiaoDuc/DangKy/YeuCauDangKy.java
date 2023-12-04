@@ -13,7 +13,7 @@ public class YeuCauDangKy {
 
     private LopHoc lopHoc;
 
-    private int tongHocPhi;
+    private double tongHocPhi;
 
     private TrangThaiDangKy trangThaiDangKy;
 
@@ -25,12 +25,12 @@ public class YeuCauDangKy {
 
 
     //Đơn đăng ký bình thường ( Dùng cho trường hơợp vừa đăng ký vừa đóng tiền)
-    public YeuCauDangKy(User hocVien, LopHoc lopHoc, int soTienDaDong){
+    public YeuCauDangKy(User hocVien, LopHoc lopHoc, double soTienDaDong){
         this.maDangKy = autoIncrement();
         this.hocVien = hocVien;
         this.lopHoc = lopHoc;
         if (lopHoc.getTrangThai().equals(TrangThaiLop.Sap_Khai_Giang)){
-            if (soTienDaDong == lopHoc.getChuongTrinh().getHocPhi()){
+            if (soTienDaDong == lopHoc.getChuongTrinh().getHocPhi() * 70 /100){
                 this.tongHocPhi = lopHoc.getChuongTrinh().getHocPhi() * 70 /100;
                 this.khuyenMai = KhuyenMai.GIAM30_HocPhi;
             }
@@ -57,7 +57,7 @@ public class YeuCauDangKy {
     }
 
 
-    public YeuCauDangKy(String maDangKy, User hocVien, LopHoc lopHoc, int tongHocPhi, TrangThaiDangKy trangThaiDangKy, KhuyenMai khuyenMai, LocalDate localDate) {
+    public YeuCauDangKy(String maDangKy, User hocVien, LopHoc lopHoc, double tongHocPhi, TrangThaiDangKy trangThaiDangKy, KhuyenMai khuyenMai, LocalDate localDate) {
         this.maDangKy = maDangKy;
         this.hocVien = hocVien;
         this.lopHoc = lopHoc;
@@ -104,8 +104,12 @@ public class YeuCauDangKy {
         this.lopHoc = lopHoc;
     }
 
-    public int getTongHocPhi() {
+    public double getTongHocPhi() {
         return tongHocPhi;
+    }
+
+    public void setTongHocPhi(double tongHocPhi) {
+        this.tongHocPhi = tongHocPhi;
     }
 
     public void setTongHocPhi(int tongHocPhi) {
