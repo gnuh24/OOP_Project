@@ -1,9 +1,13 @@
 package Menu.GiaoDien;
 
+import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import Menu.Session;
+import QuanLyDoiTuong.QLHocVienLopHoc;
 import QuanLyDoiTuong.QLLopHoc;
 import Utils.ScannerUtils;
+
+import java.util.ArrayList;
 
 public class GiaoDienTroGiang extends GiaoDien {
     public void giaoDien() {
@@ -19,7 +23,6 @@ public class GiaoDienTroGiang extends GiaoDien {
             System.out.printf("*   %-95s*\n","5. Thoát chương trình");
             System.out.printf("*   %-95s*\n","Bạn đã có lựa chọn chưa ?");
             System.out.println("*".repeat(100));
-
             choice = ScannerUtils.inputInt();
 
             if (choice < 1 || choice > 5) {
@@ -67,6 +70,18 @@ public class GiaoDienTroGiang extends GiaoDien {
     }
 
     protected void xemDanhSachHocVien() {
-        QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc));
+        ArrayList<LopHoc> dsLopHoc = QLLopHoc.timKiemLopTheoTrangThai(
+                QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()),
+                TrangThaiLop.Dang_Hoc);
+        QLLopHoc.inDanhSach(dsLopHoc);
+        System.out.println("Chọn lớp: ");
+        String maLop = ScannerUtils.inputString();
+        LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsLopHoc);
+        while (lopHoc == null){
+            System.err.println("Mã lớp không hợp lệ !!!");
+            maLop = ScannerUtils.inputString();
+            lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsLopHoc);
+        }
+        QLHocVienLopHoc.inDanhSach(QLHocVienLopHoc.timKiemTheoLopHoc(maLop));
     }
 }
