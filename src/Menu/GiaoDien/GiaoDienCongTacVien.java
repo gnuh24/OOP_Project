@@ -16,6 +16,7 @@ import NguoiDung.VaiTro;
 import QuanLyDoiTuong.*;
 import TaiKhoan.QLTaiKhoan;
 import ThoiGian.CaHoc;
+import ThoiGian.Thu;
 import Utils.ScannerUtils;
 
 import java.time.LocalDate;
@@ -92,81 +93,84 @@ public class GiaoDienCongTacVien extends GiaoDien {
 
     private void sapXepLichPhongVan(){
         QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
-        System.out.println("Bạn muốn xét thay đổi lịch phổng vấn nào (Nhập ID)");
+        System.out.println("Bạn muốn sắp xếp lịch phổng vấn nào ? (Nhập ID)");
         System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
-
         String id = ScannerUtils.inputString();
-
         if (id.equals("1")){
-            giaoDien();
+           return;
         }
+        LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id);
 
+        if (lichPhongVan == null){
+            System.out.println("Mã không tồn tại !!!");
+        }
         else{
-            LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id);
-            if (lichPhongVan == null){
-                System.out.println("Mã không tồn tại !!!");
-                giaoDien();
+            System.out.printf("Bạn đã chọn lịch phổng vấn %s \n", lichPhongVan.getMaCaPhongVan());
+
+            LocalDate ngayThang = ScannerUtils.inputDate("Nhập ngày phổng vấn. ");
+            lichPhongVan.setNgayThang(ngayThang);
+
+            LocalTime gioPhongVan = ScannerUtils.inputTime("Nhập giờ phổng vấn");
+            lichPhongVan.setGioPV(gioPhongVan);
+
+
+            System.out.println("Hãy chọn giảng viên phù hợp :33");
+            System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
+            QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.GiangVien, true));
+            String idGV = ScannerUtils.inputString();
+
+            User giangVien = QLUser.timUserTheoMa(idGV);
+            if (giangVien == null){
+                System.err.println("Giang viên không tồn tại !!");
+                return;
+            }else if(giangVien.isBusy(Thu.formDayOfWeekToThu(ngayThang.getDayOfWeek()), gioPhongVan, ngayThang)){
+                System.err.println("Giảng viên đang có ca dạy hay phổng vấn khác vào thời điểm đó !!!");
+                return;
             }
             else{
-                System.out.printf("Bạn đã chọn lịch phổng vấn %s \n", lichPhongVan.getMaCaPhongVan());
-                System.out.println("Hãy chọn giảng viên phù hợp :33");
-                System.out.println("Nếu muốn thoát hãy ấn 1");
-                QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.GiangVien, true));
-                String idGV = ScannerUtils.inputString();
+                lichPhongVan.setGiangVien(giangVien);
+                System.out.println("Đã thêm giảng viên thành công !!");
+            }
 
-                if (idGV.equals("1")){
-                    giaoDien();
-                }
-
-                else {
-                    User giangVien = QLUser.timUserTheoMa(idGV);
-                    if (giangVien == null){
-                        System.out.println("Giang viên không tồn tại !!");
-                        giaoDien();
-                    }
-                    else{
-                        lichPhongVan.setGiangVien(giangVien);
-                        System.out.println("Đã thêm giảng vie6n thành công !!");
-                    }
-
-                    LocalDate ngayThang = ScannerUtils.inputDate("Nhập ngày phổng vấn. ");
-                    lichPhongVan.setNgayThang(ngayThang);
-                    System.out.println("Đã thêm ngày tháng thành công !!");
-
-
-                    LocalTime gioHoc = ScannerUtils.inputTime();
-                    lichPhongVan.setGioPV(gioHoc);
-                    System.out.println("Đã thêm giờ thành công !!");
-
-                    if (lichPhongVan.isValid()){
-                        lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.CHO_PHONGVAN);
-                        System.out.println("Đã duyệt thành công cho mã phổng vấn " + lichPhongVan.getMaCaPhongVan());
-                        QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
-                        giaoDien();
-                    }
-                }
+            if (lichPhongVan.isValid()){
+                lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.CHO_PHONGVAN);
+                System.out.println("Đã duyệt thành công cho mã phổng vấn " + lichPhongVan.getMaCaPhongVan());
+                QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
+            }else{
+                System.err.println("Thêm thất bại !!! Có vấn đề hệ thống xảy ra lúc sắp xếp lịch phổng vấn !!");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        String title = "Tiêu đề với màu trắng trên nền đen";
+        String line = "\u001B[30m" + "=".repeat(title.length() + 10) + "\u001B[0m";
+
+        System.out.println(line);
+        System.out.printf("\u001B[30;47m===  %s  ===\u001B[0m%n", title);
+        System.out.println(line);
     }
 
     private void thayDoiTrangThaiLichPhongVan(){
         QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
         System.out.println("Bạn muốn xét thay đổi lịch phổng vấn nào (Nhập ID)");
         System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
-
         String idPV = ScannerUtils.inputString();
-
         if (idPV.equals("1")){
-            giaoDien();
+            return;
         }
-
-        else{
             LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(idPV);
             if (lichPhongVan == null){
                 System.out.println("Mã không tồn tại !!!");
-                giaoDien();
+                thayDoiTrangThaiLichPhongVan();
             }
             else{
+
+                if (lichPhongVan.getTrangThaiPhongVan().equals(TrangThaiPhongVan.HUY)){
+                    System.err.println("Không thể thay đổi trạng thái của lịch phổng vấn đã bị hủy trước đó !!!");
+                    return;
+                }
+
                 System.out.printf("Bạn đã chọn lịch phổng vấn %s \n", lichPhongVan.getMaCaPhongVan());
                 System.out.println("Hãy chọn trạng thái bạn muốn thay đổi :33");
                 System.out.println("1. Chờ duyệt");
@@ -175,34 +179,23 @@ public class GiaoDienCongTacVien extends GiaoDien {
                 System.out.println("4. Hủy");
                 System.out.println("Ấn bất cứ nút nào khác để thoát về màn hình chính !!");
 
-
-
                 String case2Choice = ScannerUtils.inputString();
 
                 if (case2Choice.equals("1")){
                     lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.CHO_DUYET);
-                    System.out.println("Đã thay đổi thành công !!");
-                    QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
                 }
                 else if (case2Choice.equals("2")){
                     lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.CHO_PHONGVAN);
-                    System.out.println("Đã thay đổi thành công !!");
-                    QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
-
                 }
                 else if (case2Choice.equals("3")){
                     lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.DA_PHONGVAN);
-                    System.out.println("Đã thay đổi thành công !!");
-                    QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
-
                 }
                 else if (case2Choice.equals("4")){
                     lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.HUY);
-                    System.out.println("Đã thay đổi thành công !!");
-                    QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
                 }
+                System.out.println("Đã thay đổi thành công !!");
+                QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
             }
-        }
     }
 
     private void dieuChinhTrangThaiKetQuaPhongVan(){
@@ -211,9 +204,11 @@ public class GiaoDienCongTacVien extends GiaoDien {
         System.out.println("Ấn phím 1 để thoát ra màn hình chính ");
 
         String inputCase3 = ScannerUtils.inputString();
-        if (!inputCase3.equals("1")){
-            KetQuaPhongVan ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(inputCase3);
-            if (ketQuaPhongVan != null){
+        if (inputCase3.equals("1")){
+            return;
+        }
+        KetQuaPhongVan ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(inputCase3);
+        if (ketQuaPhongVan != null){
                 // Bạn đã thử liên hệ chưa ? Họ nói gì ?
                 System.out.println("1. Chưa liên hệ"); //Đã liên hệ và họ muốn ghi danh
                 System.out.println("2. Đã từ chối");
@@ -240,10 +235,8 @@ public class GiaoDienCongTacVien extends GiaoDien {
                         break;
                 }
             }
-            else{
-                System.out.println("Không tìm thấy mã bạn yêu cầu !!");
-            }
-            dieuChinhTrangThaiKetQuaPhongVan();
+        else{
+            System.out.println("Không tìm thấy mã bạn yêu cầu !!");
         }
     }
 
@@ -441,6 +434,11 @@ public class GiaoDienCongTacVien extends GiaoDien {
         System.out.println("Bạn chọn lớp nào để sắp xếp ?");
         String choice = ScannerUtils.inputString();
         LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(choice);
+        System.out.println("Ấn 1 để trở về giao diện chính.");
+        if (choice.equals("1")){
+            return;
+        }
+
         if (lopHoc == null){
             System.out.println("Không tìm thấy mã lớp !!!");
             sapXepLopHoc();
@@ -483,29 +481,87 @@ public class GiaoDienCongTacVien extends GiaoDien {
             System.out.println("Hãy chọn giảng viên phù hợp.");
             String maGV = ScannerUtils.inputString();
             User giangVien = QLUser.timUserTheoMa(maGV, dsGiangVien);
+            System.out.println("Ấn 1 để trở về giao diện chính.");
+            if (maGV.equals("1")){
+                return;
+            }
 
             while (giangVien == null){
-                System.out.println("Mã giảng viên không hợp lẹ !!");
+                System.err.println("Mã giảng viên không hợp lẹ !!");
                 System.out.println("Hãy chọn giảng viên phù hợp.");
                 maGV = ScannerUtils.inputString();
                 giangVien = QLUser.timUserTheoMa(maGV, dsGiangVien);
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+                if (maGV.equals("1")){
+                    return;
+                }
+            }
+
+            while (giangVien.isBusy(dsCaHoc.get(0))){
+                System.err.printf("Giảng viên bị trùng lịch vào %s !!!\n", dsCaHoc.get(0));
+                System.out.println("Hãy chọn giảng viên phù hợp.");
+                maGV = ScannerUtils.inputString();
+                giangVien = QLUser.timUserTheoMa(maGV, dsGiangVien);
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+                if (maGV.equals("1")){
+                    return;
+                }
+            }
+
+            while (giangVien.isBusy(dsCaHoc.get(1))) {
+                System.err.printf("Giảng viên bị trùng lịch vào %s !!!\n", dsCaHoc.get(1));
+                System.out.println("Hãy chọn giảng viên phù hợp.");
+                maGV = ScannerUtils.inputString();
+                giangVien = QLUser.timUserTheoMa(maGV, dsGiangVien);
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+                if (maGV.equals("1")){
+                    return;
+                }
             }
 
             lopHoc.setGiangVien(giangVien);
             System.out.println("Đã thêm giảng viên thành công !!");
 
-
-
             QLUser.inThongTin(dsTroGiang);
             System.out.println("Hãy chọn trợ giảng phù hợp.");
             String maTG = ScannerUtils.inputString();
             User troGiang = QLUser.timUserTheoMa(maTG, dsTroGiang);
+            System.out.println("Ấn 1 để trở về giao diện chính.");
+            if (maTG.equals("1")){
+                return;
+            }
 
             while (troGiang == null){
-                System.out.println("Mã giảng viên không hợp lẹ !!");
+                System.err.println("Mã trợ giảng không hợp lẹ !!");
                 System.out.println("Hãy chọn trợ giảng phù hợp.");
                 maTG = ScannerUtils.inputString();
                 troGiang = QLUser.timUserTheoMa(maTG, dsTroGiang);
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+                if (maTG.equals("1")){
+                    return;
+                }
+            }
+
+            while (troGiang.isBusy(dsCaHoc.get(0))){
+                System.err.printf("Trợ giảng bị trùng lịch vào %s !!!\n", dsCaHoc.get(0));
+                System.out.println("Hãy chọn trợ giảng phù hợp.");
+                maTG = ScannerUtils.inputString();
+                troGiang = QLUser.timUserTheoMa(maTG, dsTroGiang);
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+                if (maTG.equals("1")){
+                    return;
+                }
+            }
+
+            while (troGiang.isBusy(dsCaHoc.get(1))) {
+                System.err.printf("Trợ giảng bị trùng lịch vào %s !!!\n", dsCaHoc.get(1));
+                System.out.println("Hãy chọn trợ giảng phù hợp.");
+                maTG = ScannerUtils.inputString();
+                troGiang = QLUser.timUserTheoMa(maTG, dsTroGiang);
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+                if (maTG.equals("1")){
+                    return;
+                }
             }
 
             lopHoc.setTroGiang(troGiang);
@@ -516,12 +572,42 @@ public class GiaoDienCongTacVien extends GiaoDien {
             System.out.println("Hãy chọn phòng học phù hợp.");
             String maPhong = ScannerUtils.inputString();
             PhongHoc phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(maPhong);
+            System.out.println("Ấn 1 để trở về giao diện chính.");
+            if (maPhong.equals("1")){
+                return;
+            }
 
             while (phongHoc == null){
-                System.out.println("Phòng học không hợp lệ !!");
+                System.err.println("Phòng học không hợp lệ !!");
                 System.out.println("Hãy chọn phòng học phù hợp.");
                 maPhong = ScannerUtils.inputString();
                 phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(maPhong);
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+                if (maPhong.equals("1")){
+                    return;
+                }
+            }
+
+            while (phongHoc.isBusy(lopHoc.getCaHocMacDinh().get(0))){
+                System.err.printf("Phòng học này đã có lớp học tại thời điểm %s", lopHoc.getCaHocMacDinh().get(0));
+                System.out.println("Hãy chọn phòng học phù hợp.");
+                maPhong = ScannerUtils.inputString();
+                phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(maPhong);
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+                if (maPhong.equals("1")){
+                    return;
+                }
+            }
+
+            while (phongHoc.isBusy(lopHoc.getCaHocMacDinh().get(1))) {
+                System.err.printf("Phòng học này đã có lớp học tại thời điểm %s", lopHoc.getCaHocMacDinh().get(1));
+                System.out.println("Hãy chọn phòng học phù hợp.");
+                maPhong = ScannerUtils.inputString();
+                phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(maPhong);
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+                if (maPhong.equals("1")) {
+                    return;
+                }
             }
 
             lopHoc.setPhongHocMacDinh(phongHoc);
@@ -529,9 +615,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
 
             lopHoc.setTrangThai(TrangThaiLop.Sap_Khai_Giang);
             System.out.println("Đã sắp xếp thành công cho lớp học  !!");
-
         }
-        giaoDien();
     }
 
     private void chuyenLop(){

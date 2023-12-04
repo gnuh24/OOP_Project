@@ -1,4 +1,18 @@
 package HeThongGiaoDuc.CoSoVatChat;
+
+import HeThongGiaoDuc.LopHoc.LopHoc;
+import HeThongGiaoDuc.PhongVan.LichPhongVan;
+import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
+import NguoiDung.VaiTro;
+import QuanLyDoiTuong.QLLichPhongVan;
+import QuanLyDoiTuong.QLLopHoc;
+import ThoiGian.CaHoc;
+import ThoiGian.Thu;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+
 public class PhongHoc {
     String maPhongHoc;
     boolean trangThai;
@@ -10,6 +24,20 @@ public class PhongHoc {
         this.trangThai=trangThai;
         this.coSoTrucThuoc=coSoTrucThuoc;
     }
+
+    public boolean isBusy(CaHoc caHoc) {
+        ArrayList<LopHoc> dsLopHocCaNhan = QLLopHoc.timKiemLopTheoPhongHoc(this.maPhongHoc);
+        for (LopHoc lopHoc : dsLopHocCaNhan) {
+            CaHoc caHoc1 = lopHoc.getCaHocMacDinh().get(0);
+            CaHoc caHoc2 = lopHoc.getCaHocMacDinh().get(1);
+            if (caHoc1.equal(caHoc) || caHoc2.equal(caHoc)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public String getMaPhongHoc() {
         return maPhongHoc;
     }

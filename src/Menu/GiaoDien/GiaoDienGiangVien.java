@@ -13,17 +13,20 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
     public void giaoDien() {
         int choice;
         do {
-            System.out.println(
-                    "-----------------------------------------------CHÀO MỪNG BẠN ĐÃ ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88-----------------------------------------------");
-            System.out.println("1. Xem lịch dạy của lớp hiện tại");
-            System.out.println("2. Xem lịch dạy của lớp sắp khai giảng");
-            System.out.println("3. Xem danh sách học sinh của các lớp");
-            System.out.println("4. Xem danh sách lịch phổng vấn");
-            System.out.println("5. Nhập điểm cho thí sinh phổng vấn");
-            System.out.println("6. Nhập điểm cho học viên các lớp");
-            System.out.println("7. Đăng xuất");
-            System.out.println("8. Thoát chương trình");
-            System.out.println("Bạn đã có lựa chọn chưa ?");
+            System.out.println("*".repeat(100));
+            System.out.printf("*%75s%24s\n", "CHÀO MỪNG BẠN ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88", "*");
+            System.out.println("*".repeat(100));
+            System.out.printf("*   %-96s*\n" ,"1. Xem lịch dạy của lớp hiện tại");
+            System.out.printf("*   %-96s*\n" ,"2. Xem lịch dạy của lớp sắp khai giảng");
+            System.out.printf("*   %-96s*\n" ,"3. Xem danh sách học sinh của các lớp");
+            System.out.printf("*   %-96s*\n" ,"4. Xem danh sách lịch phổng vấn");
+            System.out.printf("*   %-96s*\n" ,"5. Nhập điểm cho thí sinh phổng vấn");
+            System.out.printf("*   %-96s*\n" ,"6. Nhập điểm cho học viên các lớp");
+            System.out.printf("*   %-96s*\n" ,"7. Đăng xuất");
+            System.out.printf("*   %-96s*\n" ,"8. Thoát chương trình");
+            System.out.printf("*   %-96s*\n" ,"Bạn đã có lựa chọn chưa ?");
+            System.out.println("*".repeat(100));
+
             choice = ScannerUtils.inputInt();
 
             if (choice < 1 || choice > 8) {
@@ -33,22 +36,25 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
             switch (choice) {
                 case 1:
                     super.xemDanhSachLopHoc();
+                    backTo();
                     break;
                 case 2:
                     super.xemDanhSachLopSapKhaiGiang();
+                    backTo();
                     break;
 
                 case 3:
                     super.xemDanhSachHocVien();
+                    backTo();
                     break;
 
                 case 4:
                     xemLichPhongVan();
+                    backTo();
                     break;
 
                 case 5:
-
-//                    nhapDiemChoThiSinhPhongVan();
+                    nhapDiemChoThiSinhPhongVan();
                     break;
 
                 case 6:
@@ -81,14 +87,15 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
 
         String id = ScannerUtils.inputString();
 
-        if (!id.equals("1")) {
+        if (id.equals("1")) {
+            return;
+        }
+
             LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id);
             if (lichPhongVan == null) {
-                System.out.println("Mã không tồn tại !!!");
-                giaoDien();
+                System.err.println("Mã không tồn tại !!!");
             } else if (!lichPhongVan.getTrangThaiPhongVan().equals(TrangThaiPhongVan.DA_PHONGVAN)) {
-                System.out.println("Bạn không thể chấm điểm khi buổi phổng vấn chưa diễn ra!!");
-                giaoDien();
+                System.err.println("Bạn không thể chấm điểm khi buổi phổng vấn chưa diễn ra!!");
             } else {
                 System.out.printf("Bạn đã chọn lịch phổng vấn %s \n",
                         lichPhongVan.getMaCaPhongVan());
@@ -110,10 +117,7 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
                     System.out.println("Đã chấm điểm thành công !!");
                 }
             }
-        } else {
-            this.giaoDien();
 
-        }
     }
 
 //    private void nhapDiemChoThiSinhPhongVan() {

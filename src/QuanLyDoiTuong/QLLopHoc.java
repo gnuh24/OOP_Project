@@ -241,25 +241,39 @@ public class QLLopHoc {
     return dsLopHocin;
   }
 
-  public static ArrayList<LopHoc> timKiemLopTheoGiangVien(String maGV) {
+
+  //Lấy trực tiếp ra những lớp Đang học hoặc Sắp Khai Giảng
+  public static ArrayList < LopHoc > timKiemLopTheoGiangVien(String maGV) {
+    ArrayList < LopHoc > dsLopHocin = new ArrayList<>();
+
+    for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
+      if (lopHoc.getTrangThai().equals(TrangThaiLop.Cho_Sap_Xep)) {
+        continue;
+      }
+
+      if (lopHoc.getGiangVien().getMaUser().equals(maGV)
+              && (lopHoc.getTrangThai().equals(TrangThaiLop.Sap_Khai_Giang)
+              || lopHoc.getTrangThai().equals(TrangThaiLop.Dang_Hoc))) {
+        dsLopHocin.add(lopHoc);
+      }
+    }
+
+    return dsLopHocin;
+  }
+
+
+  //Lấy trực tiếp ra những lớp Đang học hoặc Sắp Khai Giảng
+  public static ArrayList<LopHoc> timKiemLopTheoTroGiang(String maTG) {
     ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
     for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
-      if (lopHoc.getGiangVien().getMaUser().equals(maGV)) {
-        dsLopHocin.add(lopHoc);
+      if (lopHoc.getTroGiang().getMaUser().equals(maTG)
+              && (lopHoc.getTrangThai().equals(TrangThaiLop.Sap_Khai_Giang) || lopHoc.getTrangThai().equals(TrangThaiLop.Dang_Hoc))) {
+        dsLopHocin.add(lopHoc); // Bạn cần thêm dòng này để thêm lớp học vào danh sách
       }
     }
     return dsLopHocin;
   }
 
-  public static ArrayList<LopHoc> timKiemLopTheoTroGiang(String maTG) {
-    ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
-    for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
-      if (lopHoc.getTroGiang().getMaUser().equals(maTG)) {
-        dsLopHocin.add(lopHoc);
-      }
-    }
-    return dsLopHocin;
-  }
 
   public static ArrayList<LopHoc> timKiemLopTheoChuongTrinh(String maChuongTrinhHoc) {
     ArrayList<LopHoc> dsLopHoc = new ArrayList<>();
@@ -285,6 +299,20 @@ public class QLLopHoc {
     ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
     for (LopHoc lopHoc : dsLopHoc) {
       if (lopHoc.getTrangThai().equals(trangThai)) {
+        dsLopHocin.add(lopHoc);
+      }
+    }
+    return dsLopHocin;
+  }
+
+  public static ArrayList<LopHoc> timKiemLopTheoPhongHoc(String maPhong){
+    ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
+
+    for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
+      if(lopHoc.getTrangThai().equals(TrangThaiLop.Cho_Sap_Xep)){
+        continue;
+      }
+      if (lopHoc.getPhongHocMacDinh().getMaPhongHoc().equals(maPhong)) {
         dsLopHocin.add(lopHoc);
       }
     }

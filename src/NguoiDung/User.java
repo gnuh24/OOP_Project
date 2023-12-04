@@ -1,14 +1,19 @@
 package NguoiDung;
 
 import HeThongGiaoDuc.LopHoc.LopHoc;
+import HeThongGiaoDuc.PhongVan.LichPhongVan;
+import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
+import QuanLyDoiTuong.QLLichPhongVan;
 import QuanLyDoiTuong.QLLopHoc;
 import QuanLyDoiTuong.QLUser;
 import ThoiGian.CaHoc;
 import ThoiGian.Thu;
 import Utils.ScannerUtils;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class User {
 
@@ -88,8 +93,24 @@ public class User {
         this.diaChi = ScannerUtils.inputDiaChi();
     }
 
-    public boolean isBusy(Thu thu, LocalTime localTime) {
-        for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
+    public boolean isBusy(CaHoc caHocCanSo) {
+        ArrayList<LopHoc> dsLopHocCaNhan = QLLopHoc.timKiemLopTheoGiangVien(this.getMaUser());
+        for (LopHoc lopHoc : dsLopHocCaNhan) {
+            CaHoc caHoc1 = lopHoc.getCaHocMacDinh().get(0);
+            CaHoc caHoc2 = lopHoc.getCaHocMacDinh().get(1);
+            if (caHoc1.equal(caHocCanSo) || caHoc2.equal(caHocCanSo) ){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean isBusy(Thu thu, LocalTime localTime, LocalDate localDate) {
+
+
+        ArrayList<LopHoc> dsLopHocCaNhan = QLLopHoc.timKiemLopTheoGiangVien(this.getMaUser());
+        for (LopHoc lopHoc : dsLopHocCaNhan) {
             CaHoc caHoc1 = lopHoc.getCaHocMacDinh().get(0);
             CaHoc caHoc2 = lopHoc.getCaHocMacDinh().get(1);
 
@@ -103,9 +124,36 @@ public class User {
                 return true;
             }
         }
+
+        if (this.vaiTro.equals(VaiTro.GiangVien)) {
+            ArrayList<LichPhongVan> dsLichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoGV(this.getMaUser());
+            for (LichPhongVan lichPhongVan : dsLichPhongVan) {
+                if (lichPhongVan.getTrangThaiPhongVan().equals(TrangThaiPhongVan.CHO_PHONGVAN)
+                        && lichPhongVan.getNgayThang().equals(localDate)
+                        && lichPhongVan.getGioPV().equals(localTime)) {
+                    return true;
+                }
+            }
+        }
+
+
         return false;
     }
 
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.now(); // Lấy ngày hiện tại
+
+        // Lấy thông tin về thứ của ngày hiện tại
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+
+        // In ra thông tin về thứ
+        System.out.println("Ngày hiện tại là: " + date);
+        System.out.println("Thứ của ngày hiện tại là: " + dayOfWeek);
+
+        // Sử dụng các phương thức của DayOfWeek để lấy thông tin chi tiết
+        System.out.println("Số thứ tự của thứ: " + dayOfWeek.getValue());
+        System.out.println("Tên của thứ: " + dayOfWeek.name());
+    }
 
     public String getMaUser() {
         return maUser;

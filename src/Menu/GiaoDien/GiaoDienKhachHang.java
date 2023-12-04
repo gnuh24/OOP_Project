@@ -75,5 +75,7 @@ public class GiaoDienKhachHang extends GiaoDien {
         LichPhongVan lichPhongVan = new LichPhongVan(khachHang);
         QLLichPhongVan.getDsLichPhongVan().add(lichPhongVan);
         System.out.println("Bạn đã đăng ký thành công !!");
+        System.out.println("Hình thức test là online thông qua Zoom (Premium)");
+        System.out.println("Bạn sẽ nhận được thông tin chi tiết qua email và điện thoại trong thời gian tới !!");
     }
 }

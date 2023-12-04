@@ -24,10 +24,10 @@ public class QLPhongHoc {
 
         for(PhongHoc phong:dsPhongHoc){
             if(!phong.getTrangThai()){
-                System.out.printf("* %-10s* %-10s* %-10s*\n",phong.getMaPhongHoc(),phong.getCoSoTrucThuoc().getMaCoSo(),"Đang học");
+                System.out.printf("* %-10s* %-10s* %-10s*\n",phong.getMaPhongHoc(),phong.getCoSoTrucThuoc().getMaCoSo(),"Hoạt động");
             }
             else{
-                System.out.printf("* %-10s* %-10s* %-10s*\n",phong.getMaPhongHoc(),phong.getCoSoTrucThuoc().getMaCoSo(),"Trống");
+                System.out.printf("* %-10s* %-10s* %-10s*\n",phong.getMaPhongHoc(),phong.getCoSoTrucThuoc().getMaCoSo(),"Bảo trì");
             }
         }
         System.out.println("*************************************");

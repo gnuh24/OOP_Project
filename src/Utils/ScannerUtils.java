@@ -83,8 +83,8 @@ public class ScannerUtils {
         return LocalDate.parse(userInput, formatter);
     }
 
-    public static LocalTime inputTime() {
-        System.out.println("Xin mời nhập thời gian (VD: 20:30)");
+    public static LocalTime inputTime(String displayString) {
+        System.out.println(displayString + " (VD: 20:30)");
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
         String regex = "([01]\\d|2[0-3]):[0-5]\\d"; // giới hạn 00:00 -> 23:59

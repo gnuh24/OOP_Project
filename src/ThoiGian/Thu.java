@@ -1,5 +1,8 @@
 package ThoiGian;
 
+import java.sql.SQLOutput;
+import java.time.DayOfWeek;
+
 public enum Thu {
     Hai, Ba, Tu, Nam, Sau, Bay, ChuNhat;
 
@@ -61,6 +64,29 @@ public enum Thu {
                 break;
         }
         return thuEnum;
+    }
+
+
+    public static Thu formDayOfWeekToThu(DayOfWeek dayOfWeek) {
+        switch (dayOfWeek) {
+            case MONDAY:
+                return Hai;
+            case TUESDAY:
+                return Ba;
+            case WEDNESDAY:
+                return Tu;
+            case THURSDAY:
+                return Nam;
+            case FRIDAY:
+                return Sau;
+            case SATURDAY:
+                return Bay;
+            case SUNDAY:
+                return ChuNhat;
+            default:
+                System.err.println("Chuyển thất bại từ DayOfWeek sang Thu");
+        }
+        return null;
     }
 
 }
