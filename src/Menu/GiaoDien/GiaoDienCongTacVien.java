@@ -357,17 +357,17 @@ public class GiaoDienCongTacVien extends GiaoDien {
         dsCacLopHocPhuHop.addAll(dsCacLopCacLopSapKhaiGiang);
         QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
         System.out.println("Bạn chọn lớp học nào ??");
+        System.out.println("Nhấn 1 để thoát");
         String malop = ScannerUtils.inputString();
         LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
-        System.out.println("Nhấn 1 để thoát");
         if (malop.equals("1")){
             return;
         }
         while (lopHoc == null){
             System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+            System.out.println("Nhấn 1 để thoát");
             malop = ScannerUtils.inputString();
             lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
-            System.out.println("Nhấn 1 để thoát");
             if (malop.equals("1")){
                 return;
             }
@@ -462,9 +462,9 @@ public class GiaoDienCongTacVien extends GiaoDien {
     private void sapXepLopHoc(){
         QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Cho_Sap_Xep));
         System.out.println("Bạn chọn lớp nào để sắp xếp ?");
+        System.out.println("Ấn 1 để trở về giao diện chính.");
         String choice = ScannerUtils.inputString();
         LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(choice);
-        System.out.println("Ấn 1 để trở về giao diện chính.");
         if (choice.equals("1")){
             return;
         }
@@ -509,9 +509,9 @@ public class GiaoDienCongTacVien extends GiaoDien {
 
             QLUser.inThongTin(dsGiangVien);
             System.out.println("Hãy chọn giảng viên phù hợp.");
+            System.out.println("Ấn 1 để trở về giao diện chính.");
             String maGV = ScannerUtils.inputString();
             User giangVien = QLUser.timUserTheoMa(maGV, dsGiangVien);
-            System.out.println("Ấn 1 để trở về giao diện chính.");
             if (maGV.equals("1")){
                 return;
             }
@@ -519,9 +519,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
             while (giangVien == null){
                 System.err.println("Mã giảng viên không hợp lẹ !!");
                 System.out.println("Hãy chọn giảng viên phù hợp.");
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+
                 maGV = ScannerUtils.inputString();
                 giangVien = QLUser.timUserTheoMa(maGV, dsGiangVien);
-                System.out.println("Ấn 1 để trở về giao diện chính.");
                 if (maGV.equals("1")){
                     return;
                 }
@@ -530,9 +531,9 @@ public class GiaoDienCongTacVien extends GiaoDien {
             while (giangVien.isBusy(dsCaHoc.get(0))){
                 System.err.printf("Giảng viên bị trùng lịch vào %s !!!\n", dsCaHoc.get(0));
                 System.out.println("Hãy chọn giảng viên phù hợp.");
+                System.out.println("Ấn 1 để trở về giao diện chính.");
                 maGV = ScannerUtils.inputString();
                 giangVien = QLUser.timUserTheoMa(maGV, dsGiangVien);
-                System.out.println("Ấn 1 để trở về giao diện chính.");
                 if (maGV.equals("1")){
                     return;
                 }
@@ -541,9 +542,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
             while (giangVien.isBusy(dsCaHoc.get(1))) {
                 System.err.printf("Giảng viên bị trùng lịch vào %s !!!\n", dsCaHoc.get(1));
                 System.out.println("Hãy chọn giảng viên phù hợp.");
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+
                 maGV = ScannerUtils.inputString();
                 giangVien = QLUser.timUserTheoMa(maGV, dsGiangVien);
-                System.out.println("Ấn 1 để trở về giao diện chính.");
                 if (maGV.equals("1")){
                     return;
                 }
@@ -554,6 +556,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
 
             QLUser.inThongTin(dsTroGiang);
             System.out.println("Hãy chọn trợ giảng phù hợp.");
+
             String maTG = ScannerUtils.inputString();
             User troGiang = QLUser.timUserTheoMa(maTG, dsTroGiang);
             System.out.println("Ấn 1 để trở về giao diện chính.");
@@ -586,9 +589,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
             while (troGiang.isBusy(dsCaHoc.get(1))) {
                 System.err.printf("Trợ giảng bị trùng lịch vào %s !!!\n", dsCaHoc.get(1));
                 System.out.println("Hãy chọn trợ giảng phù hợp.");
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+
                 maTG = ScannerUtils.inputString();
                 troGiang = QLUser.timUserTheoMa(maTG, dsTroGiang);
-                System.out.println("Ấn 1 để trở về giao diện chính.");
                 if (maTG.equals("1")){
                     return;
                 }
@@ -610,9 +614,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
             while (phongHoc == null){
                 System.err.println("Phòng học không hợp lệ !!");
                 System.out.println("Hãy chọn phòng học phù hợp.");
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+
                 maPhong = ScannerUtils.inputString();
                 phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(maPhong);
-                System.out.println("Ấn 1 để trở về giao diện chính.");
                 if (maPhong.equals("1")){
                     return;
                 }
@@ -621,9 +626,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
             while (phongHoc.isBusy(lopHoc.getCaHocMacDinh().get(0))){
                 System.err.printf("Phòng học này đã có lớp học tại thời điểm %s", lopHoc.getCaHocMacDinh().get(0));
                 System.out.println("Hãy chọn phòng học phù hợp.");
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+
                 maPhong = ScannerUtils.inputString();
                 phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(maPhong);
-                System.out.println("Ấn 1 để trở về giao diện chính.");
                 if (maPhong.equals("1")){
                     return;
                 }
@@ -632,9 +638,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
             while (phongHoc.isBusy(lopHoc.getCaHocMacDinh().get(1))) {
                 System.err.printf("Phòng học này đã có lớp học tại thời điểm %s", lopHoc.getCaHocMacDinh().get(1));
                 System.out.println("Hãy chọn phòng học phù hợp.");
+                System.out.println("Ấn 1 để trở về giao diện chính.");
+
                 maPhong = ScannerUtils.inputString();
                 phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(maPhong);
-                System.out.println("Ấn 1 để trở về giao diện chính.");
                 if (maPhong.equals("1")) {
                     return;
                 }
@@ -673,11 +680,19 @@ public class GiaoDienCongTacVien extends GiaoDien {
         //In danh sách các lớp học viên đó đang học
         QLHocVienLopHoc.inDanhSach(dsHocVienLopHoc);
         System.out.println("Hãy chọn lớp mà bạn muốn đổi theo thứ tự !!");
+        System.out.println("Hãy ấn 0 để thoát !!");
         int sttLopCu = ScannerUtils.inputInt();
+        if (sttLopCu == 0){
+            return;
+        }
 
         while (sttLopCu < 1 || sttLopCu > dsHocVienLopHoc.size()){
             System.out.println("Số thứ tự không hợp lệ !!");
+            System.out.println("Hãy ấn 0 để thoát !!");
             sttLopCu = ScannerUtils.inputInt();
+            if (sttLopCu == 0){
+                return;
+            }
         }
         LopHoc lopHocCu = dsHocVienLopHoc.get(sttLopCu - 1).getLopHoc();
 
@@ -693,18 +708,32 @@ public class GiaoDienCongTacVien extends GiaoDien {
         }
 
         System.out.println("Hãy chọn lớp học cùng trình độ mà bạn muốn đổi sang !!");
+        System.out.println("Ấn 1 để thoát");
         String maLopMoi = ScannerUtils.inputString();
+        if (maLopMoi.equals("1")){
+            return;
+        }
         LopHoc lopHocMoi = QLLopHoc.timKiemLopTheoMaLop(maLopMoi, dsLopHocMoiPhuHop);
         while (lopHocMoi == null ){
             System.out.println("Hãy chọn lớp học cùng trình độ mà bạn muốn đổi sang !!");
+            System.out.println("Ấn 1 để thoát");
+
             maLopMoi = ScannerUtils.inputString();
             lopHocMoi = QLLopHoc.timKiemLopTheoMaLop(maLopMoi, dsLopHocMoiPhuHop);
+            if (maLopMoi.equals("1")){
+                return;
+            }
         }
 
         while (lopHocMoi.equals(lopHocCu)){
             System.out.println("Bạn không thể chuyển từ lớp học cũ sang lớp học cũ được !!");
+            System.out.println("Ấn 1 để thoát");
+
             maLopMoi = ScannerUtils.inputString();
             lopHocMoi = QLLopHoc.timKiemLopTheoMaLop(maLopMoi, dsLopHocMoiPhuHop);
+            if (maLopMoi.equals("1")){
+                return;
+            }
         }
 
         //Thay kết quả cũ thành kết quả mới
@@ -715,8 +744,6 @@ public class GiaoDienCongTacVien extends GiaoDien {
         QLYeuCauDangKy.timKiemChinhXacTheoHocVienVaLopHoc(maHV, lopHocCu.getMaLop()).setLopHoc(lopHocMoi);
 
         System.out.println("Chuyển lớp thành công !!!");
-        giaoDien();
-
     }
 }
 

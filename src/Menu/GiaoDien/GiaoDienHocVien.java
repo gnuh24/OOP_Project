@@ -19,16 +19,19 @@ public class GiaoDienHocVien extends GiaoDien {
     public void giaoDien() {
         int choice;
         do {
-            System.out.println(
-                    "-----------------------------------------------CHÀO MỪNG BẠN ĐÃ ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88-----------------------------------------------");
-            System.out.println("1. Xem thời khóa biểu các lớp đang học");
-            System.out.println("2. Xem thời khóa biểu các lớp sắp khai giảng");
-            System.out.println("3. Xem điểm");
-            System.out.println("4. Đóng học phí");
-            System.out.println("5. Đăng ký lớp học mới");
-            System.out.println("6. Đăng xuất");
-            System.out.println("7. Thoát chương trình");
-            System.out.println("Bạn đã có lựa chọn chưa ?");
+            System.out.println("*".repeat(100));
+            System.out.printf("*%75s%24s\n", "CHÀO MỪNG BẠN ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88", "*");
+            System.out.println("*".repeat(100));
+            System.out.printf("*   %-95s*\n","1. Xem thời khóa biểu các lớp đang học");
+            System.out.printf("*   %-95s*\n","2. Xem thời khóa biểu các lớp sắp khai giảng");
+            System.out.printf("*   %-95s*\n","3. Xem điểm");
+            System.out.printf("*   %-95s*\n","4. Đóng học phí");
+            System.out.printf("*   %-95s*\n","5. Đăng ký lớp học mới");
+            System.out.printf("*   %-95s*\n","6. Đăng xuất");
+            System.out.printf("*   %-95s*\n","7. Thoát chương trình");
+            System.out.printf("*   %-95s*\n","Bạn đã có lựa chọn chưa ?");
+            System.out.println("*".repeat(100));
+
             choice = ScannerUtils.inputInt();
 
             if (choice < 1 || choice > 5) {
@@ -38,13 +41,16 @@ public class GiaoDienHocVien extends GiaoDien {
             switch (choice) {
                 case 1:
                     QLHocVienLopHoc.xemTKBCacLopDangHoc(Session.getTaiKhoan().getUser());
+                    backTo();
                     break;
                 case 2:
                     QLHocVienLopHoc.xemTKBCacLopSapKhaiGiang(Session.getTaiKhoan().getUser());
+                    backTo();
                     break;
 
                 case 3:
                     xemDiem();
+                    backTo();
                     break;
 
                 case 4:
@@ -82,14 +88,21 @@ public class GiaoDienHocVien extends GiaoDien {
         QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
 
         System.out.println("Bạn chọn lớp học nào ??");
-
+        System.out.println("Ấn 1 để thoát !");
         String malop = ScannerUtils.inputString();
         LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+        if (malop.equals("1")){
+            return;
+        }
 
         while (lopHoc == null) {
             System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+            System.out.println("Ấn 1 để thoát !");
             malop = ScannerUtils.inputString();
             lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+            if (malop.equals("1")){
+                return;
+            }
         }
 
         System.out.println("Bạn có muốn thanh toán luôn học phí ?");
@@ -100,7 +113,12 @@ public class GiaoDienHocVien extends GiaoDien {
         int luaChon = ScannerUtils.inputInt();
         User temp = Session.getTaiKhoan().getUser();
         if (luaChon == 1) {
-            int dongTien = ScannerUtils.inputHocPhi();
+            System.out.println("Nếu đóng tiền trọn gói bạn sẽ được giảm 30% học phí");
+            System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*70/100,  lopHoc.getChuongTrinh().getHocPhi());
+            System.out.println("Nếu đăng ký sớm thì bạn vẫn sẽ được giảm 15% học phí");
+            System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*85/100,  lopHoc.getChuongTrinh().getHocPhi());
+
+            double dongTien = ScannerUtils.inputHocPhi();
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(Session.getTaiKhoan().getUser(), lopHoc, dongTien);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
             QLHocVienLopHoc.getDsKetQua().add( new HocVienLopHoc(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
@@ -115,8 +133,6 @@ public class GiaoDienHocVien extends GiaoDien {
             QLHocVienLopHoc.getDsKetQua().add(new HocVienLopHoc(temp, lopHoc));
 
             System.out.println("Đăng ký thành công !!");
-        } else {
-            giaoDien();
         }
     }
 
@@ -162,19 +178,29 @@ public class GiaoDienHocVien extends GiaoDien {
 
         // chọn ycdk muốn đóng
         System.out.println("Bạn muốn thanh toán cho Yêu cầu đăng ký nào? (Nhập mã đăng ký)");
+        System.out.println("Ấn phím 1 để thoát");
         String input = ScannerUtils.inputString();
+        if (input.equals("1")){
+            return;
+        }
         YeuCauDangKy YCDK = QLYeuCauDangKy.timKiemTheoMaDangKy(input, cacYCDK);
-
         while (YCDK == null) {
             System.out.println("Không tìm thấy Yêu cầu đăng ký phù hợp. Vui lòng nhập lại");
-
+            System.out.println("Ấn phím 1 để thoát");
             input = ScannerUtils.inputString();
             YCDK = QLYeuCauDangKy.timKiemTheoMaDangKy(input, cacYCDK);
+            if (input.equals("1")){
+                return;
+            }
         }
 
         // bước tiếp theo, đóng học phí
-        System.out.print("Nhập số tiền bạn muốn thanh toán (VND): ");
-        int tien = ScannerUtils.inputHocPhi();
+        System.out.println("Nhập số tiền bạn muốn thanh toán (VND): ");
+        System.out.println("Ấn phím 1 để thoát");
+        double tien = ScannerUtils.inputHocPhi();
+        if (tien == 1){
+            return;
+        }
 
         // tạo và in biên lai
         BienLai bienLai = new BienLai(YCDK, tien);

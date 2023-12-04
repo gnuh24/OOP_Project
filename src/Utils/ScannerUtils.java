@@ -220,13 +220,13 @@ public class ScannerUtils {
         return diaChi;
     }
 
-    public static int inputHocPhi() {
+    public static double inputHocPhi() {
         System.out.println("Nhập học phí: ");
-        int hocPhi = ScannerUtils.inputInt();
+        double hocPhi = ScannerUtils.inputDouble();
 
         while (hocPhi < 0) {
             System.err.println("Học phí không thể là một số âm. Hãy nhập lại: ");
-            hocPhi = ScannerUtils.inputInt();
+            hocPhi = ScannerUtils.inputDouble();
         }
 
         return hocPhi;

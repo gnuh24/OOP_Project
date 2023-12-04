@@ -146,8 +146,10 @@ public class QLHocVienLopHoc {
 
     public static void thongKeHocVienTheoChuongTrinh(){
         int demHocVien=0;
-        System.out.printf("%-18s %-18s\n","Mã chương trình","Số lượng học viên");
-        System.out.println("*".repeat(40));
+        System.out.println("*".repeat(43));
+
+        System.out.printf("*  %-18s*  %-18s*\n","Mã chương trình","Số lượng học viên");
+        System.out.println("*".repeat(43));
         for(ChuongTrinhHoc chuongTrinhHoc:QLChuongTrinhHoc.getDsChuongTrinhHoc()){
             for(HocVienLopHoc hocVienLopHoc : dsHocVienLopHoc){
                 if (hocVienLopHoc.getLopHoc().getChuongTrinh().getMaChuongTrinh().equals(chuongTrinhHoc.getMaChuongTrinh())) {
@@ -155,9 +157,11 @@ public class QLHocVienLopHoc {
                 }
             }
 
-            System.out.printf("%-18s %-18s\n",chuongTrinhHoc.getMaChuongTrinh(), demHocVien);
+            System.out.printf("*  %-18s*  %-18s*\n",chuongTrinhHoc.getMaChuongTrinh(), demHocVien);
             demHocVien=0;
         }
+        System.out.println("*".repeat(43));
+
     }
 
 
@@ -186,18 +190,20 @@ public class QLHocVienLopHoc {
 
     public static void thongKeHocVienTheoKhoa(){
         int demHocVien = 0;
-        System.out.printf("%-10s %-10s %-10s %-10s\n", "Mã khóa","Ngày bắt đầu","Ngày kết thúc","Số lượng học viên");
-        System.out.println("*".repeat(40));
+        System.out.println("*".repeat(83));
+
+        System.out.printf("*  %-10s*  %-20s*  %-20s*  %-20s*\n", "Mã khóa","Ngày bắt đầu","Ngày kết thúc","Số lượng học viên");
+        System.out.println("*".repeat(90));
         for(KhoaKhaiGiang khoaKhaiGiang:QLKhoaKhaiGiang.getDsKhoaKhaiGiang()){
             for (HocVienLopHoc hocVienLopHoc : dsHocVienLopHoc) {
                 if (hocVienLopHoc.getLopHoc().getKhoa().getMaKhoa().equals(khoaKhaiGiang.getMaKhoa())) {
                     demHocVien++;
                 }
             }
-            System.out.printf("%-10s %-10s %-10s %-10s\n",khoaKhaiGiang.getMaKhoa(),khoaKhaiGiang.getNgayBatDau(),khoaKhaiGiang.getNgayKetThuc(), demHocVien);
+            System.out.printf("*  %-10s*  %-20s*  %-20s*  %-20s*\n",khoaKhaiGiang.getMaKhoa(),khoaKhaiGiang.getNgayBatDau(),khoaKhaiGiang.getNgayKetThuc(), demHocVien);
             demHocVien=0;
         }
-        System.out.println("*".repeat(40));
+        System.out.println("*".repeat(90));
 
     }
 
@@ -206,7 +212,7 @@ public class QLHocVienLopHoc {
       QLHocVienLopHoc.dsHocVienLopHoc.sort(new Comparator<HocVienLopHoc>(){
         @Override
         public int compare(HocVienLopHoc o1, HocVienLopHoc o2) {
-          return o1.getLopHoc().getKhoa().getNgayKetThuc().compareTo(o2.getLopHoc().getKhoa().getNgayKetThuc());
+          return o1.getLopHoc().getKhoa().getNgayBatDau().compareTo(o2.getLopHoc().getKhoa().getNgayKetThuc());
         }
 
       });

@@ -37,47 +37,56 @@ public class GiaoDienGiamDoc extends GiaoDienQuanLy {
 
             switch (choice){
                 case 1:
-                    QLKhoaKhaiGiang.taoKhoaMoi();
+                    super.taoKhoaMoi();
                     break;
 
                 case 2:
-                    QLLopHoc.taoLopMoi();
+                    super.taoLopMoi();
                     break;
 
                 case 3:
-                    QLHocVienLopHoc.thongKeHocVienTheoChuongTrinh();
+                    super.thongKeHocVienTheoChuongTrinh();
+                    backTo();
                     break;
 
                 case 4:
-                    QLHocVienLopHoc.thongKeHocVienTheoKhoa();
+                    super.thongKeHocVienTheoKhoa();
+                    backTo();
                     break;
 
                 case 5:
-                    QLHocVienLopHoc.thongKeHocVienTheoThang();
+                    super.thongKeHocVienTheoThang();
+                    backTo();
                     break;
 
                 case 6:
-                    QLHocVienLopHoc.thongKeTheoNam();
+                    super.thongKeHocVienTheoNam();
+                    backTo();
                     break;
 
                 case 7:
-                    QLBienLai.thongKeDoanhThuTheoChuongTrinh();
+                    super.thongKeDoanhThuTheoChuongTrinh();
+                    backTo();
                     break;
 
                 case 8:
-                    QLBienLai.thongKeDoanhThuTheoKhoa();
+                    super.thongKeDoanhThuTheoKhoa();
+                    backTo();
                     break;
 
                 case 9:
-                    QLBienLai.thongKeDoanhThuTheoThang();
+                    super.thongKeDoanhThuTheoThang();
+                    backTo();
                     break;
 
                 case 10:
-                    QLBienLai.thongKeTheoNam();
+                    super.thongKeDoanhThuTheoNam();
+                    backTo();
                     break;
 
                 case 11:
-                    QLChuongTrinhHoc.thayDoiHocPhi();
+                    //QLChuongTrinhHoc.thayDoiHocPhi();
+                    thayDoiHocPhi();
                     break;
                 case 12:
                     Session.logout();
@@ -87,6 +96,10 @@ public class GiaoDienGiamDoc extends GiaoDienQuanLy {
                     break;
             }
         } while (true);
+    }
+
+    public void thayDoiHocPhi(){
+        QLChuongTrinhHoc.thayDoiHocPhi();
     }
 
 }

@@ -1,17 +1,17 @@
-CTH001#Tiếng anh cho trẻ em#Starter#A1#17#12000000
-CTH002#Tiếng anh cho trẻ em#Starter#A2#17#12000000
-CTH003#Tiếng anh cho trẻ em#Starter#A3#17#12000000
-CTH004#Tiếng anh cho trẻ em#SuperKid#B1#17#12000000
-CTH005#Tiếng anh cho trẻ em#SuperKid#B2#17#12000000
-CTH006#Tiếng anh cho trẻ em#SuperKid#B3#17#12000000
-CTH007#Tiếng anh cho trẻ em#Smart Youth#C1#17#13800000
-CTH008#Tiếng anh cho trẻ em#Smart Youth#C2#17#13800000
-CTH009#Tiếng anh cho trẻ em#Smart Youth#C3#17#13800000
-CTH010#Tiếng anh cho người lớn#IELTS#IELTS Basic#12#10000000
-CTH011#Tiếng anh cho người lớn#IELTS#Pre-Foundation#12#10000000
-CTH012#Tiếng anh cho người lớn#IELTS#Foundation#12#10000000
-CTH013#Tiếng anh cho người lớn#IELTS#Intermediate#12#12000000
-CTH014#Tiếng anh cho người lớn#IELTS#Fighter#12#12000000
-CTH015#Tiếng anh cho người lớn#Giao tiếp tiếng Anh#Beginner#8#9800000
-CTH016#Tiếng anh cho người lớn#Giao tiếp tiếng Anh#Intermediate#8#9800000
-CTH017#Tiếng anh cho người lớn#Giao tiếp tiếng Anh#Advanced#8#11000000
+CTH001#Tiếng anh cho trẻ em#Starter#A1#17#1.2E7
+CTH002#Tiếng anh cho trẻ em#Starter#A2#17#1.2E7
+CTH003#Tiếng anh cho trẻ em#Starter#A3#17#1.2E7
+CTH004#Tiếng anh cho trẻ em#SuperKid#B1#17#1.2E7
+CTH005#Tiếng anh cho trẻ em#SuperKid#B2#17#1.2E7
+CTH006#Tiếng anh cho trẻ em#SuperKid#B3#17#1.2E7
+CTH007#Tiếng anh cho trẻ em#Smart Youth#C1#17#1.38E7
+CTH008#Tiếng anh cho trẻ em#Smart Youth#C2#17#1.38E7
+CTH009#Tiếng anh cho trẻ em#Smart Youth#C3#17#1.38E7
+CTH010#Tiếng anh cho người lớn#IELTS#IELTS Basic#12#1.0E7
+CTH011#Tiếng anh cho người lớn#IELTS#Pre-Foundation#12#1.0E7
+CTH012#Tiếng anh cho người lớn#IELTS#Foundation#12#1.0E7
+CTH013#Tiếng anh cho người lớn#IELTS#Intermediate#12#1.2E7
+CTH014#Tiếng anh cho người lớn#IELTS#Fighter#12#1.2E7
+CTH015#Tiếng anh cho người lớn#Giao tiếp tiếng Anh#Beginner#8#9800000.0
+CTH016#Tiếng anh cho người lớn#Giao tiếp tiếng Anh#Intermediate#8#9800000.0
+CTH017#Tiếng anh cho người lớn#Giao tiếp tiếng Anh#Advanced#8#1.1E7

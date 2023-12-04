@@ -87,7 +87,7 @@ public class QLChuongTrinhHoc {
             String trinhDo = cacThuocTinh[2];
             String khoaHoc = cacThuocTinh[3];
             int thoiLuong = Integer.parseInt(cacThuocTinh[4]);
-            int hocPhi = Integer.parseInt(cacThuocTinh[5]);
+            double hocPhi = Double.parseDouble(cacThuocTinh[5]);
 
 
             dsChuongTrinhHoc.add(new ChuongTrinhHoc(maChuongTrinh,theLoai,trinhDo,khoaHoc,thoiLuong,hocPhi));

@@ -41,7 +41,7 @@ public class QLYeuCauDangKy {
             String maDangKy = cacThuocTinh[0];
             String maUser = cacThuocTinh[1];
             String maLopLop = cacThuocTinh[2];
-            int tongHocPhi = Integer.parseInt(cacThuocTinh[3]);
+            double tongHocPhi = Double.parseDouble(cacThuocTinh[3]);
             TrangThaiDangKy trangThaiDangKy = TrangThaiDangKy.toTrangThaiDangKy(cacThuocTinh[4]);
             KhuyenMai khuyenMai = KhuyenMai.toEnum(cacThuocTinh[5]);
             LocalDate localDate = LocalDate.parse(cacThuocTinh[6]);
