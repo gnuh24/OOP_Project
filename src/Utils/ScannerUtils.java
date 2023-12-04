@@ -73,10 +73,9 @@ public class ScannerUtils {
 
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
-        String regex = "(\\d{2}/){2}\\d{4}";
 
-        while (!userInput.matches(regex)) {
-            System.err.println("Không phải định dạng ngày đúng .Hãy nhập lại !!");
+        while (!isValidDate(userInput)) {
+            System.err.println("Không phải định dạng ngày đúng. Hãy nhập lại !!");
             userInput = input.nextLine();
         }
 
@@ -88,13 +87,14 @@ public class ScannerUtils {
         System.out.println("Xin mời nhập thời gian (VD: 20:30)");
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
-        String regex = "\\d{2}:\\d{2}";
+        String regex = "([01]\\d|2[0-3]):[0-5]\\d"; // giới hạn 00:00 -> 23:59
 
         while (!userInput.matches(regex)) {
             System.err.println("Không phải định dạng thời gian chuẩn. Hãy nhập lại !!");
             userInput = input.nextLine();
         }
 
+        System.out.println("ok");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return LocalTime.parse(userInput, formatter);
     }
@@ -109,7 +109,7 @@ public class ScannerUtils {
         return userInput;
     }
 
-    public static VaiTro inputVaiTro(){
+    public static VaiTro inputVaiTro() {
         System.out.println("Hãy phân loại người dùng. ");
         System.out.println("1. Khách hàng");
         System.out.println("2. Học viên");
@@ -122,10 +122,10 @@ public class ScannerUtils {
         boolean isValid = false;
         VaiTro vaiTro = null;
 
-        while (!isValid){
+        while (!isValid) {
             int input = ScannerUtils.inputInt();
 
-            switch (input){
+            switch (input) {
                 case 1:
                     vaiTro = VaiTro.KhachHang;
                     isValid = true;
@@ -232,5 +232,71 @@ public class ScannerUtils {
         return hocPhi;
     }
 
+    private static boolean isValidDate(String date) {
+        if (!date.matches("(\\d{2}/){2}\\d{4}"))
+            return false;
 
+        // tách ngày, tháng, năm
+        String[] elem = date.split("/");
+        int ngay = Integer.parseInt(elem[0]);
+        int thang = Integer.parseInt(elem[1]);
+        int nam = Integer.parseInt(elem[2]);
+
+        // kiểm tra năm
+        // chỉ chấp nhận từ năm 1900 đến 2023
+        if (nam < 1900 || nam > 2023)
+            return false;
+
+        // kiểm tra tháng
+        // chỉ chấp nhận từ 01 đến 12
+        if (thang < 1 || thang > 12)
+            return false;
+
+        // kiểm tra ngày
+        // ngày phụ thuộc tháng và năm
+        if (ngay < 1)
+            return false;
+
+        // kiểm tra năm nhuận
+        boolean laNamNhuan = (nam % 100 == 0 && nam % 4 == 1);
+
+        switch (thang) {
+            case 1:
+                ;
+            case 3:
+                ;
+            case 5:
+                ;
+            case 7:
+                ;
+            case 8:
+                ;
+            case 10:
+                ;
+            case 12:
+                if (ngay > 31)
+                    return false;
+
+            case 4:
+                ;
+            case 6:
+                ;
+            case 9:
+                ;
+            case 11:
+                if (ngay > 30)
+                    return false;
+
+            case 2:
+                if (laNamNhuan && ngay > 29)
+                    return false;
+                if (!laNamNhuan && ngay > 28)
+                    return false;
+
+                // không còn trường hợp nào khác có thể lọt vào đây
+                // vì vậy không cần đặt default
+        }
+
+        return true;
+    }
 }
