@@ -208,29 +208,6 @@ public class QLHocVienLopHoc {
     }
 
 
-    public static void thongKeTheoNam(){
-      QLHocVienLopHoc.dsHocVienLopHoc.sort(new Comparator<HocVienLopHoc>(){
-        @Override
-        public int compare(HocVienLopHoc o1, HocVienLopHoc o2) {
-          return o1.getLopHoc().getKhoa().getNgayBatDau().compareTo(o2.getLopHoc().getKhoa().getNgayKetThuc());
-        }
-
-      });
-      int demHocVien=0, nam=getDsKetQua().get(0).getLopHoc().getKhoa().getNgayKetThuc().getYear();
-      System.out.printf("%-20s -20s\n","Năm","Số học viên");
-      System.out.println("*".repeat(40));
-      for (HocVienLopHoc hocVienLopHoc : dsHocVienLopHoc) {
-        if(hocVienLopHoc.getLopHoc().getKhoa().getNgayKetThuc().getYear()==nam){
-            demHocVien++;
-        }
-        else{
-          System.out.printf("%-20s %-20s", hocVienLopHoc.getLopHoc().getKhoa().getNgayKetThuc().getYear(), demHocVien);
-          demHocVien=0;
-          nam= hocVienLopHoc.getLopHoc().getKhoa().getNgayKetThuc().getYear();
-        }
-      }
-      System.out.println("*".repeat(40));
-    }
 
     public static void xemTKBCacLopDangHoc(User user) {
         ArrayList<LopHoc> lopHocs = new ArrayList<>();

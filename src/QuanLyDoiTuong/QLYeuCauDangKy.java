@@ -3,12 +3,14 @@ package QuanLyDoiTuong;
 import HeThongGiaoDuc.DangKy.KhuyenMai;
 import HeThongGiaoDuc.DangKy.TrangThaiDangKy;
 import HeThongGiaoDuc.DangKy.YeuCauDangKy;
+import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import NguoiDung.User;
 import Utils.DocGhiFile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class QLYeuCauDangKy {
     private static ArrayList<YeuCauDangKy> dsYeuCauDangKy = new ArrayList<>();
@@ -152,6 +154,31 @@ public class QLYeuCauDangKy {
             }
         }
         return ketQua;
+    }
+
+
+    public static void thongKeTheoNam(){
+      QLYeuCauDangKy.dsYeuCauDangKy.sort(new Comparator<YeuCauDangKy>(){
+        @Override
+        public int compare(YeuCauDangKy o1, YeuCauDangKy o2) {
+          return o1.getLocalDate().compareTo(o2.getLocalDate());
+        }
+
+      });
+      int demHocVien=0, nam=getDsYeuCauDangKy().get(0).getLocalDate().getYear();
+      System.out.printf("%-20s -20s\n","Năm","Số học viên");
+      System.out.println("*".repeat(40));
+      for (YeuCauDangKy yeuCauDangKy : dsYeuCauDangKy) {
+        if(yeuCauDangKy.getLocalDate().getYear()==nam){
+            demHocVien++;
+        }
+        else{
+          System.out.printf("%-20s %-20s", yeuCauDangKy.getLocalDate().getYear(), demHocVien);
+          demHocVien=0;
+          nam= yeuCauDangKy.getLocalDate().getYear();
+        }
+      }
+      System.out.println("*".repeat(40));
     }
 
 }
