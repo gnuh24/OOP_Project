@@ -9,14 +9,17 @@ public class GiaoDienTroGiang extends GiaoDien {
     public void giaoDien() {
         int choice;
         do {
-            System.out.println(
-                    "-----------------------------------------------CHÀO MỪNG BẠN ĐÃ ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88-----------------------------------------------");
-            System.out.println("1. Xem lịch dạy của khóa hiện tại");
-            System.out.println("2. Xem lịch dạy của khóa sắp khai giảng");
-            System.out.println("3. Xem danh sách học sinh của các lớp");
-            System.out.println("4. Đăng xuất");
-            System.out.println("5. Thoát chương trình");
-            System.out.println("Bạn đã có lựa chọn chưa ?");
+            System.out.println("*".repeat(100));
+            System.out.printf("*%75s%24s\n", "CHÀO MỪNG BẠN ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88", "*");
+            System.out.println("*".repeat(100));
+            System.out.printf("*   %-95s*\n","1. Xem lịch dạy của khóa hiện tại");
+            System.out.printf("*   %-95s*\n","2. Xem lịch dạy của khóa sắp khai giảng");
+            System.out.printf("*   %-95s*\n","3. Xem danh sách học sinh của các lớp");
+            System.out.printf("*   %-95s*\n","4. Đăng xuất");
+            System.out.printf("*   %-95s*\n","5. Thoát chương trình");
+            System.out.printf("*   %-95s*\n","Bạn đã có lựa chọn chưa ?");
+            System.out.println("*".repeat(100));
+
             choice = ScannerUtils.inputInt();
 
             if (choice < 1 || choice > 5) {
@@ -26,13 +29,16 @@ public class GiaoDienTroGiang extends GiaoDien {
             switch (choice) {
                 case 1:
                     xemDanhSachLopHoc();
+                    backTo();
                     break;
                 case 2:
                     xemDanhSachLopSapKhaiGiang();
+                    backTo();
                     break;
 
                 case 3:
                     xemDanhSachHocVien();
+                    backTo();
                     break;
 
                 case 4:

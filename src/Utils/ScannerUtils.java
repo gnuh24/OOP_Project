@@ -243,8 +243,8 @@ public class ScannerUtils {
         int nam = Integer.parseInt(elem[2]);
 
         // kiểm tra năm
-        // chỉ chấp nhận từ năm 1900 đến 2023
-        if (nam < 1900 || nam > 2023)
+        // chỉ chấp nhận từ năm 1900 trở đi
+        if (nam < 1900)
             return false;
 
         // kiểm tra tháng
@@ -262,36 +262,33 @@ public class ScannerUtils {
 
         switch (thang) {
             case 1:
-                ;
             case 3:
-                ;
             case 5:
-                ;
             case 7:
-                ;
             case 8:
-                ;
             case 10:
-                ;
             case 12:
-                if (ngay > 31)
+                if (ngay > 31){
                     return false;
+                }
+
 
             case 4:
-                ;
             case 6:
-                ;
             case 9:
-                ;
             case 11:
-                if (ngay > 30)
+                if (ngay > 30){
                     return false;
+                }
+
 
             case 2:
-                if (laNamNhuan && ngay > 29)
+                if (laNamNhuan && ngay > 29){
                     return false;
-                if (!laNamNhuan && ngay > 28)
+                }
+                if (!laNamNhuan && ngay > 28){
                     return false;
+                }
 
                 // không còn trường hợp nào khác có thể lọt vào đây
                 // vì vậy không cần đặt default

@@ -16,15 +16,15 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
             System.out.println("*".repeat(100));
             System.out.printf("*%75s%24s\n", "CHÀO MỪNG BẠN ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88", "*");
             System.out.println("*".repeat(100));
-            System.out.printf("*   %-96s*\n" ,"1. Xem lịch dạy của lớp hiện tại");
-            System.out.printf("*   %-96s*\n" ,"2. Xem lịch dạy của lớp sắp khai giảng");
-            System.out.printf("*   %-96s*\n" ,"3. Xem danh sách học sinh của các lớp");
-            System.out.printf("*   %-96s*\n" ,"4. Xem danh sách lịch phổng vấn");
-            System.out.printf("*   %-96s*\n" ,"5. Nhập điểm cho thí sinh phổng vấn");
-            System.out.printf("*   %-96s*\n" ,"6. Nhập điểm cho học viên các lớp");
-            System.out.printf("*   %-96s*\n" ,"7. Đăng xuất");
-            System.out.printf("*   %-96s*\n" ,"8. Thoát chương trình");
-            System.out.printf("*   %-96s*\n" ,"Bạn đã có lựa chọn chưa ?");
+            System.out.printf("*   %-95s*\n" ,"1. Xem lịch dạy của lớp hiện tại");
+            System.out.printf("*   %-95s*\n" ,"2. Xem lịch dạy của lớp sắp khai giảng");
+            System.out.printf("*   %-95s*\n" ,"3. Xem danh sách học sinh của các lớp");
+            System.out.printf("*   %-95s*\n" ,"4. Xem danh sách lịch phổng vấn");
+            System.out.printf("*   %-95s*\n" ,"5. Nhập điểm cho thí sinh phổng vấn");
+            System.out.printf("*   %-95s*\n" ,"6. Nhập điểm cho học viên các lớp");
+            System.out.printf("*   %-95s*\n" ,"7. Đăng xuất");
+            System.out.printf("*   %-95s*\n" ,"8. Thoát chương trình");
+            System.out.printf("*   %-95s*\n" ,"Bạn đã có lựa chọn chưa ?");
             System.out.println("*".repeat(100));
 
             choice = ScannerUtils.inputInt();
