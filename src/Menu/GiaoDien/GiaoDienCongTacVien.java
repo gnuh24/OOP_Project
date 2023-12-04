@@ -3,7 +3,7 @@ package Menu.GiaoDien;
 import HeThongGiaoDuc.CoSoVatChat.PhongHoc;
 import HeThongGiaoDuc.DangKy.BienLai;
 import HeThongGiaoDuc.DangKy.YeuCauDangKy;
-import HeThongGiaoDuc.LopHoc.KetQua;
+import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
@@ -15,15 +15,12 @@ import NguoiDung.User;
 import NguoiDung.VaiTro;
 import QuanLyDoiTuong.*;
 import TaiKhoan.QLTaiKhoan;
-import TaiKhoan.TaiKhoan;
 import ThoiGian.CaHoc;
 import Utils.ScannerUtils;
-import org.w3c.dom.ls.LSOutput;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class GiaoDienCongTacVien extends GiaoDien {
 
@@ -31,18 +28,22 @@ public class GiaoDienCongTacVien extends GiaoDien {
     public  void giaoDien(){
         int choice;
         do{
-            System.out.println("-----------------------------------------------CHÀO MỪNG BẠN ĐÃ ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88-----------------------------------------------");
-            System.out.println("1. Sắp xếp lịch phổng vấn.");
-            System.out.println("2. Thay đổi trạng thái lịch phổng vấn ");
-            System.out.println("3. Xem danh sách các cuộc phổng vấn đã có kết quả");
-            System.out.println("4. Đăng ký khóa học mới");
-            System.out.println("5. Tạo tài khoản mới");
-            System.out.println("6. Thêm thông tin vào hệ thống");
-            System.out.println("7. Chuyển lớp cho học sinh");
-            System.out.println("8. Sắp xep cho các lớp sắp khai giảng");
-            System.out.println("9. Đăng xuất");
-            System.out.println("10. Thoát chương trình");
-            System.out.println("Bạn đã có lựa chọn chưa ?");
+            System.out.println("*".repeat(100));
+            System.out.printf("*%75s%24s\n", "CHÀO MỪNG BẠN ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88", "*");
+            System.out.println("*".repeat(100));
+            System.out.printf("*  %-96s*\n","1. Sắp xếp lịch phổng vấn.");
+            System.out.printf("*  %-96s*\n","2. Thay đổi trạng thái lịch phổng vấn ");
+            System.out.printf("*  %-96s*\n","3. Xem danh sách các cuộc phổng vấn đã có kết quả");
+            System.out.printf("*  %-96s*\n","4. Đăng ký khóa học mới");
+            System.out.printf("*  %-96s*\n","5. Tạo tài khoản mới");
+            System.out.printf("*  %-96s*\n","6. Thêm thông tin vào hệ thống");
+            System.out.printf("*  %-96s*\n","7. Chuyển lớp cho học sinh");
+            System.out.printf("*  %-96s*\n","8. Sắp xep cho các lớp sắp khai giảng");
+            System.out.printf("*  %-96s*\n","9. Đăng xuất");
+            System.out.printf("*  %-96s*\n","10. Thoát chương trình");
+            System.out.printf("*  %-96s*\n","Bạn đã có lựa chọn chưa ?");
+            System.out.println("*".repeat(100));
+
             choice = ScannerUtils.inputInt();
 
             if (choice < 1 || choice > 5 ){
@@ -311,7 +312,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
             int dongTien = ScannerUtils.inputHocPhi();
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(Session.getTaiKhoan().getUser(), lopHoc, dongTien);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
-            QLKetQua.getDsKetQua().add( new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
+            QLHocVienLopHoc.getDsKetQua().add( new HocVienLopHoc(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
             BienLai bienLai = new BienLai(yeuCauDangKy, dongTien);
             bienLai.inBienLai();
             QLBienLai.getDsBienLai().add(bienLai);
@@ -330,7 +331,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
 
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
-            QLKetQua.getDsKetQua().add(new KetQua(user, yeuCauDangKy.getLopHoc()));
+            QLHocVienLopHoc.getDsKetQua().add(new HocVienLopHoc(user, yeuCauDangKy.getLopHoc()));
             System.out.println("Đăng ký thành công !!");
         }else {
             giaoDien();
@@ -373,13 +374,13 @@ public class GiaoDienCongTacVien extends GiaoDien {
 
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc, dongTien);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
-            QLKetQua.getDsKetQua().add( new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
+            QLHocVienLopHoc.getDsKetQua().add( new HocVienLopHoc(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
             BienLai bienLai = new BienLai(yeuCauDangKy, dongTien);
             bienLai.inBienLai();
             QLBienLai.getDsBienLai().add(bienLai);
         }else if(luaChon == 2){
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc);
-            QLKetQua.getDsKetQua().add(new KetQua(user, yeuCauDangKy.getLopHoc()));
+            QLHocVienLopHoc.getDsKetQua().add(new HocVienLopHoc(user, yeuCauDangKy.getLopHoc()));
             System.out.println("Đăng ký thành công !!");
         }else {
             giaoDien();
@@ -546,17 +547,17 @@ public class GiaoDienCongTacVien extends GiaoDien {
         //Tìm học sinh muốn chuyển lớp
         System.out.println("Hãy nhập mã học sinh muốn chuyển lớp !!");
         String maHV = ScannerUtils.inputString();
-        ArrayList<KetQua>  dsHocVienLopHoc = QLKetQua.timKiemTheoHocVien(maHV);
+        ArrayList<HocVienLopHoc>  dsHocVienLopHoc = QLHocVienLopHoc.timKiemTheoHocVien(maHV);
         while (dsHocVienLopHoc.isEmpty()){
             System.out.println("Học viên này chưa tham gia bất cứ lớp nào !!");
             System.out.println("Bạn có nhập nhầm hong ? Nhập lại nhé ^^");
             maHV = ScannerUtils.inputString();
-            dsHocVienLopHoc = QLKetQua.timKiemTheoHocVien(maHV);
+            dsHocVienLopHoc = QLHocVienLopHoc.timKiemTheoHocVien(maHV);
         }
 
 
         //In danh sách các lớp học viên đó đang học
-        QLKetQua.inDanhSach(dsHocVienLopHoc);
+        QLHocVienLopHoc.inDanhSach(dsHocVienLopHoc);
         System.out.println("Hãy chọn lớp mà bạn muốn đổi theo thứ tự !!");
         int sttLopCu = ScannerUtils.inputInt();
 

@@ -1,18 +1,10 @@
 package Menu.GiaoDien;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
-import HeThongGiaoDuc.LopHoc.KetQua;
-import HeThongGiaoDuc.LopHoc.LopHoc;
 import Menu.Session;
 import QuanLyDoiTuong.QLBienLai;
-import QuanLyDoiTuong.QLChuongTrinhHoc;
-import QuanLyDoiTuong.QLKetQua;
+import QuanLyDoiTuong.QLHocVienLopHoc;
 import QuanLyDoiTuong.QLKhoaKhaiGiang;
 import QuanLyDoiTuong.QLLopHoc;
-import Utils.Convert;
 import Utils.ScannerUtils;
 
 public class GiaoDienQuanLy extends GiaoDienCongTacVien {
@@ -20,20 +12,23 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
 
         int choice;
         do{
-            System.out.println("-----------------------------------------------CHÀO MỪNG BẠN ĐÃ ĐẾN VỚI THUG88-----------------------------------------------");
-            System.out.println("1. Tạo khóa mới");
-            System.out.println("2. Tạo lớp mới");
-            System.out.println("3. Thống kê học sinh theo chương trình học");
-            System.out.println("4. Thống kê học sinh theo khóa");
-            System.out.println("5. Thống kê học sinh theo tháng trong năm");
-            System.out.println("6. Thống kê học sinh theo năm");
-            System.out.println("7. Thống kê doanh thu theo chương trình");
-            System.out.println("8. Thống kê doanh thu theo khóa");
-            System.out.println("9. Thống kê doanh thu theo tháng");
-            System.out.println("10. THống kê doanh thu theo năm");
-            System.out.println("11. Đăng xuất");
-            System.out.println("12. Thoát chương trình");
-            System.out.println("Bạn đã có lựa chọn chưa?");
+            System.out.println("*".repeat(100));
+            System.out.printf("*%75s%24s\n", "CHÀO MỪNG BẠN ĐẾN VỚI TRUNG TÂM ANH NGỮ THUG88", "*");
+            System.out.println("*".repeat(100));
+            System.out.printf("*  %-96s*\n","1. Tạo khóa mới");
+            System.out.printf("*  %-96s*\n","2. Tạo lớp mới");
+            System.out.printf("*  %-96s*\n","3. Thống kê học sinh theo chương trình học");
+            System.out.printf("*  %-96s*\n","4. Thống kê học sinh theo khóa");
+            System.out.printf("*  %-96s*\n","5. Thống kê học sinh theo tháng trong năm");
+            System.out.printf("*  %-96s*\n","6. Thống kê học sinh theo năm");
+            System.out.printf("*  %-96s*\n","7. Thống kê doanh thu theo chương trình");
+            System.out.printf("*  %-96s*\n","8. Thống kê doanh thu theo khóa");
+            System.out.printf("*  %-96s*\n","9. Thống kê doanh thu theo tháng");
+            System.out.printf("*  %-96s*\n","10. THống kê doanh thu theo năm");
+            System.out.printf("*  %-96s*\n","11. Đăng xuất");
+            System.out.printf("*  %-96s*\n", "Bạn đã có lựa chọn chưa?");
+            System.out.println("*".repeat(100));
+
             do{
                 choice = ScannerUtils.inputInt();
                 if (choice < 1 || choice > 12){
@@ -51,19 +46,19 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
                     break;
 
                 case 3:
-                    QLKetQua.thongKeHocVienTheoChuongTrinh();
+                    QLHocVienLopHoc.thongKeHocVienTheoChuongTrinh();
                     break;
 
                 case 4:
-                    QLKetQua.thongKeHocVienTheoKhoa();
+                    QLHocVienLopHoc.thongKeHocVienTheoKhoa();
                     break;
 
                 case 5:
-                    QLKetQua.thongKeHocVienTheoThang();
+                    QLHocVienLopHoc.thongKeHocVienTheoThang();
                     break;
 
                 case 6:
-                    QLKetQua.thongKeTheoNam();
+                    QLHocVienLopHoc.thongKeTheoNam();
                     break;
 
                 case 7:

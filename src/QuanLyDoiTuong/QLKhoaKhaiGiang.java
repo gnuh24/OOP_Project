@@ -1,13 +1,11 @@
 package QuanLyDoiTuong;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
-import HeThongGiaoDuc.LopHoc.KetQua;
 import Utils.Convert;
 import Utils.DocGhiFile;
 import Utils.ScannerUtils;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class QLKhoaKhaiGiang {

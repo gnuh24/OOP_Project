@@ -18,14 +18,14 @@ public class QLCoSo {
     }
 
     public static void inDSCoSo(ArrayList<CoSo> dsCoSo){
-        System.out.println("*********************************************************");
-        System.out.printf("* %-10s* %-20s* %-20s*\n","Ma co so","Ten co so","Dia chi");
-        System.out.println("*********************************************************");
+        System.out.println("*".repeat(117));
+        System.out.printf("* %-10s* %-20s* %-80s*\n","Mã cơ sở","Tên cơ sở","Địa chỉ");
+        System.out.println("*".repeat(117));
 
         for(CoSo coSo:dsCoSo){
-            System.out.printf("* %-10s* %-20s* %-20s*\n",coSo.getMaCoSo(),coSo.getTenCoSo(),coSo.getDiaChi());
+            System.out.printf("* %-10s* %-20s* %-80s*\n",coSo.getMaCoSo(),coSo.getTenCoSo(),coSo.getDiaChi());
         }
-        System.out.println("*********************************************************");
+        System.out.println("*".repeat(117));
 
     }
     public static CoSo timCoSoTheoMa(String maCoSo){

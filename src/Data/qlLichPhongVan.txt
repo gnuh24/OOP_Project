@@ -1,7 +1,2 @@
-LPV1####KH1#Hủy
+LPV1####KH1#Chờ duyệt
 LPV2####KH2#Chờ duyệt
-LPV3####KH3#Chờ duyệt
-LPV4#GV1#28/11/2023#15:30#KH4#Đã phổng vấn
-LPV5#GV1#24/12/2023#13:00#KH5#Chờ phổng vấn
-LPV6####KH6#Chờ duyệt
-LPV7####KH7#Chờ duyệt

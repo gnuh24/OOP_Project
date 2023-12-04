@@ -1,18 +1,12 @@
 package Menu.GiaoDien;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
-import HeThongGiaoDuc.LopHoc.KetQua;
-import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
-import HeThongGiaoDuc.PhongVan.LienHe;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
-import Menu.Menu;
 import Menu.Session;
 import QuanLyDoiTuong.*;
 import Utils.ScannerUtils;
-
-import java.util.ArrayList;
 
 public class GiaoDienGiangVien extends GiaoDienTroGiang {
 
@@ -217,7 +211,7 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
 //            }
 //            // tiếp tục
 //            else {
-//                ArrayList<KetQua> ketQuaCuaHocVien = QLKetQua.timKiemTheoHocVien(id);
+//                ArrayList<HocVienLopHoc> ketQuaCuaHocVien = QLHocVienLopHoc.timKiemTheoHocVien(id);
 //
 //                // nếu tìm thấy ketQua ứng với id đã cung cấp
 //                if (ketQuaCuaHocVien == null) {
@@ -228,7 +222,7 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
 //
 //                // ngược lại nếu không tìm thấy thì in ra thông báo
 //                else {
-//                    for (KetQua ketQua : ketQuaCuaHocVien) {
+//                    for (HocVienLopHoc ketQua : ketQuaCuaHocVien) {
 //                        String tenHocVien = ketQua.getHocVien().getHoTen();
 //                        String tenLop = ketQua.getLopHoc().getTenLop();
 //

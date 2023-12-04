@@ -1,3 +1,5 @@
-CS1#Cơ sở 1#Địa chỉ 1
-CS2#Cơ sở 2#Địa chỉ 2
-CS3#Cơ sở 3#Địa chỉ 3
+CS1#Cơ sở Nguyễn Trãi#4 Đ. Nguyễn Trãi, Phường 3, Quận 5, Thành phố Hồ Chí Minh, Việt Nam
+CS2#Cơ sở Lý Tự Trọng#218 Lý Tự Trọng, Phường Bến Thành, Quận 1, Thành phố Hồ Chí Minh, Việt Nam
+CS3#Cơ sở Lũy Bán Bích#340 Lũy Bán Bích, Hoà Thanh, Tân Phú, Thành phố Hồ Chí Minh, Việt Nam
+CS4#Cơ sở Quang Trung#12 Quang Trung, Phường 10, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam
+CS5#Cơ sở Hậu Giang#190 Đ. Hậu Giang, Phường 6, Quận 6, Thành phố Hồ Chí Minh , Việt Nam

@@ -15,7 +15,7 @@ public class ScannerUtils {
         String userInput = input.nextLine();
 
         while (!userInput.matches("-?\\d+")) {
-            System.err.println("Không phải số nguyên. Hãy nhập lại !!!\n");
+            System.err.println("Không phải số nguyên. Hãy nhập lại !!!");
             userInput = input.nextLine();
         }
 
@@ -27,7 +27,7 @@ public class ScannerUtils {
         String userInput = input.nextLine();
 
         while (!userInput.matches("-?\\d+(.\\d+)?")) {
-            System.err.println("Không phải số thực. Hãy nhập lại !!!\n");
+            System.err.println("Không phải số thực. Hãy nhập lại !!!");
             userInput = input.nextLine();
         }
 
@@ -41,7 +41,7 @@ public class ScannerUtils {
         String regex = "\\w+[\\w-_\\.]*@[a-zA-Z]+(.[a-zA-Z]+)+";
 
         while (!userInput.matches(regex)) {
-            System.err.println("Không phải là một email. Hãy nhập lại !!!\n");
+            System.err.println("Không phải là một email. Hãy nhập lại !!!");
             userInput = input.nextLine();
         }
 
@@ -56,7 +56,7 @@ public class ScannerUtils {
         String regex = "0[35789]\\d{8}";
 
         while (!userInput.matches(regex)) {
-            System.err.println("Không phải số điện thoại chuẩn. Hãy nhập lại:\n");
+            System.err.println("Không phải số điện thoại chuẩn. Hãy nhập lại: ");
             userInput = input.nextLine();
         }
 
@@ -76,7 +76,7 @@ public class ScannerUtils {
         String regex = "(\\d{2}/){2}\\d{4}";
 
         while (!userInput.matches(regex)) {
-            System.err.println("Không phải định dạng ngày đúng .Hãy nhập lại !!\n");
+            System.err.println("Không phải định dạng ngày đúng .Hãy nhập lại !!");
             userInput = input.nextLine();
         }
 
@@ -91,7 +91,7 @@ public class ScannerUtils {
         String regex = "\\d{2}:\\d{2}";
 
         while (!userInput.matches(regex)) {
-            System.err.println("Không phải định dạng thời gian chuẩn. Hãy nhập lại !!\n");
+            System.err.println("Không phải định dạng thời gian chuẩn. Hãy nhập lại !!");
             userInput = input.nextLine();
         }
 
@@ -103,7 +103,7 @@ public class ScannerUtils {
         System.out.println("Xin mời nhập điểm: ");
         double userInput = ScannerUtils.inputDouble();
         while (userInput < 0 || userInput > 10) {
-            System.out.println("Bạn chỉ đụược nhập điểm từ 0 -> 10");
+            System.err.println("Bạn chỉ đụược nhập điểm từ 0 -> 10");
             userInput = ScannerUtils.inputDouble();
         }
         return userInput;
@@ -162,7 +162,7 @@ public class ScannerUtils {
                     break;
 
                 default:
-                    System.out.println("Bạn chỉ được nhập các giá trị chỉ định !!!");
+                    System.err.println("Bạn chỉ được nhập các giá trị chỉ định !!!");
             }
         }
 
@@ -180,7 +180,7 @@ public class ScannerUtils {
             luaChonGioiTinh = ScannerUtils.inputInt();
 
             if (luaChonGioiTinh != 1 && luaChonGioiTinh != 2) {
-                System.out.println("Vui lòng chỉ chọn 1 (Nam) hoặc 2 (Nữ). Hãy nhập lại.");
+                System.err.println("Vui lòng chỉ chọn 1 (Nam) hoặc 2 (Nữ). Hãy nhập lại.");
             }
 
         } while (luaChonGioiTinh != 1 && luaChonGioiTinh != 2);
@@ -196,7 +196,7 @@ public class ScannerUtils {
             ten = ScannerUtils.inputString();
 
             if (ten.trim().isEmpty()) {
-                System.out.println("Tên không được để trống. Hãy nhập lại.");
+                System.err.println("Tên không được để trống. Hãy nhập lại.");
             }
 
         } while (ten.trim().isEmpty());
@@ -212,7 +212,7 @@ public class ScannerUtils {
             diaChi = ScannerUtils.inputString();
 
             if (diaChi.trim().isEmpty()) {
-                System.out.println("Địa chỉ không được để trống. Hãy nhập lại.");
+                System.err.println("Địa chỉ không được để trống. Hãy nhập lại.");
             }
 
         } while (diaChi.trim().isEmpty());
@@ -225,7 +225,7 @@ public class ScannerUtils {
         int hocPhi = ScannerUtils.inputInt();
 
         while (hocPhi < 0) {
-            System.out.println("Học phí không thể là một số âm. Hãy nhập lại: ");
+            System.err.println("Học phí không thể là một số âm. Hãy nhập lại: ");
             hocPhi = ScannerUtils.inputInt();
         }
 

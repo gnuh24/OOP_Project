@@ -106,19 +106,19 @@ public class QLUser {
     }
 
     public static void inThongTin(ArrayList<User> dsUser) {
-        System.out.println("*".repeat(171));
+        System.out.println("*".repeat(186));
 
-        System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-15s* %-15s* %-20s*\n", "Mã user", "Họ và tên",
+        System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-30s* %-15s* %-20s*\n", "Mã user", "Họ và tên",
                 "Email",
                 "Giới tính", "Ngày sinh", "Số điện thoại", "Địa chỉ", "Vại trò", "Trạng Thái");
 
-        System.out.println("*".repeat(171));
+        System.out.println("*".repeat(186));
 
         for (User user : dsUser) {
             String gioiTinh = (user.isGioiTinh()) ? "Nam" : "Nu";
             String trangThai = (user.isTrangThai()) ? "Hoat dong" : "Ngung hoat dong";
 
-            System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-15s* %-15s* %-20s*\n",
+            System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-30s* %-15s* %-20s*\n",
                     user.getMaUser(),
                     user.getHoTen(),
                     user.getEmail(),
@@ -129,22 +129,22 @@ public class QLUser {
                     VaiTro.toString(user.getVaiTro()),
                     trangThai);
         }
-        System.out.println("*".repeat(171));
+        System.out.println("*".repeat(186));
     }
 
     public static void inThongTin(User user) {
-        System.out.println("*".repeat(171));
+        System.out.println("*".repeat(186));
 
-        System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-15s* %-15s* %-20s*\n", "Mã user", "Họ và tên",
+        System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-30s* %-15s* %-20s*\n", "Mã user", "Họ và tên",
                 "Email",
                 "Giới tính", "Ngày sinh", "Số điện thoại", "Địa chỉ", "Vại trò", "Trạng Thái");
 
-        System.out.println("*".repeat(171));
+        System.out.println("*".repeat(186));
 
         String gioiTinh = (user.isGioiTinh()) ? "Nam" : "Nu";
         String trangThai = (user.isTrangThai()) ? "Hoat dong" : "Ngung hoat dong";
 
-        System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-15s* %-15s* %-20s*\n",
+        System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-30s* %-15s* %-20s*\n",
                 user.getMaUser(),
                 user.getHoTen(),
                 user.getEmail(),
@@ -154,7 +154,7 @@ public class QLUser {
                 user.getDiaChi(),
                 VaiTro.toString(user.getVaiTro()),
                 trangThai);
-        System.out.println("*".repeat(171));
+        System.out.println("*".repeat(186));
     }
 
     public static User timUserTheoMa(String idUser) {

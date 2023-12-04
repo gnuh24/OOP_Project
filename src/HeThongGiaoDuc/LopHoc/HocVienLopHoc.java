@@ -2,9 +2,8 @@
 package HeThongGiaoDuc.LopHoc;
 
 import NguoiDung.User;
-import QuanLyDoiTuong.QLKetQua;
 
-public class KetQua {
+public class HocVienLopHoc {
   User hocVien;
   LopHoc lopHoc;
   double diem;
@@ -13,17 +12,17 @@ public class KetQua {
 
   // Constructor nay chi duoc su dung ben trong class
 
-  public KetQua() {
+  public HocVienLopHoc() {
   }
   
-  public KetQua(User hocVien, LopHoc lopHoc) {
+  public HocVienLopHoc(User hocVien, LopHoc lopHoc) {
     this.hocVien = hocVien;
     this.lopHoc = lopHoc;
     this.diem=-1;
     this.danhGia="Chưa có đánh giá";
   }
 
-  public KetQua(User hocVien, LopHoc lopHoc, double diem, String danhGia) {
+  public HocVienLopHoc(User hocVien, LopHoc lopHoc, double diem, String danhGia) {
     this.hocVien = hocVien;
     this.lopHoc = lopHoc;
     this.diem = diem;

@@ -24,7 +24,7 @@ public class LoadDuLieu {
         QLKetQuaPhongVan.loadDuLieu();
         QLYeuCauDangKy.loadDuLieu();
         QLBienLai.loadDuLieu();
-        QLKetQua.loadDuLieu();
+        QLHocVienLopHoc.loadDuLieu();
 
     }
 
@@ -38,7 +38,7 @@ public class LoadDuLieu {
         QLLichPhongVan.saveDuLieu();
         QLKetQuaPhongVan.saveDuLieu();
         QLLopHoc.saveDuLieu();
-        QLKetQua.saveDuLieu();
+        QLHocVienLopHoc.saveDuLieu();
         QLYeuCauDangKy.luuDuLieu();
         QLBienLai.luuDuLieu();
     }

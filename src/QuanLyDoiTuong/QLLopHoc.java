@@ -15,7 +15,6 @@ import Utils.Convert;
 import Utils.DocGhiFile;
 import Utils.ScannerUtils;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -196,7 +195,7 @@ public class QLLopHoc {
 
           lopHoc.getPhongHocMacDinh() != null ? lopHoc.getPhongHocMacDinh().getMaPhongHoc(): "Chưa cập nhật",
           lopHoc.getPhongHocMacDinh() != null ? lopHoc.getPhongHocMacDinh().getCoSoTrucThuoc().getTenCoSo(): "Chưa cập nhật",
-          QLKetQua.demHocVienTheoLopHoc(lopHoc.getMaLop()),
+          QLHocVienLopHoc.demHocVienTheoLopHoc(lopHoc.getMaLop()),
           TrangThaiLop.toString(lopHoc.getTrangThai()),
 
           lopHoc.getGiangVien() != null ? lopHoc.getGiangVien().getHoTen() : "Chưa cập nhật",

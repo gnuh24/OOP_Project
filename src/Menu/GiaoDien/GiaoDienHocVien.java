@@ -4,16 +4,14 @@ import java.util.ArrayList;
 
 import HeThongGiaoDuc.DangKy.BienLai;
 import HeThongGiaoDuc.DangKy.YeuCauDangKy;
-import HeThongGiaoDuc.LopHoc.KetQua;
+import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import Menu.Session;
 import NguoiDung.User;
-import NguoiDung.VaiTro;
 import QuanLyDoiTuong.QLBienLai;
-import QuanLyDoiTuong.QLKetQua;
+import QuanLyDoiTuong.QLHocVienLopHoc;
 import QuanLyDoiTuong.QLLopHoc;
-import QuanLyDoiTuong.QLUser;
 import QuanLyDoiTuong.QLYeuCauDangKy;
 import Utils.ScannerUtils;
 
@@ -39,10 +37,10 @@ public class GiaoDienHocVien extends GiaoDien {
 
             switch (choice) {
                 case 1:
-                    QLKetQua.xemTKBCacLopDangHoc(Session.getTaiKhoan().getUser());
+                    QLHocVienLopHoc.xemTKBCacLopDangHoc(Session.getTaiKhoan().getUser());
                     break;
                 case 2:
-                    QLKetQua.xemTKBCacLopSapKhaiGiang(Session.getTaiKhoan().getUser());
+                    QLHocVienLopHoc.xemTKBCacLopSapKhaiGiang(Session.getTaiKhoan().getUser());
                     break;
 
                 case 3:
@@ -69,7 +67,7 @@ public class GiaoDienHocVien extends GiaoDien {
     }
 
     private void xemDiem() {
-        QLKetQua.inDanhSach(QLKetQua.timKiemTheoHocVien(Session.getTaiKhoan().getUser().getMaUser()));
+        QLHocVienLopHoc.inDanhSach(QLHocVienLopHoc.timKiemTheoHocVien(Session.getTaiKhoan().getUser().getMaUser()));
     }
 
     private void dangKyMonHocChoHocVien() {
@@ -105,7 +103,7 @@ public class GiaoDienHocVien extends GiaoDien {
             int dongTien = ScannerUtils.inputHocPhi();
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(Session.getTaiKhoan().getUser(), lopHoc, dongTien);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
-            QLKetQua.getDsKetQua().add( new KetQua(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
+            QLHocVienLopHoc.getDsKetQua().add( new HocVienLopHoc(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
             BienLai bienLai = new BienLai(yeuCauDangKy, dongTien);
             bienLai.inBienLai();
             QLBienLai.getDsBienLai().add(bienLai);
@@ -114,7 +112,7 @@ public class GiaoDienHocVien extends GiaoDien {
 
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(temp, lopHoc);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
-            QLKetQua.getDsKetQua().add(new KetQua(temp, lopHoc));
+            QLHocVienLopHoc.getDsKetQua().add(new HocVienLopHoc(temp, lopHoc));
 
             System.out.println("Đăng ký thành công !!");
         } else {

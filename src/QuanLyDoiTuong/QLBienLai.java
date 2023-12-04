@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
-import HeThongGiaoDuc.CoSoVatChat.CoSo;
-import HeThongGiaoDuc.CoSoVatChat.PhongHoc;
 import HeThongGiaoDuc.DangKy.BienLai;
 import HeThongGiaoDuc.DangKy.YeuCauDangKy;
-import HeThongGiaoDuc.LopHoc.KetQua;
 import Utils.DocGhiFile;
 import Utils.ScannerUtils;
 
