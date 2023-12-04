@@ -5,6 +5,7 @@ import QuanLyDoiTuong.QLBienLai;
 import QuanLyDoiTuong.QLHocVienLopHoc;
 import QuanLyDoiTuong.QLKhoaKhaiGiang;
 import QuanLyDoiTuong.QLLopHoc;
+import QuanLyDoiTuong.QLYeuCauDangKy;
 import Utils.ScannerUtils;
 
 public class GiaoDienQuanLy extends GiaoDienCongTacVien {
@@ -127,7 +128,7 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
     }
 
     public void thongKeHocVienTheoNam(){
-        QLHocVienLopHoc.thongKeTheoNam();
+        QLYeuCauDangKy.thongKeTheoNam();
     }
 
     public void thongKeDoanhThuTheoChuongTrinh(){
