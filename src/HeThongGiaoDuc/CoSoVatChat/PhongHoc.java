@@ -30,7 +30,7 @@ public class PhongHoc {
         for (LopHoc lopHoc : dsLopHocCaNhan) {
             CaHoc caHoc1 = lopHoc.getCaHocMacDinh().get(0);
             CaHoc caHoc2 = lopHoc.getCaHocMacDinh().get(1);
-            if (caHoc1.equal(caHoc) || caHoc2.equal(caHoc)) {
+            if (caHoc1.equal(caHoc) || caHoc2.equal(caHoc) || !getTrangThai()) {
                 return true;
             }
         }

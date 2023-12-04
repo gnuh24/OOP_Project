@@ -35,23 +35,23 @@ public class GiaoDienKhachHang extends GiaoDien {
 
             switch (choice) {
                 case 1:
-                    QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.GiangVien, true));
+                    xemDanhSachGiangVien();
                     backTo();
                     break;
                 case 2:
-                    QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
+                    xemDanhSachChuongTrinhHoc();
                     backTo();
                     break;
                 case 3:
-                    QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc));
+                    xemDanhSachCacLopDangHoc();
                     backTo();
                     break;
                 case 4:
-                    QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang));
+                    xemDanhSachLopSapKhaiGiang();
                     backTo();
                     break;
                 case 5:
-                    QLCoSo.inDSCoSo(QLCoSo.getDsCoSo());
+                    xemDanhSachCoSoDangHoatDong();
                     backTo();
                     break;
                 case 6:
@@ -77,5 +77,26 @@ public class GiaoDienKhachHang extends GiaoDien {
         System.out.println("Bạn đã đăng ký thành công !!");
         System.out.println("Hình thức test là online thông qua Zoom (Premium)");
         System.out.println("Bạn sẽ nhận được thông tin chi tiết qua email và điện thoại trong thời gian tới !!");
+    }
+
+
+    public void xemDanhSachGiangVien(){
+        QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.GiangVien, true));
+    }
+
+    public void xemDanhSachChuongTrinhHoc(){
+        QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
+    }
+
+    public void xemDanhSachCacLopDangHoc(){
+        QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc));
+    }
+
+    public void xemDanhSachLopSapKhaiGiang(){
+        QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang));
+    }
+
+    public void xemDanhSachCoSoDangHoatDong(){
+        QLCoSo.inDSCoSo(QLCoSo.getDsCoSo());
     }
 }

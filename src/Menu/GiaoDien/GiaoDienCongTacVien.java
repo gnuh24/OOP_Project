@@ -270,7 +270,6 @@ public class GiaoDienCongTacVien extends GiaoDien {
                             System.out.println("Mã nhập không đúng xin mời nhập lại !!");
                             ma = ScannerUtils.inputString();
                             ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(ma);
-
                         }
                         dangKyMonHocChoKhachHang(ketQuaPhongVan);
                         break;
@@ -363,6 +362,8 @@ public class GiaoDienCongTacVien extends GiaoDien {
                 VaiTro.HocVien);
         QLUser.getDsUser().add(user);
         if (luaChon == 1){
+            System.out.println("Nếu đóng tiền trọn gói bạn sẽ được giảm 30% học phí");
+            System.out.printf("Chỉ phải thanh toán %dđ\n", lopHoc.getChuongTrinh().getHocPhi()*70/100);
             int dongTien = ScannerUtils.inputHocPhi();
 
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc, dongTien);
@@ -393,9 +394,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
         QLUser.getDsUser().add(khachHang);
         LichPhongVan lichPhongVan = new LichPhongVan(khachHang);
         QLLichPhongVan.getDsLichPhongVan().add(lichPhongVan);
-        System.out.println(QLLichPhongVan.getDsLichPhongVan());
         System.out.println("Bạn đã đăng ký thành công !!");
-        QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
         giaoDien();
     }
 

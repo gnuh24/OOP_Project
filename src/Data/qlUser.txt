@@ -32,3 +32,7 @@ HV19#Học viên 19#hv19@email.com#1#24/01/1987#0123456789#Địa chỉ 19#Học
 HV20#Học viên 20#hv20@email.com#0#19/06/1986#0123456789#Địa chỉ 20#Học viên#1
 KH1#Khách hàng ngẫu nhiên 1#khacHangMoi@gmail.com#1#27/11/2005#0938242346#Đại học Sai Gòn#Khách hàng#1
 KH2#Khách hàng ngẫu nhiên 1#khachHangMoi2@gmail.com#1#15/09/2003#0938240353#Đại học Sài Gòn#Khách hàng#1
+HV21#Khách hàng ngẫu nhiên 1#khachHangMoi2@gmail.com#1#15/09/2003#0938240353#Đại học Sài Gòn#Học viên#1
+KH3#Khách hàng mới 2#newKhachHang2@gmail.com#1#07/02/1992#0938224355#Đại học Sài Gòn#Khách hàng#1
+KH4#Khách hàng mới 3#newKhachHang3@gmail.com#1#04/12/2009#0925315248#Đại học Hoa Sen#Khách hàng#1
+HV22#Khách hàng mới 2#newKhachHang2@gmail.com#1#07/02/1992#0938224355#Đại học Sài Gòn#Học viên#1
