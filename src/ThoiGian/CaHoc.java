@@ -40,6 +40,15 @@ public class CaHoc {
         this.thu = thu;
     }
 
+    public boolean equal(CaHoc caHoc){
+        if (caHoc.getThu().equals(this.getThu())
+            && caHoc.getGioVaoHoc().equals(this.getGioVaoHoc())
+            && caHoc.getGioTanHoc().equals(this.getGioTanHoc())){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         if (thu != null && gioVaoHoc != null && gioTanHoc != null){

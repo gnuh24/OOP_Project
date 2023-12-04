@@ -26,6 +26,8 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
             System.out.printf("*  %-96s*\n","9. Thống kê doanh thu theo tháng");
             System.out.printf("*  %-96s*\n","10. THống kê doanh thu theo năm");
             System.out.printf("*  %-96s*\n","11. Đăng xuất");
+            System.out.printf("*  %-96s*\n","12. Thoát chương trình");
+
             System.out.printf("*  %-96s*\n", "Bạn đã có lựa chọn chưa?");
             System.out.println("*".repeat(100));
 

@@ -1,5 +1,6 @@
 package Menu.GiaoDien;
 
+import Menu.Session;
 import QuanLyDoiTuong.*;
 import QuanLyDoiTuong.QLHocVienLopHoc;
 import Utils.ScannerUtils;
@@ -23,14 +24,16 @@ public class GiaoDienGiamDoc extends GiaoDienQuanLy {
             System.out.printf("*  %-96s*\n","10. THống kê doanh thu theo năm");
             System.out.printf("*  %-96s*\n","11. Thay đổi học phí chương trình");
             System.out.printf("*  %-96s*\n","12. Đăng xuất");
+            System.out.printf("*  %-96s*\n","13. Thoát chương trình");
+
             System.out.printf("*  %-96s*\n", "Bạn đã có lựa chọn chưa?");
             System.out.println("*".repeat(100));
             do{
                 choice = ScannerUtils.inputInt();
-                if (choice < 1 || choice > 12){
+                if (choice < 1 || choice > 13){
                     System.out.println("Bạn chỉ được nhập các lựa chọn  trên màn hình");
                 }
-            }while(choice < 1 || choice > 12);
+            }while(choice < 1 || choice > 13);
 
             switch (choice){
                 case 1:
@@ -76,9 +79,10 @@ public class GiaoDienGiamDoc extends GiaoDienQuanLy {
                 case 11:
                     QLChuongTrinhHoc.thayDoiHocPhi();
                     break;
-
                 case 12:
-                    System.out.println("Bạn thực sự muốn thoát");
+                    Session.logout();
+                    break;
+                case 13:
                     exit();
                     break;
             }

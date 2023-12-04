@@ -1,2 +1,2 @@
-LPV1####KH1#Chờ duyệt
-LPV2####KH2#Chờ duyệt
+LPV1#GV1#23/12/2023#20:30#KH1#Hủy
+LPV2#GV1#23/12/2023#20:30#KH2#Đã phổng vấn
