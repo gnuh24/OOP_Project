@@ -32,16 +32,13 @@ public class GiaoDienTroGiang extends GiaoDien {
             switch (choice) {
                 case 1:
                     xemDanhSachLopHoc();
-                    backTo();
                     break;
                 case 2:
                     xemDanhSachLopSapKhaiGiang();
-                    backTo();
                     break;
 
                 case 3:
                     xemDanhSachHocVien();
-                    backTo();
                     break;
 
                 case 4:
@@ -60,6 +57,8 @@ public class GiaoDienTroGiang extends GiaoDien {
                 QLLopHoc.timKiemLopTheoTrangThai(
                         QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()),
                         TrangThaiLop.Dang_Hoc));
+        backTo();
+
     }
 
     protected void xemDanhSachLopSapKhaiGiang() {
@@ -68,6 +67,8 @@ public class GiaoDienTroGiang extends GiaoDien {
                         QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()),
                         TrangThaiLop.Sap_Khai_Giang)
         );
+        backTo();
+
     }
 
     protected void xemDanhSachHocVien() {
@@ -91,5 +92,6 @@ public class GiaoDienTroGiang extends GiaoDien {
             lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsLopHoc);
         }
         QLHocVienLopHoc.inDanhSach(QLHocVienLopHoc.timKiemTheoLopHoc(maLop));
+        backTo();
     }
 }

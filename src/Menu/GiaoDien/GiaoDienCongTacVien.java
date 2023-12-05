@@ -308,8 +308,12 @@ public class GiaoDienCongTacVien extends GiaoDien {
             return;
         }
         LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
-        while (lopHoc == null){
-            System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+        while (lopHoc == null || hocVien.isBusy(malop)){
+            if (hocVien.isBusy(malop)){
+                System.err.println("Học viên không thể đăng ký học thêm lớp mới này !! Vì học viên đã tham gia rồi !!");
+            }else{
+                System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+            }
             System.out.println("Nhấn 1 để thoát");
 
             malop = ScannerUtils.inputString();
@@ -671,7 +675,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
         * - Thay đổi lớp học trong đơn đăng ký thành lớp mới
         * */
 
-
+        QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.HocVien, true));
         //Tìm học sinh muốn chuyển lớp
         System.out.println("Hãy nhập mã học sinh muốn chuyển lớp !!");
         String maHV = ScannerUtils.inputString();

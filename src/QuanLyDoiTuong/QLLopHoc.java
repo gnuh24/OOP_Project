@@ -261,6 +261,26 @@ public class QLLopHoc {
     return dsLopHocin;
   }
 
+  public static ArrayList<LopHoc> timKiemLopTheoGiangVien(String maGV, boolean flag) {
+    ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
+
+    if (flag) {
+      for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
+        if (lopHoc.getTrangThai().equals(TrangThaiLop.Cho_Sap_Xep)) {
+          continue;
+        }
+        if (lopHoc.getGiangVien().getMaUser().equals(maGV)) {
+          dsLopHocin.add(lopHoc);
+        }
+      }
+      return dsLopHocin;
+    }
+    dsLopHocin = timKiemLopTheoGiangVien(maGV);
+    return dsLopHocin;
+  }
+
+
+
 
   //Lấy trực tiếp ra những lớp Đang học hoặc Sắp Khai Giảng
   public static ArrayList<LopHoc> timKiemLopTheoTroGiang(String maTG) {

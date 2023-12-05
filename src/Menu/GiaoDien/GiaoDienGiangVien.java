@@ -2,6 +2,7 @@ package Menu.GiaoDien;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
 import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
+import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
@@ -40,21 +41,17 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
             switch (choice) {
                 case 1:
                     xemDanhSachLopHoc();
-                    backTo();
                     break;
                 case 2:
                     xemDanhSachLopSapKhaiGiang();
-                    backTo();
                     break;
 
                 case 3:
-                    super.xemDanhSachHocVien();
-                    backTo();
+                    xemDanhSachHocVien();
                     break;
 
                 case 4:
                     xemLichPhongVan();
-                    backTo();
                     break;
 
                 case 5:
@@ -62,7 +59,7 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
                     break;
 
                 case 6:
-//                    nhapDiemChoHocVienLopHoc();
+                    nhapDiemChoHocVienLopHoc();
                     break;
                 case 7:
                     Session.logout();
@@ -80,7 +77,9 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
                 QLLopHoc.timKiemLopTheoTrangThai(
                         QLLopHoc.timKiemLopTheoGiangVien(Session.getTaiKhoan().getUser().getMaUser()),
                         TrangThaiLop.Dang_Hoc));
-    }
+    backTo();
+
+}
 
     @Override
     protected void xemDanhSachLopSapKhaiGiang() {
@@ -89,11 +88,15 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
                         QLLopHoc.timKiemLopTheoGiangVien(Session.getTaiKhoan().getUser().getMaUser()),
                         TrangThaiLop.Sap_Khai_Giang)
         );
+        backTo();
+
     }
 
     private void xemLichPhongVan() {
         QLLichPhongVan.inDSLichPhongVan(
                 QLLichPhongVan.timKiemLichPhongVanTheoGV(Session.getTaiKhoan().getUser().getMaUser()));
+        backTo();
+
     }
 
     private void nhapDiemChoThiSinhPhongVan(){
@@ -140,52 +143,91 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
 
     }
 
+    @Override
+    protected void xemDanhSachHocVien() {
+        ArrayList<LopHoc> dsLopHoc = QLLopHoc.timKiemLopTheoTrangThai(
+                QLLopHoc.timKiemLopTheoGiangVien(Session.getTaiKhoan().getUser().getMaUser()), TrangThaiLop.Dang_Hoc, TrangThaiLop.Sap_Khai_Giang);
+        QLLopHoc.inDanhSach(dsLopHoc);
+        System.out.println("Chọn lớp: ");
+        System.out.println("Ấn -1 để thoát !!");
+        String maLop = ScannerUtils.inputString();
+        if (maLop.equals("-1")){
+            return;
+        }
+        LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsLopHoc);
+        while (lopHoc == null){
+            System.err.println("Mã lớp không hợp lệ !!!");
+            System.out.println("Ấn -1 để thoát !!");
+            maLop = ScannerUtils.inputString();
+            if (maLop.equals("-1")){
+                return;
+            }
+            lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsLopHoc);
+        }
+        QLHocVienLopHoc.inDanhSach(QLHocVienLopHoc.timKiemTheoLopHoc(maLop));
+        backTo();
 
-//    private void nhapDiemChoHocVienLopHoc() {
-//        super.xemDanhSachHocVien();
-//        do {
-//            System.out.println("Bạn muốn nhập điểm cho học viên nào? (Nhập id):");
-//            System.out.println("Nhập -1 để thoát.");
-//
-//            String id = ScannerUtils.inputString();
-//
-//            // thoát
-//            if (id.equals("-1")) {
-//                this.giaoDien();
-//                return;
-//            }
-//            // tiếp tục
-//            else {
-//                ArrayList<HocVienLopHoc> ketQuaCuaHocVien = QLHocVienLopHoc.timKiemTheoHocVien(id);
-//
-//                // nếu tìm thấy ketQua ứng với id đã cung cấp
-//                if (ketQuaCuaHocVien == null) {
-//                    System.out.println("Không tìm thấy!");
-//
-//
-//                }
-//
-//                // ngược lại nếu không tìm thấy thì in ra thông báo
-//                else {
-//                    for (HocVienLopHoc ketQua : ketQuaCuaHocVien) {
-//                        String tenHocVien = ketQua.getHocVien().getHoTen();
-//                        String tenLop = ketQua.getLopHoc().getTenLop();
-//
-//                        System.out.println("Nhập điểm cho " + tenHocVien + " tại lớp " + tenLop + " (ví dụ: 9.8)");
-//                        System.out.println("(Hoặc nhập -1 để thoát / kí tự bất kỳ khác để bỏ qua)");
-//
-//                        String diem = ScannerUtils.inputString();
-//
-//                        if (diem.equals("-1")) {
-//                            this.giaoDien();
-//                            return;
-//                        } else if (diem.matches("\\d(.\\d)?")) {
-//                            ketQua.setDiem(diem);
-//                            System.out.println("Nhập điểm thành công!");
-//                        }
-//                    }
-//                }
-//            }
-//        } while (true);
-//    }
+    }
+
+    private void nhapDiemChoHocVienLopHoc() {
+        ArrayList<LopHoc> dsLopHoc = QLLopHoc.timKiemLopTheoGiangVien(Session.getTaiKhoan().getUser().getMaUser(), true );
+        QLLopHoc.inDanhSach(dsLopHoc);
+        System.out.println("Chọn lớp: ");
+        System.out.println("Ấn 1 để thoát !!");
+        String maLop = ScannerUtils.inputString();
+        if (maLop.equals("1")){
+            return;
+        }
+        LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsLopHoc);
+        while (lopHoc == null){
+            System.err.println("Mã lớp không hợp lệ !!!");
+            System.out.println("Ấn 1 để thoát !!");
+            maLop = ScannerUtils.inputString();
+            if (maLop.equals("1")){
+                return;
+            }
+            lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsLopHoc);
+        }
+        ArrayList<HocVienLopHoc> dsHocVienLopHoc =QLHocVienLopHoc.timKiemTheoLopHoc(maLop);
+        QLHocVienLopHoc.inDanhSach(dsHocVienLopHoc);
+            System.out.println("Bạn muốn nhập điểm cho học viên nào?:");
+            System.out.println("Nhập -1 để thoát.");
+
+            int id = ScannerUtils.inputInt();
+
+            // thoát
+            if (id == -1) {
+                return;
+            }
+
+            while (id < 1 || id > dsHocVienLopHoc.size()){
+                System.err.println("Lỗi không tìm thấy học viên!!! Nhập lại");
+                System.out.println("Ấn -1 để thoát");
+                id = ScannerUtils.inputInt();
+                if (id == -1){
+                    return;
+                }
+            }
+
+            HocVienLopHoc hocVienLopHoc = dsHocVienLopHoc.get(id - 1);
+
+                        String tenHocVien = hocVienLopHoc.getHocVien().getHoTen();
+                        String tenLop = hocVienLopHoc.getLopHoc().getTenLop();
+
+                        System.out.println("Nhập điểm cho " + tenHocVien + " tại lớp " + tenLop + " (ví dụ: 9.8)");
+                        System.out.println("Ấn 3.69 để thoát");
+
+                        double diem = ScannerUtils.inputDiem();
+
+                        if (diem==3.69) {
+                            return;
+                        }
+                            hocVienLopHoc.setDiem(diem);
+
+        System.out.println("Nhập đánh giá về học viên này !!");
+        hocVienLopHoc.setDanhGia(ScannerUtils.inputString());
+        System.out.println("Nhập điểm thành công");
+
+
+    }
 }
