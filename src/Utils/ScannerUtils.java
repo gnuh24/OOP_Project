@@ -94,7 +94,6 @@ public class ScannerUtils {
             userInput = input.nextLine();
         }
 
-        System.out.println("ok");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return LocalTime.parse(userInput, formatter);
     }
