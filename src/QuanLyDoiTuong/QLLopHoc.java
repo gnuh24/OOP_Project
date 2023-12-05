@@ -295,10 +295,29 @@ public class QLLopHoc {
     return dsLopHocin;
   }
 
+  public static ArrayList<LopHoc> timKiemLopTheoTrangThai(TrangThaiLop trangThai1, TrangThaiLop trangThai2) {
+    ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
+    for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
+      if (lopHoc.getTrangThai().equals(trangThai1) || lopHoc.getTrangThai().equals(trangThai2)) {
+        dsLopHocin.add(lopHoc);
+      }
+    }
+    return dsLopHocin;
+  }
   public static ArrayList<LopHoc> timKiemLopTheoTrangThai(ArrayList<LopHoc> dsLopHoc, TrangThaiLop trangThai) {
     ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
     for (LopHoc lopHoc : dsLopHoc) {
       if (lopHoc.getTrangThai().equals(trangThai)) {
+        dsLopHocin.add(lopHoc);
+      }
+    }
+    return dsLopHocin;
+  }
+
+  public static ArrayList<LopHoc> timKiemLopTheoTrangThai(ArrayList<LopHoc> dsLopHoc, TrangThaiLop trangThai1, TrangThaiLop trangThai2) {
+    ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
+    for (LopHoc lopHoc : dsLopHoc) {
+      if (lopHoc.getTrangThai().equals(trangThai1) || lopHoc.getTrangThai().equals(trangThai2)) {
         dsLopHocin.add(lopHoc);
       }
     }

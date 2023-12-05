@@ -71,8 +71,7 @@ public class GiaoDienTroGiang extends GiaoDien {
 
     protected void xemDanhSachHocVien() {
         ArrayList<LopHoc> dsLopHoc = QLLopHoc.timKiemLopTheoTrangThai(
-                QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()),
-                TrangThaiLop.Dang_Hoc);
+                QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()), TrangThaiLop.Dang_Hoc, TrangThaiLop.Sap_Khai_Giang);
         QLLopHoc.inDanhSach(dsLopHoc);
         System.out.println("Chọn lớp: ");
         String maLop = ScannerUtils.inputString();

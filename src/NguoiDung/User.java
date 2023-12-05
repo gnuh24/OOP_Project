@@ -1,8 +1,10 @@
 package NguoiDung;
 
+import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
+import QuanLyDoiTuong.QLHocVienLopHoc;
 import QuanLyDoiTuong.QLLichPhongVan;
 import QuanLyDoiTuong.QLLopHoc;
 import QuanLyDoiTuong.QLUser;
@@ -106,6 +108,16 @@ public class User {
         return false;
     }
 
+    public boolean isBusy(String maLopHoc) {
+        ArrayList<HocVienLopHoc> dsCacLopDaHoc = QLHocVienLopHoc.timKiemTheoHocVien(this.getMaUser());
+        for (HocVienLopHoc hocVienLopHoc : dsCacLopDaHoc) {
+            if (hocVienLopHoc.getLopHoc().getMaLop().equals(maLopHoc)){
+                return true;
+            }
+        }
+
+        return false;
+    }
     public boolean isBusy(Thu thu, LocalTime localTime, LocalDate localDate) {
 
 

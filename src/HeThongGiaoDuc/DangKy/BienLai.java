@@ -58,13 +58,16 @@ public class BienLai {
 
     public void inBienLai(){
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-        System.out.println("-----------Biên lai-----------");
-        System.out.println("Mã biên lai: "+this.getMaBienLai());
-        System.out.println("Học Viên: "+this.getYeuCauDangKy().getHocVien().getHoTen());
-        System.out.println("Mã học viên: "+this.getYeuCauDangKy().getHocVien().getMaUser());
-        System.out.println("Lớp: "+this.getYeuCauDangKy().getLopHoc().getMaLop());
-        System.out.println("Số tiền: "+this.getSoTienDaDong());
-        System.out.println("Ngày đóng: "+this.getNgayThanhToan().format(formatter));
+        System.out.println("*".repeat(65));
+        System.out.printf("*  %-61s*\n","Biên lai");
+        System.out.println("*".repeat(65));
+        System.out.printf("*  %-30s %-30s*\n","Mã biên lai: ",this.getMaBienLai());
+        System.out.printf("*  %-30s %-30s*\n","Học Viên: ",this.getYeuCauDangKy().getHocVien().getHoTen());
+        System.out.printf("*  %-30s %-30s*\n","Mã học viên: ",this.getYeuCauDangKy().getHocVien().getMaUser());
+        System.out.printf("*  %-30s %-30s*\n","Lớp: ",this.getYeuCauDangKy().getLopHoc().getMaLop());
+        System.out.printf("*  %-30s %-30.2f*\n","Số tiền: ", this.getSoTienDaDong());
+        System.out.printf("*  %-30s %-30s*\n","Ngày đóng: ", this.getNgayThanhToan().format(formatter));
+        System.out.println("*".repeat(65));
     }
 
 }
