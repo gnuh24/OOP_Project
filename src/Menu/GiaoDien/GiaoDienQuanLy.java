@@ -59,6 +59,7 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
                 case 4:
                     //QLHocVienLopHoc.thongKeHocVienTheoKhoa();
                     thongKeHocVienTheoKhoa();
+                    backTo();
                     break;
 
                 case 5:
@@ -124,7 +125,7 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
     }
 
     public void thongKeHocVienTheoThang(){
-        QLHocVienLopHoc.thongKeHocVienTheoThang();
+        QLYeuCauDangKy.thongKeHocVienTheoThang();
     }
 
     public void thongKeHocVienTheoNam(){

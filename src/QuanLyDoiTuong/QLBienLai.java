@@ -170,16 +170,36 @@ public class QLBienLai {
             }
         }
 
-        System.out.println("Tong doanh thu: " + tongDoanhThu[0]);
         System.out.println("*".repeat(50));
-        System.out.printf("%-20s %-20s\n","Chương trình", "Doanh thu");
+        System.out.printf("*  %-20s*  %-23s*\n","Chương trình", "Doanh thu");
         System.out.println("*".repeat(50));
         for (int i = 1; i < tongDoanhThu.length; i++) {
-            System.out.printf("%-20s %-20s\n", "CTH"+i,tongDoanhThu[i]);
+            System.out.printf("*  %-20s*  %-23.2f*\n", "CTH"+i, tongDoanhThu[i]);
         }
         System.out.println("*".repeat(50));
+        System.out.printf("*  Tong doanh thu: %-30.2f*\n", tongDoanhThu[0]);
+        System.out.println("*".repeat(50));
 
-
+    }
+    public static void thongKeDoanhThuTheoKhoa() {
+        double tongDoanhThu = 0;
+        double tongDoanhThuTheoLichSu = 0;
+        System.out.println("*".repeat(50));
+        System.out.printf("*  %-20s*  %-23s*\n","Khóa", "Doanh thu");
+        System.out.println("*".repeat(50));
+        for(KhoaKhaiGiang khoaKhaiGiang:QLKhoaKhaiGiang.getDsKhoaKhaiGiang()){
+            for(BienLai bienLai:dsBienLai){
+                if (bienLai.getYeuCauDangKy().getLopHoc().getKhoa().getMaKhoa().equals(khoaKhaiGiang.getMaKhoa())) {
+                    tongDoanhThu+=bienLai.getSoTienDaDong();
+                }
+            }
+            System.out.printf("*  %-20s*  %-23.2f*\n", khoaKhaiGiang.getMaKhoa(), tongDoanhThu);
+            tongDoanhThuTheoLichSu+= tongDoanhThu;
+            tongDoanhThu=0;
+        }
+        System.out.println("*".repeat(50));
+        System.out.printf("*  Tong doanh thu:        %-23.2f*\n", tongDoanhThuTheoLichSu);
+        System.out.println("*".repeat(50));
     }
 
     public static void thongKeDoanhThuTheoThang() {
@@ -193,53 +213,38 @@ public class QLBienLai {
             }
         }
 
-        System.out.println("Tổng doanh thu năm "+nam+": "+tongDoanhThu[0]);
         System.out.println("*".repeat(50));
-        System.out.printf("%-20s %-20s\n","Tháng", "Doanh thu");
+        System.out.printf("*  %-20s*  %-23s*\n","Tháng", "Doanh thu");
         System.out.println("*".repeat(50));
         for (int i = 1; i < tongDoanhThu.length; i++) {
-            System.out.printf("%-20s %-20s\n", i,tongDoanhThu[i]);
+            System.out.printf("*  %-20s*  %-23.2f*\n", i, tongDoanhThu[i]);
         }
         System.out.println("*".repeat(50));
-    }
-
-    public static void thongKeDoanhThuTheoKhoa() {
-        double tongDoanhThu = 0;
-        System.out.printf("%-20s %-20s\n","Khóa","Doanh thu");
-        System.out.println("*".repeat(40));
-        for(KhoaKhaiGiang khoaKhaiGiang:QLKhoaKhaiGiang.getDsKhoaKhaiGiang()){
-            for(BienLai bienLai:dsBienLai){
-                if (bienLai.getYeuCauDangKy().getLopHoc().getKhoa().getMaKhoa().equals(khoaKhaiGiang.getMaKhoa())) {
-                    tongDoanhThu+=bienLai.getSoTienDaDong();
-                }
-            }   
-            System.out.printf("%-20s %-20s\n",khoaKhaiGiang.getMaKhoa(),tongDoanhThu);
-            tongDoanhThu=0;
-        }
-        System.out.println("*".repeat(40));
+        System.out.printf("*  Tong doanh thu: %-30.2f*\n", tongDoanhThu[0]);
+        System.out.println("*".repeat(50));
     }
 
     public static void thongKeTheoNam() {
-        QLBienLai.dsBienLai.sort(new Comparator<BienLai>() {
-            @Override
-            public int compare(BienLai o1, BienLai o2) {
-                return o1.getNgayThanhToan().compareTo(o2.getNgayThanhToan());
-            }
-
-        });
-        double tongDoanhThu = 0, nam = getDsBienLai().get(0).getNgayThanhToan().getYear();
-        System.out.printf("%-20s %-20s\n","Năm","Doanh thu");
-        System.out.println("*".repeat(40));
+        QLBienLai.dsBienLai.sort(Comparator.comparingInt(bienLai->bienLai.getNgayThanhToan().getYear()));
+        double tongDoanhThu = 0;
+        double tongDoanhThuTheoLichSu = 0;
+        int nam = getDsBienLai().get(0).getNgayThanhToan().getYear();
+        System.out.println("*".repeat(50));
+        System.out.printf("*  %-20s*  %-23s*\n","Năm", "Doanh thu");
+        System.out.println("*".repeat(50));
         for (BienLai bienLai : QLBienLai.dsBienLai) {
             if (bienLai.getNgayThanhToan().getYear() == nam) {
                 tongDoanhThu += bienLai.getSoTienDaDong();
             } else {
-                System.out.println();
+                System.out.printf("*  %-20s*  %-23.2f*\n", nam, tongDoanhThu);
+                tongDoanhThuTheoLichSu+=tongDoanhThu;
                 tongDoanhThu = 0;
                 nam = bienLai.getNgayThanhToan().getYear();
             }
         }
-        System.out.println("*".repeat(40));
+        System.out.println("*".repeat(50));
+        System.out.printf("*  Tong doanh thu: %-30.2f*\n", tongDoanhThuTheoLichSu);
+        System.out.println("*".repeat(50));
     }
 
     public static double soTienConNo(YeuCauDangKy YCDK) {

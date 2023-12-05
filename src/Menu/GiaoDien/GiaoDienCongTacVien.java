@@ -283,19 +283,21 @@ public class GiaoDienCongTacVien extends GiaoDien {
         ArrayList<LopHoc> dsCacLopCacLopDangHoc = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc);
         ArrayList<LopHoc> dsCacLopCacLopSapKhaiGiang = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang);
         ArrayList<LopHoc> dsCacLopHocPhuHop = new ArrayList<>(dsCacLopCacLopDangHoc);
+        dsCacLopHocPhuHop.addAll(dsCacLopCacLopSapKhaiGiang);
         QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
         System.out.println("Bạn chọn lớp học nào ??");
-        String malop = ScannerUtils.inputString();
         System.out.println("Nhấn 1 để thoát");
+        String malop = ScannerUtils.inputString();
         if (malop.equals("1")){
             return;
         }
         LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
         while (lopHoc == null){
             System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+            System.out.println("Nhấn 1 để thoát");
+
             malop = ScannerUtils.inputString();
             lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
-            System.out.println("Nhấn 1 để thoát");
             if (malop.equals("1")){
                 return;
             }
@@ -325,18 +327,18 @@ public class GiaoDienCongTacVien extends GiaoDien {
         }else if(luaChon == 2){
             QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.HocVien));
             System.out.println("Nhập mã học viên: ");
+            System.out.println("Nhấn 1 để thoát");
             String maHV = ScannerUtils.inputString();
             User user = QLUser.timUserTheoMa(maHV);
-            System.out.println("Nhấn 1 để thoát");
             if (maHV.equals("1")){
                 return;
             }
             while (user == null){
                 System.out.println("Không tìm thấy mã học viên !!");
                 System.out.println("Xin mời nhập lại !!");
+                System.out.println("Nhấn 1 để thoát");
                 maHV = ScannerUtils.inputString();
                 user = QLUser.timUserTheoMa(maHV);
-                System.out.println("Nhấn 1 để thoát");
                 if (maHV.equals("1")){
                     return;
                 }
@@ -441,14 +443,22 @@ public class GiaoDienCongTacVien extends GiaoDien {
                 QLUser.inThongTin(dsNguoiChuaCoTaiKhoan);
                 System.out.println("Đây là những người chưa có tài khoản !!");
                 System.out.println("Bạn muốn tạo tài khoản cho ai ??");
+                System.out.println("Ấn 1 để thoát !!");
                 String id = ScannerUtils.inputString();
-                User user = QLUser.timUserTheoMa(id, dsNguoiChuaCoTaiKhoan);
-                if (user == null){
-                    System.out.println("Không tìm thấy mã thông tin của người bạn cần tạo !!");
-
-                }else {
-                    QLTaiKhoan.taoTaiKhoanMoi(user);
+                if (id.equals("1")){
+                    return;
                 }
+                User user = QLUser.timUserTheoMa(id, dsNguoiChuaCoTaiKhoan);
+                while (user == null){
+                    System.out.println("Không tìm thấy mã thông tin của người bạn cần tạo !!");
+                    System.out.println("Ấn 1 để thoát !!");
+                    id = ScannerUtils.inputString();
+                    if (id.equals("1")){
+                        return;
+                    }
+                    user = QLUser.timUserTheoMa(id, dsNguoiChuaCoTaiKhoan);
+                }
+                QLTaiKhoan.taoTaiKhoanMoi(user);
                 break;
             case 2:
                     QLTaiKhoan.taoTaiKhoanMoi(QLUser.themUserMoi());
