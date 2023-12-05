@@ -232,18 +232,25 @@ public class QLBienLai {
         System.out.println("*".repeat(50));
         System.out.printf("*  %-20s*  %-23s*\n","Năm", "Doanh thu");
         System.out.println("*".repeat(50));
+        int i=0;
         for (BienLai bienLai : QLBienLai.dsBienLai) {
             if (bienLai.getNgayThanhToan().getYear() == nam) {
                 tongDoanhThu += bienLai.getSoTienDaDong();
+                i++;
             } else {
                 System.out.printf("*  %-20s*  %-23.2f*\n", nam, tongDoanhThu);
                 tongDoanhThuTheoLichSu+=tongDoanhThu;
                 tongDoanhThu = 0;
                 nam = bienLai.getNgayThanhToan().getYear();
+                i++;
+            }
+            if(i==dsBienLai.size()-1){
+                System.out.printf("%-20s %-20f\n",nam,tongDoanhThu);
+                tongDoanhThuTheoLichSu+=tongDoanhThu;
             }
         }
         System.out.println("*".repeat(50));
-        System.out.printf("*  Tong doanh thu: %-30.2f*\n", tongDoanhThuTheoLichSu);
+        System.out.printf("*  Tổng doanh thu: %-30.2f*\n", tongDoanhThuTheoLichSu);
         System.out.println("*".repeat(50));
     }
 

@@ -4,7 +4,7 @@ public enum TrangThaiDangKy {
     DA_GHI_DANH,
     HUY;
 
-    public String toString(TrangThaiDangKy trangThaiDangKy){
+    public static String toString(TrangThaiDangKy trangThaiDangKy){
         String trangThaiDangKyString="Hủy";
         switch (trangThaiDangKy) {
             case DA_GHI_DANH:

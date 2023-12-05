@@ -91,10 +91,10 @@ public class QLHocVienLopHoc {
 
   // hàm in ra danh sách kết quả
   public static void inDanhSach(ArrayList<HocVienLopHoc> dsHocVienLopHoc) {
-    System.out.println("*".repeat(114));
+    System.out.println("*".repeat(126));
     System.out.printf("* %-10s* %-25s* %-20s* %-10s* %-50s*\n",
         "STT", "Tên học viên", "Tên lớp học", "Điểm", "Đánh giá");
-    System.out.println("*".repeat(114));
+      System.out.println("*".repeat(126));
     int index = 1;
     for (HocVienLopHoc hocVienLopHoc : dsHocVienLopHoc) {
       System.out.printf("* %-10s* %-25s* %-20s* %-10s* %-50s*\n",
@@ -104,7 +104,7 @@ public class QLHocVienLopHoc {
           hocVienLopHoc.getDiem() == -1.0 ? "": hocVienLopHoc.getDiem(),
           hocVienLopHoc.getDanhGia());
     }
-    System.out.println("*".repeat(114));
+      System.out.println("*".repeat(126));
 
   }
 
