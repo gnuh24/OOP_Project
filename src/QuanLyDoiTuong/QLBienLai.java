@@ -239,15 +239,14 @@ public class QLBienLai {
                 i++;
             } else {
                 System.out.printf("*  %-20s*  %-23.2f*\n", nam, tongDoanhThu);
-                tongDoanhThuTheoLichSu+=tongDoanhThu;
                 tongDoanhThu = 0;
                 nam = bienLai.getNgayThanhToan().getYear();
                 i++;
             }
             if(i==dsBienLai.size()-1){
-                System.out.printf("%-20s %-20f\n",nam,tongDoanhThu);
-                tongDoanhThuTheoLichSu+=tongDoanhThu;
+                System.out.printf("*  %-20s*  %-23.2f*\n", nam, tongDoanhThu);
             }
+            tongDoanhThuTheoLichSu+=bienLai.getSoTienDaDong();
         }
         System.out.println("*".repeat(50));
         System.out.printf("*  Tổng doanh thu: %-30.2f*\n", tongDoanhThuTheoLichSu);

@@ -162,6 +162,7 @@ public class QLYeuCauDangKy {
         QLYeuCauDangKy.dsYeuCauDangKy.sort(Comparator.comparingInt(yeuCau -> yeuCau.getLocalDate().getYear()));
 
         int demHocVien = 0;
+        int tongSoHocVien = 0;
         int nam = getDsYeuCauDangKy().get(0).getLocalDate().getYear();
 
         System.out.println("*".repeat(47));
@@ -169,24 +170,28 @@ public class QLYeuCauDangKy {
         System.out.println("*".repeat(47));
         int i=0;
         for (YeuCauDangKy yeuCauDangKy : dsYeuCauDangKy) {
-            if (yeuCauDangKy.getLocalDate().getYear() == nam) {
-                demHocVien++;
-            } else {
-                System.out.printf("*  %-20s*  %-20s*\n", yeuCauDangKy.getLocalDate().getYear(), demHocVien);
-                demHocVien = 1; // Bắt đầu đếm từ một nếu có năm mới
-                nam = yeuCauDangKy.getLocalDate().getYear();
-
+            if(yeuCauDangKy.getTrangThaiDangKy()!=TrangThaiDangKy.HUY){
+                if (yeuCauDangKy.getLocalDate().getYear() == nam) {
+                    demHocVien++;
+                    i++;
+                } else {
+                    System.out.printf("*  %-20s*  %-20s*\n", nam, demHocVien);
+                    demHocVien = 1; // Bắt đầu đếm từ một nếu có năm mới
+                    nam = yeuCauDangKy.getLocalDate().getYear();
+                    i++;
+                }
+                tongSoHocVien++;
             }
-            i++;
+           
             if (i==dsYeuCauDangKy.size()-1) {
-                System.out.printf("*  %-20s*  %-20s*\n", yeuCauDangKy.getLocalDate().getYear(), demHocVien);
+                System.out.printf("*  %-20s*  %-20s*\n", nam, demHocVien);
             }
 
         }
 
         // In thông tin của năm cuối cùng
         System.out.println("*".repeat(47));
-        System.out.printf("*  %-20s*  %-20s*\n","Tổng học viên:",dsYeuCauDangKy.size());
+        System.out.printf("*  %-20s*  %-20s*\n","Tổng học viên:",tongSoHocVien);
     }
 
     public static void thongKeHocVienTheoThang(){
