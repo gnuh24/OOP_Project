@@ -1,12 +1,16 @@
 package Menu.GiaoDien;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
+import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
+import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
 import Menu.Session;
 import QuanLyDoiTuong.*;
 import Utils.ScannerUtils;
+
+import java.util.ArrayList;
 
 public class GiaoDienGiangVien extends GiaoDienTroGiang {
 
@@ -35,11 +39,11 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
 
             switch (choice) {
                 case 1:
-                    super.xemDanhSachLopHoc();
+                    xemDanhSachLopHoc();
                     backTo();
                     break;
                 case 2:
-                    super.xemDanhSachLopSapKhaiGiang();
+                    xemDanhSachLopSapKhaiGiang();
                     backTo();
                     break;
 
@@ -69,6 +73,22 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
                     break;
             }
         } while (true);
+    }
+@   Override
+    protected void xemDanhSachLopHoc() {
+        QLLopHoc.inDanhSach(
+                QLLopHoc.timKiemLopTheoTrangThai(
+                        QLLopHoc.timKiemLopTheoGiangVien(Session.getTaiKhoan().getUser().getMaUser()),
+                        TrangThaiLop.Dang_Hoc));
+    }
+
+    @Override
+    protected void xemDanhSachLopSapKhaiGiang() {
+        QLLopHoc.inDanhSach(
+                QLLopHoc.timKiemLopTheoTrangThai(
+                        QLLopHoc.timKiemLopTheoGiangVien(Session.getTaiKhoan().getUser().getMaUser()),
+                        TrangThaiLop.Sap_Khai_Giang)
+        );
     }
 
     private void xemLichPhongVan() {

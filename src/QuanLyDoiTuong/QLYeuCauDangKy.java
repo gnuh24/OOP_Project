@@ -159,8 +159,8 @@ public class QLYeuCauDangKy {
 
 
     public static void thongKeTheoNam() {
-        QLYeuCauDangKy.dsYeuCauDangKy.sort(Comparator.comparingInt(yeuCau -> yeuCau.getLocalDate().getYear()));
-
+        ArrayList<YeuCauDangKy> dsYeuCauDangKy = new ArrayList<>(QLYeuCauDangKy.dsYeuCauDangKy);
+        dsYeuCauDangKy.sort(Comparator.comparingInt(yeuCau -> yeuCau.getLocalDate().getYear()));
         int demHocVien = 0;
         int tongSoHocVien = 0;
         int nam = getDsYeuCauDangKy().get(0).getLocalDate().getYear();
