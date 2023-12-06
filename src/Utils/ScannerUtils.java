@@ -26,6 +26,7 @@ public class ScannerUtils {
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
 
+        // chấp nhận 0, hoặc 1, hoặc nhiều chữ số hàng thập phân (nếu có)
         while (!userInput.matches("-?\\d+(.\\d+)?")) {
             System.err.println("Không phải số thực. Hãy nhập lại !!!");
             userInput = input.nextLine();
@@ -101,10 +102,11 @@ public class ScannerUtils {
     public static double inputDiem() {
         System.out.println("Xin mời nhập điểm: ");
         double userInput = ScannerUtils.inputDouble();
-        while (userInput < 0 || userInput > 10) {
-            System.err.println("Bạn chỉ đụược nhập điểm từ 0 -> 10");
+        while (userInput < 0.0 || userInput > 10.0) {
+            System.err.println("Bạn chỉ đụược nhập điểm từ 0.0 -> 10.0");
             userInput = ScannerUtils.inputDouble();
         }
+
         return userInput;
     }
 
