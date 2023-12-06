@@ -98,13 +98,12 @@ public class QLYeuCauDangKy {
     }
 
     public static YeuCauDangKy timKiemChinhXacTheoHocVienVaLopHoc(String maHocVien, String maLopHoc){
-        YeuCauDangKy ketQua = null;
         for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
             if (yeuCauDangKy.getHocVien().getMaUser().equals(maHocVien) && yeuCauDangKy.getLopHoc().getMaLop().equals(maLopHoc)) {
-                return ketQua;
+                return yeuCauDangKy;
             }
         }
-        return ketQua;
+        return null;
     }
 
     public static ArrayList<YeuCauDangKy> timKiemTheoMaHocVien(String maHocVien) {
