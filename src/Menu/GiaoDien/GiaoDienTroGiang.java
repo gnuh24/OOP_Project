@@ -32,16 +32,13 @@ public class GiaoDienTroGiang extends GiaoDien {
             switch (choice) {
                 case 1:
                     xemDanhSachLopHoc();
-                    backTo();
                     break;
                 case 2:
                     xemDanhSachLopSapKhaiGiang();
-                    backTo();
                     break;
 
                 case 3:
                     xemDanhSachHocVien();
-                    backTo();
                     break;
 
                 case 4:
@@ -60,28 +57,41 @@ public class GiaoDienTroGiang extends GiaoDien {
                 QLLopHoc.timKiemLopTheoTrangThai(
                         QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()),
                         TrangThaiLop.Dang_Hoc));
+        backTo();
+
     }
 
     protected void xemDanhSachLopSapKhaiGiang() {
         QLLopHoc.inDanhSach(
                 QLLopHoc.timKiemLopTheoTrangThai(
                         QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()),
-                        TrangThaiLop.Sap_Khai_Giang));
+                        TrangThaiLop.Sap_Khai_Giang)
+        );
+        backTo();
+
     }
 
     protected void xemDanhSachHocVien() {
         ArrayList<LopHoc> dsLopHoc = QLLopHoc.timKiemLopTheoTrangThai(
-                QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()),
-                TrangThaiLop.Dang_Hoc);
+                QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()), TrangThaiLop.Dang_Hoc, TrangThaiLop.Sap_Khai_Giang);
         QLLopHoc.inDanhSach(dsLopHoc);
         System.out.println("Chọn lớp: ");
+        System.out.println("Ấn 1 để thoát !!");
         String maLop = ScannerUtils.inputString();
+        if (maLop.equals("1")){
+            return;
+        }
         LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsLopHoc);
         while (lopHoc == null){
             System.err.println("Mã lớp không hợp lệ !!!");
+            System.out.println("Ấn 1 để thoát !!");
             maLop = ScannerUtils.inputString();
+            if (maLop.equals("1")){
+                return;
+            }
             lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsLopHoc);
         }
         QLHocVienLopHoc.inDanhSach(QLHocVienLopHoc.timKiemTheoLopHoc(maLop));
+        backTo();
     }
 }

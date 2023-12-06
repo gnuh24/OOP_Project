@@ -261,6 +261,26 @@ public class QLLopHoc {
     return dsLopHocin;
   }
 
+  public static ArrayList<LopHoc> timKiemLopTheoGiangVien(String maGV, boolean flag) {
+    ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
+
+    if (flag) {
+      for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
+        if (lopHoc.getTrangThai().equals(TrangThaiLop.Cho_Sap_Xep)) {
+          continue;
+        }
+        if (lopHoc.getGiangVien().getMaUser().equals(maGV)) {
+          dsLopHocin.add(lopHoc);
+        }
+      }
+      return dsLopHocin;
+    }
+    dsLopHocin = timKiemLopTheoGiangVien(maGV);
+    return dsLopHocin;
+  }
+
+
+
 
   //Lấy trực tiếp ra những lớp Đang học hoặc Sắp Khai Giảng
   public static ArrayList<LopHoc> timKiemLopTheoTroGiang(String maTG) {
@@ -295,10 +315,29 @@ public class QLLopHoc {
     return dsLopHocin;
   }
 
+  public static ArrayList<LopHoc> timKiemLopTheoTrangThai(TrangThaiLop trangThai1, TrangThaiLop trangThai2) {
+    ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
+    for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
+      if (lopHoc.getTrangThai().equals(trangThai1) || lopHoc.getTrangThai().equals(trangThai2)) {
+        dsLopHocin.add(lopHoc);
+      }
+    }
+    return dsLopHocin;
+  }
   public static ArrayList<LopHoc> timKiemLopTheoTrangThai(ArrayList<LopHoc> dsLopHoc, TrangThaiLop trangThai) {
     ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
     for (LopHoc lopHoc : dsLopHoc) {
       if (lopHoc.getTrangThai().equals(trangThai)) {
+        dsLopHocin.add(lopHoc);
+      }
+    }
+    return dsLopHocin;
+  }
+
+  public static ArrayList<LopHoc> timKiemLopTheoTrangThai(ArrayList<LopHoc> dsLopHoc, TrangThaiLop trangThai1, TrangThaiLop trangThai2) {
+    ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
+    for (LopHoc lopHoc : dsLopHoc) {
+      if (lopHoc.getTrangThai().equals(trangThai1) || lopHoc.getTrangThai().equals(trangThai2)) {
         dsLopHocin.add(lopHoc);
       }
     }

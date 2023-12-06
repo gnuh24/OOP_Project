@@ -10,6 +10,7 @@ import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.LienHe;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
+import Menu.LoadDuLieu;
 import Menu.Session;
 import NguoiDung.User;
 import NguoiDung.VaiTro;
@@ -39,16 +40,20 @@ public class GiaoDienCongTacVien extends GiaoDien {
             System.out.printf("*  %-96s*\n","5. Tạo tài khoản mới");
             System.out.printf("*  %-96s*\n","6. Thêm thông tin vào hệ thống");
             System.out.printf("*  %-96s*\n","7. Chuyển lớp cho học sinh");
-            System.out.printf("*  %-96s*\n","8. Sắp xep cho các lớp sắp khai giảng");
-            System.out.printf("*  %-96s*\n","9. Đăng xuất");
-            System.out.printf("*  %-96s*\n","10. Thoát chương trình");
+            System.out.printf("*  %-96s*\n","8. Sắp xếp cho các lớp sắp khai giảng");
+            System.out.printf("*  %-96s*\n","9. Thay đổi trạng thái lớp");
+            System.out.printf("*  %-96s*\n","10. Quên mật khẩu ?");
+
+
+            System.out.printf("*  %-96s*\n","11. Đăng xuất");
+            System.out.printf("*  %-96s*\n","12. Thoát chương trình");
             System.out.printf("*  %-96s*\n","Bạn đã có lựa chọn chưa ?");
             System.out.println("*".repeat(100));
 
             choice = ScannerUtils.inputInt();
 
-            if (choice < 1 || choice > 5 ){
-                System.out.println("Bạn chỉ được nhập các lựa chọn  trên màn hình");
+            if (choice < 1 || choice > 12 ){
+                System.err.println("Bạn chỉ được nhập các lựa chọn  trên màn hình");
             }
 
             switch (choice){
@@ -82,9 +87,16 @@ public class GiaoDienCongTacVien extends GiaoDien {
                     break;
 
                 case 9:
+                    thayDoiTrangThaiLop();
+                    break;
+
+                case 10:
+                    break;
+
+                case 11:
                     Session.logout();
                     break;
-                case 10:
+                case 12:
                     exit();
                     break;
             }
@@ -140,15 +152,6 @@ public class GiaoDienCongTacVien extends GiaoDien {
                 System.err.println("Thêm thất bại !!! Có vấn đề hệ thống xảy ra lúc sắp xếp lịch phổng vấn !!");
             }
         }
-    }
-
-    public static void main(String[] args) {
-        String title = "Tiêu đề với màu trắng trên nền đen";
-        String line = "\u001B[30m" + "=".repeat(title.length() + 10) + "\u001B[0m";
-
-        System.out.println(line);
-        System.out.printf("\u001B[30;47m===  %s  ===\u001B[0m%n", title);
-        System.out.println(line);
     }
 
     private void thayDoiTrangThaiLichPhongVan(){
@@ -280,22 +283,44 @@ public class GiaoDienCongTacVien extends GiaoDien {
 
 
     private void dangKyMonHocChoHocVien(){
-        ArrayList<LopHoc> dsCacLopCacLopDangHoc = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc);
-        ArrayList<LopHoc> dsCacLopCacLopSapKhaiGiang = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang);
-        ArrayList<LopHoc> dsCacLopHocPhuHop = new ArrayList<>(dsCacLopCacLopDangHoc);
+        QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.HocVien));
+        System.out.println("Nhập mã học viên: ");
+        System.out.println("Nhấn 1 để thoát");
+        String maHV = ScannerUtils.inputString();
+        User hocVien = QLUser.timUserTheoMa(maHV);
+        if (maHV.equals("1")){
+            return;
+        }
+        while (hocVien == null){
+            System.out.println("Không tìm thấy mã học viên !!");
+            System.out.println("Xin mời nhập lại !!");
+            System.out.println("Nhấn 1 để thoát");
+            maHV = ScannerUtils.inputString();
+            hocVien = QLUser.timUserTheoMa(maHV);
+            if (maHV.equals("1")){
+                return;
+            }
+        }
+        ArrayList<LopHoc> dsCacLopHocPhuHop = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang, TrangThaiLop.Dang_Hoc);
+
         QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
         System.out.println("Bạn chọn lớp học nào ??");
-        String malop = ScannerUtils.inputString();
         System.out.println("Nhấn 1 để thoát");
+        String malop = ScannerUtils.inputString();
         if (malop.equals("1")){
             return;
         }
         LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
-        while (lopHoc == null){
-            System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+        while (lopHoc == null || hocVien.isBusy(malop)){
+            if (hocVien.isBusy(malop)){
+                System.err.println("Học viên không thể đăng ký học thêm lớp mới này !! Vì học viên đã tham gia rồi !!");
+            }else{
+                System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+            }
+            System.out.println("Nhấn 1 để thoát");
+
             malop = ScannerUtils.inputString();
             lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
-            System.out.println("Nhấn 1 để thoát");
             if (malop.equals("1")){
                 return;
             }
@@ -314,37 +339,18 @@ public class GiaoDienCongTacVien extends GiaoDien {
             System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*85/100,  lopHoc.getChuongTrinh().getHocPhi());
 
             double dongTien = ScannerUtils.inputHocPhi();
-            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(Session.getTaiKhoan().getUser(), lopHoc, dongTien);
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(hocVien, lopHoc, dongTien);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
             QLHocVienLopHoc.getDsKetQua().add( new HocVienLopHoc(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
             BienLai bienLai = new BienLai(yeuCauDangKy, dongTien);
             bienLai.inBienLai();
             QLBienLai.getDsBienLai().add(bienLai);
-
+            System.out.println("Đăng ký thành công !!");
 
         }else if(luaChon == 2){
-            QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.HocVien));
-            System.out.println("Nhập mã học viên: ");
-            String maHV = ScannerUtils.inputString();
-            User user = QLUser.timUserTheoMa(maHV);
-            System.out.println("Nhấn 1 để thoát");
-            if (maHV.equals("1")){
-                return;
-            }
-            while (user == null){
-                System.out.println("Không tìm thấy mã học viên !!");
-                System.out.println("Xin mời nhập lại !!");
-                maHV = ScannerUtils.inputString();
-                user = QLUser.timUserTheoMa(maHV);
-                System.out.println("Nhấn 1 để thoát");
-                if (maHV.equals("1")){
-                    return;
-                }
-            }
-
-            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc);
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(hocVien, lopHoc);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
-            QLHocVienLopHoc.getDsKetQua().add(new HocVienLopHoc(user, yeuCauDangKy.getLopHoc()));
+            QLHocVienLopHoc.getDsKetQua().add(new HocVienLopHoc(hocVien, yeuCauDangKy.getLopHoc()));
             System.out.println("Đăng ký thành công !!");
         }
     }
@@ -441,14 +447,22 @@ public class GiaoDienCongTacVien extends GiaoDien {
                 QLUser.inThongTin(dsNguoiChuaCoTaiKhoan);
                 System.out.println("Đây là những người chưa có tài khoản !!");
                 System.out.println("Bạn muốn tạo tài khoản cho ai ??");
+                System.out.println("Ấn 1 để thoát !!");
                 String id = ScannerUtils.inputString();
-                User user = QLUser.timUserTheoMa(id, dsNguoiChuaCoTaiKhoan);
-                if (user == null){
-                    System.out.println("Không tìm thấy mã thông tin của người bạn cần tạo !!");
-
-                }else {
-                    QLTaiKhoan.taoTaiKhoanMoi(user);
+                if (id.equals("1")){
+                    return;
                 }
+                User user = QLUser.timUserTheoMa(id, dsNguoiChuaCoTaiKhoan);
+                while (user == null){
+                    System.out.println("Không tìm thấy mã thông tin của người bạn cần tạo !!");
+                    System.out.println("Ấn 1 để thoát !!");
+                    id = ScannerUtils.inputString();
+                    if (id.equals("1")){
+                        return;
+                    }
+                    user = QLUser.timUserTheoMa(id, dsNguoiChuaCoTaiKhoan);
+                }
+                QLTaiKhoan.taoTaiKhoanMoi(user);
                 break;
             case 2:
                     QLTaiKhoan.taoTaiKhoanMoi(QLUser.themUserMoi());
@@ -658,13 +672,13 @@ public class GiaoDienCongTacVien extends GiaoDien {
     private void chuyenLop(){
         /*
         * Quy tắc chuyên lớp
-        * - Tìm học viên và in ra danh sách KQ của học viên đó (Bao gồm lớp và học viên)
+        * - Tìm học viên và in ra danh sách HọcVienLopHoc của học viên đó (Bao gồm lớp và học viên)
         * - Tìm danh sách các lớp có cùng chương trình
         * - Thay đổi kết quả cũ thành lớp mới đã được chọn
         * - Thay đổi lớp học trong đơn đăng ký thành lớp mới
         * */
 
-
+        QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.HocVien, true));
         //Tìm học sinh muốn chuyển lớp
         System.out.println("Hãy nhập mã học sinh muốn chuyển lớp !!");
         String maHV = ScannerUtils.inputString();
@@ -672,7 +686,11 @@ public class GiaoDienCongTacVien extends GiaoDien {
         while (dsHocVienLopHoc.isEmpty()){
             System.out.println("Học viên này chưa tham gia bất cứ lớp nào !!");
             System.out.println("Bạn có nhập nhầm hong ? Nhập lại nhé ^^");
+            System.out.println("Ấn 1 để thoát");
             maHV = ScannerUtils.inputString();
+            if (maHV.equals("1")){
+                return;
+            }
             dsHocVienLopHoc = QLHocVienLopHoc.timKiemTheoHocVien(maHV);
         }
 
@@ -695,10 +713,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
             }
         }
         LopHoc lopHocCu = dsHocVienLopHoc.get(sttLopCu - 1).getLopHoc();
-
         //Tìm các lớp học cùng trình độ ở trạng thái đang học
-        ArrayList<LopHoc> dsLopHocMoiCungTrinhDo = QLLopHoc.timKiemLopTheoChuongTrinh(lopHocCu.getMaLop());
-        ArrayList<LopHoc> dsLopHocMoiPhuHop = QLLopHoc.timKiemLopTheoTrangThai(dsLopHocMoiCungTrinhDo, TrangThaiLop.Dang_Hoc);
+        ArrayList<LopHoc> dsLopHocMoiCungTrinhDo = QLLopHoc.timKiemLopTheoChuongTrinh(lopHocCu.getChuongTrinh().getMaChuongTrinh());
+        ArrayList<LopHoc> dsLopHocMoiPhuHop = QLLopHoc.timKiemLopTheoTrangThai(dsLopHocMoiCungTrinhDo, TrangThaiLop.Dang_Hoc, TrangThaiLop.Sap_Khai_Giang);
+
         QLLopHoc.inDanhSach(dsLopHocMoiPhuHop);
 
         if (dsLopHocMoiPhuHop.isEmpty()){
@@ -714,10 +732,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
             return;
         }
         LopHoc lopHocMoi = QLLopHoc.timKiemLopTheoMaLop(maLopMoi, dsLopHocMoiPhuHop);
-        while (lopHocMoi == null ){
+        while (lopHocMoi == null){
+            System.err.println("Mã lớp mới không hợp lệ !!!");
             System.out.println("Hãy chọn lớp học cùng trình độ mà bạn muốn đổi sang !!");
             System.out.println("Ấn 1 để thoát");
-
             maLopMoi = ScannerUtils.inputString();
             lopHocMoi = QLLopHoc.timKiemLopTheoMaLop(maLopMoi, dsLopHocMoiPhuHop);
             if (maLopMoi.equals("1")){
@@ -726,7 +744,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
         }
 
         while (lopHocMoi.equals(lopHocCu)){
-            System.out.println("Bạn không thể chuyển từ lớp học cũ sang lớp học cũ được !!");
+            System.err.println("Bạn không thể chuyển từ lớp học cũ sang lớp học cũ được !!");
             System.out.println("Ấn 1 để thoát");
 
             maLopMoi = ScannerUtils.inputString();
@@ -738,13 +756,37 @@ public class GiaoDienCongTacVien extends GiaoDien {
 
         //Thay kết quả cũ thành kết quả mới
         dsHocVienLopHoc.get(sttLopCu - 1).setLopHoc(lopHocMoi);
-
-
         //Thay đơn đăng ký lớp cu thành đơn đăng ký lớp mới
         QLYeuCauDangKy.timKiemChinhXacTheoHocVienVaLopHoc(maHV, lopHocCu.getMaLop()).setLopHoc(lopHocMoi);
-
         System.out.println("Chuyển lớp thành công !!!");
     }
+
+    private void thayDoiTrangThaiLop(){
+        QLLopHoc.inDanhSach(QLLopHoc.getDsLopHoc());
+
+        System.out.println("Nhập mã lớp học mà bạn muốn thấy đổi trạng thái. (Nhập ID)");
+        System.out.println("Nhấn 1 để thoát !!");
+        String idLop = ScannerUtils.inputString();
+        if (idLop.equals("1")){
+            return;
+        }
+
+        LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(idLop);
+        while (lopHoc == null){
+            System.err.println("Lớp học không tồn tại !!!");
+            System.out.println("Nhập mã lớp học mà bạn muốn thấy đổi trạng thái. (Nhập ID)");
+            System.out.println("Nhấn 1 để thoát !!");
+            idLop = ScannerUtils.inputString();
+            if (idLop.equals("1")){
+                return;
+            }
+            lopHoc = QLLopHoc.timKiemLopTheoMaLop(idLop);
+        }
+
+        lopHoc.setTrangThai(TrangThaiLop.nhapTrangThaiLop());
+        System.out.println("Thay đổi trạng thái lớp thành công :3");
+    }
+
 }
 
 

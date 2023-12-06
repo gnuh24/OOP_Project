@@ -21,7 +21,7 @@ public class QLChuongTrinhHoc {
         System.out.printf("* %-15s*   %-27s*   %-23s*   %-20s*   %-12s*   %-15s*\n", "Code", "Thể loại", "Trình độ", "Tên khóa học", "Thời lượng", "Học phí");
         System.out.println("*".repeat(135));
         for (ChuongTrinhHoc i: dsChuongTrinhHoc){
-            System.out.printf("* %-15s*   %-27s*   %-23s*   %-20s*   %-12d*   %-15f*\n", i.getMaChuongTrinh(), i.getTheLoai(), i.getTrinhDo(), i.getKhoaHoc(), i.getThoiLuong(), i.getHocPhi());
+            System.out.printf("* %-15s*   %-27s*   %-23s*   %-20s*   %-12d*   %-15.2f*\n", i.getMaChuongTrinh(), i.getTheLoai(), i.getTrinhDo(), i.getKhoaHoc(), i.getThoiLuong(), i.getHocPhi());
         }
         System.out.println("*".repeat(135));
 
@@ -118,18 +118,26 @@ public class QLChuongTrinhHoc {
     public static void thayDoiHocPhi(){
         QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
         System.out.println("Nhập mã chương trình muốn thay đổi học phí");
+        System.out.println("Ấn 1 để thoát ");
         String maChuongTrinh=ScannerUtils.inputString();
+        ChuongTrinhHoc chuongTrinhHoc = QLChuongTrinhHoc.timKiemTheoMa(maChuongTrinh);
+        if (maChuongTrinh.equals("1")){
+            return;
+        }
+        while (chuongTrinhHoc == null){
+            System.err.println("Không tìm thấy mã chương trình !!!.Nhập lại");
+            System.out.println("Ấn 1 để thoát ");
+            maChuongTrinh=ScannerUtils.inputString();
+            chuongTrinhHoc = QLChuongTrinhHoc.timKiemTheoMa(maChuongTrinh);
+            if (maChuongTrinh.equals("1")){
+                return;
+            }
+        }
+
         System.out.println("Nhập học phí mới mới");
-        int hocPhi=ScannerUtils.inputInt();
+        double hocPhi = ScannerUtils.inputDouble();
         QLChuongTrinhHoc.timKiemTheoMa(maChuongTrinh).setHocPhi(hocPhi);
+        System.out.println("Thay đi học phí thành công !!");
     }
-
-//    public static void main(String[] args) {
-//        loadDuLieu();
-//        inChuongTrinhHoc(dsChuongTrinhHoc);
-//        luuDuLieu();
-//    }
-
-
 
 }

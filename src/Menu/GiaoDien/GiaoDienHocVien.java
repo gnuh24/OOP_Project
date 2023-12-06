@@ -77,12 +77,7 @@ public class GiaoDienHocVien extends GiaoDien {
     }
 
     private void dangKyMonHocChoHocVien() {
-        ArrayList<LopHoc> dsCacLopCacLopDangHoc = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc);
-        ArrayList<LopHoc> dsCacLopCacLopSapKhaiGiang = QLLopHoc
-                .timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang);
-
-        ArrayList<LopHoc> dsCacLopHocPhuHop = new ArrayList<>(dsCacLopCacLopDangHoc);
-        dsCacLopHocPhuHop.addAll(dsCacLopCacLopSapKhaiGiang);
+        ArrayList<LopHoc> dsCacLopHocPhuHop = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang, TrangThaiLop.Dang_Hoc);
 
         // Hiển thị cho học viên các lớp học phù hợp
         QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
@@ -95,8 +90,12 @@ public class GiaoDienHocVien extends GiaoDien {
             return;
         }
 
-        while (lopHoc == null) {
-            System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+        while (Session.getTaiKhoan().getUser().isBusy(malop) || lopHoc == null){
+            if (Session.getTaiKhoan().getUser().isBusy(malop)){
+                System.err.println("Bạn không thể đăng ký thêm lớp học mà bạn đang học !!!");
+            }else{
+                System.err.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+            }
             System.out.println("Ấn 1 để thoát !");
             malop = ScannerUtils.inputString();
             lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
@@ -155,7 +154,7 @@ public class GiaoDienHocVien extends GiaoDien {
         for (YeuCauDangKy YCDK : cacYCDK) {
             // chỉ in ra các YCDK còn nợ học phí
             if (soTienConNo(YCDK) > 0) {
-                System.out.printf("* %-20s* %-20s* %-25s* %-25s*\n",
+                System.out.printf("* %-20s* %-20s* %-25.2f* %-25s*\n",
                         YCDK.getMaDangKy(),
                         YCDK.getLopHoc().getTenLop(),
                         YCDK.getTongHocPhi(),

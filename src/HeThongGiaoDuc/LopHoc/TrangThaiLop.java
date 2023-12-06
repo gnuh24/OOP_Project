@@ -1,5 +1,7 @@
 package HeThongGiaoDuc.LopHoc;
 
+import Utils.ScannerUtils;
+
 public enum TrangThaiLop {
     Sap_Khai_Giang, Dang_Hoc, Da_Ket_Thuc, Cho_Sap_Xep;
 
@@ -32,5 +34,30 @@ public enum TrangThaiLop {
                 break;
         }
         return trangThaiLop;
+    }
+
+    public static TrangThaiLop nhapTrangThaiLop(){
+        System.out.println("Bạn chọn trạng thái nào ?");
+        System.out.println("1. Sắp khai giảng");
+        System.out.println("2. Đang học");
+        System.out.println("3. Đã kết thúc");
+        System.out.println("4. Đang chờ sắp xếp");
+        int choice = ScannerUtils.inputInt();
+        while (choice < 1 || choice > 4){
+            System.err.println("Bạn có 4 lựa chọn thôi mà ??????");
+            choice = ScannerUtils.inputInt();
+        }
+        switch (choice){
+            case 1:
+                return Sap_Khai_Giang;
+            case 2:
+                return Dang_Hoc;
+            case 3:
+                return Da_Ket_Thuc ;
+                case 4:
+                    return Cho_Sap_Xep;
+
+        }
+        return Cho_Sap_Xep;
     }
 }

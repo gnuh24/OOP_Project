@@ -38,6 +38,9 @@ public class YeuCauDangKy {
                 this.tongHocPhi = lopHoc.getChuongTrinh().getHocPhi() * 85 /100;
                 this.khuyenMai = KhuyenMai.GIAM15_HocPhi;
             }
+        }else{
+            this.tongHocPhi = lopHoc.getChuongTrinh().getHocPhi();
+            this.khuyenMai = KhuyenMai.Qua_Luu_Niem;
         }
         this.trangThaiDangKy = TrangThaiDangKy.DA_GHI_DANH;
         this.localDate = LocalDate.now();
@@ -50,9 +53,15 @@ public class YeuCauDangKy {
         this.maDangKy = autoIncrement();
         this.hocVien = hocVien;
         this.lopHoc = lopHoc;
-        this.tongHocPhi = lopHoc.getChuongTrinh().getHocPhi();
+
         this.trangThaiDangKy = TrangThaiDangKy.DA_GHI_DANH;
-        this.khuyenMai = KhuyenMai.Qua_Luu_Niem;
+        if (lopHoc.getTrangThai().equals(TrangThaiLop.Sap_Khai_Giang)){
+            this.tongHocPhi = lopHoc.getChuongTrinh().getHocPhi() * 85/100;
+            this.khuyenMai = KhuyenMai.GIAM15_HocPhi;
+        }else{
+            this.khuyenMai = KhuyenMai.Qua_Luu_Niem;
+            this.tongHocPhi = lopHoc.getChuongTrinh().getHocPhi();
+        }
         this.localDate = LocalDate.now();
     }
 

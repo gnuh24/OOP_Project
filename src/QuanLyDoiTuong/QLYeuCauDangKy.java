@@ -7,6 +7,7 @@ import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import NguoiDung.User;
 import Utils.DocGhiFile;
+import Utils.ScannerUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class QLYeuCauDangKy {
                     .append(yeuCauDangKy.getHocVien().getMaUser()).append("#")
                     .append(yeuCauDangKy.getLopHoc().getMaLop()).append("#")
                     .append(yeuCauDangKy.getTongHocPhi()).append("#")
-                    .append(yeuCauDangKy.getTrangThaiDangKy()).append("#")
+                    .append(TrangThaiDangKy.toString(yeuCauDangKy.getTrangThaiDangKy())).append("#")
                     .append(yeuCauDangKy.getKhuyenMai()).append("#")
                     .append(yeuCauDangKy.getLocalDate())
                     .append(System.lineSeparator());
@@ -97,13 +98,12 @@ public class QLYeuCauDangKy {
     }
 
     public static YeuCauDangKy timKiemChinhXacTheoHocVienVaLopHoc(String maHocVien, String maLopHoc){
-        YeuCauDangKy ketQua = null;
         for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
             if (yeuCauDangKy.getHocVien().getMaUser().equals(maHocVien) && yeuCauDangKy.getLopHoc().getMaLop().equals(maLopHoc)) {
-                return ketQua;
+                return yeuCauDangKy;
             }
         }
-        return ketQua;
+        return null;
     }
 
     public static ArrayList<YeuCauDangKy> timKiemTheoMaHocVien(String maHocVien) {
@@ -157,28 +157,62 @@ public class QLYeuCauDangKy {
     }
 
 
-    public static void thongKeTheoNam(){
-      QLYeuCauDangKy.dsYeuCauDangKy.sort(new Comparator<YeuCauDangKy>(){
-        @Override
-        public int compare(YeuCauDangKy o1, YeuCauDangKy o2) {
-          return o1.getLocalDate().compareTo(o2.getLocalDate());
+    public static void thongKeTheoNam() {
+        ArrayList<YeuCauDangKy> dsYeuCauDangKy = new ArrayList<>(QLYeuCauDangKy.dsYeuCauDangKy);
+        dsYeuCauDangKy.sort(Comparator.comparingInt(yeuCau -> yeuCau.getLocalDate().getYear()));
+        int demHocVien = 0;
+        int tongSoHocVien = 0;
+        int nam = getDsYeuCauDangKy().get(0).getLocalDate().getYear();
+
+        System.out.println("*".repeat(47));
+        System.out.printf("*  %-20s*  %-20s*\n", "Năm", "Số học viên");
+        System.out.println("*".repeat(47));
+        int i=0;
+        for (YeuCauDangKy yeuCauDangKy : dsYeuCauDangKy) {
+            if(yeuCauDangKy.getTrangThaiDangKy()!=TrangThaiDangKy.HUY){
+                if (yeuCauDangKy.getLocalDate().getYear() == nam) {
+                    demHocVien++;
+                    i++;
+                } else {
+                    System.out.printf("*  %-20s*  %-20s*\n", nam, demHocVien);
+                    demHocVien = 1; // Bắt đầu đếm từ một nếu có năm mới
+                    nam = yeuCauDangKy.getLocalDate().getYear();
+                    i++;
+                }
+                tongSoHocVien++;
+            }
+           
+            if (i==dsYeuCauDangKy.size()-1) {
+                System.out.printf("*  %-20s*  %-20s*\n", nam, demHocVien);
+            }
+
         }
 
-      });
-      int demHocVien=0, nam=getDsYeuCauDangKy().get(0).getLocalDate().getYear();
-      System.out.printf("%-20s -20s\n","Năm","Số học viên");
-      System.out.println("*".repeat(40));
-      for (YeuCauDangKy yeuCauDangKy : dsYeuCauDangKy) {
-        if(yeuCauDangKy.getLocalDate().getYear()==nam){
-            demHocVien++;
+        // In thông tin của năm cuối cùng
+        System.out.println("*".repeat(47));
+        System.out.printf("*  %-20s*  %-20s*\n","Tổng học viên:",tongSoHocVien);
+    }
+
+    public static void thongKeHocVienTheoThang(){
+        int []demHocVien=new int[13];
+        System.out.println("Nhập năm muốn kiểm tra: ");
+        int nam = ScannerUtils.inputInt();
+        for(YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()){
+            if(yeuCauDangKy.getLocalDate().getYear()==nam){
+                demHocVien[0]++;
+                demHocVien[yeuCauDangKy.getLocalDate().getMonthValue()]++;
+            }
         }
-        else{
-          System.out.printf("%-20s %-20s", yeuCauDangKy.getLocalDate().getYear(), demHocVien);
-          demHocVien=0;
-          nam= yeuCauDangKy.getLocalDate().getYear();
+
+        System.out.println("*".repeat(47));
+        System.out.printf("*  %-20s*  %-20s*\n","Tháng","Số học viên");
+        System.out.println("*".repeat(47));
+        for(int i=1; i<demHocVien.length; i++){
+            System.out.printf("*  %-20s*  %-20s*\n",i,demHocVien[i]);
         }
-      }
-      System.out.println("*".repeat(40));
+        System.out.println("*".repeat(47));
+        System.out.printf("*  Tổng số học viên:   *  %-20d*\n", demHocVien[0]);
+        System.out.println("*".repeat(47));
     }
 
 }

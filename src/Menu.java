@@ -1,7 +1,5 @@
-package Menu;
-
 import Menu.GiaoDien.GiaoDienKhachHang;
-import QuanLyDoiTuong.QLLopHoc;
+import Menu.LoadDuLieu;
 
 public class Menu {
     private static final GiaoDienKhachHang actorKhachHang = new GiaoDienKhachHang();

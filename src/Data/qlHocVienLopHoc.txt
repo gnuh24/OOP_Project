@@ -2,3 +2,32 @@ HV21#LH1#-1.0#Chưa có đánh giá
 HV22#LH4#-1.0#Chưa có đánh giá
 HV22#LH4#-1.0#Chưa có đánh giá
 HV21#LH4#-1.0#Chưa có đánh giá
+HV1#LH7#7.5#Good
+HV2#LH7#6.8#Good
+HV3#LH7#9.2#Excellent !!
+HV4#LH7#4.5#Not good, need to improve
+HV5#LH7#9.5#Good
+HV6#LH7#10.0#Excellent !!
+HV1#LH6#-1.0#Chưa có đánh giá
+HV2#LH6#-1.0#Chưa có đánh giá
+HV3#LH6#-1.0#Chưa có đánh giá
+HV4#LH6#-1.0#Chưa có đánh giá
+HV5#LH6#-1.0#Chưa có đánh giá
+HV6#LH6#-1.0#Chưa có đánh giá
+HV1#LH5#-1.0#Chưa có đánh giá
+HV2#LH5#-1.0#Chưa có đánh giá
+HV3#LH5#-1.0#Chưa có đánh giá
+HV4#LH5#-1.0#Chưa có đánh giá
+HV5#LH5#-1.0#Chưa có đánh giá
+HV6#LH5#-1.0#Chưa có đánh giá
+HV7#LH5#-1.0#Chưa có đánh giá
+HV8#LH5#-1.0#Chưa có đánh giá
+HV9#LH5#-1.0#Chưa có đánh giá
+HV10#LH5#-1.0#Chưa có đánh giá
+HV11#LH5#-1.0#Chưa có đánh giá
+HV12#LH5#-1.0#Chưa có đánh giá
+HV1#LH1#-1.0#Chưa có đánh giá
+HV1#LH8#9.8#Hardworking, talkative.
+HV2#LH8#-1.0#Chưa có đánh giá
+HV3#LH8#-1.0#Chưa có đánh giá
+HV2#LH4#-1.0#Chưa có đánh giá
