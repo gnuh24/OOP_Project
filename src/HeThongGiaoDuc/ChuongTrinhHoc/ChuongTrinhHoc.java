@@ -7,11 +7,8 @@ import java.time.format.DateTimeFormatter;
 
 public class ChuongTrinhHoc {
     private String maChuongTrinh;
-
     private String theLoai;
-
     private String trinhDo;
-
     private String khoaHoc;
     private int thoiLuong;
     private double hocPhi;

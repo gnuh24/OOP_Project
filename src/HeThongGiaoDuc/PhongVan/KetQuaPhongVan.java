@@ -6,9 +6,7 @@ import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
 public class KetQuaPhongVan {
     LichPhongVan lichPhongVan;
     double diem;
-
     ChuongTrinhHoc chuongTrinhHocDeXuat;
-
     LienHe lienHe;
 
 

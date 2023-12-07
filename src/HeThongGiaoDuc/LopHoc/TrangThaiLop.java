@@ -3,7 +3,10 @@ package HeThongGiaoDuc.LopHoc;
 import Utils.ScannerUtils;
 
 public enum TrangThaiLop {
-    Sap_Khai_Giang, Dang_Hoc, Da_Ket_Thuc, Cho_Sap_Xep;
+    Sap_Khai_Giang,
+    Dang_Hoc,
+    Da_Ket_Thuc,
+    Cho_Sap_Xep;
 
     public static String toString(TrangThaiLop trangThaiLopEnum) {
         String trangThaiLopString = "Sắp khai giảng";

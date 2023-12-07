@@ -4,7 +4,6 @@ public enum LienHe {
     ChuaLienHe,
     DaTuChoi,
     LienHeSau,
-
     DaDangKy;
 
     public static String toString(LienHe lienHe) {

@@ -1,9 +1,9 @@
 package HeThongGiaoDuc.CoSoVatChat;
 
 public class CoSo {
-    String maCoSo;
-    String tenCoSo;
-    String diaChi;
+    private String maCoSo;
+    private String tenCoSo;
+    private String diaChi;
     public CoSo(){
     }
     public CoSo(String maCoSo, String tenCoSo, String diaChi){

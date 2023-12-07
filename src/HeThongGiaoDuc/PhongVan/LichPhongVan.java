@@ -8,17 +8,11 @@ import java.time.LocalTime;
 
 public class LichPhongVan {
     private String maCaPhongVan;
-
     private User giangVien;
-
     private LocalDate ngayThang;
-
     private LocalTime gioPV;
-
     private User khachHang;
-
     private TrangThaiPhongVan trangThaiPhongVan;
-
     public LichPhongVan(){}
 
     public LichPhongVan(User khachHang){

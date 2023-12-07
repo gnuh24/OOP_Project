@@ -116,16 +116,6 @@ public class QLYeuCauDangKy {
         return ketQua;
     }
 
-    public static YeuCauDangKy timKiemTheoMaDangKy(String maDangKy) {
-        for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
-            if (yeuCauDangKy.getMaDangKy().equals(maDangKy)) {
-                return yeuCauDangKy;
-            }
-        }
-
-        return null;
-    }
-
     public static YeuCauDangKy timKiemTheoMaDangKy(String maDangKy, ArrayList<YeuCauDangKy> cacYCDK) {
         for (YeuCauDangKy yeuCauDangKy : cacYCDK) {
             if (yeuCauDangKy.getMaDangKy().equals(maDangKy)) {
@@ -135,27 +125,6 @@ public class QLYeuCauDangKy {
 
         return null;
     }
-
-    public static ArrayList<YeuCauDangKy> timKiemTheoMaLop(String maLop) {
-        ArrayList<YeuCauDangKy> ketQua = new ArrayList<>();
-        for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
-            if (yeuCauDangKy.getLopHoc().getMaLop().equals(maLop)) {
-                ketQua.add(yeuCauDangKy);
-            }
-        }
-        return ketQua;
-    }
-
-    public static ArrayList<YeuCauDangKy> timKiemTheoTrangThai(TrangThaiDangKy trangThaiDangKy) {
-        ArrayList<YeuCauDangKy> ketQua = new ArrayList<>();
-        for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
-            if (yeuCauDangKy.getTrangThaiDangKy().equals(trangThaiDangKy)) {
-                ketQua.add(yeuCauDangKy);
-            }
-        }
-        return ketQua;
-    }
-
 
     public static void thongKeTheoNam() {
         ArrayList<YeuCauDangKy> dsYeuCauDangKy = new ArrayList<>(QLYeuCauDangKy.dsYeuCauDangKy);

@@ -167,31 +167,4 @@ public class QLLichPhongVan {
         }
         return ketQua;
     }
-    public static ArrayList<LichPhongVan>  timKiemTheoNgay(LocalDate ngayThang){
-        ArrayList<LichPhongVan> ketQua = new ArrayList<>();
-
-        for(LichPhongVan lichPhongVan: QLLichPhongVan.getDsLichPhongVan()){
-            if (lichPhongVan.getNgayThang().getDayOfMonth() == ngayThang.getDayOfMonth() &&
-                    lichPhongVan.getNgayThang().getMonthValue() == ngayThang.getMonthValue() &&
-                    lichPhongVan.getNgayThang().getYear() == ngayThang.getYear()){
-                ketQua.add(lichPhongVan);
-            }
-        }
-
-        return ketQua;
-    }
-    public static ArrayList<LichPhongVan>  timKiemTheoTrangThai( TrangThaiPhongVan trangThai){
-        ArrayList<LichPhongVan> ketQua = new ArrayList<>();
-
-        for(LichPhongVan lichPhongVan: QLLichPhongVan.getDsLichPhongVan()){
-            if (lichPhongVan.getTrangThaiPhongVan().equals(trangThai)){
-                ketQua.add(lichPhongVan);
-            }
-        }
-
-        return ketQua;
-    }
-
-
-
 }

@@ -37,37 +37,6 @@ public class QLChuongTrinhHoc {
         return result;
     }
 
-    public static ArrayList<ChuongTrinhHoc> timKiemTheoTheLoai() {
-
-        int choice;
-        ArrayList<ChuongTrinhHoc> result = new ArrayList<>();
-        String theLoai = null;
-        do{
-            System.out.println("Nhập thể loại bạn muốn chọn ?");
-            System.out.println("1. Tiếng anh cho trẻ em");
-            System.out.println("2. Tiếng anh cho người lớn");
-            choice = ScannerUtils.inputInt();
-
-            if (choice == 1){
-                theLoai = "Tiếng Anh cho trẻ em";
-            }
-            else if (choice == 2){
-                theLoai = "Tiếng Anh cho người lớn";
-            }
-            else{
-                System.out.println("Bạn chỉ có thể chọn các lựa chọn được đề xuất !!");
-            }
-        }while (choice != 1 && choice != 2);
-
-
-        for (ChuongTrinhHoc i : QLChuongTrinhHoc.getDsChuongTrinhHoc()) {
-            if (i.getTheLoai().equals(theLoai)){
-                result.add(i);
-            }
-        }
-        return result;
-    }
-
     public static void loadDuLieu(){
         ArrayList<String> duLieu=DocGhiFile.docDuLieuFile("src\\Data\\qlChuongTrinhHoc.txt");
         xuLyDuLieu(duLieu);

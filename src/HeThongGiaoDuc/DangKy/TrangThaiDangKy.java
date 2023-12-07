@@ -13,7 +13,7 @@ public enum TrangThaiDangKy {
         }
         return trangThaiDangKyString;
     }
-    public static TrangThaiDangKy toTrangThaiDangKy(String trangThaiDangkyString){
+        public static TrangThaiDangKy toTrangThaiDangKy(String trangThaiDangkyString){
         TrangThaiDangKy trangThaiDangKy = HUY;
         switch (trangThaiDangkyString) {
             case "Đã ghi danh":

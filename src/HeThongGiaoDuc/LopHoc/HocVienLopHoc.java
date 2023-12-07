@@ -4,10 +4,10 @@ package HeThongGiaoDuc.LopHoc;
 import NguoiDung.User;
 
 public class HocVienLopHoc {
-  User hocVien;
-  LopHoc lopHoc;
-  double diem;
-  String danhGia;
+  private User hocVien;
+  private LopHoc lopHoc;
+  private double diem;
+  private String danhGia;
   
 
   // Constructor nay chi duoc su dung ben trong class

@@ -10,16 +10,10 @@ import java.time.LocalDate;
 public class YeuCauDangKy {
     private String maDangKy;
     private User hocVien;
-
     private LopHoc lopHoc;
-
     private double tongHocPhi;
-
     private TrangThaiDangKy trangThaiDangKy;
-
     private KhuyenMai khuyenMai;
-
-
     private LocalDate localDate;
 
 

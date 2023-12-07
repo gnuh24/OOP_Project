@@ -28,7 +28,7 @@ public class QLBienLai {
 
     }
 
-    public static void xuLyDuLieu(ArrayList<String> duLieu) {
+        public static void xuLyDuLieu(ArrayList<String> duLieu) {
         // duyệt qua duLieu và bắt đầu xử lý!
         for (String dong : duLieu) {
             // tách chuỗi tam
@@ -65,49 +65,6 @@ public class QLBienLai {
             duLieu.add(sb.toString());
         }
         return duLieu;
-    }
-
-    public static ArrayList<BienLai> timKiemTheoNgay(LocalDateTime ngay) {
-        ArrayList<BienLai> dsBienLais = new ArrayList<BienLai>();
-        for (BienLai bienLai : QLBienLai.dsBienLai) {
-            if (bienLai.getNgayThanhToan().equals(ngay)) {
-                dsBienLais.add(bienLai);
-            } else if ((bienLai.getNgayThanhToan().getYear() == ngay.getYear())
-                    && bienLai.getNgayThanhToan().getMonthValue() == ngay.getMonthValue()
-                    && bienLai.getNgayThanhToan().getDayOfMonth() == ngay.getDayOfMonth()) {
-                dsBienLais.add(bienLai);
-            }
-        }
-        return dsBienLais;
-    }
-
-    public static ArrayList<BienLai> timKiemTheoMaKhoa(String maKhoa) {
-        ArrayList<BienLai> dsBienLais = new ArrayList<BienLai>();
-        for (BienLai bienLai : QLBienLai.dsBienLai) {
-            if (bienLai.getYeuCauDangKy().getLopHoc().getKhoa().getMaKhoa().equals(maKhoa)) {
-                dsBienLais.add(bienLai);
-            }
-        }
-        return dsBienLais;
-    }
-
-    public static ArrayList<BienLai> timKiemTheoChuongTrinh(String maChuongTrinh) {
-        ArrayList<BienLai> dsBienLais = new ArrayList<BienLai>();
-        for (BienLai bienLai : QLBienLai.dsBienLai) {
-            if (bienLai.getYeuCauDangKy().getLopHoc().getChuongTrinh().getMaChuongTrinh().equals(maChuongTrinh)) {
-                dsBienLais.add(bienLai);
-            }
-        }
-        return dsBienLais;
-    }
-
-    public static BienLai timKiemTheoMaBienLai(String maBienLai) {
-        for (BienLai bienLai : QLBienLai.dsBienLai) {
-            if (bienLai.getMaBienLai().equals(maBienLai))
-                return bienLai;
-        }
-        System.out.println("Không tìm thấy mã biên lai");
-        return null;
     }
 
     public static void thongKeDoanhThuTheoChuongTrinh() {
