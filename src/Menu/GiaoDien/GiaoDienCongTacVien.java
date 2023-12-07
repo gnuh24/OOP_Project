@@ -43,9 +43,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
             System.out.printf("*  %-96s*\n","7. Chuyển lớp cho học sinh");
             System.out.printf("*  %-96s*\n","8. Sắp xếp cho các lớp sắp khai giảng");
             System.out.printf("*  %-96s*\n","9. Thay đổi trạng thái lớp");
-            System.out.printf("*  %-96s*\n","10. Quên mật khẩu ?");
-
-
+            System.out.printf("*  %-96s*\n","10. Thu hồi tài khoản");
             System.out.printf("*  %-96s*\n","11. Đăng xuất");
             System.out.printf("*  %-96s*\n","12. Thoát chương trình");
             System.out.printf("*  %-96s*\n","Bạn đã có lựa chọn chưa ?");
@@ -53,7 +51,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
 
             choice = ScannerUtils.inputInt();
 
-            if (choice < 1 || choice > 12 ){
+            if (choice < 1 || choice > 13 ){
                 System.err.println("Bạn chỉ được nhập các lựa chọn  trên màn hình");
             }
 
@@ -92,6 +90,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
                     break;
 
                 case 10:
+                    QLTaiKhoan.thuHoiTaiKhoan();
                     break;
 
                 case 11:

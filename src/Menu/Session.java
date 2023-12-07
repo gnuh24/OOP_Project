@@ -85,8 +85,15 @@ public class Session {
             return false;
         }
         else{
-            Session.setTaiKhoan(taiKhoan);
-            return true;
+            if (!taiKhoan.isTrangThai()){
+                System.err.println("Tài khoản của bạn đã bị khóa !! Vui lòng liên hệ trung tâm để được hỗ trợ !!");
+                return false;
+            }
+            else{
+                System.out.println("Đăng nhập thành công !!");
+                Session.setTaiKhoan(taiKhoan);
+                return true;
+            }
         }
     }
 }
