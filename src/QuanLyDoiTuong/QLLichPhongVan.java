@@ -3,8 +3,11 @@ package QuanLyDoiTuong;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
 import NguoiDung.User;
+import NguoiDung.VaiTro;
+import ThoiGian.Thu;
 import Utils.Convert;
 import Utils.DocGhiFile;
+import Utils.ScannerUtils;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -167,4 +170,119 @@ public class QLLichPhongVan {
         }
         return ketQua;
     }
+
+    public static void sapXepLichPhongVan(){
+        QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
+        System.out.println("Bạn muốn sắp xếp lịch phổng vấn nào ? (Nhập ID)");
+        System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
+        String id = ScannerUtils.inputString();
+        if (id.equals("1")){
+            return;
+        }
+        LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id);
+
+        if (lichPhongVan == null){
+            System.out.println("Mã không tồn tại !!!");
+        }
+        else{
+            System.out.printf("Bạn đã chọn lịch phổng vấn %s \n", lichPhongVan.getMaCaPhongVan());
+
+            LocalDate ngayThang = ScannerUtils.inputDate("Nhập ngày phổng vấn. ");
+            lichPhongVan.setNgayThang(ngayThang);
+
+            LocalTime gioPhongVan = ScannerUtils.inputTime("Nhập giờ phổng vấn");
+            lichPhongVan.setGioPV(gioPhongVan);
+
+
+            System.out.println("Hãy chọn giảng viên phù hợp :33");
+            System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
+            QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.GiangVien, true));
+            String idGV = ScannerUtils.inputString();
+
+            User giangVien = QLUser.timUserTheoMa(idGV);
+            if (giangVien == null){
+                System.err.println("Giang viên không tồn tại !!");
+                return;
+            }else if(giangVien.isBusy(Thu.formDayOfWeekToThu(ngayThang.getDayOfWeek()), gioPhongVan, ngayThang)){
+                System.err.println("Giảng viên đang có ca dạy hay phổng vấn khác vào thời điểm đó !!!");
+                return;
+            }
+            else{
+                lichPhongVan.setGiangVien(giangVien);
+                System.out.println("Đã thêm giảng viên thành công !!");
+            }
+
+            if (lichPhongVan.isValid()){
+                lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.CHO_PHONGVAN);
+                System.out.println("Đã duyệt thành công cho mã phổng vấn " + lichPhongVan.getMaCaPhongVan());
+                QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
+            }else{
+                System.err.println("Thêm thất bại !!! Có vấn đề hệ thống xảy ra lúc sắp xếp lịch phổng vấn !!");
+            }
+        }
+    }
+
+    public static void thayDoiTrangThaiLichPhongVan(){
+        QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
+        System.out.println("Bạn muốn xét thay đổi lịch phổng vấn nào (Nhập ID)");
+        System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
+        String idPV = ScannerUtils.inputString();
+        if (idPV.equals("1")){
+            return;
+        }
+        LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(idPV);
+        if (lichPhongVan == null){
+            System.out.println("Mã không tồn tại !!!");
+            thayDoiTrangThaiLichPhongVan();
+        }
+        else{
+
+            if (lichPhongVan.getTrangThaiPhongVan().equals(TrangThaiPhongVan.HUY)){
+                System.err.println("Không thể thay đổi trạng thái của lịch phổng vấn đã bị hủy trước đó !!!");
+                return;
+            }
+
+            System.out.printf("Bạn đã chọn lịch phổng vấn %s \n", lichPhongVan.getMaCaPhongVan());
+            System.out.println("Hãy chọn trạng thái bạn muốn thay đổi :33");
+            System.out.println("1. Chờ duyệt");
+            System.out.println("2. Chờ phổng vấn");
+            System.out.println("3. Đã phổng vấn");
+            System.out.println("4. Hủy");
+            System.out.println("Ấn bất cứ nút nào khác để thoát về màn hình chính !!");
+
+            String case2Choice = ScannerUtils.inputString();
+
+            if (case2Choice.equals("1")){
+                lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.CHO_DUYET);
+            }
+            else if (case2Choice.equals("2")){
+                lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.CHO_PHONGVAN);
+            }
+            else if (case2Choice.equals("3")){
+                lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.DA_PHONGVAN);
+            }
+            else if (case2Choice.equals("4")){
+                lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.HUY);
+            }
+            System.out.println("Đã thay đổi thành công !!");
+            QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.getDsLichPhongVan());
+        }
+    }
+
+    public static void dangKyPhongVan(){
+        String hoTen = ScannerUtils.inputName();
+        String email = ScannerUtils.inputEmail();
+        boolean gioiTinh = ScannerUtils.inputGioiTinh();
+        String sdt = ScannerUtils.inputSDT();
+        String diaChi = ScannerUtils.inputDiaChi();
+        LocalDate ngayThang = ScannerUtils.inputDate("Nhập ngày tháng năm sinh: ");
+
+
+        User khachHang = new User(hoTen, email, gioiTinh, ngayThang, sdt, diaChi, VaiTro.KhachHang);
+        QLUser.getDsUser().add(khachHang);
+        LichPhongVan lichPhongVan = new LichPhongVan(khachHang);
+        QLLichPhongVan.getDsLichPhongVan().add(lichPhongVan);
+        System.out.println("Bạn đã đăng ký thành công !!");
+    }
+
 }

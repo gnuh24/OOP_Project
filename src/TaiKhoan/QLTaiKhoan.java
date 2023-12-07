@@ -4,6 +4,7 @@ package TaiKhoan;
 import NguoiDung.User;
 import QuanLyDoiTuong.QLUser;
 import Utils.DocGhiFile;
+import Utils.ScannerUtils;
 
 import java.util.ArrayList;
 
@@ -108,5 +109,42 @@ public class QLTaiKhoan {
             }
         }
         return null;
+    }
+
+    public static void taoTaiKhoanMoi(){
+        System.out.println("Bạn muốn tạo tài khoản cho đối tượng nào ?");
+        System.out.println("1. Những người đã có thông tin trong cơ sở dữ liệu");
+        System.out.println("2. Những người chưa có thông tin trong cơ sở dữ liệu");
+        System.out.println("Các số còn lại để thoát !!");
+        int choice = ScannerUtils.inputInt();
+        switch (choice){
+            case 1:
+                ArrayList<User> dsNguoiChuaCoTaiKhoan = QLUser.timNhungUserChuaCoTaiKhoan();
+                QLUser.inThongTin(dsNguoiChuaCoTaiKhoan);
+                System.out.println("Đây là những người chưa có tài khoản !!");
+                System.out.println("Bạn muốn tạo tài khoản cho ai ??");
+                System.out.println("Ấn 1 để thoát !!");
+                String id = ScannerUtils.inputString();
+                if (id.equals("1")){
+                    return;
+                }
+                User user = QLUser.timUserTheoMa(id, dsNguoiChuaCoTaiKhoan);
+                while (user == null){
+                    System.out.println("Không tìm thấy mã thông tin của người bạn cần tạo !!");
+                    System.out.println("Ấn 1 để thoát !!");
+                    id = ScannerUtils.inputString();
+                    if (id.equals("1")){
+                        return;
+                    }
+                    user = QLUser.timUserTheoMa(id, dsNguoiChuaCoTaiKhoan);
+                }
+                QLTaiKhoan.taoTaiKhoanMoi(user);
+                break;
+            case 2:
+                QLTaiKhoan.taoTaiKhoanMoi(QLUser.themUserMoi());
+                break;
+
+
+        }
     }
 }

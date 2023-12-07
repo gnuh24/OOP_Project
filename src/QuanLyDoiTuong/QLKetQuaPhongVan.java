@@ -5,7 +5,9 @@ import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.LienHe;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
+import Menu.GiaoDien.GiaoDienCongTacVien;
 import Utils.DocGhiFile;
+import Utils.ScannerUtils;
 
 import java.util.ArrayList;
 
@@ -96,5 +98,47 @@ public class QLKetQuaPhongVan {
             }
         }
         return null;
+    }
+
+    public static void dieuChinhTrangThaiKetQuaPhongVan(){
+        QLKetQuaPhongVan.inDSKetQuaPhongVan(QLKetQuaPhongVan.getDsKetQuaPhongVan());
+        System.out.println("Bạn có muốn thay đổi ca phổng vấn nào ? (Mã ID)");
+        System.out.println("Ấn phím 1 để thoát ra màn hình chính ");
+
+        String inputCase3 = ScannerUtils.inputString();
+        if (inputCase3.equals("1")){
+            return;
+        }
+        KetQuaPhongVan ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(inputCase3);
+        if (ketQuaPhongVan != null){
+            // Bạn đã thử liên hệ chưa ? Họ nói gì ?
+            System.out.println("1. Chưa liên hệ"); //Đã liên hệ và họ muốn ghi danh
+            System.out.println("2. Đã từ chối");
+            System.out.println("3. Đã đăng ký");
+            System.out.println("4. Liên hệ sau");
+
+            System.out.println("Ấn bất cứ số nào khác 2 số trên để thoát !!");
+            int case3choice = ScannerUtils.inputInt();
+            switch (case3choice){
+                case 1:
+                    ketQuaPhongVan.setLienHe(LienHe.ChuaLienHe);
+                    break;
+                case 2:
+                    ketQuaPhongVan.setLienHe(LienHe.DaTuChoi);
+                    break;
+                case 3:
+                    ketQuaPhongVan.setLienHe(LienHe.DaDangKy);
+                    System.out.println("Bạn vừa điều chỉnh trạng thái đăng ký của kết quả phổng vấn thành \"Đã đăng ký\" !!");
+                    System.out.println("Bạn có muốn tạo đăng ký cho họ không ?");
+                    GiaoDienCongTacVien.dangKyMonHocChoKhachHang(ketQuaPhongVan);
+                    break;
+                case 4:
+                    ketQuaPhongVan.setLienHe(LienHe.LienHeSau);
+                    break;
+            }
+        }
+        else{
+            System.out.println("Không tìm thấy mã bạn yêu cầu !!");
+        }
     }
 }

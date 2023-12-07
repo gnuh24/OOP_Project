@@ -1,11 +1,16 @@
 package QuanLyDoiTuong;
 
+import HeThongGiaoDuc.DangKy.BienLai;
 import HeThongGiaoDuc.DangKy.KhuyenMai;
 import HeThongGiaoDuc.DangKy.TrangThaiDangKy;
 import HeThongGiaoDuc.DangKy.YeuCauDangKy;
 import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
 import HeThongGiaoDuc.LopHoc.LopHoc;
+import HeThongGiaoDuc.LopHoc.TrangThaiLop;
+import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
+import HeThongGiaoDuc.PhongVan.LienHe;
 import NguoiDung.User;
+import NguoiDung.VaiTro;
 import Utils.DocGhiFile;
 import Utils.ScannerUtils;
 
@@ -182,6 +187,143 @@ public class QLYeuCauDangKy {
         System.out.println("*".repeat(47));
         System.out.printf("*  Tổng số học viên:   *  %-20d*\n", demHocVien[0]);
         System.out.println("*".repeat(47));
+    }
+
+
+    public static void dangKyMonHocChoHocVien(){
+        QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.HocVien));
+        System.out.println("Nhập mã học viên: ");
+        System.out.println("Nhấn 1 để thoát");
+        String maHV = ScannerUtils.inputString();
+        User hocVien = QLUser.timUserTheoMa(maHV);
+        if (maHV.equals("1")){
+            return;
+        }
+        while (hocVien == null){
+            System.out.println("Không tìm thấy mã học viên !!");
+            System.out.println("Xin mời nhập lại !!");
+            System.out.println("Nhấn 1 để thoát");
+            maHV = ScannerUtils.inputString();
+            hocVien = QLUser.timUserTheoMa(maHV);
+            if (maHV.equals("1")){
+                return;
+            }
+        }
+        ArrayList<LopHoc> dsCacLopHocPhuHop = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang, TrangThaiLop.Dang_Hoc);
+
+        QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
+        System.out.println("Bạn chọn lớp học nào ??");
+        System.out.println("Nhấn 1 để thoát");
+        String malop = ScannerUtils.inputString();
+        if (malop.equals("1")){
+            return;
+        }
+        LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+        while (lopHoc == null || hocVien.isBusy(malop)){
+            if (hocVien.isBusy(malop)){
+                System.err.println("Học viên không thể đăng ký học thêm lớp mới này !! Vì học viên đã tham gia rồi !!");
+            }else{
+                System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+            }
+            System.out.println("Nhấn 1 để thoát");
+
+            malop = ScannerUtils.inputString();
+            lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+            if (malop.equals("1")){
+                return;
+            }
+        }
+
+        System.out.println("Bạn có muốn thanh toán luôn học phí ?");
+        System.out.println("1. Tôi muốn đóng ");
+        System.out.println("2. Tôi chỉ muốn ghi danh");
+        System.out.println("Ấn các số còn lại để thoát !!");
+        int luaChon = ScannerUtils.inputInt();
+
+        if (luaChon == 1){
+            System.out.println("Nếu đóng tiền trọn gói bạn sẽ được giảm 30% học phí");
+            System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*70/100,  lopHoc.getChuongTrinh().getHocPhi());
+            System.out.println("Nếu đăng ký sớm thì bạn vẫn sẽ được giảm 15% học phí");
+            System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*85/100,  lopHoc.getChuongTrinh().getHocPhi());
+
+            double dongTien = ScannerUtils.inputHocPhi();
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(hocVien, lopHoc, dongTien);
+            QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
+            QLHocVienLopHoc.getDsKetQua().add( new HocVienLopHoc(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
+            BienLai bienLai = new BienLai(yeuCauDangKy, dongTien);
+            bienLai.inBienLai();
+            QLBienLai.getDsBienLai().add(bienLai);
+            System.out.println("Đăng ký thành công !!");
+
+        }else if(luaChon == 2){
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(hocVien, lopHoc);
+            QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
+            QLHocVienLopHoc.getDsKetQua().add(new HocVienLopHoc(hocVien, yeuCauDangKy.getLopHoc()));
+            System.out.println("Đăng ký thành công !!");
+        }
+    }
+    public static void dangKyMonHocChoKhachHang(KetQuaPhongVan ketQuaPhongVan){
+        ArrayList<LopHoc> dsCacLopCungChuongTrinh = QLLopHoc.timKiemLopTheoChuongTrinh(ketQuaPhongVan.getChuongTrinhHocDeXuat().getMaChuongTrinh());
+        ArrayList<LopHoc> dsCacLopCacLopDangHoc = QLLopHoc.timKiemLopTheoTrangThai(dsCacLopCungChuongTrinh, TrangThaiLop.Dang_Hoc);
+        ArrayList<LopHoc> dsCacLopCacLopSapKhaiGiang = QLLopHoc.timKiemLopTheoTrangThai(dsCacLopCungChuongTrinh, TrangThaiLop.Sap_Khai_Giang);
+        ArrayList<LopHoc> dsCacLopHocPhuHop = new ArrayList<>(dsCacLopCacLopDangHoc);
+
+        dsCacLopHocPhuHop.addAll(dsCacLopCacLopSapKhaiGiang);
+        QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
+        System.out.println("Bạn chọn lớp học nào ??");
+        System.out.println("Nhấn 1 để thoát");
+        String malop = ScannerUtils.inputString();
+        LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+        if (malop.equals("1")){
+            return;
+        }
+        while (lopHoc == null){
+            System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+            System.out.println("Nhấn 1 để thoát");
+            malop = ScannerUtils.inputString();
+            lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
+            if (malop.equals("1")){
+                return;
+            }
+        }
+
+        System.out.println("Bạn có muốn thanh toán luôn học phí ?");
+        System.out.println("1. Tôi muốn đóng ");
+        System.out.println("2. Tôi chỉ muốn ghi danh");
+        System.out.println("Ấn các số còn lại để thoát !!");
+
+        int luaChon = ScannerUtils.inputInt();
+        User user = new User(
+                ketQuaPhongVan.getLichPhongVan().getKhachHang().getHoTen(),
+                ketQuaPhongVan.getLichPhongVan().getKhachHang().getEmail(),
+                ketQuaPhongVan.getLichPhongVan().getKhachHang().isGioiTinh(),
+                ketQuaPhongVan.getLichPhongVan().getKhachHang().getNgaySinh(),
+                ketQuaPhongVan.getLichPhongVan().getKhachHang().getSoDienThoai(),
+                ketQuaPhongVan.getLichPhongVan().getKhachHang().getDiaChi(),
+                VaiTro.HocVien);
+        QLUser.getDsUser().add(user);
+        if (luaChon == 1){
+            System.out.println("Nếu đóng tiền trọn gói bạn sẽ được giảm 30% học phí");
+            System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*70/100,  lopHoc.getChuongTrinh().getHocPhi());
+            System.out.println("Nếu đăng ký sớm thì bạn vẫn sẽ được giảm 15% học phí");
+            System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*85/100,  lopHoc.getChuongTrinh().getHocPhi());
+
+            double dongTien = ScannerUtils.inputHocPhi();
+
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc, dongTien);
+            QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
+            QLHocVienLopHoc.getDsKetQua().add( new HocVienLopHoc(yeuCauDangKy.getHocVien(), yeuCauDangKy.getLopHoc() ) );
+            BienLai bienLai = new BienLai(yeuCauDangKy, dongTien);
+            bienLai.inBienLai();
+            QLBienLai.getDsBienLai().add(bienLai);
+            ketQuaPhongVan.setLienHe(LienHe.DaDangKy);
+
+        }else if(luaChon == 2){
+            YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(user, lopHoc);
+            QLHocVienLopHoc.getDsKetQua().add(new HocVienLopHoc(user, yeuCauDangKy.getLopHoc()));
+            System.out.println("Đăng ký thành công !!");
+            ketQuaPhongVan.setLienHe(LienHe.DaDangKy);
+        }
     }
 
 }

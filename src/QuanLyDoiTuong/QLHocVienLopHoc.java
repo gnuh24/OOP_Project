@@ -10,6 +10,7 @@ import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import NguoiDung.User;
+import NguoiDung.VaiTro;
 import Utils.DocGhiFile;
 import Utils.ScannerUtils;
 
@@ -207,6 +208,99 @@ public class QLHocVienLopHoc {
             }
         }
         QLLopHoc.inDanhSach(lopHocs);
+    }
+
+
+    public static void chuyenLop(){
+        /*
+         * Quy tắc chuyên lớp
+         * - Tìm học viên và in ra danh sách HọcVienLopHoc của học viên đó (Bao gồm lớp và học viên)
+         * - Tìm danh sách các lớp có cùng chương trình
+         * - Thay đổi kết quả cũ thành lớp mới đã được chọn
+         * - Thay đổi lớp học trong đơn đăng ký thành lớp mới
+         * */
+
+        QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.HocVien, true));
+        //Tìm học sinh muốn chuyển lớp
+        System.out.println("Hãy nhập mã học sinh muốn chuyển lớp !!");
+        String maHV = ScannerUtils.inputString();
+        ArrayList<HocVienLopHoc>  dsHocVienLopHoc = QLHocVienLopHoc.timKiemTheoHocVien(maHV);
+        while (dsHocVienLopHoc.isEmpty()){
+            System.out.println("Học viên này chưa tham gia bất cứ lớp nào !!");
+            System.out.println("Bạn có nhập nhầm hong ? Nhập lại nhé ^^");
+            System.out.println("Ấn 1 để thoát");
+            maHV = ScannerUtils.inputString();
+            if (maHV.equals("1")){
+                return;
+            }
+            dsHocVienLopHoc = QLHocVienLopHoc.timKiemTheoHocVien(maHV);
+        }
+
+
+        //In danh sách các lớp học viên đó đang học
+        QLHocVienLopHoc.inDanhSach(dsHocVienLopHoc);
+        System.out.println("Hãy chọn lớp mà bạn muốn đổi theo thứ tự !!");
+        System.out.println("Hãy ấn 0 để thoát !!");
+        int sttLopCu = ScannerUtils.inputInt();
+        if (sttLopCu == 0){
+            return;
+        }
+
+        while (sttLopCu < 1 || sttLopCu > dsHocVienLopHoc.size()){
+            System.out.println("Số thứ tự không hợp lệ !!");
+            System.out.println("Hãy ấn 0 để thoát !!");
+            sttLopCu = ScannerUtils.inputInt();
+            if (sttLopCu == 0){
+                return;
+            }
+        }
+        LopHoc lopHocCu = dsHocVienLopHoc.get(sttLopCu - 1).getLopHoc();
+        //Tìm các lớp học cùng trình độ ở trạng thái đang học
+        ArrayList<LopHoc> dsLopHocMoiCungTrinhDo = QLLopHoc.timKiemLopTheoChuongTrinh(lopHocCu.getChuongTrinh().getMaChuongTrinh());
+        ArrayList<LopHoc> dsLopHocMoiPhuHop = QLLopHoc.timKiemLopTheoTrangThai(dsLopHocMoiCungTrinhDo, TrangThaiLop.Dang_Hoc, TrangThaiLop.Sap_Khai_Giang);
+
+        QLLopHoc.inDanhSach(dsLopHocMoiPhuHop);
+
+        if (dsLopHocMoiPhuHop.isEmpty()){
+            System.out.println("Rất tiếc. Không có lớp học cùng trình độ nào phù hợp !!");
+            System.out.println("Hãy trở lại sau.");
+            return;
+        }
+
+        System.out.println("Hãy chọn lớp học cùng trình độ mà bạn muốn đổi sang !!");
+        System.out.println("Ấn 1 để thoát");
+        String maLopMoi = ScannerUtils.inputString();
+        if (maLopMoi.equals("1")){
+            return;
+        }
+        LopHoc lopHocMoi = QLLopHoc.timKiemLopTheoMaLop(maLopMoi, dsLopHocMoiPhuHop);
+        while (lopHocMoi == null){
+            System.err.println("Mã lớp mới không hợp lệ !!!");
+            System.out.println("Hãy chọn lớp học cùng trình độ mà bạn muốn đổi sang !!");
+            System.out.println("Ấn 1 để thoát");
+            maLopMoi = ScannerUtils.inputString();
+            lopHocMoi = QLLopHoc.timKiemLopTheoMaLop(maLopMoi, dsLopHocMoiPhuHop);
+            if (maLopMoi.equals("1")){
+                return;
+            }
+        }
+
+        while (lopHocMoi.equals(lopHocCu)){
+            System.err.println("Bạn không thể chuyển từ lớp học cũ sang lớp học cũ được !!");
+            System.out.println("Ấn 1 để thoát");
+
+            maLopMoi = ScannerUtils.inputString();
+            lopHocMoi = QLLopHoc.timKiemLopTheoMaLop(maLopMoi, dsLopHocMoiPhuHop);
+            if (maLopMoi.equals("1")){
+                return;
+            }
+        }
+
+        //Thay kết quả cũ thành kết quả mới
+        dsHocVienLopHoc.get(sttLopCu - 1).setLopHoc(lopHocMoi);
+        //Thay đơn đăng ký lớp cu thành đơn đăng ký lớp mới
+        QLYeuCauDangKy.timKiemChinhXacTheoHocVienVaLopHoc(maHV, lopHocCu.getMaLop()).setLopHoc(lopHocMoi);
+        System.out.println("Chuyển lớp thành công !!!");
     }
 
 }

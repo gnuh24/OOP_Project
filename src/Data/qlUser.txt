@@ -36,3 +36,4 @@ HV21#Khách hàng ngẫu nhiên 1#khachHangMoi2@gmail.com#1#15/09/2003#093824035
 KH3#Khách hàng mới 2#newKhachHang2@gmail.com#1#07/02/1992#0938224355#Đại học Sài Gòn#Khách hàng#1
 KH4#Khách hàng mới 3#newKhachHang3@gmail.com#1#04/12/2009#0925315248#Đại học Hoa Sen#Khách hàng#1
 HV22#Khách hàng mới 2#newKhachHang2@gmail.com#1#07/02/1992#0938224355#Đại học Sài Gòn#Học viên#1
+KH5#tran van khanh#khanh@gmail.com#1#12/12/1999#0987654321#asdf#Khách hàng#1
