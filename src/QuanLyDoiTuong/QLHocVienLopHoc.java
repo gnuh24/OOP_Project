@@ -9,6 +9,7 @@ import HeThongGiaoDuc.DangKy.YeuCauDangKy;
 import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
+import Menu.Session;
 import NguoiDung.User;
 import NguoiDung.VaiTro;
 import Utils.DocGhiFile;
@@ -301,6 +302,67 @@ public class QLHocVienLopHoc {
         //Thay đơn đăng ký lớp cu thành đơn đăng ký lớp mới
         QLYeuCauDangKy.timKiemChinhXacTheoHocVienVaLopHoc(maHV, lopHocCu.getMaLop()).setLopHoc(lopHocMoi);
         System.out.println("Chuyển lớp thành công !!!");
+    }
+    public static void nhapDiemChoHocVienLopHoc() {
+        ArrayList<LopHoc> dsLopHoc = QLLopHoc.timKiemLopTheoGiangVien(Session.getTaiKhoan().getUser().getMaUser(), true );
+        QLLopHoc.inDanhSach(dsLopHoc);
+        System.out.println("Chọn lớp: ");
+        System.out.println("Ấn 1 để thoát !!");
+        String maLop = ScannerUtils.inputString();
+        if (maLop.equals("1")){
+            return;
+        }
+        LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsLopHoc);
+        while (lopHoc == null){
+            System.err.println("Mã lớp không hợp lệ !!!");
+            System.out.println("Ấn 1 để thoát !!");
+            maLop = ScannerUtils.inputString();
+            if (maLop.equals("1")){
+                return;
+            }
+            lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsLopHoc);
+        }
+        ArrayList<HocVienLopHoc> dsHocVienLopHoc =QLHocVienLopHoc.timKiemTheoLopHoc(maLop);
+        QLHocVienLopHoc.inDanhSach(dsHocVienLopHoc);
+        System.out.println("Bạn muốn nhập điểm cho học viên nào?:");
+        System.out.println("Nhập -1 để thoát.");
+
+        int id = ScannerUtils.inputInt();
+
+        // thoát
+        if (id == -1) {
+            return;
+        }
+
+        while (id < 1 || id > dsHocVienLopHoc.size()){
+            System.err.println("Lỗi không tìm thấy học viên!!! Nhập lại");
+            System.out.println("Ấn -1 để thoát");
+            id = ScannerUtils.inputInt();
+            if (id == -1){
+                return;
+            }
+        }
+
+        HocVienLopHoc hocVienLopHoc = dsHocVienLopHoc.get(id - 1);
+
+        String tenHocVien = hocVienLopHoc.getHocVien().getHoTen();
+        String tenLop = hocVienLopHoc.getLopHoc().getTenLop();
+
+        System.out.println("Nhập điểm cho " + tenHocVien + " tại lớp " + tenLop + " (ví dụ: 9.8)");
+        System.out.println("Ấn 3.69 để thoát");
+
+        double diem = ScannerUtils.inputDiem();
+
+        if (diem==3.69) {
+            return;
+        }
+        hocVienLopHoc.setDiem(diem);
+
+        System.out.println("Nhập đánh giá về học viên này !!");
+        hocVienLopHoc.setDanhGia(ScannerUtils.inputString());
+        System.out.println("Nhập điểm thành công");
+
+
     }
 
 }

@@ -139,15 +139,6 @@ public class GiaoDienHocVien extends GiaoDien {
         }
     }
 
-    public static double soTienConNo(YeuCauDangKy YCDK) {
-        double tienNo = YCDK.getTongHocPhi();
-        for (BienLai bienLai : QLBienLai.getDsBienLai()) {
-            if (bienLai.getYeuCauDangKy().getMaDangKy().equals(YCDK.getMaDangKy())) {
-                tienNo -= bienLai.getSoTienDaDong();
-            }
-        }
-        return tienNo;
-    }
 
     private void inSoTienConNo( ArrayList<YeuCauDangKy> cacYCDK) {
         // in ra số tiền còn nợ của từng yêu cầu đăng ký
@@ -157,12 +148,12 @@ public class GiaoDienHocVien extends GiaoDien {
 
         for (YeuCauDangKy YCDK : cacYCDK) {
             // chỉ in ra các YCDK còn nợ học phí
-            if (soTienConNo(YCDK) > 0) {
+            if (QLBienLai.soTienConNo(YCDK) > 0) {
                 System.out.printf("* %-20s* %-20s* %-25.2f* %-25s*\n",
                         YCDK.getMaDangKy(),
                         YCDK.getLopHoc().getTenLop(),
                         YCDK.getTongHocPhi(),
-                        soTienConNo(YCDK));
+                        QLBienLai.soTienConNo(YCDK));
             }
         }
 

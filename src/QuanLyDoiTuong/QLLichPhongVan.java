@@ -1,7 +1,10 @@
 package QuanLyDoiTuong;
 
+import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
+import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
+import Menu.Session;
 import NguoiDung.User;
 import NguoiDung.VaiTro;
 import ThoiGian.Thu;
@@ -283,6 +286,50 @@ public class QLLichPhongVan {
         LichPhongVan lichPhongVan = new LichPhongVan(khachHang);
         QLLichPhongVan.getDsLichPhongVan().add(lichPhongVan);
         System.out.println("Bạn đã đăng ký thành công !!");
+    }
+
+    public static void nhapDiemChoThiSinhPhongVan(){
+        QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.timKiemLichPhongVanTheoGV(
+                QLUser.timUserTheoMa(
+                        Session.getTaiKhoan().getUser().getMaUser()
+                ).getMaUser()
+        ));
+        System.out.println("Hãy chọn buổi phổng vấn bạn muốn nhập điểm (Nhập ID)");
+        System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
+
+        String id = ScannerUtils.inputString();
+
+        if (id.equals("1")) {
+            return;
+        }
+
+        LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id);
+        if (lichPhongVan == null) {
+            System.err.println("Mã không tồn tại !!!");
+        } else if (!lichPhongVan.getTrangThaiPhongVan().equals(TrangThaiPhongVan.DA_PHONGVAN)) {
+            System.err.println("Bạn không thể chấm điểm khi buổi phổng vấn chưa diễn ra!!");
+        } else {
+            System.out.printf("Bạn đã chọn lịch phổng vấn %s \n",
+                    lichPhongVan.getMaCaPhongVan());
+            double diem = ScannerUtils.inputDiem();
+
+            System.out.println("Bạn muốn đề xuất chương trình nào cho khách ?");
+            QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
+
+            String maChuongTrinh = ScannerUtils.inputString();
+            ChuongTrinhHoc chuongTrinhHoc =
+                    QLChuongTrinhHoc.timKiemTheoMa(maChuongTrinh);
+
+            if (chuongTrinhHoc == null) {
+                System.out.println("Không tìm thấy chương trình !!");
+            } else {
+                KetQuaPhongVan ketQuaPhongVan = new KetQuaPhongVan(lichPhongVan, diem,
+                        chuongTrinhHoc);
+                QLKetQuaPhongVan.getDsKetQuaPhongVan().add(ketQuaPhongVan);
+                System.out.println("Đã chấm điểm thành công !!");
+            }
+        }
+
     }
 
 }
