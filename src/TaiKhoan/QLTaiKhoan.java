@@ -8,13 +8,6 @@ import Utils.DocGhiFile;
 import java.util.ArrayList;
 
 public class QLTaiKhoan {
-
-    public static void main(String[] args) {
-        QLUser.loadDuLieu();
-        loadDuLieu();
-        inDSTaiKhoan(dsTaiKhoan);
-        saveDuLieu();
-    }
     public static ArrayList<TaiKhoan> dsTaiKhoan = new ArrayList<>();
 
     public static ArrayList<TaiKhoan> getDsTaiKhoan() {
@@ -116,15 +109,4 @@ public class QLTaiKhoan {
         }
         return null;
     }
-
-    public static ArrayList<TaiKhoan> timTaiKhoanTheoTrangThai(boolean trangThai){
-        ArrayList<TaiKhoan> dsTaiKhoan = new ArrayList<>();
-        for (TaiKhoan tk: QLTaiKhoan.getDsTaiKhoan()){
-            if (tk.isTrangThai() == trangThai){
-                dsTaiKhoan.add(tk);
-            }
-        }
-        return dsTaiKhoan;
-    }
-
 }

@@ -15,13 +15,6 @@ public class TaiKhoan {
         this.trangThai = true;
     }
 
-    public TaiKhoan(User user, String tenTaiKhoan, String matKhau) {
-        this.user = user;
-        this.tenTaiKhoan = tenTaiKhoan;
-        this.matKhau = matKhau;
-        this.trangThai = true;
-    }
-
     public TaiKhoan(User user, String tenTaiKhoan, String matKhau, boolean trangThai) {
         this.user = user;
         this.tenTaiKhoan = tenTaiKhoan;

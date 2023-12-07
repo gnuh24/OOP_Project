@@ -23,14 +23,10 @@ public class User {
     private String hoTen;
     private String email;
     private boolean gioiTinh;
-
     private LocalDate ngaySinh;
-
     private String soDienThoai;
     private String diaChi;
-
     private VaiTro vaiTro;
-
     private boolean trangThai;
 
     public User(String maUser, String hoTen, String email, boolean gioiTinh, LocalDate ngaySinh, String soDienThoai,
@@ -151,22 +147,6 @@ public class User {
 
         return false;
     }
-
-    public static void main(String[] args) {
-        LocalDate date = LocalDate.now(); // Lấy ngày hiện tại
-
-        // Lấy thông tin về thứ của ngày hiện tại
-        DayOfWeek dayOfWeek = date.getDayOfWeek();
-
-        // In ra thông tin về thứ
-        System.out.println("Ngày hiện tại là: " + date);
-        System.out.println("Thứ của ngày hiện tại là: " + dayOfWeek);
-
-        // Sử dụng các phương thức của DayOfWeek để lấy thông tin chi tiết
-        System.out.println("Số thứ tự của thứ: " + dayOfWeek.getValue());
-        System.out.println("Tên của thứ: " + dayOfWeek.name());
-    }
-
     public String getMaUser() {
         return maUser;
     }

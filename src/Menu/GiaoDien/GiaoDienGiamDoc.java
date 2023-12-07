@@ -97,7 +97,7 @@ public class GiaoDienGiamDoc extends GiaoDienQuanLy {
         } while (true);
     }
 
-    public void thayDoiHocPhi(){
+    private void thayDoiHocPhi(){
         QLChuongTrinhHoc.thayDoiHocPhi();
     }
 

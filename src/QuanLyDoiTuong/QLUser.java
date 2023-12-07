@@ -11,15 +11,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class QLUser {
-
-    public static void main(String[] args) {
-        loadDuLieu();
-        inThongTin(dsUser);
-        System.out.println(demUserTheoVaiTro(VaiTro.GiangVien));
-        inThongTin(timUserTheoVaiTro(VaiTro.GiangVien));
-        saveDuLieu();
-    }
-
     public static ArrayList<User> dsUser = new ArrayList<>();
 
     public static ArrayList<User> getDsUser() {
@@ -132,31 +123,6 @@ public class QLUser {
         System.out.println("*".repeat(186));
     }
 
-    public static void inThongTin(User user) {
-        System.out.println("*".repeat(186));
-
-        System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-30s* %-15s* %-20s*\n", "Mã user", "Họ và tên",
-                "Email",
-                "Giới tính", "Ngày sinh", "Số điện thoại", "Địa chỉ", "Vại trò", "Trạng Thái");
-
-        System.out.println("*".repeat(186));
-
-        String gioiTinh = (user.isGioiTinh()) ? "Nam" : "Nu";
-        String trangThai = (user.isTrangThai()) ? "Hoat dong" : "Ngung hoat dong";
-
-        System.out.printf("* %-10s* %-25s* %-25s* %-12s* %-15s* %-15s* %-30s* %-15s* %-20s*\n",
-                user.getMaUser(),
-                user.getHoTen(),
-                user.getEmail(),
-                gioiTinh,
-                Convert.dateToString(user.getNgaySinh()),
-                user.getSoDienThoai(),
-                user.getDiaChi(),
-                VaiTro.toString(user.getVaiTro()),
-                trangThai);
-        System.out.println("*".repeat(186));
-    }
-
     public static User timUserTheoMa(String idUser) {
         for (User user : QLUser.getDsUser()) {
             if (user.getMaUser().equals(idUser)) {
@@ -169,34 +135,6 @@ public class QLUser {
     public static User timUserTheoMa(String idUser, ArrayList<User> dsUser) {
         for (User user : dsUser) {
             if (user.getMaUser().equals(idUser)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-
-    public static User timUserTheoHoTen(String tenUser) {
-        for (User user : QLUser.getDsUser()) {
-            if (user.getHoTen().equals(tenUser)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    public static User timUserTheoEmail(String emailUser) {
-        for (User user : QLUser.getDsUser()) {
-            if (user.getEmail().equals(emailUser)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    public static User timUserTheoSTD(String sdtUser) {
-        for (User user : QLUser.getDsUser()) {
-            if (user.getSoDienThoai().equals(sdtUser)) {
                 return user;
             }
         }

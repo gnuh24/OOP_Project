@@ -97,54 +97,54 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
         } while (true);
     }
 
-    public void taoKhoaMoi(){
+    protected void taoKhoaMoi(){
         QLKhoaKhaiGiang.taoKhoaMoi();
     }
 
-    public void taoLopMoi(){
+    protected void taoLopMoi(){
         QLLopHoc.taoLopMoi();
     }
 
-    public void thongKeHocVienTheoChuongTrinh(){
+    protected void thongKeHocVienTheoChuongTrinh(){
         QLHocVienLopHoc.thongKeHocVienTheoChuongTrinh();
         backTo();
 
     }
 
-    public void thongKeHocVienTheoKhoa(){
+    protected void thongKeHocVienTheoKhoa(){
         QLHocVienLopHoc.thongKeHocVienTheoKhoa();
         backTo();
 
     }
 
-    public void thongKeHocVienTheoThang(){
+    protected void thongKeHocVienTheoThang(){
         QLYeuCauDangKy.thongKeHocVienTheoThang();
         backTo();
 
     }
 
-    public void thongKeHocVienTheoNam(){
+    protected void thongKeHocVienTheoNam(){
         QLYeuCauDangKy.thongKeTheoNam();
         backTo();
 
     }
 
-    public void thongKeDoanhThuTheoChuongTrinh(){
+    protected void thongKeDoanhThuTheoChuongTrinh(){
         QLBienLai.thongKeDoanhThuTheoChuongTrinh();
         backTo();
     }
 
-    public void thongKeDoanhThuTheoKhoa(){
+    protected void thongKeDoanhThuTheoKhoa(){
         QLBienLai.thongKeDoanhThuTheoKhoa();
         backTo();
     }
 
-    public void thongKeDoanhThuTheoThang(){
+    protected void thongKeDoanhThuTheoThang(){
         QLBienLai.thongKeDoanhThuTheoThang();
         backTo();
     }
 
-    public void thongKeDoanhThuTheoNam(){
+    protected void thongKeDoanhThuTheoNam(){
         QLBienLai.thongKeTheoNam();
         backTo();
     }
