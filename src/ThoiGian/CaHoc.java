@@ -40,10 +40,10 @@ public class CaHoc {
         this.thu = thu;
     }
 
-    public boolean equal(CaHoc caHoc){
+    public boolean equal(CaHoc caHoc) {
         if (caHoc.getThu().equals(this.getThu())
-            && caHoc.getGioVaoHoc().equals(this.getGioVaoHoc())
-            && caHoc.getGioTanHoc().equals(this.getGioTanHoc())){
+                && caHoc.getGioVaoHoc().equals(this.getGioVaoHoc())
+                && caHoc.getGioTanHoc().equals(this.getGioTanHoc())) {
             return true;
         }
         return false;
@@ -51,10 +51,16 @@ public class CaHoc {
 
     @Override
     public String toString() {
-        if (thu != null && gioVaoHoc != null && gioTanHoc != null){
-            return "Thứ " + Thu.toString(thu) + ": " + gioVaoHoc + " -> " + gioTanHoc;
+        String temp = Thu.toString(thu) + ": " + gioVaoHoc + " -> " + gioTanHoc;
+
+        if (thu != null && gioVaoHoc != null && gioTanHoc != null) {
+            if (thu.equals(Thu.ChuNhat)) {
+                return temp;
+            }
+
+            return "Thứ " + temp;
         }
+
         return "Chưa cập nhật";
     }
-
 }
