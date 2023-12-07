@@ -54,37 +54,30 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
 
                 case 4:
                     thongKeHocVienTheoKhoa();
-                    backTo();
                     break;
 
                 case 5:
                     thongKeHocVienTheoThang();
-                    backTo();
                     break;
 
                 case 6:
                     thongKeHocVienTheoNam();
-                    backTo();
                     break;
 
                 case 7:
                     thongKeDoanhThuTheoChuongTrinh();
-                    backTo();
                     break;
 
                 case 8:
                     thongKeDoanhThuTheoKhoa();
-                    backTo();
                     break;
 
                 case 9:
                     thongKeDoanhThuTheoThang();
-                    backTo();
                     break;
 
                 case 10:
                     thongKeDoanhThuTheoNam();
-                    backTo();
                     break;
 
                 case 11:

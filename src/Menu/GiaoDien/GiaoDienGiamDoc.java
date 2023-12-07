@@ -46,42 +46,34 @@ public class GiaoDienGiamDoc extends GiaoDienQuanLy {
 
                 case 3:
                     super.thongKeHocVienTheoChuongTrinh();
-                    backTo();
                     break;
 
                 case 4:
                     super.thongKeHocVienTheoKhoa();
-                    backTo();
                     break;
 
                 case 5:
                     super.thongKeHocVienTheoThang();
-                    backTo();
                     break;
 
                 case 6:
                     super.thongKeHocVienTheoNam();
-                    backTo();
                     break;
 
                 case 7:
                     super.thongKeDoanhThuTheoChuongTrinh();
-                    backTo();
                     break;
 
                 case 8:
                     super.thongKeDoanhThuTheoKhoa();
-                    backTo();
                     break;
 
                 case 9:
                     super.thongKeDoanhThuTheoThang();
-                    backTo();
                     break;
 
                 case 10:
                     super.thongKeDoanhThuTheoNam();
-                    backTo();
                     break;
 
                 case 11:
