@@ -95,6 +95,54 @@ public class QLTaiKhoan {
 
     }
 
+    public static void thuHoiTaiKhoan(){
+        inDSTaiKhoan(QLTaiKhoan.dsTaiKhoan);
+        System.out.println("Hãy chọn tài khoản bạn muốn thu hồi (hoặc gỡ thu hồi)");
+        System.out.println("Ấn 1 để thoát khỏi đây ");
+        String userName = ScannerUtils.inputString();
+        if (userName.equals("1")){
+            return;
+        }
+        TaiKhoan taiKhoan = timTaiKhoanTheoUsername(userName);
+        while(taiKhoan == null){
+            System.err.println("Tài khoản không tồn tại !!. Xin mời nhập lại ");
+            System.out.println("Ấn 1 để thoát khỏi đây ");
+            userName = ScannerUtils.inputString();
+            if (userName.equals("1")){
+                return;
+            }
+            taiKhoan = timTaiKhoanTheoUsername(userName);
+        }
+
+        System.out.println("Hãy chọn trạng thái bạn muốn thay đổi !!");
+        System.out.println("1. Thu hồi tài khoản (Global ban)");
+        System.out.println("2. Gỡ thu hồi");
+        System.out.println("3. Thoát khỏi đây ");
+
+        System.out.println("Lưu ý: Nếu tài khoản bị thu hồi sẽ không thể đăng nhập được !!");
+
+        int choice = ScannerUtils.inputInt();
+        if (choice == 3){
+            return;
+        }
+
+        while (choice != 1 && choice != 2){
+            System.err.println("Lựa chọn không hợp lệ !!. Chọn lại");
+            choice = ScannerUtils.inputInt();
+            if (choice == 3){
+                return;
+            }
+        }
+
+        if (choice == 1){
+            taiKhoan.setTrangThai(false);
+            System.out.println("Đã thu hồi tài khoản thành công !!");
+        }else{
+            taiKhoan.setTrangThai(true);
+            System.out.println("Đã gỡ thu hồi tài khoản thành công !!");
+        }
+    }
+
     public static TaiKhoan taoTaiKhoanMoi(User user){
         TaiKhoan taiKhoan = new TaiKhoan(user);
         QLTaiKhoan.getDsTaiKhoan().add(taiKhoan);
