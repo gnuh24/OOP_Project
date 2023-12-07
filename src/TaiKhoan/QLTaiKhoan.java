@@ -1,6 +1,8 @@
 package TaiKhoan;
 
 //import Menu;
+import Menu.GiaoDien.GiaoDien;
+import Menu.Session;
 import NguoiDung.User;
 import QuanLyDoiTuong.QLUser;
 import Utils.DocGhiFile;
@@ -143,11 +145,42 @@ public class QLTaiKhoan {
         }
     }
 
-    public static TaiKhoan taoTaiKhoanMoi(User user){
+    public static void taoTaiKhoanMoi(User user){
         TaiKhoan taiKhoan = new TaiKhoan(user);
         QLTaiKhoan.getDsTaiKhoan().add(taiKhoan);
         System.out.println("Tạo tài khoản mới thành công !!");
-        return taiKhoan;
+    }
+
+    public static void doiMatKhau(){
+        inDSTaiKhoan(QLTaiKhoan.dsTaiKhoan);
+        System.out.println("Hãy chọn tài khoản bạn muốn thu hồi (hoặc gỡ thu hồi)");
+        System.out.println("Ấn 1 để thoát khỏi đây ");
+        String userName = ScannerUtils.inputString();
+        if (userName.equals("1")){
+            return;
+        }
+        TaiKhoan taiKhoan = timTaiKhoanTheoUsername(userName);
+        while(taiKhoan == null){
+            System.err.println("Tài khoản không tồn tại !!. Xin mời nhập lại ");
+            System.out.println("Ấn 1 để thoát khỏi đây ");
+            userName = ScannerUtils.inputString();
+            if (userName.equals("1")){
+                return;
+            }
+            taiKhoan = timTaiKhoanTheoUsername(userName);
+        }
+
+        System.out.println("Hãy nhập mật khẩu mới cho tài khoản !!");
+        String password = ScannerUtils.inputString();
+        System.out.println("Hãy nhập lại mật khẩu của bạn để xác thực danh tính !!");
+        String adminPassword = ScannerUtils.inputString();
+        if (!adminPassword.equals(Session.getTaiKhoan().getMatKhau())){
+            System.err.println("Mật khẩu của bạn nhập không đúng !!!");
+            System.err.println("Phát hiện nguy cơ bảo mật. Hệ thống sẽ tự đăng xuất để đảm bảo an toản !!!");
+            Session.logout();
+        }
+        taiKhoan.setMatKhau(password);
+        System.out.println("Thay đổi mật khẩu thành công !!");
     }
 
     public static TaiKhoan timTaiKhoanTheoUsername(String username){

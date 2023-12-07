@@ -65,8 +65,15 @@ public class ScannerUtils {
     }
 
     public static String inputString() {
+        String inputString;
         Scanner input = new Scanner(System.in);
-        return input.nextLine();
+        do {
+            inputString = input.nextLine().trim();
+            if (inputString.isEmpty()) {
+                System.err.println("Vui lòng không để trống.");
+            }
+        } while (inputString.isEmpty());
+        return inputString;
     }
 
     public static LocalDate inputDate(String displayString) {

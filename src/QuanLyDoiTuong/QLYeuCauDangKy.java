@@ -326,4 +326,41 @@ public class QLYeuCauDangKy {
         }
     }
 
+        public static void dangKyMonHoc(){
+        System.out.println("Bạn muốn đăng ký môn học cho Học viên cũ hay Khách hàng mới ?");
+        System.out.println("1. Học viên cũ");
+        System.out.println("2. Khách hàng mới");
+        System.out.println("Ấn các số còn lại để thoát !!");
+        int case4choice = ScannerUtils.inputInt();
+        switch (case4choice){
+            case 1:
+                QLYeuCauDangKy.dangKyMonHocChoHocVien();
+                break;
+            case 2:
+                System.out.println("Theo quy định của Trung Tâm học viên mới bắt buộc phải thông qua phổng đầu vào để có thể tham gia vào học.");
+                System.out.println("1. Đăng ký phổng vấn !!");
+                System.out.println("2. Khách hàng mới đã phổng vấn");
+                System.out.println("Ấn các số còn lại để thoát !!");
+                int choice = ScannerUtils.inputInt();
+                switch (choice){
+                    case 1:
+                        QLLichPhongVan.dangKyPhongVan();
+                        break;
+                    case 2:
+                        QLKetQuaPhongVan.inDSKetQuaPhongVan(QLKetQuaPhongVan.getDsKetQuaPhongVan());
+                        System.out.println("Hãy chọn kết quả phổng vấn tương ứng với khách hàng.");
+                        String ma = ScannerUtils.inputString();
+                        KetQuaPhongVan ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(ma);
+                        while (ketQuaPhongVan == null){
+                            System.out.println("Mã nhập không đúng xin mời nhập lại !!");
+                            ma = ScannerUtils.inputString();
+                            ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(ma);
+                        }
+                        QLYeuCauDangKy.dangKyMonHocChoKhachHang(ketQuaPhongVan);
+                        break;
+
+                }
+        }
+    }
+
 }

@@ -44,8 +44,10 @@ public class GiaoDienCongTacVien extends GiaoDien {
             System.out.printf("*  %-96s*\n","8. Sắp xếp cho các lớp sắp khai giảng");
             System.out.printf("*  %-96s*\n","9. Thay đổi trạng thái lớp");
             System.out.printf("*  %-96s*\n","10. Thu hồi tài khoản");
-            System.out.printf("*  %-96s*\n","11. Đăng xuất");
-            System.out.printf("*  %-96s*\n","12. Thoát chương trình");
+            System.out.printf("*  %-96s*\n","11. Đổi mật khẩu cho các tài khoản");
+
+            System.out.printf("*  %-96s*\n","12. Đăng xuất");
+            System.out.printf("*  %-96s*\n","13. Thoát chương trình");
             System.out.printf("*  %-96s*\n","Bạn đã có lựa chọn chưa ?");
             System.out.println("*".repeat(100));
 
@@ -68,7 +70,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
                     break;
 
                 case 4:
-                    dangKyMonHoc();
+                    QLYeuCauDangKy.dangKyMonHoc();
                     break;
                 case 5:
                     QLTaiKhoan.taoTaiKhoanMoi();
@@ -94,58 +96,18 @@ public class GiaoDienCongTacVien extends GiaoDien {
                     break;
 
                 case 11:
+                    QLTaiKhoan.doiMatKhau();
+                    break;
+
+                case 12:
                     Session.logout();
                     break;
-                case 12:
+                case 13:
                     exit();
                     break;
             }
         } while (true);
     }
-
-
-    private void dangKyMonHoc(){
-        System.out.println("Bạn muốn đăng ký môn học cho Học viên cũ hay Khách hàng mới ?");
-        System.out.println("1. Học viên cũ");
-        System.out.println("2. Khách hàng mới");
-        System.out.println("Ấn các số còn lại để thoát !!");
-        int case4choice = ScannerUtils.inputInt();
-        switch (case4choice){
-            case 1:
-                QLYeuCauDangKy.dangKyMonHocChoHocVien();
-                break;
-            case 2:
-                System.out.println("Theo quy định của Trung Tâm học viên mới bắt buộc phải thông qua phổng đầu vào để có thể tham gia vào học.");
-                System.out.println("1. Đăng ký phổng vấn !!");
-                System.out.println("2. Khách hàng mới đã phổng vấn");
-                System.out.println("Ấn các số còn lại để thoát !!");
-                int choice = ScannerUtils.inputInt();
-                switch (choice){
-                    case 1:
-                        QLLichPhongVan.dangKyPhongVan();
-                        break;
-                    case 2:
-                        QLKetQuaPhongVan.inDSKetQuaPhongVan(QLKetQuaPhongVan.getDsKetQuaPhongVan());
-                        System.out.println("Hãy chọn kết quả phổng vấn tương ứng với khách hàng.");
-                        String ma = ScannerUtils.inputString();
-                        KetQuaPhongVan ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(ma);
-                        while (ketQuaPhongVan == null){
-                            System.out.println("Mã nhập không đúng xin mời nhập lại !!");
-                            ma = ScannerUtils.inputString();
-                            ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(ma);
-                        }
-                        QLYeuCauDangKy.dangKyMonHocChoKhachHang(ketQuaPhongVan);
-                        break;
-
-                }
-        }
-    }
-
-
-
-
-
-
 }
 
 
