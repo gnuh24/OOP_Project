@@ -41,59 +41,48 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
 
             switch (choice){
                 case 1:
-                    //QLKhoaKhaiGiang.taoKhoaMoi();
                     taoKhoaMoi();
                     break;
 
                 case 2:
-                    //QLLopHoc.taoLopMoi();
                     taoLopMoi();
                     break;
 
                 case 3:
-                    //QLHocVienLopHoc.thongKeHocVienTheoChuongTrinh();
                     thongKeHocVienTheoChuongTrinh();
-                    backTo();
                     break;
 
                 case 4:
-                    //QLHocVienLopHoc.thongKeHocVienTheoKhoa();
                     thongKeHocVienTheoKhoa();
                     backTo();
                     break;
 
                 case 5:
-                    //QLHocVienLopHoc.thongKeHocVienTheoThang();
                     thongKeHocVienTheoThang();
                     backTo();
                     break;
 
                 case 6:
-                    //QLHocVienLopHoc.thongKeTheoNam();
                     thongKeHocVienTheoNam();
                     backTo();
                     break;
 
                 case 7:
-                    //QLBienLai.thongKeDoanhThuTheoChuongTrinh();
                     thongKeDoanhThuTheoChuongTrinh();
                     backTo();
                     break;
 
                 case 8:
-                    //QLBienLai.thongKeDoanhThuTheoKhoa();
                     thongKeDoanhThuTheoKhoa();
                     backTo();
                     break;
 
                 case 9:
-                    //QLBienLai.thongKeDoanhThuTheoThang();
                     thongKeDoanhThuTheoThang();
                     backTo();
                     break;
 
                 case 10:
-                    //QLBienLai.thongKeTheoNam();
                     thongKeDoanhThuTheoNam();
                     backTo();
                     break;
@@ -118,34 +107,46 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
 
     public void thongKeHocVienTheoChuongTrinh(){
         QLHocVienLopHoc.thongKeHocVienTheoChuongTrinh();
+        backTo();
+
     }
 
     public void thongKeHocVienTheoKhoa(){
         QLHocVienLopHoc.thongKeHocVienTheoKhoa();
+        backTo();
+
     }
 
     public void thongKeHocVienTheoThang(){
         QLYeuCauDangKy.thongKeHocVienTheoThang();
+        backTo();
+
     }
 
     public void thongKeHocVienTheoNam(){
         QLYeuCauDangKy.thongKeTheoNam();
+        backTo();
+
     }
 
     public void thongKeDoanhThuTheoChuongTrinh(){
         QLBienLai.thongKeDoanhThuTheoChuongTrinh();
+        backTo();
     }
 
     public void thongKeDoanhThuTheoKhoa(){
         QLBienLai.thongKeDoanhThuTheoKhoa();
+        backTo();
     }
 
     public void thongKeDoanhThuTheoThang(){
         QLBienLai.thongKeDoanhThuTheoThang();
+        backTo();
     }
 
     public void thongKeDoanhThuTheoNam(){
         QLBienLai.thongKeTheoNam();
+        backTo();
     }
 
 }

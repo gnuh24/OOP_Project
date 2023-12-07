@@ -85,7 +85,6 @@ public class GiaoDienGiamDoc extends GiaoDienQuanLy {
                     break;
 
                 case 11:
-                    //QLChuongTrinhHoc.thayDoiHocPhi();
                     thayDoiHocPhi();
                     break;
                 case 12:

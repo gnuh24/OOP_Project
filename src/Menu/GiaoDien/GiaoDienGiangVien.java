@@ -13,8 +13,8 @@ import Utils.ScannerUtils;
 
 import java.util.ArrayList;
 
-public class GiaoDienGiangVien extends GiaoDienTroGiang {
-
+public class GiaoDienGiangVien extends GiaoDienNhanVienDungLop {
+    @Override
     public void giaoDien() {
         int choice;
         do {
@@ -71,7 +71,7 @@ public class GiaoDienGiangVien extends GiaoDienTroGiang {
             }
         } while (true);
     }
-@   Override
+    @Override
     protected void xemDanhSachLopHoc() {
         QLLopHoc.inDanhSach(
                 QLLopHoc.timKiemLopTheoTrangThai(

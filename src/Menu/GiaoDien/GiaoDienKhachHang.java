@@ -11,6 +11,7 @@ import Utils.ScannerUtils;
 import java.time.LocalDate;
 
 public class GiaoDienKhachHang extends GiaoDien {
+    @Override
     public void giaoDien() {
         int choice;
         do {
@@ -36,23 +37,18 @@ public class GiaoDienKhachHang extends GiaoDien {
             switch (choice) {
                 case 1:
                     xemDanhSachGiangVien();
-                    backTo();
                     break;
                 case 2:
                     xemDanhSachChuongTrinhHoc();
-                    backTo();
                     break;
                 case 3:
                     xemDanhSachCacLopDangHoc();
-                    backTo();
                     break;
                 case 4:
                     xemDanhSachLopSapKhaiGiang();
-                    backTo();
                     break;
                 case 5:
                     xemDanhSachCoSoDangHoatDong();
-                    backTo();
                     break;
                 case 6:
                     dangKyPhongVan();
@@ -67,8 +63,6 @@ public class GiaoDienKhachHang extends GiaoDien {
         } while (true);
     }
 
-
-
     public void dangKyPhongVan(){
         User khachHang = new User();
         QLUser.getDsUser().add(khachHang);
@@ -82,21 +76,26 @@ public class GiaoDienKhachHang extends GiaoDien {
 
     public void xemDanhSachGiangVien(){
         QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.GiangVien, true));
+        backTo();
     }
 
     public void xemDanhSachChuongTrinhHoc(){
         QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
+        backTo();
     }
 
     public void xemDanhSachCacLopDangHoc(){
         QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Dang_Hoc));
+        backTo();
     }
 
     public void xemDanhSachLopSapKhaiGiang(){
         QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang));
+        backTo();
     }
 
     public void xemDanhSachCoSoDangHoatDong(){
         QLCoSo.inDSCoSo(QLCoSo.getDsCoSo());
+        backTo();
     }
 }

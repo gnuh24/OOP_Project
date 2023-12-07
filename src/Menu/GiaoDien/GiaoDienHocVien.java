@@ -16,6 +16,7 @@ import QuanLyDoiTuong.QLYeuCauDangKy;
 import Utils.ScannerUtils;
 
 public class GiaoDienHocVien extends GiaoDien {
+    @Override
     public void giaoDien() {
         int choice;
         do {
@@ -40,31 +41,23 @@ public class GiaoDienHocVien extends GiaoDien {
 
             switch (choice) {
                 case 1:
-                    QLHocVienLopHoc.xemTKBCacLopDangHoc(Session.getTaiKhoan().getUser());
-                    backTo();
+                    xemThoiKhoaBieuCacLopDangHoc();
                     break;
                 case 2:
-                    QLHocVienLopHoc.xemTKBCacLopSapKhaiGiang(Session.getTaiKhoan().getUser());
-                    backTo();
+                    xemThoiKhoaBieuCacLopSapKhaiGiang();
                     break;
-
                 case 3:
                     xemDiem();
-                    backTo();
                     break;
-
                 case 4:
                     dongHocPhi();
                     break;
-
                 case 5:
                     dangKyMonHocChoHocVien();
                     break;
-
                 case 6:
                     Session.logout();
                     break;
-
                 case 7:
                     exit();
                     break;
@@ -72,8 +65,19 @@ public class GiaoDienHocVien extends GiaoDien {
         } while (true);
     }
 
+    private void xemThoiKhoaBieuCacLopDangHoc(){
+        QLHocVienLopHoc.xemTKBCacLopDangHoc(Session.getTaiKhoan().getUser());
+        backTo();
+    }
+
+    private void xemThoiKhoaBieuCacLopSapKhaiGiang(){
+        QLHocVienLopHoc.xemTKBCacLopSapKhaiGiang(Session.getTaiKhoan().getUser());
+        backTo();
+    }
+
     private void xemDiem() {
         QLHocVienLopHoc.inDanhSach(QLHocVienLopHoc.timKiemTheoHocVien(Session.getTaiKhoan().getUser().getMaUser()));
+        backTo();
     }
 
     private void dangKyMonHocChoHocVien() {

@@ -9,7 +9,8 @@ import Utils.ScannerUtils;
 
 import java.util.ArrayList;
 
-public class GiaoDienTroGiang extends GiaoDien {
+public class GiaoDienTroGiang extends GiaoDienNhanVienDungLop {
+    @Override
     public void giaoDien() {
         int choice;
         do {
@@ -52,6 +53,7 @@ public class GiaoDienTroGiang extends GiaoDien {
         } while (true);
     }
 
+    @Override
     protected void xemDanhSachLopHoc() {
         QLLopHoc.inDanhSach(
                 QLLopHoc.timKiemLopTheoTrangThai(
@@ -60,6 +62,7 @@ public class GiaoDienTroGiang extends GiaoDien {
         backTo();
 
     }
+    @Override
 
     protected void xemDanhSachLopSapKhaiGiang() {
         QLLopHoc.inDanhSach(
@@ -71,6 +74,7 @@ public class GiaoDienTroGiang extends GiaoDien {
 
     }
 
+    @Override
     protected void xemDanhSachHocVien() {
         ArrayList<LopHoc> dsLopHoc = QLLopHoc.timKiemLopTheoTrangThai(
                 QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()), TrangThaiLop.Dang_Hoc, TrangThaiLop.Sap_Khai_Giang);
