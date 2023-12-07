@@ -130,7 +130,7 @@ public class QLKetQuaPhongVan {
                     ketQuaPhongVan.setLienHe(LienHe.DaDangKy);
                     System.out.println("Bạn vừa điều chỉnh trạng thái đăng ký của kết quả phổng vấn thành \"Đã đăng ký\" !!");
                     System.out.println("Bạn có muốn tạo đăng ký cho họ không ?");
-                    GiaoDienCongTacVien.dangKyMonHocChoKhachHang(ketQuaPhongVan);
+                    QLYeuCauDangKy.dangKyMonHocChoKhachHang(ketQuaPhongVan);
                     break;
                 case 4:
                     ketQuaPhongVan.setLienHe(LienHe.LienHeSau);
