@@ -1,2 +1,3 @@
 LPV1#8.0#CTH014#Đã từ chối
-LPV2#5.5#CTH011#Chưa liên hệ
+LPV2#5.5#CTH011#Đã đăng ký
+LPV2#10.0#CTH001#Chưa liên hệ

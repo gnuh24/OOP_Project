@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
 import HeThongGiaoDuc.DangKy.BienLai;
+import HeThongGiaoDuc.DangKy.TrangThaiDangKy;
 import HeThongGiaoDuc.DangKy.YeuCauDangKy;
 import Utils.DocGhiFile;
 import Utils.ScannerUtils;
@@ -215,7 +216,8 @@ public class QLBienLai {
     public static double soTienConNo(YeuCauDangKy YCDK) {
         double tienNo = YCDK.getTongHocPhi();
         for (BienLai bienLai : QLBienLai.getDsBienLai()) {
-            if (bienLai.getYeuCauDangKy().getMaDangKy().equals(YCDK.getMaDangKy())) {
+            if (bienLai.getYeuCauDangKy().getMaDangKy().equals(YCDK.getMaDangKy())
+                && YCDK.getTrangThaiDangKy()==TrangThaiDangKy.DA_GHI_DANH) {
                 tienNo -= bienLai.getSoTienDaDong();
             }
         }
