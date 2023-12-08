@@ -363,4 +363,47 @@ public class QLYeuCauDangKy {
         }
     }
 
+    public static void huyDangKy(){
+        System.out.println("Hãy chọn đơn đăng ký mà bạn muốn hủy !!");
+        QLYeuCauDangKy.inDSYeuCauDangKy(QLYeuCauDangKy.getDsYeuCauDangKy());
+        System.out.println("Ấn 1 để thoát");
+        String maYCDK = ScannerUtils.inputString();
+        if (maYCDK.equals("1")){
+            return;
+        }
+        YeuCauDangKy yeuCauDangKy = QLYeuCauDangKy.timKiemTheoMa(maYCDK);
+        while (yeuCauDangKy == null){
+            System.err.println("Không tìm thấy yêu cầu đăng ký. Nhập lại");
+            System.out.println("Ấn 1 để thoát");
+            maYCDK = ScannerUtils.inputString();
+            if (maYCDK.equals("1")){
+                return;
+            }
+            yeuCauDangKy = QLYeuCauDangKy.timKiemTheoMa(maYCDK);
+        }
+
+        yeuCauDangKy.setTrangThaiDangKy(TrangThaiDangKy.HUY);
+        QLHocVienLopHoc.xoaHocVienLopHoc(yeuCauDangKy);
+        System.out.println("Đã hủy yêu cầu đăng ký thành công !!");
+    }
+    public static void inDSYeuCauDangKy(ArrayList<YeuCauDangKy> dsYeuCauDangKy) {
+        System.out.println("*".repeat(133));
+        System.out.printf("* %-15s* %-30s* %-30s* %-20s* %-20s* %-20s*\n", "Mã đăng ký", "Tên học viên", "Tên lớp học", "Tổng học phí", "Trạng thái", "Khuyến mãi");
+        System.out.println("*".repeat(133));
+
+        for (YeuCauDangKy yeuCauDangKy : dsYeuCauDangKy) {
+            String maDangKy = yeuCauDangKy.getMaDangKy();
+            String tenHocVien = yeuCauDangKy.getHocVien().getHoTen();
+            String tenLopHoc = yeuCauDangKy.getLopHoc().getTenLop();
+            String tongHocPhi = String.format("%.2f", yeuCauDangKy.getTongHocPhi());
+            String trangThai = yeuCauDangKy.getTrangThaiDangKy().toString();
+            String khuyenMai = yeuCauDangKy.getKhuyenMai().toString();
+
+            System.out.printf("* %-15s* %-30s* %-30s* %-20s* %-20s* %-20s*\n", maDangKy, tenHocVien, tenLopHoc, tongHocPhi, trangThai, khuyenMai);
+        }
+
+        System.out.println("*".repeat(133));
+    }
+
+
 }

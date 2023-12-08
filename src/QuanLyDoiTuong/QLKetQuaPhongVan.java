@@ -117,7 +117,7 @@ public class QLKetQuaPhongVan {
             System.out.println("3. Đã đăng ký");
             System.out.println("4. Liên hệ sau");
 
-            System.out.println("Ấn bất cứ số nào khác 2 số trên để thoát !!");
+            System.out.println("Ấn bất cứ số nào khác các số trên để thoát !!");
             int case3choice = ScannerUtils.inputInt();
             switch (case3choice){
                 case 1:

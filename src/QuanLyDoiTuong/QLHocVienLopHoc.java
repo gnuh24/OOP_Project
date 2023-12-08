@@ -365,4 +365,14 @@ public class QLHocVienLopHoc {
 
     }
 
+    public static void xoaHocVienLopHoc(YeuCauDangKy yeuCauDangKy){
+        for (HocVienLopHoc hocVienLopHoc: QLHocVienLopHoc.getDsKetQua()){
+            if (hocVienLopHoc.getHocVien().getMaUser().equals(yeuCauDangKy.getHocVien().getMaUser()) &&
+                hocVienLopHoc.getLopHoc().getMaLop().equals(yeuCauDangKy.getLopHoc().getMaLop())){
+                QLHocVienLopHoc.getDsKetQua().remove(hocVienLopHoc);
+                break;
+            }
+        }
+    }
+
 }
