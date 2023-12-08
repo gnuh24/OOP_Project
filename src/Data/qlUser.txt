@@ -38,3 +38,4 @@ KH4#Khách hàng mới 3#newKhachHang3@gmail.com#1#04/12/2009#0925315248#Đại 
 HV22#Khách hàng mới 2#newKhachHang2@gmail.com#1#07/02/1992#0938224355#Đại học Sài Gòn#Học viên#1
 KH5#tran van khanh#khanh@gmail.com#1#12/12/1999#0987654321#asdf#Khách hàng#1
 KH6#Ngô Tuấn Hưng#ngoTuanHung01@gmail.com#1#02/04/2004#0938240360#Đại học Sai Gòn DKP1221#Khách hàng#1
+KH7#Kiet Dep Trai#kietdeptrai@hotmail/com#1#01/01/2004#0987654321#100 Lanh Binh Thang#Khách hàng#1
