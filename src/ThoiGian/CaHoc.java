@@ -41,12 +41,9 @@ public class CaHoc {
     }
 
     public boolean equal(CaHoc caHoc) {
-        if (caHoc.getThu().equals(this.getThu())
-                && caHoc.getGioVaoHoc().equals(this.getGioVaoHoc())
-                && caHoc.getGioTanHoc().equals(this.getGioTanHoc())) {
-            return true;
-        }
-        return false;
+        return caHoc.getThu().equals(this.getThu())
+        && caHoc.getGioVaoHoc().equals(this.getGioVaoHoc())
+        && caHoc.getGioTanHoc().equals(this.getGioTanHoc());
     }
 
     @Override

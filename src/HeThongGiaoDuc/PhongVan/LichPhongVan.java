@@ -13,6 +13,8 @@ public class LichPhongVan {
     private LocalTime gioPV;
     private User khachHang;
     private TrangThaiPhongVan trangThaiPhongVan;
+    
+    
     public LichPhongVan(){}
 
     public LichPhongVan(User khachHang){
