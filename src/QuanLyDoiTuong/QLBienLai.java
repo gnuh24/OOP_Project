@@ -70,59 +70,60 @@ public class QLBienLai {
     public static void thongKeDoanhThuTheoChuongTrinh() {
         double[] tongDoanhThu = new double[18];
         for (BienLai bienLai : QLBienLai.dsBienLai) {
-            tongDoanhThu[0] += bienLai.getSoTienDaDong();
-            switch (bienLai.getYeuCauDangKy().getLopHoc().getChuongTrinh().getMaChuongTrinh()) {
-                case "CTH001":
-                    tongDoanhThu[1] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH002":
-                    tongDoanhThu[2] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH003":
-                    tongDoanhThu[3] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH004":
-                    tongDoanhThu[4] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH005":
-                    tongDoanhThu[5] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH006":
-                    tongDoanhThu[6] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH007":
-                    tongDoanhThu[7] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH008":
-                    tongDoanhThu[8] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH009":
-                    tongDoanhThu[9] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH010":
-                    tongDoanhThu[10] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH011":
-                    tongDoanhThu[11] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH012":
-                    tongDoanhThu[12] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH013":
-                    tongDoanhThu[13] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH014":
-                    tongDoanhThu[14] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH015":
-                    tongDoanhThu[15] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH016":
-                    tongDoanhThu[16] += bienLai.getSoTienDaDong();
-                    break;
-                case "CTH017":
-                    tongDoanhThu[17] += bienLai.getSoTienDaDong();
-                    break;
+            if(bienLai.getYeuCauDangKy().getTrangThaiDangKy()== TrangThaiDangKy.DA_GHI_DANH) {
+                tongDoanhThu[0] += bienLai.getSoTienDaDong();
+                switch (bienLai.getYeuCauDangKy().getLopHoc().getChuongTrinh().getMaChuongTrinh()) {
+                    case "CTH001":
+                        tongDoanhThu[1] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH002":
+                        tongDoanhThu[2] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH003":
+                        tongDoanhThu[3] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH004":
+                        tongDoanhThu[4] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH005":
+                        tongDoanhThu[5] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH006":
+                        tongDoanhThu[6] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH007":
+                        tongDoanhThu[7] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH008":
+                        tongDoanhThu[8] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH009":
+                        tongDoanhThu[9] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH010":
+                        tongDoanhThu[10] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH011":
+                        tongDoanhThu[11] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH012":
+                        tongDoanhThu[12] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH013":
+                        tongDoanhThu[13] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH014":
+                        tongDoanhThu[14] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH015":
+                        tongDoanhThu[15] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH016":
+                        tongDoanhThu[16] += bienLai.getSoTienDaDong();
+                        break;
+                    case "CTH017":
+                        tongDoanhThu[17] += bienLai.getSoTienDaDong();
+                        break;
 
             }
         }
