@@ -240,14 +240,14 @@ public class QLLichPhongVan {
         }
         LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(idPV);
         if (lichPhongVan == null){
-            System.out.println("Mã không tồn tại !!!");
+            System.err.println("Mã không tồn tại !!!");
             thayDoiTrangThaiLichPhongVan();
         }
         else{
 
             if (lichPhongVan.getTrangThaiPhongVan().equals(TrangThaiPhongVan.HUY)){
                 System.err.println("Không thể thay đổi trạng thái của lịch phổng vấn đã bị hủy trước đó !!!");
-                return;
+                thayDoiTrangThaiLichPhongVan();
             }
 
             System.out.printf("Bạn đã chọn lịch phổng vấn %s \n", lichPhongVan.getMaCaPhongVan());

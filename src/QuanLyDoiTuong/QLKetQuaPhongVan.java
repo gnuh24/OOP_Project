@@ -21,14 +21,14 @@ public class QLKetQuaPhongVan {
     }
 
     public static void inDSKetQuaPhongVan(ArrayList<KetQuaPhongVan> dsKetQuaPhongVan){
-        System.out.println("*".repeat(133));
-        System.out.printf("* %-20s* %-30s* %-20s* %-20s* %-20s* %-20s*\n", "Mã ca phổng vấn", "Tên khách hàng", "Số điện thoại","Điểm phổng vấn", "Chương Trình Phù Hợp", "Trạng thái");
-        System.out.println("*".repeat(133));
+        System.out.println("*".repeat(148));
+        System.out.printf("* %-20s* %-30s* %-20s* %-20s* %-25s* %-20s*\n", "Mã ca phổng vấn", "Tên khách hàng", "Số điện thoại","Điểm phổng vấn", "Chương Trình Phù Hợp", "Trạng thái");
+        System.out.println("*".repeat(148));
         for (KetQuaPhongVan ketQuaPhongVan: dsKetQuaPhongVan){
             String lienHe = LienHe.toString(ketQuaPhongVan.getLienHe());
-            System.out.printf("* %-20s* %-30s* %-20s* %-20s* %-20s* %-20s*\n", ketQuaPhongVan.getLichPhongVan().getMaCaPhongVan(), ketQuaPhongVan.getLichPhongVan().getKhachHang().getHoTen(), ketQuaPhongVan.getLichPhongVan().getKhachHang().getSoDienThoai(), ketQuaPhongVan.getDiem(), ketQuaPhongVan.getChuongTrinhHocDeXuat().getKhoaHoc(), lienHe);
+            System.out.printf("* %-20s* %-30s* %-20s* %-20s* %-25s* %-20s*\n", ketQuaPhongVan.getLichPhongVan().getMaCaPhongVan(), ketQuaPhongVan.getLichPhongVan().getKhachHang().getHoTen(), ketQuaPhongVan.getLichPhongVan().getKhachHang().getSoDienThoai(), ketQuaPhongVan.getDiem(), ketQuaPhongVan.getChuongTrinhHocDeXuat().getKhoaHoc(), lienHe);
         }
-        System.out.println("*".repeat(133));
+        System.out.println("*".repeat(148));
 
 
     }
@@ -127,8 +127,17 @@ public class QLKetQuaPhongVan {
                 case 3:
                     ketQuaPhongVan.setLienHe(LienHe.DaDangKy);
                     System.out.println("Bạn vừa điều chỉnh trạng thái đăng ký của kết quả phổng vấn thành \"Đã đăng ký\" !!");
-                    System.out.println("Bạn có muốn tạo đăng ký cho họ không ?");
-                    QLYeuCauDangKy.dangKyMonHocChoKhachHang(ketQuaPhongVan);
+                    System.out.println("Bạn có muốn tạo đăng ký cho họ không ? (1 hoặc 0)");
+                    int dangKy = ScannerUtils.inputInt();
+                    while (dangKy != 1 && dangKy != 0){
+                        System.err.println("Lựa chọn không hợp lệ !!");
+                        System.out.println("Bạn có muốn tạo đăng ký cho họ không ? (1 hoặc 0)");
+                        dangKy = ScannerUtils.inputInt();
+
+                    }
+                    if (dangKy == 1){
+                        QLYeuCauDangKy.dangKyMonHocChoKhachHang(ketQuaPhongVan);
+                    }
                     break;
                 case 4:
                     ketQuaPhongVan.setLienHe(LienHe.LienHeSau);

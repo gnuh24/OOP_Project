@@ -2,6 +2,7 @@ package TaiKhoan;
 
 import Menu.Session;
 import NguoiDung.User;
+import NguoiDung.VaiTro;
 import QuanLyDoiTuong.QLUser;
 import Utils.DocGhiFile;
 import Utils.ScannerUtils;
@@ -144,9 +145,13 @@ public class QLTaiKhoan {
     }
 
     public static void taoTaiKhoanMoi(User user){
-        TaiKhoan taiKhoan = new TaiKhoan(user);
-        QLTaiKhoan.getDsTaiKhoan().add(taiKhoan);
-        System.out.println("Tạo tài khoản mới thành công !!");
+        if (user.getVaiTro().equals(VaiTro.KhachHang)){
+            System.err.println("Bạn không thể tạo tài khoản cho các user có vai trò khách hàng !!");
+        }else{
+            TaiKhoan taiKhoan = new TaiKhoan(user);
+            QLTaiKhoan.getDsTaiKhoan().add(taiKhoan);
+            System.out.println("Tạo tài khoản mới thành công !!");
+        }
     }
 
     public static void doiMatKhau(){
