@@ -126,6 +126,7 @@ public class QLBienLai {
                         tongDoanhThu[17] += bienLai.getSoTienDaDong();
                         break;
 
+                }
             }
         }
 
