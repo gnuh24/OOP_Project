@@ -184,10 +184,15 @@ public class QLLichPhongVan {
         }
         LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id);
 
-        if (lichPhongVan == null){
-            System.out.println("Mã không tồn tại !!!");
+        while (lichPhongVan == null){
+            System.err.println("Mã không tồn tại !!!");
+            System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
+            id = ScannerUtils.inputString();
+            if (id.equals("1")){
+                return;
+            }
+            lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id);
         }
-        else{
             System.out.printf("Bạn đã chọn lịch phổng vấn %s \n", lichPhongVan.getMaCaPhongVan());
 
             LocalDate ngayThang = ScannerUtils.inputDate("Nhập ngày phổng vấn. ");
@@ -222,7 +227,7 @@ public class QLLichPhongVan {
             }else{
                 System.err.println("Thêm thất bại !!! Có vấn đề hệ thống xảy ra lúc sắp xếp lịch phổng vấn !!");
             }
-        }
+
     }
 
     public static void thayDoiTrangThaiLichPhongVan(){
@@ -321,7 +326,7 @@ public class QLLichPhongVan {
                     QLChuongTrinhHoc.timKiemTheoMa(maChuongTrinh);
 
             if (chuongTrinhHoc == null) {
-                System.out.println("Không tìm thấy chương trình !!");
+                System.err.println("Không tìm thấy chương trình !!");
             } else {
                 KetQuaPhongVan ketQuaPhongVan = new KetQuaPhongVan(lichPhongVan, diem,
                         chuongTrinhHoc);

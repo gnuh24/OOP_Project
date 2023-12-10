@@ -1,16 +1,10 @@
 package Menu.GiaoDien;
 
-import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
-import HeThongGiaoDuc.LopHoc.HocVienLopHoc;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
-import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
-import HeThongGiaoDuc.PhongVan.LichPhongVan;
-import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
 import Menu.Session;
 import QuanLyDoiTuong.*;
 import Utils.ScannerUtils;
-
 import java.util.ArrayList;
 
 public class GiaoDienGiangVien extends GiaoDienNhanVienDungLop {

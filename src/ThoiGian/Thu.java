@@ -1,6 +1,4 @@
 package ThoiGian;
-
-import java.sql.SQLOutput;
 import java.time.DayOfWeek;
 
 public enum Thu {

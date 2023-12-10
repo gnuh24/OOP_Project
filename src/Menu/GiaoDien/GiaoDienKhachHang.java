@@ -8,8 +8,6 @@ import NguoiDung.VaiTro;
 import QuanLyDoiTuong.*;
 import Utils.ScannerUtils;
 
-import java.time.LocalDate;
-
 public class GiaoDienKhachHang extends GiaoDien {
     @Override
     public void giaoDien() {
@@ -31,7 +29,7 @@ public class GiaoDienKhachHang extends GiaoDien {
             choice = ScannerUtils.inputInt();
 
             if (choice < 1 || choice > 8) {
-                System.out.println("Bạn chỉ được nhập các lựa chọn trên màn hình");
+                System.err.println("Bạn chỉ được nhập các lựa chọn trên màn hình");
             }
 
             switch (choice) {

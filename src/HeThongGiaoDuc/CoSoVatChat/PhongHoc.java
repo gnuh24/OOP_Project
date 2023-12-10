@@ -1,16 +1,7 @@
 package HeThongGiaoDuc.CoSoVatChat;
-
 import HeThongGiaoDuc.LopHoc.LopHoc;
-import HeThongGiaoDuc.PhongVan.LichPhongVan;
-import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
-import NguoiDung.VaiTro;
-import QuanLyDoiTuong.QLLichPhongVan;
 import QuanLyDoiTuong.QLLopHoc;
 import ThoiGian.CaHoc;
-import ThoiGian.Thu;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class PhongHoc {

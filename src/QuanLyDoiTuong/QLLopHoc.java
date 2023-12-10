@@ -7,7 +7,6 @@ import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
 import HeThongGiaoDuc.CoSoVatChat.PhongHoc;
 import HeThongGiaoDuc.LopHoc.LopHoc;
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
-import Menu.LoadDuLieu;
 import NguoiDung.User;
 import NguoiDung.VaiTro;
 import ThoiGian.CaHoc;

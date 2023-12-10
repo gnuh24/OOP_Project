@@ -143,13 +143,13 @@ public class GiaoDienHocVien extends GiaoDien {
     private void inSoTienConNo( ArrayList<YeuCauDangKy> cacYCDK) {
         // in ra số tiền còn nợ của từng yêu cầu đăng ký
         System.out.println("*".repeat(100));
-        System.out.printf("* %-20s* %-20s* %-25s* %-25s*\n",
+        System.out.printf("* %-20s* %-20s* %-25s* %-26s*\n",
                 "Mã đăng ký", "Tên lớp học", "Tổng học phí", "Số tiền còn nợ");
 
         for (YeuCauDangKy YCDK : cacYCDK) {
             // chỉ in ra các YCDK còn nợ học phí
             if (QLBienLai.soTienConNo(YCDK) > 0) {
-                System.out.printf("* %-20s* %-20s* %-25.2f* %-25s*\n",
+                System.out.printf("* %-20s* %-20s* %-25.2f* %-26s*\n",
                         YCDK.getMaDangKy(),
                         YCDK.getLopHoc().getTenLop(),
                         YCDK.getTongHocPhi(),
@@ -179,7 +179,7 @@ public class GiaoDienHocVien extends GiaoDien {
         }
         YeuCauDangKy YCDK = QLYeuCauDangKy.timKiemTheoMaDangKy(input, cacYCDK);
         while (YCDK == null) {
-            System.out.println("Không tìm thấy Yêu cầu đăng ký phù hợp. Vui lòng nhập lại");
+            System.err.println("Không tìm thấy Yêu cầu đăng ký phù hợp. Vui lòng nhập lại");
             System.out.println("Ấn phím 1 để thoát");
             input = ScannerUtils.inputString();
             YCDK = QLYeuCauDangKy.timKiemTheoMaDangKy(input, cacYCDK);

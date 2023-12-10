@@ -1,7 +1,5 @@
 package TaiKhoan;
 
-//import Menu;
-import Menu.GiaoDien.GiaoDien;
 import Menu.Session;
 import NguoiDung.User;
 import QuanLyDoiTuong.QLUser;

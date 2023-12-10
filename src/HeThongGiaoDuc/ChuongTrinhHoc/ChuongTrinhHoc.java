@@ -1,10 +1,4 @@
 package HeThongGiaoDuc.ChuongTrinhHoc;
-
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class ChuongTrinhHoc {
     private String maChuongTrinh;
     private String theLoai;

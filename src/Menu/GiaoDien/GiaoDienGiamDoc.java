@@ -2,7 +2,6 @@ package Menu.GiaoDien;
 
 import Menu.Session;
 import QuanLyDoiTuong.*;
-import QuanLyDoiTuong.QLHocVienLopHoc;
 import Utils.ScannerUtils;
 
 public class GiaoDienGiamDoc extends GiaoDienQuanLy {

@@ -4,8 +4,6 @@ import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
 import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.LienHe;
-import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
-import Menu.GiaoDien.GiaoDienCongTacVien;
 import Utils.DocGhiFile;
 import Utils.ScannerUtils;
 

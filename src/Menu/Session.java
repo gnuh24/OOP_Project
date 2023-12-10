@@ -1,7 +1,5 @@
 package Menu;
 
-//import HeThongGiaoDuc.PhongVan.LichPhongVan;
-//import QuanLyDoiTuong.QLLichPhongVan;
 import Menu.GiaoDien.*;
 import NguoiDung.VaiTro;
 import TaiKhoan.*;

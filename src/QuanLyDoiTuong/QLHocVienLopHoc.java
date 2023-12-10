@@ -1,8 +1,6 @@
 package QuanLyDoiTuong;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-
 import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
 import HeThongGiaoDuc.DangKy.YeuCauDangKy;
