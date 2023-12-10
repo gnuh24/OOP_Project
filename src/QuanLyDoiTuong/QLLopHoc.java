@@ -222,26 +222,6 @@ public class QLLopHoc {
     return null;
   }
 
-  public static LopHoc timKiemLopTheoTenLop(String tenLop) {
-    for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
-      if (lopHoc.getTenLop().equals(tenLop)) {
-        return lopHoc;
-      }
-    }
-    return null;
-  }
-
-  public static ArrayList<LopHoc> timKiemLopTheoKhoa(String maKhoa) {
-    ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
-    for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
-      if (lopHoc.getKhoa().getMaKhoa().equals(maKhoa)) {
-        dsLopHocin.add(lopHoc);
-      }
-    }
-    return dsLopHocin;
-  }
-
-
   //Lấy trực tiếp ra những lớp Đang học hoặc Sắp Khai Giảng
   public static ArrayList < LopHoc > timKiemLopTheoGiangVien(String maGV) {
     ArrayList < LopHoc > dsLopHocin = new ArrayList<>();
@@ -286,6 +266,9 @@ public class QLLopHoc {
   public static ArrayList<LopHoc> timKiemLopTheoTroGiang(String maTG) {
     ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
     for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
+      if (lopHoc.getTrangThai().equals(TrangThaiLop.Cho_Sap_Xep)){
+        continue;
+      }
       if (lopHoc.getTroGiang().getMaUser().equals(maTG)
               && (lopHoc.getTrangThai().equals(TrangThaiLop.Sap_Khai_Giang) || lopHoc.getTrangThai().equals(TrangThaiLop.Dang_Hoc))) {
         dsLopHocin.add(lopHoc); // Bạn cần thêm dòng này để thêm lớp học vào danh sách
@@ -398,12 +381,15 @@ public class QLLopHoc {
       return;
     }
 
-    if (lopHoc == null){
-      System.out.println("Không tìm thấy mã lớp !!!");
-      sapXepLopHoc();
+    while (lopHoc == null){
+      System.err.println("Không tìm thấy mã lớp !!!");
+      System.out.println("Ấn 1 để trở về giao diện chính.");
+      choice = ScannerUtils.inputString();
+      if (choice.equals("1")){
+        return;
+      }
+      lopHoc = QLLopHoc.timKiemLopTheoMaLop(choice);
     }
-    else {
-
       ArrayList<User> dsGiangVien = QLUser.timUserTheoVaiTro(VaiTro.GiangVien, true);
       ArrayList<User> dsTroGiang = QLUser.timUserTheoVaiTro(VaiTro.TroGiang, true);
 
@@ -413,8 +399,8 @@ public class QLLopHoc {
       System.out.println("Hãy chọn ca học thứ 1 mà bạn muốn ?");
       int choiceCaHoc1 = ScannerUtils.inputInt();
       if (choiceCaHoc1 < 1 || choiceCaHoc1 > QLCaHoc.getDsCaHoc().size()){
-        System.out.println("Ca học không hợp lẹ !!");
-        sapXepLopHoc();
+        System.err.println("Ca học không hợp lẹ !!");
+        return;
       }else{
         dsCaHoc.add(QLCaHoc.getDsCaHoc().get(choiceCaHoc1 - 1));
       }
@@ -423,12 +409,12 @@ public class QLLopHoc {
       System.out.println("Hãy chọn ca học thứ 2 mà bạn muốn ?");
       int choiceCaHoc2 = ScannerUtils.inputInt();
       if (choiceCaHoc2 < 1 || choiceCaHoc2 > QLCaHoc.getDsCaHoc().size()){
-        System.out.println("Ca học không hợp lẹ !!");
-        sapXepLopHoc();
+        System.err.println("Ca học không hợp lẹ !!");
+        return;
       }else{
         if (choiceCaHoc2 == choiceCaHoc1){
-          System.out.println("Bạn không được chọn 2 ca học giống nhau !!");
-          sapXepLopHoc();
+          System.err.println("Bạn không được chọn 2 ca học giống nhau !!");
+          return;
         }else{
           dsCaHoc.add(QLCaHoc.getDsCaHoc().get(choiceCaHoc2 - 1));
         }
@@ -581,7 +567,7 @@ public class QLLopHoc {
 
       lopHoc.setTrangThai(TrangThaiLop.Sap_Khai_Giang);
       System.out.println("Đã sắp xếp thành công cho lớp học  !!");
-    }
+
   }
 
   public static void thayDoiTrangThaiLop(){

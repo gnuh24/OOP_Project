@@ -178,7 +178,22 @@ public class QLKhoaKhaiGiang {
 
 	public static void taoKhoaMoi(){
 		LocalDate ngayBatDau = ScannerUtils.inputDate("Nhập ngày bắt đầu");
+		while(ngayBatDau.isBefore(LocalDate.now())){
+			System.err.println("Ngày bắt đầu của khóa mới không thể nằm trong quá khứ được !!");
+			ngayBatDau = ScannerUtils.inputDate("Nhập ngày bắt đầu");
+		}
+
 		LocalDate ngayKetThuc = ScannerUtils.inputDate("Nhập ngày kết thúc");
+
+		while(ngayKetThuc.isBefore(LocalDate.now()) || ngayKetThuc.isBefore(ngayBatDau)){
+			if (ngayKetThuc.isBefore(LocalDate.now())){
+				System.err.println("Ngày kết thúc của khóa mới không thể nằm trong quá khứ được !!");
+			}else{
+				System.err.println("Ngày kết thúc không thể nằm trước ngày bắt đầu !!");
+			}
+			ngayKetThuc = ScannerUtils.inputDate("Nhập ngày Kết thúc");
+		}
+
 		KhoaKhaiGiang khoaKhaiGiangMoi = new KhoaKhaiGiang(ngayBatDau, ngayKetThuc);
 		QLKhoaKhaiGiang.getDsKhoaKhaiGiang().add(khoaKhaiGiangMoi);
 		System.out.println("Đã thêm khóa");

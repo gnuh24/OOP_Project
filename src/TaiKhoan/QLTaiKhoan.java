@@ -175,7 +175,15 @@ public class QLTaiKhoan {
 
         System.out.println("Hãy nhập mật khẩu mới cho tài khoản !!");
         String password = ScannerUtils.inputString();
-        System.out.println("Hãy nhập lại mật khẩu của bạn để xác thực danh tính !!");
+
+        System.out.println("Hãy nhập mật khẩu cũ của tài khoản !!");
+        String oldPassword = ScannerUtils.inputString();
+        if (!oldPassword.equals(taiKhoan.getMatKhau())){
+            System.err.println("Mật khẩu cũ của tài khoản không đúng !!");
+            return;
+        }
+
+        System.out.println("Hãy nhập lại mật khẩu của Cộng tác viên để xác thực danh tính !!");
         String adminPassword = ScannerUtils.inputString();
         if (!adminPassword.equals(Session.getTaiKhoan().getMatKhau())){
             System.err.println("Mật khẩu của bạn nhập không đúng !!!");

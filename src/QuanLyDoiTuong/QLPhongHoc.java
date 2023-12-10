@@ -19,7 +19,7 @@ public class QLPhongHoc {
 
     public static void inDSPhongHoc(ArrayList<PhongHoc> dsPhongHoc){
         System.out.println("*************************************");
-        System.out.printf("* %-10s* %-10s* %-10b*\n","Mã phòng","Cơ sở","Trạng thái");
+        System.out.printf("* %-10s* %-10s* %-10s*\n","Mã phòng","Cơ sở","Trạng thái");
         System.out.println("*************************************");
 
         for(PhongHoc phong:dsPhongHoc){

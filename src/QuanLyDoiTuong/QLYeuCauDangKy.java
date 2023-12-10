@@ -136,7 +136,7 @@ public class QLYeuCauDangKy {
         dsYeuCauDangKy.sort(Comparator.comparingInt(yeuCau -> yeuCau.getLocalDate().getYear()));
         int demHocVien = 0;
         int tongSoHocVien = 0;
-        int nam = getDsYeuCauDangKy().get(0).getLocalDate().getYear();
+        int nam = dsYeuCauDangKy.get(0).getLocalDate().getYear();
 
         System.out.println("*".repeat(47));
         System.out.printf("*  %-20s*  %-20s*\n", "Năm", "Số học viên");
@@ -165,6 +165,8 @@ public class QLYeuCauDangKy {
         // In thông tin của năm cuối cùng
         System.out.println("*".repeat(47));
         System.out.printf("*  %-20s*  %-20s*\n","Tổng học viên:",tongSoHocVien);
+        System.out.println("*".repeat(47));
+
     }
 
     public static void thongKeHocVienTheoThang(){
@@ -200,7 +202,7 @@ public class QLYeuCauDangKy {
             return;
         }
         while (hocVien == null){
-            System.out.println("Không tìm thấy mã học viên !!");
+            System.err.println("Không tìm thấy mã học viên !!");
             System.out.println("Xin mời nhập lại !!");
             System.out.println("Nhấn 1 để thoát");
             maHV = ScannerUtils.inputString();
@@ -387,9 +389,9 @@ public class QLYeuCauDangKy {
         System.out.println("Đã hủy yêu cầu đăng ký thành công !!");
     }
     public static void inDSYeuCauDangKy(ArrayList<YeuCauDangKy> dsYeuCauDangKy) {
-        System.out.println("*".repeat(133));
+        System.out.println("*".repeat(148));
         System.out.printf("* %-15s* %-30s* %-30s* %-20s* %-20s* %-20s*\n", "Mã đăng ký", "Tên học viên", "Tên lớp học", "Tổng học phí", "Trạng thái", "Khuyến mãi");
-        System.out.println("*".repeat(133));
+        System.out.println("*".repeat(148));
 
         for (YeuCauDangKy yeuCauDangKy : dsYeuCauDangKy) {
             String maDangKy = yeuCauDangKy.getMaDangKy();
@@ -402,7 +404,7 @@ public class QLYeuCauDangKy {
             System.out.printf("* %-15s* %-30s* %-30s* %-20s* %-20s* %-20s*\n", maDangKy, tenHocVien, tenLopHoc, tongHocPhi, trangThai, khuyenMai);
         }
 
-        System.out.println("*".repeat(133));
+        System.out.println("*".repeat(148));
     }
 
 
