@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.KhoaKhaiGiang;
 import HeThongGiaoDuc.DangKy.BienLai;
+import HeThongGiaoDuc.DangKy.TrangThaiDangKy;
 import HeThongGiaoDuc.DangKy.YeuCauDangKy;
 import Utils.DocGhiFile;
 import Utils.ScannerUtils;
@@ -167,9 +168,11 @@ public class QLBienLai {
         System.out.println("Nhập năm muốn kiểm tra: ");
         int nam = ScannerUtils.inputInt();
         for (BienLai bienLai : QLBienLai.dsBienLai) {
-            if (bienLai.getNgayThanhToan().getYear() == nam) {
-                tongDoanhThu[0] += bienLai.getSoTienDaDong();
-                tongDoanhThu[bienLai.getNgayThanhToan().getMonthValue()] += bienLai.getSoTienDaDong();
+            if(bienLai.getYeuCauDangKy().getTrangThaiDangKy()== TrangThaiDangKy.DA_GHI_DANH) {
+                if (bienLai.getNgayThanhToan().getYear() == nam) {
+                    tongDoanhThu[0] += bienLai.getSoTienDaDong();
+                    tongDoanhThu[bienLai.getNgayThanhToan().getMonthValue()] += bienLai.getSoTienDaDong();
+                }
             }
         }
 
@@ -196,19 +199,21 @@ public class QLBienLai {
         System.out.println("*".repeat(50));
         int i=0;
         for (BienLai bienLai : dsBienLai) {
-            if (bienLai.getNgayThanhToan().getYear() == nam) {
-                tongDoanhThu += bienLai.getSoTienDaDong();
-                i++;
-            } else {
-                System.out.printf("*  %-20s*  %-23.2f*\n", nam, tongDoanhThu);
-                tongDoanhThu = 0;
-                nam = bienLai.getNgayThanhToan().getYear();
-                i++;
+            if(bienLai.getYeuCauDangKy().getTrangThaiDangKy()== TrangThaiDangKy.DA_GHI_DANH) {
+                if (bienLai.getNgayThanhToan().getYear() == nam) {
+                    tongDoanhThu += bienLai.getSoTienDaDong();
+                    i++;
+                } else {
+                    System.out.printf("*  %-20s*  %-23.2f*\n", nam, tongDoanhThu);
+                    tongDoanhThu = 0;
+                    nam = bienLai.getNgayThanhToan().getYear();
+                    i++;
+                }
+                if (i == dsBienLai.size() - 1) {
+                    System.out.printf("*  %-20s*  %-23.2f*\n", nam, tongDoanhThu);
+                }
+                tongDoanhThuTheoLichSu += bienLai.getSoTienDaDong();
             }
-            if(i==dsBienLai.size()-1){
-                System.out.printf("*  %-20s*  %-23.2f*\n", nam, tongDoanhThu);
-            }
-            tongDoanhThuTheoLichSu+=bienLai.getSoTienDaDong();
         }
         System.out.println("*".repeat(50));
         System.out.printf("*  Tổng doanh thu: %-30.2f*\n", tongDoanhThuTheoLichSu);
