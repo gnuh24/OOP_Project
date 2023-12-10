@@ -5,9 +5,9 @@ import ThoiGian.CaHoc;
 import java.util.ArrayList;
 
 public class PhongHoc {
-    String maPhongHoc;
-    boolean trangThai;
-    CoSo coSoTrucThuoc;
+    private String maPhongHoc;
+    private boolean trangThai;
+    private CoSo coSoTrucThuoc;
     public PhongHoc(){
     }
     public PhongHoc(String maPhongHoc, boolean trangThai, CoSo coSoTrucThuoc){

@@ -114,11 +114,7 @@ public class YeuCauDangKy {
     public void setTongHocPhi(double tongHocPhi) {
         this.tongHocPhi = tongHocPhi;
     }
-
-    public void setTongHocPhi(int tongHocPhi) {
-        this.tongHocPhi = tongHocPhi;
-    }
-
+    
     public TrangThaiDangKy getTrangThaiDangKy() {
         return trangThaiDangKy;
     }

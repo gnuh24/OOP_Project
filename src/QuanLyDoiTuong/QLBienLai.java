@@ -146,8 +146,10 @@ public class QLBienLai {
         System.out.println("*".repeat(50));
         for(KhoaKhaiGiang khoaKhaiGiang:QLKhoaKhaiGiang.getDsKhoaKhaiGiang()){
             for(BienLai bienLai:dsBienLai){
-                if (bienLai.getYeuCauDangKy().getLopHoc().getKhoa().getMaKhoa().equals(khoaKhaiGiang.getMaKhoa())) {
-                    tongDoanhThu+=bienLai.getSoTienDaDong();
+                if(bienLai.getYeuCauDangKy().getTrangThaiDangKy()== TrangThaiDangKy.DA_GHI_DANH) {
+                    if (bienLai.getYeuCauDangKy().getLopHoc().getKhoa().getMaKhoa().equals(khoaKhaiGiang.getMaKhoa())) {
+                        tongDoanhThu += bienLai.getSoTienDaDong();
+                    }
                 }
             }
             System.out.printf("*  %-20s*  %-23.2f*\n", khoaKhaiGiang.getMaKhoa(), tongDoanhThu);
