@@ -327,6 +327,27 @@ public class QLLopHoc {
     return dsLopHocin;
   }
 
+  public static ArrayList<LopHoc> timKiemLopTheoPhongHoc(String maPhong, boolean flag){
+    if(flag){
+      ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
+
+      for (LopHoc lopHoc : QLLopHoc.getDsLopHoc()) {
+        if(lopHoc.getTrangThai().equals(TrangThaiLop.Cho_Sap_Xep)){
+          continue;
+        }
+        if (lopHoc.getPhongHocMacDinh().getMaPhongHoc().equals(maPhong) &&
+                ( lopHoc.getTrangThai().equals(TrangThaiLop.Dang_Hoc) ||
+            lopHoc.getTrangThai().equals(TrangThaiLop.Sap_Khai_Giang)) ) {
+              dsLopHocin.add(lopHoc);
+        }
+      }
+
+      return dsLopHocin;
+    }
+
+    return timKiemLopTheoPhongHoc(maPhong);
+  }
+
   public static ArrayList<LopHoc> timKiemLopTheoPhongHoc(String maPhong){
     ArrayList<LopHoc> dsLopHocin = new ArrayList<>();
 
@@ -403,11 +424,12 @@ public class QLLopHoc {
 
 
   public static void sapXepLopHoc(){
-    QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Cho_Sap_Xep));
+    ArrayList<LopHoc> dsLopHoc = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Cho_Sap_Xep);
+    QLLopHoc.inDanhSach(dsLopHoc);
     System.out.println("Bạn chọn lớp nào để sắp xếp ?");
     System.out.println("Ấn 1 để trở về giao diện chính.");
     String choice = ScannerUtils.inputString();
-    LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(choice);
+    LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(choice, dsLopHoc);
     if (choice.equals("1")){
       return;
     }
@@ -462,31 +484,16 @@ public class QLLopHoc {
         return;
       }
 
-      while (giangVien == null){
-        System.err.println("Mã giảng viên không hợp lẹ !!");
-        System.out.println("Hãy chọn giảng viên phù hợp.");
-        System.out.println("Ấn 1 để trở về giao diện chính.");
-
-        maGV = ScannerUtils.inputString();
-        giangVien = QLUser.timUserTheoMa(maGV, dsGiangVien);
-        if (maGV.equals("1")){
-          return;
+      while (giangVien == null ||
+              giangVien.isBusy(dsCaHoc.get(0)) ||
+              giangVien.isBusy(dsCaHoc.get(1)) ){
+        if(giangVien == null){
+          System.err.println("Mã giảng viên không hợp lẹ !!");
+        } else if (giangVien.isBusy(dsCaHoc.get(0))){
+          System.err.printf("Giảng viên bị trùng lịch vào %s !!!\n", dsCaHoc.get(0));
+        } else  {
+          System.err.printf("Giảng viên bị trùng lịch vào %s !!!\n", dsCaHoc.get(1));
         }
-      }
-
-      while (giangVien.isBusy(dsCaHoc.get(0))){
-        System.err.printf("Giảng viên bị trùng lịch vào %s !!!\n", dsCaHoc.get(0));
-        System.out.println("Hãy chọn giảng viên phù hợp.");
-        System.out.println("Ấn 1 để trở về giao diện chính.");
-        maGV = ScannerUtils.inputString();
-        giangVien = QLUser.timUserTheoMa(maGV, dsGiangVien);
-        if (maGV.equals("1")){
-          return;
-        }
-      }
-
-      while (giangVien.isBusy(dsCaHoc.get(1))) {
-        System.err.printf("Giảng viên bị trùng lịch vào %s !!!\n", dsCaHoc.get(1));
         System.out.println("Hãy chọn giảng viên phù hợp.");
         System.out.println("Ấn 1 để trở về giao diện chính.");
 
@@ -510,37 +517,22 @@ public class QLLopHoc {
         return;
       }
 
-      while (troGiang == null){
-        System.err.println("Mã trợ giảng không hợp lẹ !!");
-        System.out.println("Hãy chọn trợ giảng phù hợp.");
-        maTG = ScannerUtils.inputString();
-        troGiang = QLUser.timUserTheoMa(maTG, dsTroGiang);
-        System.out.println("Ấn 1 để trở về giao diện chính.");
-        if (maTG.equals("1")){
-          return;
+      while (troGiang == null ||
+              troGiang.isBusy(dsCaHoc.get(0)) ||
+              troGiang.isBusy(dsCaHoc.get(1))){
+        if(troGiang == null){
+          System.err.println("Mã trợ giảng không hợp lệ !!");
+        }else if (troGiang.isBusy(dsCaHoc.get(0))){
+          System.err.printf("Trợ giảng bị trùng lịch vào %s !!!\n", dsCaHoc.get(0));
+        } else  {
+          System.err.printf("Trợ giảng bị trùng lịch vào %s !!!\n", dsCaHoc.get(1));
         }
-      }
-
-      while (troGiang.isBusy(dsCaHoc.get(0))){
-        System.err.printf("Trợ giảng bị trùng lịch vào %s !!!\n", dsCaHoc.get(0));
         System.out.println("Hãy chọn trợ giảng phù hợp.");
         maTG = ScannerUtils.inputString();
         troGiang = QLUser.timUserTheoMa(maTG, dsTroGiang);
         System.out.println("Ấn 1 để trở về giao diện chính.");
         if (maTG.equals("1")){
-          return;
-        }
-      }
-
-      while (troGiang.isBusy(dsCaHoc.get(1))) {
-        System.err.printf("Trợ giảng bị trùng lịch vào %s !!!\n", dsCaHoc.get(1));
-        System.out.println("Hãy chọn trợ giảng phù hợp.");
-        System.out.println("Ấn 1 để trở về giao diện chính.");
-
-        maTG = ScannerUtils.inputString();
-        troGiang = QLUser.timUserTheoMa(maTG, dsTroGiang);
-        if (maTG.equals("1")){
-          return;
+            return;
         }
       }
 
@@ -557,40 +549,25 @@ public class QLLopHoc {
         return;
       }
 
-      while (phongHoc == null){
-        System.err.println("Phòng học không hợp lệ !!");
+      while (phongHoc == null ||
+              phongHoc.isBusy(lopHoc.getCaHocMacDinh().get(0))||
+              phongHoc.isBusy(lopHoc.getCaHocMacDinh().get(1)) ||
+              !phongHoc.getTrangThai()){
+        if (phongHoc == null){
+            System.err.println("Phòng học không hợp lệ !!");
+        } else if ( phongHoc.isBusy(lopHoc.getCaHocMacDinh().get(0))) {
+          System.err.printf("Phòng học này đã có lớp học tại thời điểm %s", lopHoc.getCaHocMacDinh().get(0));
+        } else if ( phongHoc.isBusy(lopHoc.getCaHocMacDinh().get(1))) {
+          System.err.printf("Phòng học này đã có lớp học tại thời điểm %s", lopHoc.getCaHocMacDinh().get(1));
+        }else{
+          System.err.println("Phòng học đang bảo trì !! Vui lòng chọn phòng khác");
+        }
         System.out.println("Hãy chọn phòng học phù hợp.");
         System.out.println("Ấn 1 để trở về giao diện chính.");
 
         maPhong = ScannerUtils.inputString();
         phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(maPhong);
         if (maPhong.equals("1")){
-          return;
-        }
-      }
-
-      //
-
-      while (phongHoc.isBusy(lopHoc.getCaHocMacDinh().get(0))){
-        System.err.printf("Phòng học này đã có lớp học tại thời điểm %s", lopHoc.getCaHocMacDinh().get(0));
-        System.out.println("Hãy chọn phòng học phù hợp.");
-        System.out.println("Ấn 1 để trở về giao diện chính.");
-
-        maPhong = ScannerUtils.inputString();
-        phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(maPhong);
-        if (maPhong.equals("1")){
-          return;
-        }
-      }
-
-      while (phongHoc.isBusy(lopHoc.getCaHocMacDinh().get(1))) {
-        System.err.printf("Phòng học này đã có lớp học tại thời điểm %s", lopHoc.getCaHocMacDinh().get(1));
-        System.out.println("Hãy chọn phòng học phù hợp.");
-        System.out.println("Ấn 1 để trở về giao diện chính.");
-
-        maPhong = ScannerUtils.inputString();
-        phongHoc = QLPhongHoc.timKiemTheoMaPhongHoc(maPhong);
-        if (maPhong.equals("1")) {
           return;
         }
       }

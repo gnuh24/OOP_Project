@@ -17,7 +17,7 @@ public class PhongHoc {
     }
 
     public boolean isBusy(CaHoc caHoc) {
-        ArrayList<LopHoc> dsLopHocCaNhan = QLLopHoc.timKiemLopTheoPhongHoc(this.maPhongHoc);
+        ArrayList<LopHoc> dsLopHocCaNhan = QLLopHoc.timKiemLopTheoPhongHoc(this.maPhongHoc, true);
         for (LopHoc lopHoc : dsLopHocCaNhan) {
             CaHoc caHoc1 = lopHoc.getCaHocMacDinh().get(0);
             CaHoc caHoc2 = lopHoc.getCaHocMacDinh().get(1);
