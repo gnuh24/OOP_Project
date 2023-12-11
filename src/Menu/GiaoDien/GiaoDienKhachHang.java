@@ -49,7 +49,7 @@ public class GiaoDienKhachHang extends GiaoDien {
                     xemDanhSachCoSoDangHoatDong();
                     break;
                 case 6:
-                    dangKyPhongVan();
+                    QLLichPhongVan.dangKyPhongVan();
                     break;
                 case 7:
                     Session.login();
@@ -59,16 +59,6 @@ public class GiaoDienKhachHang extends GiaoDien {
                     break;
             }
         } while (true);
-    }
-
-    public void dangKyPhongVan(){
-        User khachHang = new User();
-        QLUser.getDsUser().add(khachHang);
-        LichPhongVan lichPhongVan = new LichPhongVan(khachHang);
-        QLLichPhongVan.getDsLichPhongVan().add(lichPhongVan);
-        System.out.println("Bạn đã đăng ký thành công !!");
-        System.out.println("Hình thức test là online thông qua Zoom (Premium)");
-        System.out.println("Bạn sẽ nhận được thông tin chi tiết qua email và điện thoại trong thời gian tới !!");
     }
 
 
@@ -87,13 +77,13 @@ public class GiaoDienKhachHang extends GiaoDien {
         backTo();
     }
 
-    public void xemDanhSachLopSapKhaiGiang(){
-        QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang));
-        backTo();
-    }
+        public void xemDanhSachLopSapKhaiGiang(){
+            QLLopHoc.inDanhSach(QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang));
+            backTo();
+        }
 
-    public void xemDanhSachCoSoDangHoatDong(){
-        QLCoSo.inDSCoSo(QLCoSo.getDsCoSo());
-        backTo();
-    }
+        public void xemDanhSachCoSoDangHoatDong(){
+            QLCoSo.inDSCoSo(QLCoSo.getDsCoSo());
+            backTo();
+        }
 }

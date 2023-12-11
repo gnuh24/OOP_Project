@@ -31,7 +31,6 @@ public class QLLichPhongVan {
         ArrayList<String> duLieu= DocGhiFile.docDuLieuFile("src\\Data\\qlLichPhongVan.txt");
         xuLyDuLieu(duLieu);
         System.out.println("Đã tải xong LỊCH PHỔNG VẤN");
-
     }
 
     public static void xuLyDuLieu(ArrayList<String> duLieu) {
@@ -39,8 +38,6 @@ public class QLLichPhongVan {
         for (String dong : duLieu) {
             // tách chuỗi tam
             String[] cacThuocTinh = dong.split("#");
-
-
 
             String maCa = cacThuocTinh[0];
 
@@ -57,7 +54,6 @@ public class QLLichPhongVan {
 
                 thoiGian = Convert.stringToTime(cacThuocTinh[3]);
             }
-
 
             String maKhach = cacThuocTinh[4];
             User khachHang = QLUser.timUserTheoMa(maKhach);
@@ -95,7 +91,6 @@ public class QLLichPhongVan {
                 ;sb.append("#");
             }
 
-
             if (lichPhongVan.getGioPV() == null){
                 sb.append("#");
 
@@ -104,7 +99,6 @@ public class QLLichPhongVan {
             }
 
             sb.append(lichPhongVan.getKhachHang().getMaUser());sb.append("#");
-
             sb.append(TrangThaiPhongVan.toString(lichPhongVan.getTrangThaiPhongVan()));
             sb.append(System.lineSeparator());
             duLieu.add(sb.toString());
@@ -151,7 +145,6 @@ public class QLLichPhongVan {
                     pvTrangThai);
         }
         System.out.println("*".repeat(128));
-
     }
 
     public static LichPhongVan timKiemLichPhongVanTheoMa(String idPhongVan){
@@ -283,19 +276,13 @@ public class QLLichPhongVan {
     }
 
     public static void dangKyPhongVan(){
-        String hoTen = ScannerUtils.inputName();
-        String email = ScannerUtils.inputEmail();
-        boolean gioiTinh = ScannerUtils.inputGioiTinh();
-        String sdt = ScannerUtils.inputSDT();
-        String diaChi = ScannerUtils.inputDiaChi();
-        LocalDate ngayThang = ScannerUtils.inputDate("Nhập ngày tháng năm sinh: ");
-
-
-        User khachHang = new User(hoTen, email, gioiTinh, ngayThang, sdt, diaChi, VaiTro.KhachHang);
+        User khachHang = new User();
         QLUser.getDsUser().add(khachHang);
         LichPhongVan lichPhongVan = new LichPhongVan(khachHang);
         QLLichPhongVan.getDsLichPhongVan().add(lichPhongVan);
         System.out.println("Bạn đã đăng ký thành công !!");
+        System.out.println("Hình thức test là online thông qua Zoom (Premium)");
+        System.out.println("Bạn sẽ nhận được thông tin chi tiết qua email và điện thoại trong thời gian tới !!");
     }
 
     public static void nhapDiemChoThiSinhPhongVan(){

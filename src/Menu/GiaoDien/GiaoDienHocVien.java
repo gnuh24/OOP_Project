@@ -161,49 +161,49 @@ public class GiaoDienHocVien extends GiaoDien {
         System.out.println("*".repeat(100));
     }
 
-    private void dongHocPhi() {
-        // xác định học viên này
-        User hocVien = Session.getTaiKhoan().getUser();
+        private void dongHocPhi() {
+            // xác định học viên này
+            User hocVien = Session.getTaiKhoan().getUser();
 
-        // tìm các yêu cầu đăng ký của học viên này
-        ArrayList<YeuCauDangKy> cacYCDK = QLYeuCauDangKy.timKiemTheoMaHocVien(hocVien.getMaUser());
+            // tìm các yêu cầu đăng ký của học viên này
+            ArrayList<YeuCauDangKy> cacYCDK = QLYeuCauDangKy.timKiemTheoMaHocVien(hocVien.getMaUser());
 
-        // in ra số tiền còn nợ
-        inSoTienConNo(cacYCDK);
+            // in ra số tiền còn nợ
+            inSoTienConNo(cacYCDK);
 
-        // chọn ycdk muốn đóng
-        System.out.println("Bạn muốn thanh toán cho Yêu cầu đăng ký nào? (Nhập mã đăng ký)");
-        System.out.println("Ấn phím 1 để thoát");
-        String input = ScannerUtils.inputString();
-        if (input.equals("1")){
-            return;
-        }
-        YeuCauDangKy YCDK = QLYeuCauDangKy.timKiemTheoMaDangKy(input, cacYCDK);
-        while (YCDK == null) {
-            System.err.println("Không tìm thấy Yêu cầu đăng ký phù hợp. Vui lòng nhập lại");
+            // chọn ycdk muốn đóng
+            System.out.println("Bạn muốn thanh toán cho Yêu cầu đăng ký nào? (Nhập mã đăng ký)");
             System.out.println("Ấn phím 1 để thoát");
-            input = ScannerUtils.inputString();
-            YCDK = QLYeuCauDangKy.timKiemTheoMaDangKy(input, cacYCDK);
+            String input = ScannerUtils.inputString();
             if (input.equals("1")){
                 return;
             }
+            YeuCauDangKy YCDK = QLYeuCauDangKy.timKiemTheoMaDangKy(input, cacYCDK);
+            while (YCDK == null) {
+                System.err.println("Không tìm thấy Yêu cầu đăng ký phù hợp. Vui lòng nhập lại");
+                System.out.println("Ấn phím 1 để thoát");
+                input = ScannerUtils.inputString();
+                YCDK = QLYeuCauDangKy.timKiemTheoMaDangKy(input, cacYCDK);
+                if (input.equals("1")){
+                    return;
+                }
+            }
+
+            // bước tiếp theo, đóng học phí
+            System.out.println("Nhập số tiền bạn muốn thanh toán (VND): ");
+            System.out.println("Ấn phím 1 để thoát");
+            double tien = ScannerUtils.inputHocPhi();
+            if (tien == 1){
+                return;
+            }
+
+            // tạo và in biên lai
+            BienLai bienLai = new BienLai(YCDK, tien);
+            bienLai.inBienLai();
+            QLBienLai.getDsBienLai().add(bienLai);
+
+            System.out.println("\nThanh toán thành công!!");
         }
-
-        // bước tiếp theo, đóng học phí
-        System.out.println("Nhập số tiền bạn muốn thanh toán (VND): ");
-        System.out.println("Ấn phím 1 để thoát");
-        double tien = ScannerUtils.inputHocPhi();
-        if (tien == 1){
-            return;
-        }
-
-        // tạo và in biên lai
-        BienLai bienLai = new BienLai(YCDK, tien);
-        bienLai.inBienLai();
-        QLBienLai.getDsBienLai().add(bienLai);
-
-        System.out.println("\nThanh toán thành công!!");
-    }
 
 }
 

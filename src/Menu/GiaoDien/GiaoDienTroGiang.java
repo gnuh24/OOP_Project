@@ -62,7 +62,6 @@ public class GiaoDienTroGiang extends GiaoDienNhanVienDungLop {
         backTo();
     }
     @Override
-
     protected void xemDanhSachLopSapKhaiGiang() {
         QLLopHoc.inDanhSach(
                 QLLopHoc.timKiemLopTheoTrangThai(

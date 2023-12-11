@@ -309,7 +309,7 @@ public class ScannerUtils {
         int trangThaiUser;
 
         do {
-            System.out.println("Nhập giới tính: ");
+            System.out.println("Chọn trạng thái: ");
             System.out.println("1. Mở khóa");
             System.out.println("2. Khóa thông tin");
 

@@ -8,7 +8,6 @@ import Utils.ScannerUtils;
 public class Session {
 
     private static TaiKhoan taiKhoan;
-
     private static final GiaoDienKhachHang actorKhachHang= new GiaoDienKhachHang();
     private static final GiaoDienHocVien actorHocVien= new GiaoDienHocVien();
     private static final GiaoDienTroGiang actorTroGiang= new GiaoDienTroGiang();
@@ -64,12 +63,12 @@ public class Session {
 
             if (choice.equals("1")){
                 Session.login();
+                return;
             }
             else {
                 actorKhachHang.giaoDien();
             }
         }
-
 
     }
 
