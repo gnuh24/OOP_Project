@@ -145,6 +145,62 @@ public class User {
 
         return false;
     }
+
+    public void thayDoiThongTin(){
+        System.out.println("Bạn muốn thay đổi thông tin nào ?");
+        System.out.println("1. Họ tên");
+        System.out.println("2. Email");
+        System.out.println("3. Giới tính");
+        System.out.println("4. Ngày sinh");
+        System.out.println("5. SĐT");
+        System.out.println("6. Địa chỉ");
+        System.out.println("7. Trạng thái");
+        int choice = ScannerUtils.inputInt();
+        while(choice < 0 | choice > 7){
+            System.err.println("Lựa chọn không hợp lệ !! Chọn lại ");
+            choice = ScannerUtils.inputInt();
+        }
+        switch (choice){
+            case 1:
+                String name = ScannerUtils.inputName();
+                setHoTen(name);
+                System.out.println("Thay đổi tên thành công !!");
+                break;
+
+            case 2:
+                String email = ScannerUtils.inputEmail();
+                setEmail(email);
+                System.out.println("Thay đổi email thành công !!");
+                break;
+
+            case 3:
+                boolean gioiTinh = ScannerUtils.inputGioiTinh();
+                setGioiTinh(gioiTinh);
+                System.out.println("Thay đổi giới tính thành công !!");
+                break;
+            case 4:
+                LocalDate ngaySinh = ScannerUtils.inputDate("Hãy nhập ngày sinh mới");
+                setNgaySinh(ngaySinh);
+                System.out.println("Thay đổi ngày sinh thành công !!");
+                break;
+            case 5:
+                String sdt = ScannerUtils.inputSDT();
+                setSoDienThoai(sdt);
+                System.out.println("Thay đổi số điện thoại thành công !!");
+                break;
+            case 6:
+                String diaChi = ScannerUtils.inputDiaChi();
+                setDiaChi(diaChi);
+                System.out.println("Thay đổi địa chỉ thành công !!");
+                break;
+            case 7:
+                boolean trangThai = ScannerUtils.inputTrangThaiUser();
+                setTrangThai(trangThai);
+                System.out.println("Thay đổi trạng thái user thành công !!");
+                break;
+        }
+    }
+
     public String getMaUser() {
         return maUser;
     }
