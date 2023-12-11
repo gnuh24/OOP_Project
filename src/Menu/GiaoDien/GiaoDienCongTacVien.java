@@ -46,14 +46,16 @@ public class GiaoDienCongTacVien extends GiaoDien {
             System.out.printf("*  %-96s*\n","10. Thu hồi tài khoản");
             System.out.printf("*  %-96s*\n","11. Đổi mật khẩu cho các tài khoản");
             System.out.printf("*  %-96s*\n","12. Hủy đăng ký");
-            System.out.printf("*  %-96s*\n","13. Đăng xuất");
-            System.out.printf("*  %-96s*\n","14. Thoát chương trình");
+            System.out.printf("*  %-96s*\n","13. Thay đổi thông tin");
+
+            System.out.printf("*  %-96s*\n","14. Đăng xuất");
+            System.out.printf("*  %-96s*\n","15. Thoát chương trình");
             System.out.printf("*  %-96s*\n","Bạn đã có lựa chọn chưa ?");
             System.out.println("*".repeat(100));
 
             choice = ScannerUtils.inputInt();
 
-            if (choice < 1 || choice > 14 ){
+            if (choice < 1 || choice > 15 ){
                 System.err.println("Bạn chỉ được nhập các lựa chọn  trên màn hình");
             }
 
@@ -104,9 +106,13 @@ public class GiaoDienCongTacVien extends GiaoDien {
                     break;
 
                 case 13:
+                    QLUser.thayDoiThongTin();
+                    break;
+
+                case 14:
                     Session.logout();
                     break;
-                case 14:
+                case 15:
                     exit();
                     break;
             }

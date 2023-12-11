@@ -196,7 +196,12 @@ public class QLLichPhongVan {
             System.out.printf("Bạn đã chọn lịch phổng vấn %s \n", lichPhongVan.getMaCaPhongVan());
 
             LocalDate ngayThang = ScannerUtils.inputDate("Nhập ngày phổng vấn. ");
+            while (ngayThang.isBefore(LocalDate.now())){
+                System.err.println("Ngày phổng vấn không được ở trong quá khứ !!");
+                ngayThang = ScannerUtils.inputDate("Nhập ngày phổng vấn. ");
+            }
             lichPhongVan.setNgayThang(ngayThang);
+
 
             LocalTime gioPhongVan = ScannerUtils.inputTime("Nhập giờ phổng vấn");
             lichPhongVan.setGioPV(gioPhongVan);

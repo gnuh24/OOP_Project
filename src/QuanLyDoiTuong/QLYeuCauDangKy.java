@@ -130,9 +130,18 @@ public class QLYeuCauDangKy {
 
         return null;
     }
+    public static  ArrayList<YeuCauDangKy> timKiemTheoTrangThai(TrangThaiDangKy trangThaiDangKy){
+        ArrayList<YeuCauDangKy> dsYeuCauDangKys = new ArrayList<>();
+        for(YeuCauDangKy yeuCauDangKy:dsYeuCauDangKy){
+            if (yeuCauDangKy.getTrangThaiDangKy()==trangThaiDangKy){
+                dsYeuCauDangKys.add(yeuCauDangKy);
+            }
+        }
+        return dsYeuCauDangKys;
+    }
 
     public static void thongKeTheoNam() {
-        ArrayList<YeuCauDangKy> dsYeuCauDangKy = new ArrayList<>(QLYeuCauDangKy.dsYeuCauDangKy);
+        ArrayList<YeuCauDangKy> dsYeuCauDangKy = new ArrayList<>(QLYeuCauDangKy.timKiemTheoTrangThai(TrangThaiDangKy.DA_GHI_DANH));
         dsYeuCauDangKy.sort(Comparator.comparingInt(yeuCau -> yeuCau.getLocalDate().getYear()));
         int demHocVien = 0;
         int tongSoHocVien = 0;
@@ -143,26 +152,22 @@ public class QLYeuCauDangKy {
         System.out.println("*".repeat(47));
         int i=0;
         for (YeuCauDangKy yeuCauDangKy : dsYeuCauDangKy) {
-            if(yeuCauDangKy.getTrangThaiDangKy()!=TrangThaiDangKy.HUY){
-                if (yeuCauDangKy.getLocalDate().getYear() == nam) {
-                    demHocVien++;
-                    i++;
-                } else {
-                    System.out.printf("*  %-20s*  %-20s*\n", nam, demHocVien);
-                    demHocVien = 1; // Bắt đầu đếm từ một nếu có năm mới
-                    nam = yeuCauDangKy.getLocalDate().getYear();
-                    i++;
-                }
-                tongSoHocVien++;
+            if (yeuCauDangKy.getLocalDate().getYear() == nam) {
+                demHocVien++;
+                i++;
+            } else {
+                System.out.printf("*  %-20s*  %-20s*\n", nam, demHocVien);
+                demHocVien = 1; // Bắt đầu đếm từ một nếu có năm mới
+                nam = yeuCauDangKy.getLocalDate().getYear();
+                i++;
             }
-           
-            if (i==dsYeuCauDangKy.size()-1) {
+            tongSoHocVien++;
+
+            if (i==dsYeuCauDangKy.size()) {
                 System.out.printf("*  %-20s*  %-20s*\n", nam, demHocVien);
             }
 
         }
-
-        // In thông tin của năm cuối cùng
         System.out.println("*".repeat(47));
         System.out.printf("*  %-20s*  %-20s*\n","Tổng học viên:",tongSoHocVien);
         System.out.println("*".repeat(47));
@@ -247,6 +252,7 @@ public class QLYeuCauDangKy {
             System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*70/100,  lopHoc.getChuongTrinh().getHocPhi());
             System.out.println("Nếu đăng ký sớm thì bạn vẫn sẽ được giảm 15% học phí");
             System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*85/100,  lopHoc.getChuongTrinh().getHocPhi());
+            System.out.println("Lưu ý: Ưu đãi chỉ áp dụng cho các lớp sắp khai giảng !!");
 
             double dongTien = ScannerUtils.inputHocPhi();
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(hocVien, lopHoc, dongTien);
@@ -309,6 +315,7 @@ public class QLYeuCauDangKy {
             System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*70/100,  lopHoc.getChuongTrinh().getHocPhi());
             System.out.println("Nếu đăng ký sớm thì bạn vẫn sẽ được giảm 15% học phí");
             System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*85/100,  lopHoc.getChuongTrinh().getHocPhi());
+            System.out.println("Lưu ý: Ưu đãi chỉ áp dụng cho các lớp sắp khai giảng !!");
 
             double dongTien = ScannerUtils.inputHocPhi();
 

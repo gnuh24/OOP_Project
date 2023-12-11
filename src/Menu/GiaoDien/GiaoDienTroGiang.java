@@ -60,7 +60,6 @@ public class GiaoDienTroGiang extends GiaoDienNhanVienDungLop {
                         QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()),
                         TrangThaiLop.Dang_Hoc));
         backTo();
-
     }
     @Override
 

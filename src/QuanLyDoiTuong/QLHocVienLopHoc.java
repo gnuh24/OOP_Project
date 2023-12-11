@@ -91,20 +91,21 @@ public class QLHocVienLopHoc {
 
   // hàm in ra danh sách kết quả
   public static void inDanhSach(ArrayList<HocVienLopHoc> dsHocVienLopHoc) {
-    System.out.println("*".repeat(126));
-    System.out.printf("* %-10s* %-25s* %-20s* %-10s* %-50s*\n",
-        "STT", "Tên học viên", "Tên lớp học", "Điểm", "Đánh giá");
-      System.out.println("*".repeat(126));
+      System.out.println("*".repeat(148));
+    System.out.printf("* %-10s* %-25s* %-20s* %-10s* %-50s* %-20s*\n",
+        "STT", "Tên học viên", "Tên lớp học", "Điểm", "Đánh giá","Trạng thái");
+      System.out.println("*".repeat(148));
     int index = 1;
     for (HocVienLopHoc hocVienLopHoc : dsHocVienLopHoc) {
-      System.out.printf("* %-10s* %-25s* %-20s* %-10s* %-50s*\n",
+      System.out.printf("* %-10s* %-25s* %-20s* %-10s* %-50s* %-20s*\n",
           index++,
           hocVienLopHoc.getHocVien().getHoTen(),
           hocVienLopHoc.getLopHoc().getTenLop(),
           hocVienLopHoc.getDiem() == -1.0 ? "": hocVienLopHoc.getDiem(),
-          hocVienLopHoc.getDanhGia());
+          hocVienLopHoc.getDanhGia(),
+          TrangThaiLop.toString(hocVienLopHoc.getLopHoc().getTrangThai())   );
     }
-      System.out.println("*".repeat(126));
+      System.out.println("*".repeat(148));
 
   }
 
@@ -311,7 +312,7 @@ public class QLHocVienLopHoc {
             return;
         }
         LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(maLop, dsLopHoc);
-        while (lopHoc == null){
+        while (lopHoc == null ){
             System.err.println("Mã lớp không hợp lệ !!!");
             System.out.println("Ấn 1 để thoát !!");
             maLop = ScannerUtils.inputString();

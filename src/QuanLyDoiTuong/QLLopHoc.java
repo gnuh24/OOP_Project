@@ -347,22 +347,53 @@ public class QLLopHoc {
         String khoa;
         String chuongTrinhHoc;
 
-
-
         ArrayList<KhoaKhaiGiang> dsKhoaHopLe = QLKhoaKhaiGiang.timKiemKhoaChuaBatDau();
         QLKhoaKhaiGiang.inDanhSachKhoaKhaiGiang(dsKhoaHopLe);
+
+
         System.out.println("Nhập mã khóa khai giảng");
+        System.out.println("Ấn 1 để thoát");
         khoa = ScannerUtils.inputString();
+        if (khoa.equals("1")){
+          return;
+        }
+
+        KhoaKhaiGiang khoaKhaiGiang = QLKhoaKhaiGiang.timKiemTheoMaKhoa(khoa);
+        while (khoaKhaiGiang == null){
+          System.err.println("Khóa không tồn tại !!! Nhập lại !!");
+          System.out.println("Ấn 1 để thoát");
+          khoa = ScannerUtils.inputString();
+          if (khoa.equals("1")){
+            return;
+          }
+          khoaKhaiGiang = QLKhoaKhaiGiang.timKiemTheoMaKhoa(khoa);
+        }
 
         QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
         System.out.println("Nhập mã khóa chương trình học");
+        System.out.println("Ấn 1 để thoát");
         chuongTrinhHoc = ScannerUtils.inputString();
+        if (chuongTrinhHoc.equals("1")){
+          return;
+        }
+        ChuongTrinhHoc chuongTrinhHoc1 = QLChuongTrinhHoc.timKiemTheoMa(chuongTrinhHoc);
+        while (chuongTrinhHoc1 == null){
+            System.err.println("Chương trình học không tồn tại !!! Nhập lại !!");
+            System.out.println("Ấn 1 để thoát");
+            chuongTrinhHoc = ScannerUtils.inputString();
+            if (chuongTrinhHoc.equals("1")){
+              return;
+            }
+          chuongTrinhHoc1 = QLChuongTrinhHoc.timKiemTheoMa(chuongTrinhHoc);
+        }
+
+
 
         System.out.println("Nhập tên lớp: ");
         tenLop = ScannerUtils.inputString();
 
 
-        LopHoc lopHoc = new LopHoc(tenLop, QLKhoaKhaiGiang.timKiemTheoMaKhoa(khoa), QLChuongTrinhHoc.timKiemTheoMa(chuongTrinhHoc));
+        LopHoc lopHoc = new LopHoc(tenLop, khoaKhaiGiang, chuongTrinhHoc1);
 
         QLLopHoc.getDsLopHoc().add(lopHoc);
         System.out.println("Đã thêm lớp");
@@ -381,7 +412,7 @@ public class QLLopHoc {
       return;
     }
 
-    while (lopHoc == null){
+    while (lopHoc == null ){
       System.err.println("Không tìm thấy mã lớp !!!");
       System.out.println("Ấn 1 để trở về giao diện chính.");
       choice = ScannerUtils.inputString();
@@ -538,6 +569,8 @@ public class QLLopHoc {
         }
       }
 
+      //
+
       while (phongHoc.isBusy(lopHoc.getCaHocMacDinh().get(0))){
         System.err.printf("Phòng học này đã có lớp học tại thời điểm %s", lopHoc.getCaHocMacDinh().get(0));
         System.out.println("Hãy chọn phòng học phù hợp.");
@@ -581,8 +614,12 @@ public class QLLopHoc {
     }
 
     LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(idLop);
-    while (lopHoc == null){
-      System.err.println("Lớp học không tồn tại !!!");
+    while (lopHoc == null || lopHoc.getTrangThai().equals(TrangThaiLop.Huy) || lopHoc.getTrangThai().equals(TrangThaiLop.Cho_Sap_Xep)){
+      if (lopHoc == null ){
+        System.err.println("Lớp học không tồn tại !!!");
+      }else {
+        System.err.println("Bạn không thể thay đổi trạng thaái lớp của lớp đã bị hủy hoặc đang chờ sắp xếp !!");
+      }
       System.out.println("Nhập mã lớp học mà bạn muốn thấy đổi trạng thái. (Nhập ID)");
       System.out.println("Nhấn 1 để thoát !!");
       idLop = ScannerUtils.inputString();
@@ -595,15 +632,4 @@ public class QLLopHoc {
     lopHoc.setTrangThai(TrangThaiLop.nhapTrangThaiLop());
     System.out.println("Thay đổi trạng thái lớp thành công :3");
   }
-
-
-  // test
-//  public static void main(String[] args) {
-//    System.out.println("hi");
-//    LoadDuLieu.loading();
-//    System.out.println(dsLopHoc.size());
-//    inDanhSach(dsLopHoc);
-//    saveDuLieu();
-//  }
-
 }

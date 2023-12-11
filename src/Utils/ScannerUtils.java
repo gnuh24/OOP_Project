@@ -304,4 +304,23 @@ public class ScannerUtils {
 
         return true;
     }
+
+    public  static boolean inputTrangThaiUser(){
+        int trangThaiUser;
+
+        do {
+            System.out.println("Nhập giới tính: ");
+            System.out.println("1. Mở khóa");
+            System.out.println("2. Khóa thông tin");
+
+            trangThaiUser = ScannerUtils.inputInt();
+
+            if (trangThaiUser != 1 && trangThaiUser != 2) {
+                System.err.println("Vui lòng chỉ chọn 1  hoặc 2 . Hãy nhập lại.");
+            }
+
+        } while (trangThaiUser != 1 && trangThaiUser != 2);
+
+        return trangThaiUser == 1;
+    }
 }

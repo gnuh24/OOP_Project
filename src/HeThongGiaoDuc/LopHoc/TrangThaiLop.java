@@ -6,7 +6,8 @@ public enum TrangThaiLop {
     Sap_Khai_Giang,
     Dang_Hoc,
     Da_Ket_Thuc,
-    Cho_Sap_Xep;
+    Cho_Sap_Xep,
+    Huy;
 
     public static String toString(TrangThaiLop trangThaiLopEnum) {
         String trangThaiLopString = "Sắp khai giảng";
@@ -19,6 +20,10 @@ public enum TrangThaiLop {
                 break;
             case Cho_Sap_Xep:
                 trangThaiLopString = "Đang chờ sắp xếp";
+                break;
+            case Huy:
+                trangThaiLopString = "Hủy";
+                break;
         }
         return trangThaiLopString;
     }
@@ -35,6 +40,9 @@ public enum TrangThaiLop {
             case "Đang chờ sắp xếp":
                 trangThaiLop = Cho_Sap_Xep;
                 break;
+            case "Hủy" :
+                trangThaiLop = Huy;
+                break;
         }
         return trangThaiLop;
     }
@@ -45,9 +53,10 @@ public enum TrangThaiLop {
         System.out.println("2. Đang học");
         System.out.println("3. Đã kết thúc");
         System.out.println("4. Đang chờ sắp xếp");
+        System.out.println("5. Hủy");
         int choice = ScannerUtils.inputInt();
-        while (choice < 1 || choice > 4){
-            System.err.println("Bạn có 4 lựa chọn thôi mà ??????");
+        while (choice < 1 || choice > 5){
+            System.err.println("Bạn có 5 lựa chọn thôi mà ??????");
             choice = ScannerUtils.inputInt();
         }
         switch (choice){
@@ -59,6 +68,8 @@ public enum TrangThaiLop {
                 return Da_Ket_Thuc ;
                 case 4:
                     return Cho_Sap_Xep;
+            case 5:
+                return Huy;
 
         }
         return Cho_Sap_Xep;

@@ -189,9 +189,9 @@ public class QLBienLai {
     }
 
     public static void thongKeTheoNam() {
-
         ArrayList<BienLai> dsBienLai = new ArrayList<>(QLBienLai.dsBienLai);
         dsBienLai.sort(Comparator.comparingInt(bienLai->bienLai.getNgayThanhToan().getYear()));
+
         double tongDoanhThu = 0;
         double tongDoanhThuTheoLichSu = 0;
         int nam = dsBienLai.get(0).getNgayThanhToan().getYear();
@@ -207,7 +207,7 @@ public class QLBienLai {
                     i++;
                 } else {
                     System.out.printf("*  %-20s*  %-23.2f*\n", nam, tongDoanhThu);
-                    tongDoanhThu = 0;
+                    tongDoanhThu = bienLai.getSoTienDaDong();
                     nam = bienLai.getNgayThanhToan().getYear();
                     i++;
                 }

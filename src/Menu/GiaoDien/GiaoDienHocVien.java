@@ -120,7 +120,7 @@ public class GiaoDienHocVien extends GiaoDien {
             System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*70/100,  lopHoc.getChuongTrinh().getHocPhi());
             System.out.println("Nếu đăng ký sớm thì bạn vẫn sẽ được giảm 15% học phí");
             System.out.printf("Chỉ phải thanh toán %.2fđ (Học phí gốc: %.2fđ)\n", lopHoc.getChuongTrinh().getHocPhi()*85/100,  lopHoc.getChuongTrinh().getHocPhi());
-
+            System.out.println("Lưu ý: Ưu đãi chỉ áp dụng cho các lớp sắp khai giảng !!");
             double dongTien = ScannerUtils.inputHocPhi();
             YeuCauDangKy yeuCauDangKy = new YeuCauDangKy(Session.getTaiKhoan().getUser(), lopHoc, dongTien);
             QLYeuCauDangKy.getDsYeuCauDangKy().add(yeuCauDangKy);
@@ -145,6 +145,7 @@ public class GiaoDienHocVien extends GiaoDien {
         System.out.println("*".repeat(100));
         System.out.printf("* %-20s* %-20s* %-25s* %-26s*\n",
                 "Mã đăng ký", "Tên lớp học", "Tổng học phí", "Số tiền còn nợ");
+        System.out.println("*".repeat(100));
 
         for (YeuCauDangKy YCDK : cacYCDK) {
             // chỉ in ra các YCDK còn nợ học phí
