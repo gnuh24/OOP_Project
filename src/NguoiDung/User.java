@@ -89,7 +89,19 @@ public class User {
         this.diaChi = ScannerUtils.inputDiaChi();
     }
 
-    public boolean isBusy(CaHoc caHocCanSo) {
+    public boolean isThisStudentBusy(CaHoc caHocCanSo) {
+        ArrayList<HocVienLopHoc> dsLopHocCaNhan = QLHocVienLopHoc.timKiemTheoHocVien(maUser);
+        for (HocVienLopHoc hocVienLopHoc : dsLopHocCaNhan) {
+            CaHoc caHoc1 = hocVienLopHoc.getLopHoc().getCaHocMacDinh().get(0);
+            CaHoc caHoc2 = hocVienLopHoc.getLopHoc().getCaHocMacDinh().get(1);
+            if (caHoc1.equal(caHocCanSo) || caHoc2.equal(caHocCanSo) ){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isThisTeacherBusy(CaHoc caHocCanSo) {
         ArrayList<LopHoc> dsLopHocCaNhan = QLLopHoc.timKiemLopTheoGiangVien(this.getMaUser());
         for (LopHoc lopHoc : dsLopHocCaNhan) {
             CaHoc caHoc1 = lopHoc.getCaHocMacDinh().get(0);
@@ -102,7 +114,19 @@ public class User {
         return false;
     }
 
-    public boolean isBusy(String maLopHoc) {
+    public boolean isThisTutorBusy(CaHoc caHocCanSo) {
+        ArrayList<LopHoc> dsLopHocCaNhan = QLLopHoc.timKiemLopTheoTroGiang(this.getMaUser());
+        for (LopHoc lopHoc : dsLopHocCaNhan) {
+            CaHoc caHoc1 = lopHoc.getCaHocMacDinh().get(0);
+            CaHoc caHoc2 = lopHoc.getCaHocMacDinh().get(1);
+            if (caHoc1.equal(caHocCanSo) || caHoc2.equal(caHocCanSo) ){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isThisStudentBusy(String maLopHoc) {
         ArrayList<HocVienLopHoc> dsCacLopDaHoc = QLHocVienLopHoc.timKiemTheoHocVien(this.getMaUser());
         for (HocVienLopHoc hocVienLopHoc : dsCacLopDaHoc) {
             if (hocVienLopHoc.getLopHoc().getMaLop().equals(maLopHoc)){
@@ -112,9 +136,7 @@ public class User {
 
         return false;
     }
-    public boolean isBusy(Thu thu, LocalTime localTime, LocalDate localDate) {
-
-
+    public boolean isThisTeacherBusy(Thu thu, LocalTime localTime, LocalDate localDate) {
         ArrayList<LopHoc> dsLopHocCaNhan = QLLopHoc.timKiemLopTheoGiangVien(this.getMaUser());
         for (LopHoc lopHoc : dsLopHocCaNhan) {
             CaHoc caHoc1 = lopHoc.getCaHocMacDinh().get(0);

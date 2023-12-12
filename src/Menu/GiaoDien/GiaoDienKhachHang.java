@@ -1,9 +1,7 @@
 package Menu.GiaoDien;
 
 import HeThongGiaoDuc.LopHoc.TrangThaiLop;
-import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import Menu.Session;
-import NguoiDung.User;
 import NguoiDung.VaiTro;
 import QuanLyDoiTuong.*;
 import Utils.ScannerUtils;
@@ -21,7 +19,7 @@ public class GiaoDienKhachHang extends GiaoDien {
             System.out.printf("*  %-96s*\n", "3. Xem danh sách các lớp đang học");
             System.out.printf("*  %-96s*\n", "4. Xem danh sách các lớp sắp khai giảng");
             System.out.printf("*  %-96s*\n", "5. Xem danh sách các cơ sở đang hoạt động");
-            System.out.printf("*  %-96s*\n", "6. Đăng ký phổng vấn");
+            System.out.printf("*  %-96s*\n", "6. Đăng ký phỏng vấn");
             System.out.printf("*  %-96s*\n", "7. Đăng nhập");
             System.out.printf("*  %-96s*\n", "8. Thoát chương trình");
             System.out.printf("*  %-96s*\n", "Bạn đã có lựa chọn chưa ?");

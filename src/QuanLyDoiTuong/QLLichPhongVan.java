@@ -147,6 +147,16 @@ public class QLLichPhongVan {
         System.out.println("*".repeat(128));
     }
 
+    public static LichPhongVan timKiemLichPhongVanTheoMa(String idPhongVan, ArrayList<LichPhongVan> dsLichPhongVan){
+        LichPhongVan lichPhongVan = null;
+        for(LichPhongVan lichPhongVan1: dsLichPhongVan){
+            if (lichPhongVan1.getMaCaPhongVan().equals(idPhongVan)){
+                return lichPhongVan1;
+            }
+        }
+        return lichPhongVan;
+    }
+
     public static LichPhongVan timKiemLichPhongVanTheoMa(String idPhongVan){
         LichPhongVan lichPhongVan = null;
         for(LichPhongVan lichPhongVan1: QLLichPhongVan.getDsLichPhongVan()){
@@ -204,19 +214,27 @@ public class QLLichPhongVan {
             System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
             QLUser.inThongTin(QLUser.timUserTheoVaiTro(VaiTro.GiangVien, true));
             String idGV = ScannerUtils.inputString();
+            if (idGV.equals("1")){
+                return;
+            }
 
             User giangVien = QLUser.timUserTheoMa(idGV);
-            if (giangVien == null){
-                System.err.println("Giang viên không tồn tại !!");
-                return;
-            }else if(giangVien.isBusy(Thu.formDayOfWeekToThu(ngayThang.getDayOfWeek()), gioPhongVan, ngayThang)){
-                System.err.println("Giảng viên đang có ca dạy hay phổng vấn khác vào thời điểm đó !!!");
-                return;
+            while (giangVien == null || giangVien.isThisTeacherBusy(Thu.formDayOfWeekToThu(ngayThang.getDayOfWeek()), gioPhongVan, ngayThang)){
+                if (giangVien == null) {
+                    System.err.println("Giang viên không tồn tại !!");
+                }else if(giangVien.isThisTeacherBusy(Thu.formDayOfWeekToThu(ngayThang.getDayOfWeek()), gioPhongVan, ngayThang)){
+                    System.err.println("Giảng viên đang có ca dạy hay phổng vấn khác vào thời điểm đó !!!");
+                }
+                idGV = ScannerUtils.inputString();
+                if (idGV.equals("1")){
+                    return;
+                }
+                giangVien = QLUser.timUserTheoMa(idGV);
             }
-            else{
-                lichPhongVan.setGiangVien(giangVien);
-                System.out.println("Đã thêm giảng viên thành công !!");
-            }
+
+            lichPhongVan.setGiangVien(giangVien);
+            System.out.println("Đã thêm giảng viên thành công !!");
+
 
             if (lichPhongVan.isValid()){
                 lichPhongVan.setTrangThaiPhongVan(TrangThaiPhongVan.CHO_PHONGVAN);
@@ -286,11 +304,11 @@ public class QLLichPhongVan {
     }
 
     public static void nhapDiemChoThiSinhPhongVan(){
-        QLLichPhongVan.inDSLichPhongVan(QLLichPhongVan.timKiemLichPhongVanTheoGV(
-                QLUser.timUserTheoMa(
-                        Session.getTaiKhoan().getUser().getMaUser()
-                ).getMaUser()
-        ));
+        ArrayList<LichPhongVan> dsLichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoGV(
+                Session.getTaiKhoan().getUser().getMaUser()
+        );
+
+        QLLichPhongVan.inDSLichPhongVan(dsLichPhongVan);
         System.out.println("Hãy chọn buổi phổng vấn bạn muốn nhập điểm (Nhập ID)");
         System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
 
@@ -300,33 +318,54 @@ public class QLLichPhongVan {
             return;
         }
 
-        LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id);
-        if (lichPhongVan == null) {
-            System.err.println("Mã không tồn tại !!!");
-        } else if (!lichPhongVan.getTrangThaiPhongVan().equals(TrangThaiPhongVan.DA_PHONGVAN)) {
-            System.err.println("Bạn không thể chấm điểm khi buổi phổng vấn chưa diễn ra!!");
-        } else {
+        LichPhongVan lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id, dsLichPhongVan);
+        while (lichPhongVan == null || !lichPhongVan.getTrangThaiPhongVan().equals(TrangThaiPhongVan.DA_PHONGVAN)){
+            if (lichPhongVan == null) {
+                System.err.println("Mã không tồn tại !!! Nhập lại.");
+            } else if (!lichPhongVan.getTrangThaiPhongVan().equals(TrangThaiPhongVan.DA_PHONGVAN)) {
+                System.err.println("Bạn không thể chấm điểm khi buổi phổng vấn chưa diễn ra!! Nhập lại");
+            }
+            System.out.println("Nếu muốn thoát hãy ấn phím 1 !!");
+
+            id = ScannerUtils.inputString();
+
+            if (id.equals("1")) {
+                return;
+            }
+
+            lichPhongVan = QLLichPhongVan.timKiemLichPhongVanTheoMa(id, dsLichPhongVan);
+
+        }
+
+
             System.out.printf("Bạn đã chọn lịch phổng vấn %s \n",
                     lichPhongVan.getMaCaPhongVan());
             double diem = ScannerUtils.inputDiem();
 
             System.out.println("Bạn muốn đề xuất chương trình nào cho khách ?");
             QLChuongTrinhHoc.inChuongTrinhHoc(QLChuongTrinhHoc.getDsChuongTrinhHoc());
-
+            System.out.println("Ấn 1 để thoát !!");
             String maChuongTrinh = ScannerUtils.inputString();
+            if (maChuongTrinh.equals("1")){
+                return;
+            }
             ChuongTrinhHoc chuongTrinhHoc =
                     QLChuongTrinhHoc.timKiemTheoMa(maChuongTrinh);
 
-            if (chuongTrinhHoc == null) {
+            while (chuongTrinhHoc == null){
                 System.err.println("Không tìm thấy chương trình !!");
-            } else {
-                KetQuaPhongVan ketQuaPhongVan = new KetQuaPhongVan(lichPhongVan, diem,
-                        chuongTrinhHoc);
-                QLKetQuaPhongVan.getDsKetQuaPhongVan().add(ketQuaPhongVan);
-                System.out.println("Đã chấm điểm thành công !!");
+                System.out.println("Ấn 1 để thoát !!");
+                maChuongTrinh = ScannerUtils.inputString();
+                if (maChuongTrinh.equals("1")){
+                    return;
+                }
+                chuongTrinhHoc = QLChuongTrinhHoc.timKiemTheoMa(maChuongTrinh);
             }
-        }
 
+            KetQuaPhongVan ketQuaPhongVan = new KetQuaPhongVan(lichPhongVan, diem,
+                        chuongTrinhHoc);
+            QLKetQuaPhongVan.getDsKetQuaPhongVan().add(ketQuaPhongVan);
+            System.out.println("Đã chấm điểm thành công !!");
     }
 
 }

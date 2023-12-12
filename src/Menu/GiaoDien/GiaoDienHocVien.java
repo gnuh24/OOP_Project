@@ -94,11 +94,19 @@ public class GiaoDienHocVien extends GiaoDien {
             return;
         }
 
-        while (Session.getTaiKhoan().getUser().isBusy(malop) || lopHoc == null){
-            if (Session.getTaiKhoan().getUser().isBusy(malop)){
-                System.err.println("Bạn không thể đăng ký thêm lớp học mà bạn đang học !!!");
-            }else{
+        while (Session.getTaiKhoan().getUser().isThisStudentBusy(malop) ||
+                lopHoc == null ||
+                Session.getTaiKhoan().getUser().isThisStudentBusy(lopHoc.getCaHocMacDinh().get(0)) ||
+                Session.getTaiKhoan().getUser().isThisStudentBusy(lopHoc.getCaHocMacDinh().get(1)) ){
+            if (lopHoc == null){
                 System.err.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+            }
+            else if (Session.getTaiKhoan().getUser().isThisStudentBusy(malop)){
+                System.err.println("Bạn không thể đăng ký thêm lớp học mà bạn đang học !!!");
+            }else if (Session.getTaiKhoan().getUser().isThisTeacherBusy(lopHoc.getCaHocMacDinh().get(0))){
+                System.err.println("Bạn không thể đăng ký lớp này, bạn còn có ca học vào " + lopHoc.getCaHocMacDinh().get(0));
+            }else{
+                System.err.println("Bạn không thể đăng ký lớp này, bạn còn có ca học vào " + lopHoc.getCaHocMacDinh().get(1));
             }
             System.out.println("Ấn 1 để thoát !");
             malop = ScannerUtils.inputString();
@@ -150,7 +158,7 @@ public class GiaoDienHocVien extends GiaoDien {
         for (YeuCauDangKy YCDK : cacYCDK) {
             // chỉ in ra các YCDK còn nợ học phí
             if (QLBienLai.soTienConNo(YCDK) > 0) {
-                System.out.printf("* %-20s* %-20s* %-25.2f* %-26s*\n",
+                System.out.printf("* %-20s* %-20s* %-25.2f* %-26.2f*\n",
                         YCDK.getMaDangKy(),
                         YCDK.getLopHoc().getTenLop(),
                         YCDK.getTongHocPhi(),
@@ -166,7 +174,7 @@ public class GiaoDienHocVien extends GiaoDien {
             User hocVien = Session.getTaiKhoan().getUser();
 
             // tìm các yêu cầu đăng ký của học viên này
-            ArrayList<YeuCauDangKy> cacYCDK = QLYeuCauDangKy.timKiemTheoMaHocVien(hocVien.getMaUser());
+            ArrayList<YeuCauDangKy> cacYCDK = QLYeuCauDangKy.timKiemTheoMaHocVien(hocVien.getMaUser(), true);
 
             // in ra số tiền còn nợ
             inSoTienConNo(cacYCDK);

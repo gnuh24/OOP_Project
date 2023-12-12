@@ -119,7 +119,15 @@ public class QLKetQuaPhongVan {
             return;
         }
         KetQuaPhongVan ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(inputCase3);
-        if (ketQuaPhongVan != null){
+
+        while (ketQuaPhongVan == null){
+            System.err.println("Không tìm thấy kết quả phổng vấn !! Nhập lại");
+            inputCase3 = ScannerUtils.inputString();
+            if (inputCase3.equals("1")){
+                return;
+            }
+            ketQuaPhongVan = QLKetQuaPhongVan.timKetQuaPhongVanTheoMa(inputCase3);
+        }
             // Bạn đã thử liên hệ chưa ? Họ nói gì ?
             System.out.println("1. Chưa liên hệ"); //Đã liên hệ và họ muốn ghi danh
             System.out.println("2. Đã từ chối");
@@ -138,25 +146,14 @@ public class QLKetQuaPhongVan {
                 case 3:
                     ketQuaPhongVan.setLienHe(LienHe.DaDangKy);
                     System.out.println("Bạn vừa điều chỉnh trạng thái đăng ký của kết quả phổng vấn thành \"Đã đăng ký\" !!");
-                    System.out.println("Bạn có muốn tạo đăng ký cho họ không ? (1 hoặc 0)");
-                    int dangKy = ScannerUtils.inputInt();
-                    while (dangKy != 1 && dangKy != 0){
-                        System.err.println("Lựa chọn không hợp lệ !!");
-                        System.out.println("Bạn có muốn tạo đăng ký cho họ không ? (1 hoặc 0)");
-                        dangKy = ScannerUtils.inputInt();
+                    System.out.println("Hãy đăng ký lớp phù hợp cho họ :3");
+                    QLYeuCauDangKy.dangKyMonHocChoKhachHang(ketQuaPhongVan);
 
-                    }
-                    if (dangKy == 1){
-                        QLYeuCauDangKy.dangKyMonHocChoKhachHang(ketQuaPhongVan);
-                    }
                     break;
                 case 4:
                     ketQuaPhongVan.setLienHe(LienHe.LienHeSau);
                     break;
             }
-        }
-        else{
-            System.out.println("Không tìm thấy mã bạn yêu cầu !!");
-        }
+
     }
 }

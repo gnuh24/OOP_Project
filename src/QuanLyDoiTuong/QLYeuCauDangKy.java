@@ -111,6 +111,20 @@ public class QLYeuCauDangKy {
         return null;
     }
 
+    public static ArrayList<YeuCauDangKy> timKiemTheoMaHocVien(String maHocVien, boolean flag) {
+        if (flag){
+            ArrayList<YeuCauDangKy> ketQua = new ArrayList<>();
+            for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
+                if (yeuCauDangKy.getHocVien().getMaUser().equals(maHocVien) &&
+                yeuCauDangKy.getTrangThaiDangKy().equals(TrangThaiDangKy.DA_GHI_DANH)) {
+                    ketQua.add(yeuCauDangKy);
+                }
+            }
+            return ketQua;
+        }
+        return timKiemTheoMaHocVien(maHocVien);
+    }
+
     public static ArrayList<YeuCauDangKy> timKiemTheoMaHocVien(String maHocVien) {
         ArrayList<YeuCauDangKy> ketQua = new ArrayList<>();
         for (YeuCauDangKy yeuCauDangKy : QLYeuCauDangKy.getDsYeuCauDangKy()) {
@@ -216,8 +230,8 @@ public class QLYeuCauDangKy {
                 return;
             }
         }
-        ArrayList<LopHoc> dsCacLopHocPhuHop = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang, TrangThaiLop.Dang_Hoc);
 
+        ArrayList<LopHoc> dsCacLopHocPhuHop = QLLopHoc.timKiemLopTheoTrangThai(TrangThaiLop.Sap_Khai_Giang, TrangThaiLop.Dang_Hoc);
         QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
         System.out.println("Bạn chọn lớp học nào ??");
         System.out.println("Nhấn 1 để thoát");
@@ -226,11 +240,19 @@ public class QLYeuCauDangKy {
             return;
         }
         LopHoc lopHoc = QLLopHoc.timKiemLopTheoMaLop(malop, dsCacLopHocPhuHop);
-        while (lopHoc == null || hocVien.isBusy(malop)){
-            if (hocVien.isBusy(malop)){
+        while (lopHoc == null ||
+                hocVien.isThisStudentBusy(malop)||
+                hocVien.isThisStudentBusy(lopHoc.getCaHocMacDinh().get(0) ) ||
+                hocVien.isThisStudentBusy(lopHoc.getCaHocMacDinh().get(1) )
+                ){
+            if (lopHoc == null ){
+                System.err.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+            } else if (hocVien.isThisStudentBusy(malop)){
                 System.err.println("Học viên không thể đăng ký học thêm lớp mới này !! Vì học viên đã tham gia rồi !!");
+            }else if(hocVien.isThisStudentBusy(lopHoc.getCaHocMacDinh().get(0) ) ){
+                System.err.println("Học viên đã có lớp vào thời điểm " + lopHoc.getCaHocMacDinh().get(0).toString()  );
             }else{
-                System.out.println("Bạn chỉ được nhập mã lớp đúng với các lớp được đề xuất !!!");
+                System.err.println("Học viên đã có lớp vào thời điểm " + lopHoc.getCaHocMacDinh().get(1).toString()  );
             }
             System.out.println("Nhấn 1 để thoát");
 
@@ -272,11 +294,8 @@ public class QLYeuCauDangKy {
     }
     public static void dangKyMonHocChoKhachHang(KetQuaPhongVan ketQuaPhongVan){
         ArrayList<LopHoc> dsCacLopCungChuongTrinh = QLLopHoc.timKiemLopTheoChuongTrinh(ketQuaPhongVan.getChuongTrinhHocDeXuat().getMaChuongTrinh());
-        ArrayList<LopHoc> dsCacLopCacLopDangHoc = QLLopHoc.timKiemLopTheoTrangThai(dsCacLopCungChuongTrinh, TrangThaiLop.Dang_Hoc);
-        ArrayList<LopHoc> dsCacLopCacLopSapKhaiGiang = QLLopHoc.timKiemLopTheoTrangThai(dsCacLopCungChuongTrinh, TrangThaiLop.Sap_Khai_Giang);
-        ArrayList<LopHoc> dsCacLopHocPhuHop = new ArrayList<>(dsCacLopCacLopDangHoc);
+        ArrayList<LopHoc> dsCacLopHocPhuHop = QLLopHoc.timKiemLopTheoTrangThai(dsCacLopCungChuongTrinh, TrangThaiLop.Dang_Hoc, TrangThaiLop.Sap_Khai_Giang);
 
-        dsCacLopHocPhuHop.addAll(dsCacLopCacLopSapKhaiGiang);
         QLLopHoc.inDanhSach(dsCacLopHocPhuHop);
         System.out.println("Bạn chọn lớp học nào ??");
         System.out.println("Nhấn 1 để thoát");

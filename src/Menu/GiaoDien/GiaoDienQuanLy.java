@@ -116,7 +116,6 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
     protected void thongKeHocVienTheoNam(){
         QLYeuCauDangKy.thongKeTheoNam();
         backTo();
-
     }
 
     protected void thongKeDoanhThuTheoChuongTrinh(){

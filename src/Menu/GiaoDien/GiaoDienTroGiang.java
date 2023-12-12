@@ -74,8 +74,7 @@ public class GiaoDienTroGiang extends GiaoDienNhanVienDungLop {
 
     @Override
     protected void xemDanhSachHocVien() {
-        ArrayList<LopHoc> dsLopHoc = QLLopHoc.timKiemLopTheoTrangThai(
-                QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser()), TrangThaiLop.Dang_Hoc, TrangThaiLop.Sap_Khai_Giang);
+        ArrayList<LopHoc> dsLopHoc = QLLopHoc.timKiemLopTheoTroGiang(Session.getTaiKhoan().getUser().getMaUser());
         QLLopHoc.inDanhSach(dsLopHoc);
         System.out.println("Chọn lớp: ");
         System.out.println("Ấn 1 để thoát !!");

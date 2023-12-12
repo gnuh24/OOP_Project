@@ -441,7 +441,7 @@ public class QLLopHoc {
       if (choice.equals("1")){
         return;
       }
-      lopHoc = QLLopHoc.timKiemLopTheoMaLop(choice);
+      lopHoc = QLLopHoc.timKiemLopTheoMaLop(choice, dsLopHoc);
     }
       ArrayList<User> dsGiangVien = QLUser.timUserTheoVaiTro(VaiTro.GiangVien, true);
       ArrayList<User> dsTroGiang = QLUser.timUserTheoVaiTro(VaiTro.TroGiang, true);
@@ -450,28 +450,43 @@ public class QLLopHoc {
       ArrayList<CaHoc> dsCaHoc = new ArrayList<>();
       QLCaHoc.inDanhSach(QLCaHoc.getDsCaHoc());
       System.out.println("Hãy chọn ca học thứ 1 mà bạn muốn ?");
+      System.out.println("Ấn -1 để thoát !!");
       int choiceCaHoc1 = ScannerUtils.inputInt();
-      if (choiceCaHoc1 < 1 || choiceCaHoc1 > QLCaHoc.getDsCaHoc().size()){
-        System.err.println("Ca học không hợp lẹ !!");
+      if (choiceCaHoc1 == -1){
         return;
-      }else{
-        dsCaHoc.add(QLCaHoc.getDsCaHoc().get(choiceCaHoc1 - 1));
       }
+      while (choiceCaHoc1 < 1 || choiceCaHoc1 > QLCaHoc.getDsCaHoc().size()){
+        System.err.println("Ca học không hợp lẹ !! Nhập lại");
+        System.out.println("Nhập -1 để thoát !!");
+        if (choiceCaHoc1 == -1){
+          return;
+        }
+        choiceCaHoc1 = ScannerUtils.inputInt();
+      }
+
+      dsCaHoc.add(QLCaHoc.getDsCaHoc().get(choiceCaHoc1 - 1));
+
 
       QLCaHoc.inDanhSach(QLCaHoc.getDsCaHoc());
       System.out.println("Hãy chọn ca học thứ 2 mà bạn muốn ?");
+      System.out.println("Ấn -1 để thoát !!");
       int choiceCaHoc2 = ScannerUtils.inputInt();
-      if (choiceCaHoc2 < 1 || choiceCaHoc2 > QLCaHoc.getDsCaHoc().size()){
-        System.err.println("Ca học không hợp lẹ !!");
+      if (choiceCaHoc2 == -1){
         return;
-      }else{
-        if (choiceCaHoc2 == choiceCaHoc1){
-          System.err.println("Bạn không được chọn 2 ca học giống nhau !!");
-          return;
+      }
+      while (choiceCaHoc2 < 1 || choiceCaHoc2 > QLCaHoc.getDsCaHoc().size() || choiceCaHoc2 == choiceCaHoc1){
+        if (choiceCaHoc2 < 1 || choiceCaHoc2 > QLCaHoc.getDsCaHoc().size()){
+          System.err.println("Ca học không hợp lệ !! Nhập lại");
         }else{
-          dsCaHoc.add(QLCaHoc.getDsCaHoc().get(choiceCaHoc2 - 1));
+          System.err.println("Bạn không được chọn 2 ca học giống nhau !!");
+        }
+        System.out.println("Ấn -1 để thoát !!");
+        choiceCaHoc2 = ScannerUtils.inputInt();
+        if (choiceCaHoc2 == -1){
+          return;
         }
       }
+      dsCaHoc.add(QLCaHoc.getDsCaHoc().get(choiceCaHoc2 - 1));
 
       lopHoc.setCaHocMacDinh(dsCaHoc);
 
@@ -485,11 +500,11 @@ public class QLLopHoc {
       }
 
       while (giangVien == null ||
-              giangVien.isBusy(dsCaHoc.get(0)) ||
-              giangVien.isBusy(dsCaHoc.get(1)) ){
+              giangVien.isThisTeacherBusy(dsCaHoc.get(0)) ||
+              giangVien.isThisTeacherBusy(dsCaHoc.get(1)) ){
         if(giangVien == null){
           System.err.println("Mã giảng viên không hợp lẹ !!");
-        } else if (giangVien.isBusy(dsCaHoc.get(0))){
+        } else if (giangVien.isThisTeacherBusy(dsCaHoc.get(0))){
           System.err.printf("Giảng viên bị trùng lịch vào %s !!!\n", dsCaHoc.get(0));
         } else  {
           System.err.printf("Giảng viên bị trùng lịch vào %s !!!\n", dsCaHoc.get(1));
@@ -518,11 +533,11 @@ public class QLLopHoc {
       }
 
       while (troGiang == null ||
-              troGiang.isBusy(dsCaHoc.get(0)) ||
-              troGiang.isBusy(dsCaHoc.get(1))){
+              troGiang.isThisTutorBusy(dsCaHoc.get(0)) ||
+              troGiang.isThisTutorBusy(dsCaHoc.get(1)) ){
         if(troGiang == null){
           System.err.println("Mã trợ giảng không hợp lệ !!");
-        }else if (troGiang.isBusy(dsCaHoc.get(0))){
+        }else if (troGiang.isThisTutorBusy(dsCaHoc.get(0))){
           System.err.printf("Trợ giảng bị trùng lịch vào %s !!!\n", dsCaHoc.get(0));
         } else  {
           System.err.printf("Trợ giảng bị trùng lịch vào %s !!!\n", dsCaHoc.get(1));

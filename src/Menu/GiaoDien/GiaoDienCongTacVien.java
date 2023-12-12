@@ -63,6 +63,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
                 case 1:
                     QLLichPhongVan.sapXepLichPhongVan();
                     break;
+
                 case 2:
                     QLLichPhongVan.thayDoiTrangThaiLichPhongVan();
                     break;
@@ -74,6 +75,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
                 case 4:
                     QLYeuCauDangKy.dangKyMonHoc();
                     break;
+
                 case 5:
                     QLTaiKhoan.taoTaiKhoanMoi();
                     break;
@@ -81,6 +83,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
                 case 6:
                     QLUser.themUserMoi();
                     break;
+
                 case 7:
                     QLHocVienLopHoc.chuyenLop();
                     break;
@@ -112,6 +115,7 @@ public class GiaoDienCongTacVien extends GiaoDien {
                 case 14:
                     Session.logout();
                     break;
+
                 case 15:
                     exit();
                     break;

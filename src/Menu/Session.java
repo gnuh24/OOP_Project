@@ -50,20 +50,17 @@ public class Session {
             }   else if (Session.taiKhoan.getUser().getVaiTro().equals(VaiTro.GiamDoc)) {
                     actorGiamDoc.giaoDien();
             }   else {
-                    System.out.println("Lỗi đăng nhập !!!");
+                    System.err.println("Lỗi đăng nhập !!!");
                     actorKhachHang.giaoDien();
             }
         }
         else {
-            System.out.println("Thông tin đăng nhập không đúng hãy kiểm tra lại !!");
+            System.err.println("Thông tin đăng nhập không đúng hãy kiểm tra lại !!");
             System.out.println("1. Đăng nhập lại");
             System.out.println("Nhấn bất cứ nút nào để trở màn hình chính");
             String choice = ScannerUtils.inputString();
-
-
             if (choice.equals("1")){
                 Session.login();
-                return;
             }
             else {
                 actorKhachHang.giaoDien();
@@ -81,6 +78,7 @@ public class Session {
         if (!taiKhoan.getMatKhau().equals(password)){
             return false;
         }
+
         else{
             if (!taiKhoan.isTrangThai()){
                 System.err.println("Tài khoản của bạn đã bị khóa !! Vui lòng liên hệ trung tâm để được hỗ trợ !!");

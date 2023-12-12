@@ -30,4 +30,4 @@ HV1#LH8#9.8#Hardworking, talkative.
 HV2#LH8#-1.0#Chưa có đánh giá
 HV3#LH8#-1.0#Chưa có đánh giá
 HV2#LH4#-1.0#Chưa có đánh giá
-HV1#LH10#9.0#Hay
+HV1#LH10#-1.0#Chưa có đánh giá
