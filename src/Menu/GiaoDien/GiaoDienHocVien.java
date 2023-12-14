@@ -28,8 +28,9 @@ public class GiaoDienHocVien extends GiaoDien {
             System.out.printf("*   %-95s*\n","3. Xem điểm");
             System.out.printf("*   %-95s*\n","4. Đóng học phí");
             System.out.printf("*   %-95s*\n","5. Đăng ký lớp học mới");
-            System.out.printf("*   %-95s*\n","6. Đăng xuất");
-            System.out.printf("*   %-95s*\n","7. Thoát chương trình");
+            System.out.printf("*   %-95s*\n","6. Xem tất cả biên lai");
+            System.out.printf("*   %-95s*\n","7. Đăng xuất");
+            System.out.printf("*   %-95s*\n","8. Thoát chương trình");
             System.out.printf("*   %-95s*\n","Bạn đã có lựa chọn chưa ?");
             System.out.println("*".repeat(100));
 
@@ -56,13 +57,20 @@ public class GiaoDienHocVien extends GiaoDien {
                     dangKyMonHocChoHocVien();
                     break;
                 case 6:
-                    Session.logout();
+                    ;
                     break;
                 case 7:
+                    Session.logout();
+                    break;
+                case 8:
                     exit();
                     break;
             }
         } while (true);
+    }
+
+    private void xemBienLai(){
+        QLBienLai.inTatCaBienLai(Session.getTaiKhoan().getUser());
     }
 
     private void xemThoiKhoaBieuCacLopDangHoc(){

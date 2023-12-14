@@ -6,7 +6,10 @@ import QuanLyDoiTuong.QLHocVienLopHoc;
 import QuanLyDoiTuong.QLKhoaKhaiGiang;
 import QuanLyDoiTuong.QLLopHoc;
 import QuanLyDoiTuong.QLYeuCauDangKy;
+import Utils.Convert;
 import Utils.ScannerUtils;
+
+import java.time.LocalDate;
 
 public class GiaoDienQuanLy extends GiaoDienCongTacVien {
     public void giaoDien(){
@@ -108,6 +111,39 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
         backTo();
     }
 
+    protected void thongKeDoanhThuTheoChuongTrinh(){
+        System.out.println("Có 2 loại thống kê. Bạn chọn gì ?");
+        System.out.println("1. Thống kê theo khoảng thời gian");
+        System.out.println("2. Thống kê toàn bộ");
+        System.out.println("Nhập lựa chọn khác để thoát");
+        int choise = ScannerUtils.inputInt();
+        if (choise!=1 && choise!=2){
+            return;
+        }
+        if (choise==1){
+            QLBienLai.thongKeDoanhThuTheoChuongTrinh(ScannerUtils.inputDate("Nhập ngày bắt đầu "), ScannerUtils.inputDate("Nhập ngày kết thúc ") );
+        } else {
+            QLBienLai.thongKeDoanhThuTheoChuongTrinh();
+        }
+        backTo();
+    }
+    protected void thongKeDoanhThuTheoKhoa(){
+        System.out.println("Có 2 loại thống kê. Bạn chọn gì ?");
+        System.out.println("1. Thống kê theo khoảng thời gian");
+        System.out.println("2. Thống kê toàn bộ");
+        System.out.println("Nhập lựa chọn khác để thoát");
+        int choise = ScannerUtils.inputInt();
+        if (choise!=1 && choise!=2){
+            return;
+        }
+        if (choise==1){
+            QLBienLai.thongKeDoanhThuTheoKhoa(ScannerUtils.inputDate("Nhập ngày bắt đầu "), ScannerUtils.inputDate("Nhập ngày kết thúc ") );
+        } else {
+            QLBienLai.thongKeDoanhThuTheoKhoa();
+        }
+        backTo();
+    }
+
     protected void thongKeHocVienTheoThang(){
         QLYeuCauDangKy.thongKeHocVienTheoThang();
         backTo();
@@ -118,15 +154,6 @@ public class GiaoDienQuanLy extends GiaoDienCongTacVien {
         backTo();
     }
 
-    protected void thongKeDoanhThuTheoChuongTrinh(){
-        QLBienLai.thongKeDoanhThuTheoChuongTrinh();
-        backTo();
-    }
-
-    protected void thongKeDoanhThuTheoKhoa(){
-        QLBienLai.thongKeDoanhThuTheoKhoa();
-        backTo();
-    }
 
     protected void thongKeDoanhThuTheoThang(){
         QLBienLai.thongKeDoanhThuTheoThang();

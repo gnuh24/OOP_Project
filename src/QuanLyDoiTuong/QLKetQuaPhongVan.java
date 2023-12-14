@@ -156,4 +156,13 @@ public class QLKetQuaPhongVan {
             }
 
     }
+
+    public static boolean isLichPhongVanCoDiem(LichPhongVan lichPhongVan){
+        for (KetQuaPhongVan ketQuaPhongVan: QLKetQuaPhongVan.getDsKetQuaPhongVan()){
+            if (ketQuaPhongVan.getLichPhongVan().equals(lichPhongVan)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

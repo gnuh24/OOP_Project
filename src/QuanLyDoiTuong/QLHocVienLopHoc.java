@@ -92,7 +92,7 @@ public class QLHocVienLopHoc {
   // hàm in ra danh sách kết quả
   public static void inDanhSach(ArrayList<HocVienLopHoc> dsHocVienLopHoc) {
       System.out.println("*".repeat(148));
-    System.out.printf("* %-10s* %-25s* %-20s* %-10s* %-50s* %-20s*\n",
+      System.out.printf("* %-10s* %-25s* %-20s* %-10s* %-50s* %-20s*\n",
         "STT", "Tên học viên", "Tên lớp học", "Điểm", "Đánh giá","Trạng thái");
       System.out.println("*".repeat(148));
     int index = 1;
@@ -210,7 +210,7 @@ public class QLHocVienLopHoc {
         QLLopHoc.inDanhSach(lopHocs);
     }
 
-
+    // Dùng trong trường hợp chuyển lớp
     public static void chuyenLop(){
         /*
          * Quy tắc chuyên lớp
@@ -361,6 +361,7 @@ public class QLHocVienLopHoc {
 
     }
 
+    //Dùng trong trường hợp hủy đăng ký !!
     public static void xoaHocVienLopHoc(YeuCauDangKy yeuCauDangKy){
         for (HocVienLopHoc hocVienLopHoc: QLHocVienLopHoc.getDsKetQua()){
             if (hocVienLopHoc.getHocVien().getMaUser().equals(yeuCauDangKy.getHocVien().getMaUser()) &&
@@ -370,5 +371,53 @@ public class QLHocVienLopHoc {
             }
         }
     }
+
+    // Đếm số học sinh chưa được chấm điểm trong các lớp đã kết thúc !!
+    public static int demSoHocSinhChuaDuocChamDiem(String maLop){
+        ArrayList<HocVienLopHoc> dsHocVienLopHoc = QLHocVienLopHoc.timKiemTheoLopHoc(maLop);
+        int count = 0;
+        for(HocVienLopHoc hv: dsHocVienLopHoc){
+                if (hv.getDiem() == -1.0){
+                        count++;
+                }
+        }
+        return count;
+    }
+
+    public static void inDanhSachCacGVChuaChamDiem(){
+          /*
+          * - Các bước thực hiện
+          *     + Tìm danh sách các lớp đang dạy của giảng viên
+          *     + Lọc ra các lớp đã kết thúc
+          *     + Đếm xem còn bao nhiêu học viên trong lớp chưa được chấm điểm (Sử dụng phương thức demSoHocSinhChuaDuocChamDiem)
+          *             -> Nếu không còn thì không cần in ra
+          *             -> Nếu còn thì in ra Mã GV, Họ tên, SĐT hoặc Email (Để liên hệ), Số lượng học sinh chưa được chấm điểm
+          *
+          * */
+            ArrayList<User> dsGiangVien = QLUser.timUserTheoVaiTro(VaiTro.GiangVien, true);
+            System.out.println("*".repeat(136));
+            System.out.printf("* %-10s* %-25s* %-20s* %-20s* %-50s*\n",
+                    "Mã GV", "Tên giảng viên", "Tên lớp học", "Số điện thoại","Số lượng học sinh chưa chấm điểm");
+            System.out.println("*".repeat(136));
+            for (User user: dsGiangVien) {
+                    ArrayList<LopHoc> dsLopHocCuaGiangVien = QLLopHoc.timKiemLopTheoGiangVien(user.getMaUser(), true);
+                    ArrayList<LopHoc> dsCacLopDaKetThuc = QLLopHoc.timKiemLopTheoTrangThai(dsLopHocCuaGiangVien, TrangThaiLop.Da_Ket_Thuc);
+
+
+                    for (LopHoc lopHoc : dsCacLopDaKetThuc) {
+                            int soLuong = demSoHocSinhChuaDuocChamDiem(lopHoc.getMaLop());
+                            if (soLuong != 0) {
+                                    System.out.printf("* %-10s* %-25s* %-20s* %-20s* %-50d*\n",
+                                            lopHoc.getGiangVien().getMaUser(),
+                                            lopHoc.getGiangVien().getHoTen(),
+                                            lopHoc.getTenLop(),
+                                            lopHoc.getGiangVien().getSoDienThoai(),
+                                            soLuong);
+                            }
+                    }
+            }
+            System.out.println("*".repeat(136));
+    }
+
 
 }

@@ -1,6 +1,8 @@
 package QuanLyDoiTuong;
 
 import HeThongGiaoDuc.ChuongTrinhHoc.ChuongTrinhHoc;
+import HeThongGiaoDuc.LopHoc.LopHoc;
+import HeThongGiaoDuc.LopHoc.TrangThaiLop;
 import HeThongGiaoDuc.PhongVan.KetQuaPhongVan;
 import HeThongGiaoDuc.PhongVan.LichPhongVan;
 import HeThongGiaoDuc.PhongVan.TrangThaiPhongVan;
@@ -366,6 +368,59 @@ public class QLLichPhongVan {
                         chuongTrinhHoc);
             QLKetQuaPhongVan.getDsKetQuaPhongVan().add(ketQuaPhongVan);
             System.out.println("Đã chấm điểm thành công !!");
+    }
+
+    public static ArrayList<LichPhongVan> timKiemLichPhongVanTheoTrangThai(TrangThaiPhongVan trangThaiPhongVan, ArrayList<LichPhongVan> dsLichPhongVan){
+        ArrayList<LichPhongVan> ketQua = new ArrayList<>();
+        for(LichPhongVan lichPhongVan: dsLichPhongVan){
+            if (lichPhongVan.getTrangThaiPhongVan().equals(trangThaiPhongVan) ){
+                ketQua.add(lichPhongVan);
+            }
+        }
+        return ketQua;
+    }
+
+    public static int demSoLuongLichPhongVanChuaCoDiem(String maGV, ArrayList<LichPhongVan> dsLichPhongVan){
+        int count = 0;
+        for(LichPhongVan lichPhongVan: dsLichPhongVan){
+            if (lichPhongVan.getGiangVien().getMaUser().equals(maGV) && !QLKetQuaPhongVan.isLichPhongVanCoDiem(lichPhongVan) ){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static void inDanhSachCacGVChuaChamDiem(){
+        /*
+         * - Các bước thực hiện
+         *     + Tìm danh sách các ca phổng vấn của giảng viên
+         *     + Lọc ra các ca phổng vấn đã kết thúc
+         *     + Đếm xem còn bao nhiêu lịch phổng vấn chưa được chấm điểm (Sử dụng phương thức demSoLuongLichPhongVanChuaCoDiem)
+         *             -> Nếu không còn thì không cần in ra
+         *             -> Nếu còn thì in ra Mã GV, Họ tên, SĐT hoặc Email (Để liên hệ), Số lượng các ca phổng vấn
+         *
+         * */
+        ArrayList<User> dsGiangVien = QLUser.timUserTheoVaiTro(VaiTro.GiangVien, true);
+        System.out.println("*".repeat(114));
+        System.out.printf("* %-10s* %-25s* %-20s* %-50s*\n",
+                "Mã GV", "Tên giảng viên", "Số điện thoại","Số lượng ca phổng vấn chưa chấm điểm");
+        System.out.println("*".repeat(114));
+        for (User user: dsGiangVien) {
+            ArrayList<LichPhongVan> dsLichPhongVanCuaGiangVien = QLLichPhongVan.timKiemLichPhongVanTheoGV(user.getMaUser());
+            ArrayList<LichPhongVan> dsCacLichPVDangChoChamDiem = QLLichPhongVan.timKiemLichPhongVanTheoTrangThai ( TrangThaiPhongVan.DA_PHONGVAN, dsLichPhongVanCuaGiangVien);
+
+
+            int soLuong = demSoLuongLichPhongVanChuaCoDiem(user.getMaUser(), dsCacLichPVDangChoChamDiem);
+            if (soLuong != 0) {
+                    System.out.printf("* %-10s* %-25s* %-20s* %-50d*\n",
+                            user.getMaUser(),
+                            user.getHoTen(),
+                            user.getSoDienThoai(),
+                            soLuong);
+            }
+
+        }
+        System.out.println("*".repeat(114));
     }
 
 }
