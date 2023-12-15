@@ -31,7 +31,7 @@ public class QLBienLai {
 
     }
 
-        public static void xuLyDuLieu(ArrayList<String> duLieu) {
+    public static void xuLyDuLieu(ArrayList<String> duLieu) {
         // duyệt qua duLieu và bắt đầu xử lý!
         for (String dong : duLieu) {
             // tách chuỗi tam

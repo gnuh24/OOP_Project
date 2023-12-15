@@ -8,12 +8,15 @@ public class TaiKhoan {
     private String matKhau;
     private boolean trangThai;
 
+    //Dành cho các tài khoản được tạo bởi chức năng "Tạo tài khoản"
     public TaiKhoan(User user) {
         this.user = user;
         this.tenTaiKhoan = user.getMaUser();
         this.matKhau = "123456";
         this.trangThai = true;
     }
+
+    //Dành cho các tài khoản được tạo từ dữ liệu trong file
 
     public TaiKhoan(User user, String tenTaiKhoan, String matKhau, boolean trangThai) {
         this.user = user;

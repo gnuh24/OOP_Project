@@ -10,12 +10,6 @@ import java.util.ArrayList;
 
 public class QLKhoaKhaiGiang {
 
-	public static void main(String[] args) {
-		loadDuLieu();
-		inDanhSachKhoaKhaiGiang(dsKhoaKhaiGiang);
-		saveDuLieu();
-	}
-
 	private static ArrayList<KhoaKhaiGiang> dsKhoaKhaiGiang = new ArrayList<>();
 
 	public static ArrayList<KhoaKhaiGiang> getDsKhoaKhaiGiang() {
@@ -54,68 +48,6 @@ public class QLKhoaKhaiGiang {
 
 		// nếu không tìm thấy, trả về null
 		return null;
-	}
-
-	// Hàm tìm các Khóa khai giảng có ngày bắt đầu theo thời gian chỉ định
-	public static ArrayList<KhoaKhaiGiang> timKiemKhoaBatDauTheoThang(int thang, int nam) {
-		ArrayList<KhoaKhaiGiang> cacKhoaTimThay = new ArrayList<>();
-
-		// Duyệt qua tất cả các khóa khai giảng
-		for (KhoaKhaiGiang khoaKhaiGiang : dsKhoaKhaiGiang)
-			if (thang == khoaKhaiGiang.getNgayBatDau().getMonth().getValue()
-					&& nam == khoaKhaiGiang.getNgayBatDau().getYear())
-				cacKhoaTimThay.add(khoaKhaiGiang);
-
-		if (cacKhoaTimThay.isEmpty())
-			return null;
-
-		return cacKhoaTimThay;
-	}
-
-	// Hàm tìm các Khóa khai giảng có ngày bắt đầu theo thời gian chỉ định
-	public static ArrayList<KhoaKhaiGiang> timKiemKhoaBatDauTheoNam(int nam) {
-		ArrayList<KhoaKhaiGiang> cacKhoaTimThay = new ArrayList<>();
-
-		// Duyệt qua tất cả các khóa khai giảng
-		for (KhoaKhaiGiang khoaKhaiGiang : dsKhoaKhaiGiang)
-			if (nam == khoaKhaiGiang.getNgayBatDau().getYear())
-				cacKhoaTimThay.add(khoaKhaiGiang);
-
-		if (cacKhoaTimThay.isEmpty())
-			return null;
-
-		return cacKhoaTimThay;
-	}
-
-	// Hàm tìm các Khóa khai giảng có ngày kết thúc theo thời gian chỉ định
-	public static ArrayList<KhoaKhaiGiang> timKiemKhoaKetThucTheoThang(int thang, int nam) {
-		ArrayList<KhoaKhaiGiang> cacKhoaTimThay = new ArrayList<>();
-
-		// Duyệt qua tất cả các khóa khai giảng
-		for (KhoaKhaiGiang khoaKhaiGiang : dsKhoaKhaiGiang)
-			if (thang == khoaKhaiGiang.getNgayKetThuc().getMonth().getValue()
-					&& nam == khoaKhaiGiang.getNgayKetThuc().getYear())
-				cacKhoaTimThay.add(khoaKhaiGiang);
-
-		if (cacKhoaTimThay.isEmpty())
-			return null;
-
-		return cacKhoaTimThay;
-	}
-
-	// Hàm tìm các Khóa khai giảng có ngày kết thúc theo thời gian chỉ định
-	public static ArrayList<KhoaKhaiGiang> timKiemKhoaKetThucTheoNam(int nam) {
-		ArrayList<KhoaKhaiGiang> cacKhoaTimThay = new ArrayList<>();
-
-		// Duyệt qua tất cả các khóa khai giảng
-		for (KhoaKhaiGiang khoaKhaiGiang : dsKhoaKhaiGiang)
-			if (nam == khoaKhaiGiang.getNgayKetThuc().getYear())
-				cacKhoaTimThay.add(khoaKhaiGiang);
-
-		if (cacKhoaTimThay.isEmpty())
-			return null;
-
-		return cacKhoaTimThay;
 	}
 
 	// Hàm đếm số lượng khóa học theo năm

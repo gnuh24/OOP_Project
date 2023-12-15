@@ -362,7 +362,7 @@ public class QLHocVienLopHoc {
     }
 
     //Dùng trong trường hợp hủy đăng ký !!
-    public static void xoaHocVienLopHoc(YeuCauDangKy yeuCauDangKy){
+            public static void xoaHocVienLopHoc(YeuCauDangKy yeuCauDangKy){
         for (HocVienLopHoc hocVienLopHoc: QLHocVienLopHoc.getDsKetQua()){
             if (hocVienLopHoc.getHocVien().getMaUser().equals(yeuCauDangKy.getHocVien().getMaUser()) &&
                 hocVienLopHoc.getLopHoc().getMaLop().equals(yeuCauDangKy.getLopHoc().getMaLop())){
